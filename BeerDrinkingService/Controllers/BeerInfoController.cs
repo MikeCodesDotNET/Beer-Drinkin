@@ -55,7 +55,7 @@ namespace BeerDrinkin.Service.Controllers
                     beerInfo.BreweryDBId = beer.Id;
                     var beerCheckins = Context.CheckInItems.Where(f => f.BeerId == beer.Id);
                     beerInfo.CheckIns = beerCheckins.Where(f => f.CheckedInBy == userId);
-                    beerInfo.AverageRating = beerCheckins.Select(f => f.Rating).Average();
+                    beerInfo.AverageRating = Math.Round(beerCheckins.Select(f => f.Rating).Average(), 1);
                     beerInfo.Reviews = Context.ReviewItems.Where(f => f.BeerId == beer.Id);
                     beerInfo.ImagesURLs = Context.BinaryItems.Where(f => f.ObjectId == beer.Id).Select(f=>f.BinaryUrl);
 

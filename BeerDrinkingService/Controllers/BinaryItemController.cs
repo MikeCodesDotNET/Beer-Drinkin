@@ -20,14 +20,26 @@ namespace BeerDrinkin.Service.Controllers
     {
         public ApiServices Services { get; set; }
 
+        /*
         // GET api/BinaryItem
         public List<string> Get(string objectId, string type)
         {
-            BeerDrinkinContext context = new BeerDrinkinContext();
+            var context = new BeerDrinkinContext();
             return
                 context.BinaryItems.Where(f => f.ObjectId == objectId && f.BinaryType == type)
                     .Select(f => f.BinaryUrl)
                     .ToList();
+        }*/
+
+        // GET api/BinaryItem
+        public List<string> Get(string userId)
+        {
+            var context = new BeerDrinkinContext();
+            var photos =
+                context.BinaryItems.Where(f => f.UserId == userId)
+                    .Select(f => f.BinaryUrl)
+                    .ToList();
+            return photos;
         }
 
         // POST api/BinaryItem

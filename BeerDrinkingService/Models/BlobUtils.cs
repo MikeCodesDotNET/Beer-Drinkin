@@ -31,7 +31,7 @@ namespace BeerDrinkin.Service.Models
             CloudBlobClient blobClient = new CloudBlobClient(blobEndpoint,
                 new StorageCredentials(storageAccountName, storageAccountKey));
 
-            string ContainerName = "beerDrinkinImages";
+            string ContainerName = "beerdrinkinimages";
 
             // Create a container, if it doesn't already exist.
             CloudBlobContainer container = blobClient.GetContainerReference(ContainerName);

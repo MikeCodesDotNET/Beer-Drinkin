@@ -27,7 +27,7 @@ namespace BeerDrinkin.Service.Controllers
 
             try
             {
-                var results = await new BreweryDB.BreweryDBClient().SearchForBrewery(keyword);
+                var results = await new BreweryDB.BreweryDBSearch<BreweryDB.Models.Brewery>(keyword).Search();
                 if (results != null && results.Any())
                 {
                     foreach (var r in results)

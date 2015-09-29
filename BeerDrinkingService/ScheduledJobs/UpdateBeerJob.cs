@@ -29,8 +29,7 @@ namespace BeerDrinkin.Service
             foreach (var beerItem in context.BeerItems)
             {
                 Services.Log.Info("updating beer " + beerItem.Name);
-                //TODO Use only the ID of the beer. This is a wasted call to the BreweryDB backend. And by this point, we should also have this data stored in our DB
-                var results = await new BreweryDB.BreweryDBClient().SearchForBeer(beerItem.Name);
+                var results = await new BreweryDB.BreweryDBSearch<BreweryDB.Models.Beer>(beerItem.Name).Search();
                 var beer = results.FirstOrDefault(f => f.Id == beerItem.BreweryDBId);
                 if (beer == null)
                 {

@@ -13,6 +13,7 @@ namespace BeerDrinkin.Service.Models
         public string Username { get; set; }
         public int CheckIns { get; set; }
         public int Photos { get; set; }
-        public int Ratings { get; set; }       
+        public int Ratings { get; set; }
+        
     }
 }

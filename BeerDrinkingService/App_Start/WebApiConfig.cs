@@ -11,6 +11,7 @@ using Facebook;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.WindowsAzure.Mobile.Service.Security;
 using Microsoft.WindowsAzure.Mobile.Service.Security.Providers;
+using Mindscape.Raygun4Net.WebApi;
 
 namespace BeerDrinkin.Service
 {
@@ -36,6 +37,8 @@ namespace BeerDrinkin.Service
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
             
             Database.SetInitializer(new beerdrinkingtestInitializer());
+
+            RaygunWebApiClient.Attach(config);
         }
     }
 
@@ -93,7 +96,7 @@ namespace BeerDrinkin.Service
                 Email = emailAddress,
                 FirstName = user.first_name,
                 LastName = user.last_name,
-                IsMale = user.gender == "Male",
+                IsMale = user.gender == "male",
                 DateOfBirth = dateOfBirth
             };
             accountItem.AvatarUrl = $"https://graph.facebook.com/{userItem.Id}/picture?type=large";
