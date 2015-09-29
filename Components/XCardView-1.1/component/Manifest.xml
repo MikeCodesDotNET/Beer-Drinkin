@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="XCardView">
+  <name>XCardView</name>
+  <publisher>Softweb Solutions Inc.</publisher>
+  <publisher-url>http://www.softwebsolutions.com</publisher-url>
+  <version>1.1</version>
+  <summary>A simple view for building card-like interfaces like Tinder and Potluck.</summary>
+  <screenshots>
+    <img src="screenshots/1.png" title="1" />
+    <img src="screenshots/2.png" title="2" />
+    <img src="screenshots/3.png" title="3" />
+    <img src="screenshots/4.png" title="4" />
+  </screenshots>
+  <samples>
+    <sample id="XCardViewSimpleSample">
+      <name>iOS Sample2</name>
+      <summary>iOS Sample2</summary>
+    </sample>
+    <sample id="XCardViewSample">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>
