@@ -8,7 +8,8 @@ using UIKit;
 using SWTableViewCell;
 using BeerDrinkin.iOS.Helpers;
 using System.Collections.Generic;
-using Colour = BeerDrinkin.Shared.Colour;
+using Colour = BeerDrinkin.Helpers.Colours;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -59,8 +60,8 @@ namespace BeerDrinkin.iOS
             cell.Delegate = cellDelegate;
             var deleteButton = new UIButton(UIButtonType.RoundedRect)
             {
-                BackgroundColor = Colour.Red,
-                TintColor = Colour.White
+                BackgroundColor = Colour.Red.ToNative(),
+                TintColor = Colour.White.ToNative()
             };
             deleteButton.SetImage(UIImage.FromFile("711-trash@3x.png"), UIControlState.Normal);
             cell.SetRightUtilityButtons(new[] { deleteButton }, 90);

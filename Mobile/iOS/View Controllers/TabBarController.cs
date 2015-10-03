@@ -1,7 +1,8 @@
 using System;
 using CoreGraphics;
 using UIKit;
-using Color = BeerDrinkin.Shared.Colour;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 
 namespace BeerDrinkin.iOS
@@ -25,7 +26,7 @@ namespace BeerDrinkin.iOS
             TabBar.Items[0].Title = Strings.TabControllerMyBeers;
             TabBar.Items[1].Title = Strings.TabControllerSearchTab;
             TabBar.Items[2].Title = Client.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.TabControllerProfile : Client.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
-            TabBar.SelectedImageTintColor = Color.Blue;
+            TabBar.SelectedImageTintColor = Color.Blue.ToNative();
         }
 
         void SetupTabChangeAnimation()

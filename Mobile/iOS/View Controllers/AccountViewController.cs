@@ -5,7 +5,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using SDWebImage;
-using Color = BeerDrinkin.Shared.Colour;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 using System.Collections.Generic;
 using Xamarin;
 using Splat;
@@ -48,7 +49,7 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidAppear(animated);
 
-            NavigationController.NavigationBar.BarTintColor = Color.Blue;
+            NavigationController.NavigationBar.BarTintColor = Color.Blue.ToNative();
             await viewModel.FetchData();
         }
 

@@ -1,7 +1,8 @@
 using System;
 using Foundation;
 using UIKit;
-using Color = BeerDrinkin.Shared.Colour;
+using Splat;
+using Color = BeerDrinkin.Helpers.Colours;
 
 
 namespace BeerDrinkin.iOS
@@ -57,9 +58,9 @@ namespace BeerDrinkin.iOS
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
-
+            
             imgLabel.Layer.CornerRadius = imgLabel.Frame.Width / 2;
-            imgLabel.Layer.BorderColor = Color.Gray.CGColor;
+            imgLabel.Layer.BorderColor = Color.Gray.ToNative().CGColor;
             imgLabel.Layer.BorderWidth = 1.5f;
             imgLabel.Layer.MasksToBounds = true;
 

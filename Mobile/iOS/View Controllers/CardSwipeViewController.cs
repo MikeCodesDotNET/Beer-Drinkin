@@ -5,7 +5,8 @@ using UIKit;
 using Softweb.Xamarin.Controls.iOS;
 using CoreGraphics;
 using System.Collections.Generic;
-using Color = BeerDrinkin.Shared.Colour;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 
 
 namespace BeerDrinkin.iOS
@@ -24,9 +25,9 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
-            colors.Add(Color.Green);
-            colors.Add(Color.Red);
-            colors.Add(Color.Purple);
+            colors.Add(Color.Green.ToNative());
+            colors.Add(Color.Red.ToNative());
+            colors.Add(Color.Purple.ToNative());
         }
 
         public override void ViewWillLayoutSubviews()

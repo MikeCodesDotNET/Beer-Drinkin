@@ -2,7 +2,8 @@ using System;
 using BeerDrinkin.Service;
 using Foundation;
 using UIKit;
-using Colour = BeerDrinkin.Shared.Colour;
+using Colour = BeerDrinkin.Helpers.Colours;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -18,7 +19,7 @@ namespace BeerDrinkin.iOS
             btnClose.SetTitleTextAttributes(new UITextAttributes
             {
                 Font = UIFont.FromName("Avenir-Book", 14f),
-                TextColor = Colour.White
+                TextColor = Colour.White.ToNative()
             }, UIControlState.Normal);
 
             TableView.WeakDelegate = this;

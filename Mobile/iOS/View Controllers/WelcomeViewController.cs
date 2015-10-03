@@ -2,7 +2,8 @@ using System;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
 using BeerDrinkin.Service;
-using Color = BeerDrinkin.Shared.Colour;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
@@ -26,7 +27,7 @@ namespace BeerDrinkin.iOS
             lblTitle.Text = Strings.WelcomeTitle;
             lblPromise.Text = Strings.WelcomePromise;
             btnFacebookConnect.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
-            View.BackgroundColor = Color.Blue;
+            View.BackgroundColor = Color.Blue.ToNative();
         }
 
         public override void ViewDidDisappear(bool animated)

@@ -5,7 +5,8 @@ using Foundation;
 using SDWebImage;
 using SWTableViewCell;
 using UIKit;
-using Color = BeerDrinkin.Shared.Colour;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -48,7 +49,7 @@ namespace BeerDrinkin.iOS
             cell.Delegate = cellDelegate;
             var quickCheckInButton = new UIButton(UIButtonType.RoundedRect)
             {
-                BackgroundColor = Color.Green,
+                BackgroundColor = Color.Green.ToNative(),
                 Font = UIFont.FromName("Avenir Book", 12),
                 TintColor = UIColor.White
             };
