@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Helpers\Colours.cs" />
+    <Compile Include="Helpers\Keys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Models\SignUpViewModel.cs" />
     <Compile Include="Helpers\RegexUtilities.cs" />
@@ -47,7 +48,6 @@
     <Compile Include="Helpers\Gravatar.cs" />
     <Compile Include="Helpers\MD5.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="Helpers\Keys.cs" />
     <Compile Include="Helpers\Strings.cs" />
     <Compile Include="View Models\BaseViewModel.cs" />
   </ItemGroup>

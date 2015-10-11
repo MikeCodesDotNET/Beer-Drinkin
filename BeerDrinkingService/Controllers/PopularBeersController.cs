@@ -14,13 +14,40 @@ using Microsoft.WindowsAzure.Mobile.Service.Security;
 namespace BeerDrinkin.Service.Controllers
 {
     [AuthorizeLevel(AuthorizationLevel.Anonymous)]
-    public class PopularBeersController
+    public class PopularBeersController : ApiController
     {
         public ApiServices Services { get; set; }
 
         // GET api/PopularBeers
-        public async Task<List<BeerItem>> Get(string countryCode)
+        public async Task<List<BeerItem>> Get(double longitude, double latitude)
         {
+            //Find the current country of the user
+            string bingKey;
+            if (!(Services.Settings.TryGetValue("BING_API_KEY", out bingKey)))
+            {
+                Services.Log.Error("Could not retrieve Bing API key.");
+                bingKey = "AlPB42X199-b_n7tnHPSNM15E4cvLv18hfj4upv3irWgSFHx5GplSaOS3wpggCox";
+            }
+            Services.Log.Info($"Bing API Key{bingKey}");
+
+            string countryRegion;
+            var client = new Bing.MapsClient(bingKey);
+            var result = await client.LocationQuery(new Bing.Maps.Point(latitude, longitude));
+            var locations = result.GetLocations();
+
+            if(locations.Count != 0)
+            {
+                countryRegion = result.GetLocations().First().Address.CountryRegion;
+
+                Services.Log.Info($"A user is has just been seen in {countryRegion}");
+            }
+            else
+            {
+                Services.Log.Error("Failed to lookup country. Results returned as null");
+            }
+                        
+
+
             var context = new BeerDrinkinContext();
             var beerList = new List<BeerItem>();
             
@@ -38,15 +65,7 @@ namespace BeerDrinkin.Service.Controllers
                 BreweryDBClient.Initialize(apiKey);
             }
 
-            //Fetch poplular beers
-            var popularBeers = context.PopularBeerItems.Where(f => f.CountryCode == countryCode);
-            
-            foreach (var popularBeer in popularBeers)
-            {
-                var beerResponse = await new BreweryDBClient().QueryBeerById(popularBeer.BeerId);
-                var beer = beerResponse.ToBeerItem();
-                beerList.Add(beer);
-            }
+          
            
             return beerList;
         }
