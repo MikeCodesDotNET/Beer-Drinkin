@@ -14,11 +14,13 @@ namespace BeerDrinkin.iOS
         {
         }
 
-
         public async override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
             await AttemptSignIn();
+
+            var vc = Storyboard.InstantiateViewController("welcomeViewController");
+            PresentViewController(vc, false, null);
         }
 
         async Task AttemptSignIn()
@@ -27,7 +29,7 @@ namespace BeerDrinkin.iOS
 
             /*
 #if DEBUG
-            await userService.RemoveAuthToken();
+           // await userService.RemoveAuthToken();
 #endif
             */
                          
@@ -41,7 +43,7 @@ namespace BeerDrinkin.iOS
             else
             {
                 var vc = Storyboard.InstantiateViewController("welcomeViewController");
-                await PresentViewControllerAsync(vc, false);
+                PresentViewController(vc, false, null);
             }
         }
     }

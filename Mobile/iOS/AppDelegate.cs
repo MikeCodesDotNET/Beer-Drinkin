@@ -7,7 +7,6 @@ using UIKit;
 using Xamarin;
 using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
-using SQLitePCL;
 
 namespace BeerDrinkin.iOS
 {
@@ -35,6 +34,7 @@ namespace BeerDrinkin.iOS
 
             //Windows Azure
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            CurrentPlatform.Init();
             SQLitePCL.CurrentPlatform.Init();
             Client.Instance.BeerDrinkinClient.InitializeStoreAsync(SqlDbLocation);
            

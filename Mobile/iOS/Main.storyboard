@@ -434,7 +434,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" id="Ds0-w3-bO1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="6090" height="5394"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="6300" height="5580"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </imageView>
                                                             </subviews>

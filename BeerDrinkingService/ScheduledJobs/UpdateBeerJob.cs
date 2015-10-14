@@ -29,8 +29,7 @@ namespace BeerDrinkin.Service
             foreach (var beerItem in context.BeerItems)
             {
                 Services.Log.Info("updating beer " + beerItem.Name);
-                var results = await new BreweryDB.BreweryDBSearch<BreweryDB.Models.Beer>(beerItem.Name).Search();
-                var beer = results.FirstOrDefault(f => f.Id == beerItem.BreweryDBId);
+                var beer = await new BreweryDB.BreweryDBClient().QueryBeerById(beerItem.Id);
                 if (beer == null)
                 {
                     Services.Log.Error(string.Format("Could not get beer {0} with id {1}", beerItem.Name, beerItem.BreweryDBId) );
