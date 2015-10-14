@@ -12,7 +12,7 @@ using SQLitePCL;
 namespace BeerDrinkin.iOS
 {
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    partial class AppDelegate : UIApplicationDelegate
     {
         public override UIWindow Window { get; set; }
 
@@ -30,11 +30,12 @@ namespace BeerDrinkin.iOS
             Akavache.BlobCache.ApplicationName = "BeerDrinkin";
             #if DEBUG
             Akavache.BlobCache.UserAccount.InvalidateAll();
+            BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
             #endif
 
             //Windows Azure
-            CurrentPlatform.Init();
-            //SQLitePCL.CurrentPlatform.Init();
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            SQLitePCL.CurrentPlatform.Init();
             Client.Instance.BeerDrinkinClient.InitializeStoreAsync(SqlDbLocation);
            
             return true;

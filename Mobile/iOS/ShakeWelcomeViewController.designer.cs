@@ -11,54 +11,46 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("WelcomeViewController")]
-	partial class WelcomeViewController
+	[Register ("ShakeWelcomeViewController")]
+	partial class ShakeWelcomeViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnFacebookConnect { get; set; }
+		UIButton btnGotIt { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgLogo { get; set; }
+		UIImageView imgDevice { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblPromise { get; set; }
+		UILabel lblDescription { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblTitle { get; set; }
 
-		[Outlet]
+		[Action ("BtnGotIt_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
-
-		[Action ("BtnFacebookConnect_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnFacebookConnect_TouchUpInside (UIButton sender);
+		partial void BtnGotIt_TouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnFacebookConnect != null) {
-				btnFacebookConnect.Dispose ();
-				btnFacebookConnect = null;
+			if (btnGotIt != null) {
+				btnGotIt.Dispose ();
+				btnGotIt = null;
 			}
-			if (imgLogo != null) {
-				imgLogo.Dispose ();
-				imgLogo = null;
+			if (imgDevice != null) {
+				imgDevice.Dispose ();
+				imgDevice = null;
 			}
-			if (lblPromise != null) {
-				lblPromise.Dispose ();
-				lblPromise = null;
+			if (lblDescription != null) {
+				lblDescription.Dispose ();
+				lblDescription = null;
 			}
 			if (lblTitle != null) {
 				lblTitle.Dispose ();
 				lblTitle = null;
-			}
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
 			}
 		}
 	}

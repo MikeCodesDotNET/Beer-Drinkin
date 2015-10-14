@@ -11,8 +11,8 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("CardSwipeViewController")]
-	partial class CardSwipeViewController
+	[Register ("s")]
+	partial class s
 	{
 		void ReleaseDesignerOutlets ()
 		{

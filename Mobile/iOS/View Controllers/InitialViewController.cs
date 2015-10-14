@@ -14,14 +14,10 @@ namespace BeerDrinkin.iOS
         {
         }
 
-        public async override void ViewDidLoad()
+
+        public async override void ViewDidAppear(bool animated)
         {
-            base.ViewDidLoad();
-
-            //Extensions
-            var controller = NCWidgetController.GetWidgetController();
-            controller.SetHasContent(true, "com.mikejames.beerbrinkin.todayextension");
-
+            base.ViewDidAppear(animated);
             await AttemptSignIn();
         }
 
@@ -34,7 +30,7 @@ namespace BeerDrinkin.iOS
             await userService.RemoveAuthToken();
 #endif
             */
-             
+                         
             var user = await userService.GetUser();
 
             if (user != null)

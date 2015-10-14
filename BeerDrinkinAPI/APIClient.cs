@@ -588,32 +588,31 @@ namespace BeerDrinkin.API
 
         #region PopularBeers
 
-        /*
-        public async Task<APIResponse<List<BeerItem>>> GetPopularBeersAsync(string countryCode)
+
+        public async Task<APIResponse<List<BeerItem>>> GetPopularBeersAsync(double longitude, double latitude)
         {
             //are we in? 
-            var username = GetUsername(AuthTypes.any);
-            if (!string.IsNullOrEmpty(username) && (!string.IsNullOrEmpty(countryCode)))
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters.Add("countryCode", countryCode);
+           
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("longitude", longitude.ToString());
+            parameters.Add("latitude", latitude.ToString());
 
-                try
-                {
-                    return
-                            new APIResponse<List<BeerItem>>(
-                        await serviceClient.InvokeApiAsync<List<BeerItem>>("PopularBeers", HttpMethod.Get, parameters),
-                        null);
-                }
-                catch (Exception ex)
-                {
-                    return new APIResponse<List<BeerItem>>(null, ex);
-                }
-               
+            try
+            {
+                return
+                        new APIResponse<List<BeerItem>>(
+                    await serviceClient.InvokeApiAsync<List<BeerItem>>("PopularBeers", HttpMethod.Get, parameters),
+                    null);
             }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerItem>>(null, ex);
+            }
+               
+
             return new APIResponse<List<BeerItem>>(null, new UnauthorizedAccessException("User is unauthenticated"));
         }
-    */
+    
 
         #endregion
 

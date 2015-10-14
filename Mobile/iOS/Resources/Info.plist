@@ -46,8 +46,8 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Find the most popular beers in your area</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Fetching your countrys most popular beers for offline storage</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

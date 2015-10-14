@@ -7,6 +7,7 @@ using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
+using BeerDrinkin.iOS.ViewControllers;
 
 namespace BeerDrinkin.iOS
 {
@@ -28,6 +29,46 @@ namespace BeerDrinkin.iOS
             lblPromise.Text = Strings.WelcomePromise;
             btnFacebookConnect.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
             View.BackgroundColor = Color.Blue.ToNative();
+
+
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
+           
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            btnFacebookConnect.Alpha = 0;
+            lblTitle.Alpha = 0;
+            imgLogo.Alpha = 0;
+            lblPromise.Alpha = 0;
+
+            if (BeerDrinkin.Core.Helpers.Settings.FirstRun == true)
+            {
+                BeerDrinkin.Core.Helpers.Settings.FirstRun = false;
+
+                var tinderBeer = Storyboard.InstantiateViewController("welcomeMapView");
+                PresentViewControllerAsync(tinderBeer, false);
+            }
+
+            UIView.Animate(0.4f, 0.3f, UIViewAnimationOptions.TransitionCurlUp,
+                () =>
+                {
+
+                    btnFacebookConnect.Alpha = 1;
+                    lblTitle.Alpha = 1;
+                    imgLogo.Alpha = 1;
+                    lblPromise.Alpha = 1;
+
+                }, () =>
+                {                    
+                });    
         }
 
         public override void ViewDidDisappear(bool animated)

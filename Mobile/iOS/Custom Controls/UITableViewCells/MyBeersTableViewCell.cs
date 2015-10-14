@@ -22,11 +22,7 @@ namespace BeerDrinkin.iOS
             set { lblName.Text = value; }
         }
 
-        public string Brewery
-        {
-            get { return lblBrewery.Text; }
-            set { lblBrewery.Text = value; }
-        }
+    
 
         public string NumberOfServings
         {
@@ -43,10 +39,6 @@ namespace BeerDrinkin.iOS
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
-
-            imgLabel.Layer.CornerRadius = imgLabel.Frame.Width / 2;
-            imgLabel.Layer.MasksToBounds = true;
-
             sideColor.Alpha = 0f;
         }
     }
