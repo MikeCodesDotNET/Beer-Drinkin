@@ -59,9 +59,9 @@ namespace BeerDrinkin.iOS
         {
             base.AwakeFromNib();
             
-            imgLabel.Layer.CornerRadius = imgLabel.Frame.Width / 2;
-            imgLabel.Layer.BorderColor = Color.Gray.ToNative().CGColor;
-            imgLabel.Layer.BorderWidth = 1.5f;
+            imgLabel.Layer.CornerRadius = 5;
+            imgLabel.Layer.BorderColor = Color.OffWhite.ToNative().CGColor;
+            imgLabel.Layer.BorderWidth = 0.8f;
             imgLabel.Layer.MasksToBounds = true;
 
             sideColor.Alpha = 0f;

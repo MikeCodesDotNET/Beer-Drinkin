@@ -16,7 +16,15 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIImageView imgGradient { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgLabel { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel lblBeerCount { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -36,9 +44,17 @@ namespace BeerDrinkin.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgGradient != null) {
+				imgGradient.Dispose ();
+				imgGradient = null;
+			}
 			if (imgLabel != null) {
 				imgLabel.Dispose ();
 				imgLabel = null;
+			}
+			if (lblBeerCount != null) {
+				lblBeerCount.Dispose ();
+				lblBeerCount = null;
 			}
 			if (lblBrewery != null) {
 				lblBrewery.Dispose ();
