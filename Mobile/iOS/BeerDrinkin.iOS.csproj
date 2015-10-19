@@ -521,6 +521,8 @@
     <BundleResource Include="Resources\Map.png" />
     <BundleResource Include="Resources\Entitlements.plist" />
     <BundleResource Include="Resources\Info.plist" />
+    <BundleResource Include="Resources\BeerCellCircle.png" />
+    <BundleResource Include="Resources\beerCellDarkGradient.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

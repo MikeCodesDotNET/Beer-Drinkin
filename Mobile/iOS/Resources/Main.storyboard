@@ -20,7 +20,7 @@
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Medium</string>
-            <string>Avenir-Book</string>
+            <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
@@ -195,7 +195,7 @@
                                         <rect key="frame" x="0.0" y="88" width="320" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L6v-jz-wrB" id="op6-RT-gE1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Abbaye de Maredsous" lineBreakMode="tailTruncation" minimumFontSize="10" id="maJ-TV-a9Y">
@@ -618,7 +618,7 @@
                                         <rect key="frame" x="0.0" y="1" width="320" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ex7-mS-60Q" id="7pL-qd-EJP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Abbaye de Maredsous" lineBreakMode="tailTruncation" minimumFontSize="10" id="LR3-xH-SNz">
@@ -654,8 +654,8 @@
                                                     <rect key="frame" x="63" y="8" width="230" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" red="0.1215686277" green="0.30196079609999998" blue="0.47058823700000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BeerDrinkin.png" id="GlB-PF-GRz">
@@ -829,7 +829,7 @@
                                         <rect key="frame" x="0.0" y="166" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcx-Qc-gMe" id="Hfs-AV-7Y7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Learn about how this is app was built" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="cJ3-Sr-rMT">
@@ -847,7 +847,7 @@
                                         <rect key="frame" x="0.0" y="210" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0xA-K2-PLD" id="8S7-c8-MjV">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Release Notes" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="iUa-sb-CMf">
@@ -872,7 +872,7 @@
                                         <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myn-bQ-F4u" id="V5v-LY-GTh">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="BeerDrinkin on Facebook" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="8BT-Wy-ZFO">
@@ -890,7 +890,7 @@
                                         <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSm-Gi-nrt" id="cTg-ib-FTJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="BeerDrinkin on Twitter" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="SEH-u2-JT8">
@@ -1111,7 +1111,7 @@
                                         <rect key="frame" x="0.0" y="25" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YBD-7e-cwP" id="TPE-NW-rdv">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Notifications" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="xDi-eg-iXX">
@@ -1129,7 +1129,7 @@
                                         <rect key="frame" x="0.0" y="69" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uY4-FR-H8j" id="BXP-zV-K82">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Privacy" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="FBc-yw-1XI">
@@ -1151,7 +1151,7 @@
                                         <rect key="frame" x="0.0" y="135" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P9U-Ki-4RX" id="no5-2j-zSU">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Send me some feedback" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="Hl0-R1-RWc">
@@ -1172,7 +1172,7 @@
                                         <rect key="frame" x="0.0" y="179" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hN2-Zy-2gd" id="Ch4-Nh-I9r">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Sign Out" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="l26-Eu-pSj">
@@ -1194,7 +1194,7 @@
                                         <rect key="frame" x="0.0" y="245" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yCT-OC-l0p" id="srn-ma-Vny">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="About" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="YaZ-OZ-3Os">
@@ -1561,7 +1561,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZHu-I2-Zff" id="tHi-KG-oVZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1874,6 +1874,6 @@
         <image name="shakeToDiscover.png" width="756" height="581"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="500"/>
+        <segue reference="xyT-dH-ImT"/>
     </inferredMetricsTieBreakers>
 </document>
