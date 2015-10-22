@@ -66,10 +66,16 @@ namespace BeerDrinkin.Service
 
         public async Task<bool> RemoveAuthToken()
         {
+            try
+            {
             var token = await BlobCache.LocalMachine.GetObject<string>("authenticationToken");
             if (string.IsNullOrEmpty(token))
                 return false;
-                
+            }
+            catch(Exception)
+            {
+                return false;
+            }
 
             try
             {
