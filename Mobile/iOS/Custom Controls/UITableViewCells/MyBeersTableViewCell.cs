@@ -1,6 +1,8 @@
 using System;
 using Foundation;
 using UIKit;
+using Color = BeerDrinkin.Helpers.Colours;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -16,18 +18,22 @@ namespace BeerDrinkin.iOS
         {
         }
 
+
         public string Name
         {
             get { return lblName.Text; }
-            set { lblName.Text = value; }
+            set 
+            { 
+                lblName.Text = value; 
+                lblName.SizeToFit();
+                this.LayoutIfNeeded();
+            }
         }
 
-    
-
-        public string NumberOfServings
+        public string BeerCount
         {
-            get { return lblNumberOfServings.Text; }
-            set { lblNumberOfServings.Text = value; }
+            get { return lblBeerCount.Text; }
+            set { lblBeerCount.Text = value; }
         }
 
         public UIImageView Image
@@ -39,7 +45,13 @@ namespace BeerDrinkin.iOS
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
-            sideColor.Alpha = 0f;
+            sideColor.Alpha = 0f;   
+
+            imgLabel.Layer.CornerRadius = 5;
+            imgLabel.Layer.BorderColor = Color.OffWhite.ToNative().CGColor;
+            imgLabel.Layer.BorderWidth = 0.8f;
+            imgLabel.Layer.MasksToBounds = true;
+
         }
     }
 }

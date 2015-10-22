@@ -22,7 +22,7 @@
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Medium</string>
-            <string>Avenir-Book</string>
+            <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
@@ -679,11 +679,11 @@
                                                     <rect key="frame" x="63" y="8" width="230" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" red="0.1215686277" green="0.30196079609999998" blue="0.47058823700000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BeerDrinkin.png" id="GlB-PF-GRz">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BeerDrinkin.png" id="GlB-PF-GRz">
                                                     <rect key="frame" x="8" y="16" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -850,11 +850,19 @@
                         <sections>
                             <tableViewSection id="QD7-PL-Dy8">
                                 <cells>
+<<<<<<< HEAD
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="wcx-Qc-gMe">
                                         <rect key="frame" x="0.0" y="166" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcx-Qc-gMe" id="Hfs-AV-7Y7">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+=======
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wcx-Qc-gMe">
+                                        <rect key="frame" x="0.0" y="166" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcx-Qc-gMe" id="Hfs-AV-7Y7">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+>>>>>>> origin/master
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Learn about how this is app was built" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="cJ3-Sr-rMT">
@@ -893,11 +901,19 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="RaS-9v-FXz">
                                 <cells>
+<<<<<<< HEAD
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="myn-bQ-F4u">
                                         <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myn-bQ-F4u" id="V5v-LY-GTh">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+=======
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="myn-bQ-F4u">
+                                        <rect key="frame" x="0.0" y="276" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myn-bQ-F4u" id="V5v-LY-GTh">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+>>>>>>> origin/master
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="BeerDrinkin on Facebook" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="8BT-Wy-ZFO">
@@ -911,11 +927,19 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+<<<<<<< HEAD
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="hSm-Gi-nrt">
                                         <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSm-Gi-nrt" id="cTg-ib-FTJ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+=======
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hSm-Gi-nrt">
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSm-Gi-nrt" id="cTg-ib-FTJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+>>>>>>> origin/master
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="BeerDrinkin on Twitter" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="SEH-u2-JT8">
@@ -1133,7 +1157,11 @@
                             <tableViewSection id="7Cw-ab-6Yc">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="YBD-7e-cwP">
+<<<<<<< HEAD
                                         <rect key="frame" x="0.0" y="25" width="320" height="44"/>
+=======
+                                        <rect key="frame" x="0.0" y="89" width="320" height="44"/>
+>>>>>>> origin/master
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YBD-7e-cwP" id="TPE-NW-rdv">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1151,7 +1179,11 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="uY4-FR-H8j">
+<<<<<<< HEAD
                                         <rect key="frame" x="0.0" y="69" width="320" height="44"/>
+=======
+                                        <rect key="frame" x="0.0" y="133" width="320" height="44"/>
+>>>>>>> origin/master
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uY4-FR-H8j" id="BXP-zV-K82">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1173,7 +1205,11 @@
                             <tableViewSection headerTitle=" " id="Mf2-zK-wPa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="P9U-Ki-4RX">
+<<<<<<< HEAD
                                         <rect key="frame" x="0.0" y="135" width="320" height="44"/>
+=======
+                                        <rect key="frame" x="0.0" y="199" width="320" height="44"/>
+>>>>>>> origin/master
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P9U-Ki-4RX" id="no5-2j-zSU">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1814,7 +1850,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yI0-SV-cz7">
                                 <rect key="frame" x="251" y="20" width="62" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.79607843140000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Got it">
@@ -1956,9 +1992,10 @@
         <image name="camera-flash.png" width="16" height="24"/>
         <image name="camera-switch.png" width="29" height="22"/>
         <image name="facebook_button.png" width="558" height="89"/>
+        <image name="flashOff.png" width="70" height="70"/>
         <image name="shakeToDiscover.png" width="756" height="581"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="500"/>
+        <segue reference="xyT-dH-ImT"/>
     </inferredMetricsTieBreakers>
 </document>

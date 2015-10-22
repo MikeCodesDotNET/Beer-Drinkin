@@ -29,9 +29,8 @@ namespace BeerDrinkin.iOS
             Akavache.BlobCache.ApplicationName = "BeerDrinkin";
 
             #if DEBUG
-            //Akavache.BlobCache.UserAccount.InvalidateAll();
+            Akavache.BlobCache.UserAccount.InvalidateAll();
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
-            #endif
 
             Xamarin.Calabash.Start();
 
