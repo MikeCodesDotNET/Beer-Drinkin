@@ -31,7 +31,7 @@ namespace BeerDrinkin.iOS
             #if DEBUG
             Akavache.BlobCache.UserAccount.InvalidateAll();
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
-
+            #endif
             Xamarin.Calabash.Start();
 
             //Windows Azure
