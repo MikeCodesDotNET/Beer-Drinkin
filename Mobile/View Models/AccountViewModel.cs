@@ -29,6 +29,21 @@ namespace BeerDrinkin.Core.ViewModels
                 headerInfo = value;
             }
         }
+
+        List<string> beerPhotosUrls;
+        public List<string> BeerPhotosUrls
+        {
+            get
+            {                 
+                return beerPhotosUrls;
+            }
+            set
+            {
+                beerPhotosUrls = value;
+                SetProperty(ref beerPhotosUrls, value);
+            }
+        }
+
         bool busy;
 
         public AccountViewModel()
@@ -39,6 +54,7 @@ namespace BeerDrinkin.Core.ViewModels
                 {
                     RefreshProperties();
                 }
+                System.Diagnostics.Debug.WriteLine(e.PropertyName);
             };
         }
 
@@ -52,7 +68,6 @@ namespace BeerDrinkin.Core.ViewModels
             FirstName = user.FirstName;
             AvararUrl = user.AvatarUrl;
             FullName = string.Format("{0} {1}", user.FirstName, user.LastName);
-
         }
 
         public async Task FetchData(bool forceRemoteRefresh = false)
@@ -91,19 +106,7 @@ namespace BeerDrinkin.Core.ViewModels
             }
         }
 
-        List<string> beerPhotosUrls;
-        public List<string> BeerPhotosUrls
-        {
-            get
-            {                 
-                return beerPhotosUrls;
-            }
-            set
-            {
-                SetProperty(ref beerPhotosUrls, value);
-                beerPhotosUrls = value;
-            }
-        }
+       
 
         async Task<List<string>> GetRemoteBeerPhotosUrls()
         {    

@@ -101,10 +101,30 @@ namespace BeerDrinkin.iOS
             layout.SectionInset = new UIEdgeInsets (5,5,2.5f,2.5f);
             photoCollection.SetCollectionViewLayout(layout, false);
 
+            RefreshAvatar();
+
             if (viewModel.BeerPhotosUrls != null)
             {
-                photoCollection.DataSource = new PhotoCollectionViewDataSource(viewModel.BeerPhotosUrls);
-                photoCollection.ReloadData();   
+                View.SendSubviewToBack(placeHolderView);
+                placeHolderView.Alpha = 0;
+
+                //No cells here to check if equal. Lets create everything from new
+                if (photoCollectionViewDataSource == null)
+                {
+                    photoCollectionViewDataSource = new PhotoCollectionViewDataSource(viewModel.BeerPhotosUrls);
+
+                    photoCollection.DataSource = photoCollectionViewDataSource;
+                    photoCollection.ReloadData();  
+                    return;
+                }
+
+                //We can assume we've some cells on display now. I dont want to update unless 100% required.
+                if(viewModel.BeerPhotosUrls.Count != photoCollectionViewDataSource.imageUrls.Count)
+                {
+                    photoCollectionViewDataSource.imageUrls = viewModel.BeerPhotosUrls;
+                    photoCollection.DataSource = photoCollectionViewDataSource;
+                    photoCollection.ReloadData(); 
+                }
             }
  
         }
@@ -113,13 +133,18 @@ namespace BeerDrinkin.iOS
         {
         }
 
+        PhotoCollectionViewDataSource photoCollectionViewDataSource;
 
         class PhotoCollectionViewDataSource : UICollectionViewDataSource
         {
-            List<string> imageUrls;
-            public PhotoCollectionViewDataSource(List<string> imageUrls)
+            public List<string> imageUrls { get; set;}
+
+            public PhotoCollectionViewDataSource(List<string> urls)
             {
-                this.imageUrls = imageUrls;
+                imageUrls = new List<string>();
+
+                if(urls.Count != this.imageUrls.Count)
+                    imageUrls = urls;
             }
 
             public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
@@ -129,10 +154,9 @@ namespace BeerDrinkin.iOS
                 DownloadImageAsync(imageUrls[indexPath.Row]).ContinueWith((task) => InvokeOnMainThread(() =>
                 {
                     cell.ImageView.Image = task.Result.ToNative();
-                    cell.LayoutSubviews();
                 }));
 
-                cell.BackgroundColor = UIColor.White;
+                cell.BackgroundColor = Color.White.ToNative();
                 return cell;
             }
 

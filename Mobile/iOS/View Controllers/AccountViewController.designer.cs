@@ -52,6 +52,10 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIScrollView placeHolderView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIScrollView scrollView { get; set; }
 
 		[Action ("btnAvatar_TouchUpInside:")]
@@ -95,6 +99,10 @@ namespace BeerDrinkin.iOS
 			if (photoCollection != null) {
 				photoCollection.Dispose ();
 				photoCollection = null;
+			}
+			if (placeHolderView != null) {
+				placeHolderView.Dispose ();
+				placeHolderView = null;
 			}
 			if (scrollView != null) {
 				scrollView.Dispose ();

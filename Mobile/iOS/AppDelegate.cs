@@ -27,13 +27,15 @@ namespace BeerDrinkin.iOS
 
             //Akavache
             Akavache.BlobCache.ApplicationName = "BeerDrinkin";
+
             #if DEBUG
-            Akavache.BlobCache.UserAccount.InvalidateAll();
-            BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
+            //Akavache.BlobCache.UserAccount.InvalidateAll();
+            //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
             #endif
 
+            Xamarin.Calabash.Start();
+
             //Windows Azure
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             CurrentPlatform.Init();
             SQLitePCL.CurrentPlatform.Init();
             Client.Instance.BeerDrinkinClient.InitializeStoreAsync(SqlDbLocation);
@@ -74,10 +76,10 @@ namespace BeerDrinkin.iOS
             //NavigationBar
             UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
             UINavigationBar.Appearance.TintColor = Color.White.ToNative();
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 20f), TextColor = Color.White.ToNative() });
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Medium", 20f), TextColor = Color.White.ToNative() });
 
             //NavigationBar Buttons 
-            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 12f), TextColor = Color.White.ToNative() }, UIControlState.Normal);
+            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Medium", 14f), TextColor = Color.White.ToNative() }, UIControlState.Normal);
 
             //TabBar
             UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 10f) }, UIControlState.Normal);

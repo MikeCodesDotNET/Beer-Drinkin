@@ -73,12 +73,6 @@
     <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Refractored.Xam.Settings">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.1\lib\Xamarin.iOS10\Refractored.Xam.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="Refractored.Xam.Settings.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.1\lib\Xamarin.iOS10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -105,23 +99,11 @@
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\Acr.Support.1.0.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Acr.UserDialogs.4.1.4\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Acr.UserDialogs.4.1.4\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
-    </Reference>
     <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\akavache.core.4.1.1\lib\Xamarin.iOS10\Akavache.dll</HintPath>
     </Reference>
     <Reference Include="Akavache.Sqlite3, Version=4.1.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\akavache.sqlite3.4.1.1\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Acr.UserDialogs.4.1.4\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
-    </Reference>
-    <Reference Include="Calabash, Version=16.2.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065">
-      <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.16.2\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
     <Reference Include="Connectivity.Plugin, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\Xam.Plugin.Connectivity.1.0.4\lib\Xamarin.iOS10\Connectivity.Plugin.dll</HintPath>
@@ -185,6 +167,24 @@
     </Reference>
     <Reference Include="ViewShaker">
       <HintPath>..\..\Components\ViewShaker-1.1\lib\ios-unified\ViewShaker.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\..\packages\Acr.UserDialogs.4.1.5\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\..\packages\Acr.UserDialogs.4.1.5\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\..\packages\Acr.UserDialogs.4.1.5\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\Xamarin.iOS10\Refractored.Xam.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.5.2\lib\Xamarin.iOS10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabash">
+      <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.16.2\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +428,11 @@
     <Compile Include="s.designer.cs">
       <DependentUpon>s.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhotosOfBeerCell.cs" />
+    <Compile Include="PhotosOfBeerCell.designer.cs">
+      <DependentUpon>PhotosOfBeerCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\BeerLoadingView.cs" />
   </ItemGroup>
   <Import Project="..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -521,6 +526,12 @@
     <BundleResource Include="Resources\Map.png" />
     <BundleResource Include="Resources\Entitlements.plist" />
     <BundleResource Include="Resources\Info.plist" />
+    <BundleResource Include="Resources\camera-flash.png" />
+    <BundleResource Include="Resources\camera-flash%402x.png" />
+    <BundleResource Include="Resources\camera-switch.png" />
+    <BundleResource Include="Resources\camera-switch%402x.png" />
+    <BundleResource Include="Resources\TestTube.png" />
+    <BundleResource Include="Resources\Tick.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />
@@ -554,6 +565,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="ViewShaker">
       <Version>1.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="calabash">
+      <Version>16.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -18,5 +18,7 @@ namespace BeerDrinkin.Helpers
         public static Color Red = Color.FromArgb(252, 20, 84);
         public static Color White = Color.FromArgb(255, 255, 255);
         public static Color FacebookBlue = Color.FromArgb(44, 67, 136);
+        public static Color OffWhite = Color.FromArgb(247, 247, 247);
+
     }
 }
