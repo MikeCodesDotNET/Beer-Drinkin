@@ -11,11 +11,19 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("s")]
-	partial class s
+	[Register ("InitialLoadingViewController")]
+	partial class InitialLoadingViewController
 	{
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel lblTitle { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (lblTitle != null) {
+				lblTitle.Dispose ();
+				lblTitle = null;
+			}
 		}
 	}
 }

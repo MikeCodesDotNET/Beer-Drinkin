@@ -72,7 +72,7 @@ namespace BeerDrinkin.Core.ViewModels
 
         public async Task FetchData(bool forceRemoteRefresh = false)
         {   
-            //Are we already running? 
+            //Are we already fetching data? 
             if (busy == true)
                 return;
             busy = true;
@@ -105,8 +105,6 @@ namespace BeerDrinkin.Core.ViewModels
                 busy = false;
             }
         }
-
-       
 
         async Task<List<string>> GetRemoteBeerPhotosUrls()
         {    

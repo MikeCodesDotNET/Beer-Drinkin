@@ -306,10 +306,6 @@
     <Compile Include="View Controllers\MyBeersViewController.designer.cs">
       <DependentUpon>MyBeersViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\navigationController.cs" />
-    <Compile Include="View Controllers\navigationController.designer.cs">
-      <DependentUpon>navigationController.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\BaseViewController.cs" />
     <Compile Include="View Controllers\AccountViewController.cs" />
     <Compile Include="View Controllers\AccountViewController.designer.cs">
@@ -355,10 +351,6 @@
     <Compile Include="Custom Controls\BreweryMapCell.designer.cs">
       <DependentUpon>BreweryMapCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\InitialViewController.cs" />
-    <Compile Include="View Controllers\InitialViewController.designer.cs">
-      <DependentUpon>InitialViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\UITableViewCells\AboutThisBeerCell.cs" />
     <Compile Include="Custom Controls\UITableViewCells\AboutThisBeerCell.designer.cs">
       <DependentUpon>AboutThisBeerCell.cs</DependentUpon>
@@ -379,10 +371,6 @@
     <Compile Include="Custom Controls\UITableViewCells\BeerDescriptionCell.designer.cs" />
     <Compile Include="Custom Controls\UITableViewCells\BeerHeaderCell.cs" />
     <Compile Include="Custom Controls\UITableViewCells\BeerHeaderCell.designer.cs" />
-    <Compile Include="View Controllers\WelcomeViewController.cs" />
-    <Compile Include="View Controllers\WelcomeViewController.designer.cs">
-      <DependentUpon>WelcomeViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\UITableViewCells\CheckInLocationMapCell.cs" />
     <Compile Include="Custom Controls\UITableViewCells\CheckInLocationMapCell.designer.cs">
       <DependentUpon>CheckInLocationMapCell.cs</DependentUpon>
@@ -407,32 +395,44 @@
     <Compile Include="View Controllers\ReleaseNotesViewController.designer.cs">
       <DependentUpon>ReleaseNotesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\TinderBeerViewController.cs" />
     <Compile Include="Custom Controls\TinderBox.cs" />
-    <Compile Include="View Controllers\TinderViewController.cs" />
-    <Compile Include="View Controllers\TinderViewController.designer.cs">
-      <DependentUpon>TinderViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
-    <Compile Include="WelcomeMapViewController.cs" />
-    <Compile Include="WelcomeMapViewController.designer.cs">
-      <DependentUpon>WelcomeMapViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ShakeWelcomeViewController.cs" />
-    <Compile Include="ShakeWelcomeViewController.designer.cs">
-      <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="s.cs" />
-    <Compile Include="s.designer.cs">
-      <DependentUpon>s.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PhotosOfBeerCell.cs" />
-    <Compile Include="PhotosOfBeerCell.designer.cs">
+    <Compile Include="Custom Controls\BeerLoadingView.cs" />
+    <Compile Include="Helpers\Animator.cs" />
+    <Compile Include="Custom Controls\PhotosOfBeerCell.cs" />
+    <Compile Include="Custom Controls\PhotosOfBeerCell.designer.cs">
       <DependentUpon>PhotosOfBeerCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\BeerLoadingView.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.designer.cs">
+      <DependentUpon>navigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\ShakeWelcomeViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\ShakeWelcomeViewController.designer.cs">
+      <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\TinderViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\TinderViewController.designer.cs">
+      <DependentUpon>TinderViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.designer.cs">
+      <DependentUpon>WelcomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeMapViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeMapViewController.designer.cs">
+      <DependentUpon>WelcomeMapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.designer.cs">
+      <DependentUpon>InitialViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
+      <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -582,4 +582,7 @@
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets" Condition="Exists('..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets')" />
   <Import Project="..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets')" />
+  <ItemGroup>
+    <Folder Include="View Controllers\Welcome ViewControllers\" />
+  </ItemGroup>
 </Project>

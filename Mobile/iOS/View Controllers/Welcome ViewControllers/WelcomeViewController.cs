@@ -7,7 +7,7 @@ using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
-using BeerDrinkin.iOS.ViewControllers;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -84,8 +84,14 @@ namespace BeerDrinkin.iOS
         async partial void BtnFacebookConnect_TouchUpInside(UIButton sender)
         {
             try
-            {
+            {   
+                //We'll hide all the subviews
+                View.FadeSubviewsOut(1, 0);
+
                 var user = await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+
+                var vc = Storyboard.InstantiateViewController("tabBarController");
+                await PresentViewControllerAsync(vc, false);
 
                 var userService = new UserService();
                 await userService.SaveUser(user);
@@ -93,7 +99,7 @@ namespace BeerDrinkin.iOS
 
                 if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
                 {
-                    var account = BeerDrinkin.Client.Instance.BeerDrinkinClient.CurrentAccount;
+                    var account = Client.Instance.BeerDrinkinClient.CurrentAccount;
                     var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
                     DateTime today = DateTime.Today;
                     int age = today.Year - dateOfBirth.Year;
@@ -108,13 +114,12 @@ namespace BeerDrinkin.iOS
                     };
                     Insights.Identify(account.Id, traits);
                 }
-
-                var vc = Storyboard.InstantiateViewController("tabBarController");
-                await PresentViewControllerAsync(vc, false);
-
             }
             catch
             {
+                //We'll make all the subviews visible again
+                View.FadeSubviewsOut(2, 0);
+
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
             }
         }
