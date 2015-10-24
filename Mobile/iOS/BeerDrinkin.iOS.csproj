@@ -433,6 +433,7 @@
     <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Controllers\PreviewingDelegates\BeerDescriptionPreviewingDelegate.cs" />
   </ItemGroup>
   <Import Project="..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -584,5 +585,6 @@
   <Import Project="..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets')" />
   <ItemGroup>
     <Folder Include="View Controllers\Welcome ViewControllers\" />
+    <Folder Include="View Controllers\PreviewingDelegates\" />
   </ItemGroup>
 </Project>

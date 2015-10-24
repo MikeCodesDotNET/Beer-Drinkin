@@ -12,19 +12,19 @@ namespace BeerDrinkin.iOS
 {
     public class SearchDataSource : UITableViewSource
     {
-        private readonly List<BeerItem> beers;
+        public readonly List<BeerItem> Beers;
         private readonly NSString cellIdentifier = new NSString("beercell");
 
         public SearchDataSource(List<BeerItem> beers)
         {
-            this.beers = beers;
+            this.Beers = beers;
         }
 
         #region implemented abstract members of UITableViewSource
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var beer = beers[indexPath.Row];
+            var beer = Beers[indexPath.Row];
 
             var cell = tableView.DequeueReusableCell(cellIdentifier) as SearchBeerTableViewCell ??
                        new SearchBeerTableViewCell(cellIdentifier);
@@ -60,12 +60,12 @@ namespace BeerDrinkin.iOS
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return beers.Count;
+            return Beers.Count;
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            DidSelectBeer?.Invoke(beers[indexPath.Row]);
+            DidSelectBeer?.Invoke(Beers[indexPath.Row]);
         }
 
         public delegate void RowSelectedHandler(BeerItem beer);

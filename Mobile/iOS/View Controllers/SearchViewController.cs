@@ -10,7 +10,7 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-    partial class SearchViewController : BaseViewController
+    public partial class SearchViewController : BaseViewController
     {
         private readonly SearchViewModel viewModel = new SearchViewModel();
 
@@ -24,7 +24,14 @@ namespace BeerDrinkin.iOS
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
-            SetupEvents();
+            SetupEvents(); 
+
+            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
+            {
+                //This devices supports 3D Touch
+                var previewDelegate = new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this);
+                RegisterForPreviewingWithDelegate(previewDelegate, View);
+            }
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -68,13 +75,12 @@ namespace BeerDrinkin.iOS
 
             viewModel.Beers.CollectionChanged += delegate
             {
-                var datasource = new SearchDataSource(viewModel.Beers.ToList());
+                datasource = new SearchDataSource(viewModel.Beers.ToList());
                 datasource.DidSelectBeer += delegate
                 {
                     PerformSegue("beerDescriptionSegue", this);
                     tableView.DeselectRow(tableView.IndexPathForSelectedRow, true);
                 };
-
 
                 tableView.Source = datasource;
                 tableView.ReloadData();
@@ -131,6 +137,23 @@ namespace BeerDrinkin.iOS
                 }, () =>
                 {
                 });
+        }
+
+        public UITableView SearchResultsTableView
+        {
+            get
+            {
+                return tableView;
+            }
+        }
+
+        SearchDataSource datasource;
+        public SearchDataSource DataSource
+        {
+            get
+            {
+                return datasource;
+            }
         }
 
     }
