@@ -18,7 +18,7 @@ namespace BeerDrinkin.iOS
         #region Overrides
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-        {
+        {            
             SetupGlobalAppearances();
 
             //Xamarin Insights
@@ -32,7 +32,6 @@ namespace BeerDrinkin.iOS
             Akavache.BlobCache.UserAccount.InvalidateAll();
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
             #endif
-            Xamarin.Calabash.Start();
 
             //Windows Azure
             CurrentPlatform.Init();

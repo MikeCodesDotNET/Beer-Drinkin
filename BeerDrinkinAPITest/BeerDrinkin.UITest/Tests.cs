@@ -31,9 +31,11 @@ namespace BeerDrinkin.UITest
             {
                 // an API key is required to publish on Xamarin Test Cloud for remote, multi-device testing
                 // this works fine for local simulator testing though
-                app = ConfigureApp.iOS.AppBundle(PathToIPA).Debug().EnableLocalScreenshots().StartApp();
+               // app = ConfigureApp.iOS.AppBundle(PathToIPA).Debug().StartApp();
 
-                if(app == null)
+                app = ConfigureApp.iOS.InstalledApp("com.mikejames.beerdrinkin").StartApp();
+
+                if(app == null) 
                     throw new Exception("something went wrong...");
             }
             catch(Exception ex)
@@ -50,4 +52,7 @@ namespace BeerDrinkin.UITest
         }
     }
 }
+
+
+
 
