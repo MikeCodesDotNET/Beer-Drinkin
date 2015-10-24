@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Akavache;
 using System.Reactive.Linq;
+using System.Collections.Generic;
 
 namespace BeerDrinkin.Service
 {
@@ -64,26 +65,22 @@ namespace BeerDrinkin.Service
             return null;
         }
 
+        //Smells bad to me...come fix it
         public async Task<bool> RemoveAuthToken()
         {
             try
             {
-            var token = await BlobCache.LocalMachine.GetObject<string>("authenticationToken");
-            if (string.IsNullOrEmpty(token))
-                return false;
-            }
-            catch(Exception)
-            {
-                return false;
-            }
+                //Attempt to get the token.
+                var token = await BlobCache.LocalMachine.GetObject<string>("authenticationToken");
+                if (string.IsNullOrEmpty(token))
+                    return false;
+                
 
-            try
-            {
-                // Store token
+                //Clear the token
                 await BlobCache.LocalMachine.InsertObject <string>("authenticationToken", string.Empty,
                     DateTimeOffset.Now.AddYears(5));
 
-                // Store userId 
+                //Clear the userID
                 await BlobCache.LocalMachine.InsertObject <string>("userId", string.Empty,
                     DateTimeOffset.Now.AddYears(5));
 
@@ -91,8 +88,11 @@ namespace BeerDrinkin.Service
             }
             catch (Exception ex)
             {
-                Xamarin.Insights.Report(ex);
-
+                if(ex.GetType() != typeof(KeyNotFoundException))
+                    Xamarin.Insights.Report(ex);
+                else
+                    await BlobCache.LocalMachine.InsertObject <string>("authenticationToken", string.Empty, DateTimeOffset.Now.AddYears(5));
+                
                 return false;
             }
         }
