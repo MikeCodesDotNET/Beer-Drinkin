@@ -29,8 +29,7 @@ namespace BeerDrinkin.iOS
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
             {
                 //This devices supports 3D Touch
-                var previewDelegate = new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this);
-                RegisterForPreviewingWithDelegate(previewDelegate, View);
+                RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);
             }
         }
 
