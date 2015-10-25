@@ -14,7 +14,6 @@ namespace BeerDrinkin.iOS
         }
     }
 
-
     public class PreserveAttribute : Attribute
     {
     }
