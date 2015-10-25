@@ -21,14 +21,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchI18n>
-    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -88,9 +86,6 @@
     </Reference>
     <Reference Include="SWTableViewCell">
       <HintPath>..\Components\swtableviewcell-0.3.6.1\lib\ios-unified\SWTableViewCell.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlcipher">
-      <HintPath>..\Components\sqlcipher-for-xamarin-ios-3.3.1.0\lib\ios-unified\Mono.Data.Sqlcipher.dll</HintPath>
     </Reference>
     <Reference Include="XCardView">
       <HintPath>..\Components\XCardView-1.1\lib\ios-unified\XCardView.dll</HintPath>
@@ -434,8 +429,8 @@
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\PreviewingDelegates\BeerDescriptionPreviewingDelegate.cs" />
+    <Compile Include="AkavacheSqliteLinkerOverride.cs" />
   </ItemGroup>
-  <Import Project="..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\BeerDrinkin.Shared\BeerDrinkin.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -568,6 +563,10 @@
       <Version>1.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="calabash">
+      <Version>16.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\..\packages\Xamarin.Insights.1.11.1\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\..\packages\Xamarin.Insights.1.11.1\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -577,12 +576,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Xamarin.Insights.1.11.1\build\Xamarin.iOS10\Xamarin.Insights.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Insights.1.11.1\build\Xamarin.iOS10\Xamarin.Insights.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets'))" />
     <Error Condition="!Exists('..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets" Condition="Exists('..\..\packages\SQLitePCL.raw.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw.targets')" />
   <Import Project="..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\packages\SQLitePCL.raw_basic.0.8.2\build\Xamarin.iOS10\SQLitePCL.raw_basic.targets')" />
+  <Import Project="..\..\packages\SQLitePCL.raw.0.7.2-pre1\build\Xamarin.iOS10\SQLitePCL.raw.targets" Condition="Exists('..\..\packages\SQLitePCL.raw.0.7.2-pre1\build\Xamarin.iOS10\SQLitePCL.raw.targets')" />
   <ItemGroup>
     <Folder Include="View Controllers\Welcome ViewControllers\" />
     <Folder Include="View Controllers\PreviewingDelegates\" />

@@ -33,7 +33,7 @@ namespace BeerDrinkin.UITest
                 // this works fine for local simulator testing though
                // app = ConfigureApp.iOS.AppBundle(PathToIPA).Debug().StartApp();
 
-                app = ConfigureApp.iOS.InstalledApp("com.mikejames.beerdrinkin").StartApp();
+                app = ConfigureApp.iOS.AppBundle(PathToIPA).StartApp();
 
                 if(app == null) 
                     throw new Exception("something went wrong...");
@@ -49,6 +49,23 @@ namespace BeerDrinkin.UITest
         {
             //REPL
             app.Repl();
+        }
+
+        [Test()]
+        public void SignIn()
+        {
+            app.WaitForElement(x => x.Text("Connect to Facebook"));
+            app.Screenshot("I launch the app and should see the welcome view");
+
+            app.Tap(x => x.Text("Connect to Facebook"));
+            app.Screenshot("Then I should see the Facebook Login view");
+
+            var r = app.Query(x => x.WebView().XPath("//*[.=’ELEMENT_NODE']"));     
+
+            app.Repl();
+          
+
+
         }
     }
 }
