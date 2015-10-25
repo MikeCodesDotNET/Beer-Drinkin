@@ -166,12 +166,13 @@ namespace BeerDrinkin.iOS
 
                 try
                 {
-                    var bytes = await BlobCache.UserAccount.Get(imageUrl);
+                    var bytes = await BlobCache.LocalMachine.Get(imageUrl);
                     image = await BitmapLoader.Current.Load(new MemoryStream(bytes), null, null);
                 }
-                catch(KeyNotFoundException)
+                catch(Exception ex)
                 {
-                   //Nothing better than doing nothing with an exception
+                    if (ex.GetType() != typeof(KeyNotFoundException))
+                        Insights.Report(ex);
                 }
 
                 if (image == null)
@@ -179,7 +180,7 @@ namespace BeerDrinkin.iOS
                     var client = new HttpClient();
                     var imageBase64 = await client.GetStringAsync(new Uri(imageUrl));
                     var imageByte = Convert.FromBase64String(imageBase64);
-                    await BlobCache.UserAccount.Insert(imageUrl, imageByte);
+                    await BlobCache.LocalMachine.Insert(imageUrl, imageByte);
                     image = await BitmapLoader.Current.Load(new MemoryStream(imageByte), null, null);
                 }
                 return image;
