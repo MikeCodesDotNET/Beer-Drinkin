@@ -167,7 +167,7 @@ namespace BeerDrinkin.iOS
           
             if(string.IsNullOrEmpty(beer.UPC))
             {
-                barcodeCell.BarCodeNumber = "Not added yet. Be the first!";
+                barcodeCell.BarCodeNumber = "0 0000 000 000";
             }
             else
             {

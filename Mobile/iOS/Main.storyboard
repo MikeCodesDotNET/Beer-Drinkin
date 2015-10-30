@@ -476,7 +476,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" id="Ds0-w3-bO1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="2415" height="2139"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="2835" height="2511"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </imageView>
                                                             </subviews>
@@ -1917,7 +1917,7 @@
         <image name="957-beer-mug.png" width="22" height="28"/>
         <image name="957-beer-mug@3x.png" width="66" height="84"/>
         <image name="BackgroundPattern.png" width="320" height="478"/>
-        <image name="Barcode.png" width="56" height="44"/>
+        <image name="Barcode.png" width="28" height="22"/>
         <image name="BeerDrinkin.png" width="526" height="526"/>
         <image name="BeerLight.png" width="33" height="42"/>
         <image name="Camera.png" width="56" height="42"/>
