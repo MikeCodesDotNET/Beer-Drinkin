@@ -33,11 +33,12 @@ namespace BeerDrinkin.iOS
             this.BackgroundColor = UIColor.Clear;
 
             ImageView.BackgroundColor = UIColor.Clear;
-
+            /*
             ImageView.Layer.CornerRadius = 5;
             ImageView.Layer.BorderColor = Color.OffWhite.ToNative().CGColor;
             ImageView.Layer.BorderWidth = 0.8f;
             ImageView.Layer.MasksToBounds = true;
+            */
         }
 	}
 }

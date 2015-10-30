@@ -9,17 +9,31 @@ namespace BeerDrinkin.iOS
     {
         public CheckInTableViewCell(IntPtr handle)
             : base(handle)
-        {            
+        {                
         }
 
         public CheckInTableViewCell(NSString cellId)
             : base(UITableViewCellStyle.Default, cellId)
-        {    
+        {  
+        }       
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
             if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false)
                 btnSnapAPhoto.Enabled = false;
-        }
 
-      
+            btnSnapAPhoto.Alpha = 1f;
+           // lblSnapAPhoto.Alpha = 1f;
+            UIView.Animate(1.5, 1, UIViewAnimationOptions.Repeat | UIViewAnimationOptions.Autoreverse| UIViewAnimationOptions.CurveEaseInOut, () =>
+                {
+                    btnSnapAPhoto.Alpha = 0.7f;
+                   // lblSnapAPhoto.Alpha = 0.7f;
+                }, 
+                null
+            );
+        }
 
         partial void btnSnapAPhoto_TouchUpInside(UIButton sender)
         {

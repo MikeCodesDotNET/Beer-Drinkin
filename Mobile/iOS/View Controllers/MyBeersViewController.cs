@@ -21,6 +21,14 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
 
+            var bounds = this.NavigationController.NavigationBar.Bounds;         
+            var blur = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
+            var visualEffectView = new UIVisualEffectView(blur);
+            visualEffectView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+            this.NavigationController.NavigationBar.AddSubview(visualEffectView);
+            this.NavigationController.NavigationBar.Translucent = true;
+
+
             var refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += delegate
             {
@@ -38,9 +46,12 @@ namespace BeerDrinkin.iOS
                         return;
 
                     var rowPath = tableView.IndexPathForSelectedRow;
-                    var item = viewModel.Beers[rowPath.Row].CheckIns.FirstOrDefault().Beer;
-                    navctlr.SetBeer(item);
-                    navctlr.SetBeerInfo(viewModel.Beers[rowPath.Row]);
+                    var beerItem = viewModel.Beers[rowPath.Row].CheckIns.FirstOrDefault().Beer;
+                    navctlr.SetBeer(beerItem);
+
+                    var beerInfo = viewModel.Beers[rowPath.Row];
+                        navctlr.SetBeerInfo(beerInfo);
+
                     NavigationController.PushViewController(navctlr, true);
                 };
                 tableView.Source = dataSource;

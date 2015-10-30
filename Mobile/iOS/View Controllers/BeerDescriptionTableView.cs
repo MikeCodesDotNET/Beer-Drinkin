@@ -45,8 +45,8 @@ namespace BeerDrinkin.iOS
             AddHeaderImage();
             AddHeaderInfo();
             AddDescription();
+            AddBarCode();
             AddCheckIn();
-
             TableView.ReloadData();
         }
 
@@ -157,6 +157,39 @@ namespace BeerDrinkin.iOS
             }
 
             cells.Add(headerImageCell);
+        }
+
+        void AddBarCode()
+        {
+            var barcodeCellIdentifier = new NSString("barcodeCell");
+            var barcodeCell = TableView.DequeueReusableCell(barcodeCellIdentifier) as BarCodeTableViewCell ??
+                new BarCodeTableViewCell(barcodeCellIdentifier);
+          
+            if(string.IsNullOrEmpty(beer.UPC))
+            {
+                barcodeCell.BarCodeNumber = "Not added yet. Be the first!";
+            }
+            else
+            {
+                barcodeCell.BarCodeNumber = beer.UPC;
+            }
+
+            barcodeCell.AddBarcode += async () =>
+                {
+                    try
+                    {
+                        var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
+                        var result =  await scanner.Scan();
+
+                        beer.UPC = result.Text;
+                        barcodeCell.BarCodeNumber = beer.UPC;
+                    }
+                    catch(Exception ex)
+                    {
+                        Insights.Report(ex);
+                    }
+                };
+            cells.Add(barcodeCell);
         }
 
         void AddHeaderInfo()
@@ -352,6 +385,11 @@ namespace BeerDrinkin.iOS
                 if (cell.GetType() == typeof(CheckInTableViewCell))
                 {
                     return 241;
+                }
+
+                if(cell.GetType() == typeof(BarCodeTableViewCell))
+                {
+                    return 123;
                 }
 
                 return 0;

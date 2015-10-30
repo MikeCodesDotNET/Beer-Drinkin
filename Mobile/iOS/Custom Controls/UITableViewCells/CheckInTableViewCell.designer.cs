@@ -34,6 +34,10 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblRating { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel lblSnapAPhoto { get; set; }
+
 		[Action ("btnCheckIn_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void btnCheckIn_TouchUpInside (UIButton sender);
@@ -71,6 +75,10 @@ namespace BeerDrinkin.iOS
 			if (lblRating != null) {
 				lblRating.Dispose ();
 				lblRating = null;
+			}
+			if (lblSnapAPhoto != null) {
+				lblSnapAPhoto.Dispose ();
+				lblSnapAPhoto = null;
 			}
 		}
 	}

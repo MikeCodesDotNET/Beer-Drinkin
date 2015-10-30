@@ -45,12 +45,21 @@ namespace BeerDrinkin.iOS
 
             var rowPath = tableView.IndexPathForSelectedRow;
             var item = viewModel.Beers[rowPath.Row];
+            item.UPC = upc;
+
             navctlr.EnableCheckIn = true;
             navctlr.SetBeer(item);
         }
 
         public void SetupUI()
         {
+            var bounds = this.NavigationController.NavigationBar.Bounds;         
+            var blur = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
+            var visualEffectView = new UIVisualEffectView(blur);
+            visualEffectView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+            this.NavigationController.NavigationBar.AddSubview(visualEffectView);
+            this.NavigationController.NavigationBar.Translucent = true;
+
             Title = BeerDrinkin.Core.Helpers.Strings.SearchTitle;
             lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.SearchPlaceHolderTitle;
             lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.SearchSubPlaceHolderTitle;
@@ -99,6 +108,37 @@ namespace BeerDrinkin.iOS
             };
         }
 
+        string upc = string.Empty;
+        async partial void BtnBarCodeScanner_Activated(UIBarButtonItem sender)
+        {
+            try
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
+                var result =  await scanner.Scan();
+
+                UserDialogs.Instance.ShowLoading("Searching for beer");
+                upc = result.Text;
+                var client = new RateBeer.Client();
+                var response = await client.SearchForBeer(upc);
+
+                if(response != null)
+                {
+                    searchBar.Text = response.BeerName;
+                    searchBar.BecomeFirstResponder();
+                    UserDialogs.Instance.HideLoading();
+                }
+                else
+                {
+                    UserDialogs.Instance.ShowError("Unable to find beer with that barcode :(");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Xamarin.Insights.Report(ex);
+            }
+        }
+
         /// <summary>
         /// Handles showing the placeholder when the text is null or empty. 
         /// </summary>
@@ -106,6 +146,8 @@ namespace BeerDrinkin.iOS
         /// <param name="uiSearchBarTextChangedEventArgs"></param>
         void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
+            upc = string.Empty;
+
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
 

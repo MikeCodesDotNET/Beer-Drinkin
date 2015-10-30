@@ -15,6 +15,8 @@ namespace BeerDrinkin.Service.DataObjects
         public string BreweryDBId{get;set;}
         public string ABV { get; set; }
 
+        public string UPC { get; set;}
+
         public string Icon { get; set; }
         public string Medium { get; set; }
         public string Large { get; set; }

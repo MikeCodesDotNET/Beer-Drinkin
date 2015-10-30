@@ -8,6 +8,7 @@ using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;
+using Facebook.Pop;
 
 namespace BeerDrinkin.iOS
 {
@@ -30,14 +31,13 @@ namespace BeerDrinkin.iOS
             btnFacebookConnect.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
             View.BackgroundColor = Color.Blue.ToNative();
 
-
+            btnFacebookConnect.Alpha = 0;
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-
-           
+        
         }
 
         public override void ViewWillAppear(bool animated)

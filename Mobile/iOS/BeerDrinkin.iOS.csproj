@@ -27,6 +27,7 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -66,9 +67,8 @@
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <IpaPackageName>
     </IpaPackageName>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchFastDev>true</MtouchFastDev>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -178,6 +178,15 @@
     <Reference Include="Acr.UserDialogs.Interface">
       <HintPath>..\..\packages\Acr.UserDialogs.4.1.6\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook.Pop">
+      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\ZXingNetMobile.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\zxing.portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -191,6 +200,10 @@
     <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
       <Project>{8ECDFDC5-42D0-4540-9691-830EEB2ED874}</Project>
       <Name>BTProgressHUD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\RateBeer\RateBeer.csproj">
+      <Project>{D65C06C1-5387-4340-AF21-86B652DCC0EC}</Project>
+      <Name>RateBeer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -431,6 +444,10 @@
     </Compile>
     <Compile Include="View Controllers\PreviewingDelegates\BeerDescriptionPreviewingDelegate.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="Custom Controls\UITableViewCells\BarCodeTableViewCell.cs" />
+    <Compile Include="Custom Controls\UITableViewCells\BarCodeTableViewCell.designer.cs">
+      <DependentUpon>BarCodeTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -529,6 +546,8 @@
     <BundleResource Include="Resources\camera-switch%402x.png" />
     <BundleResource Include="Resources\TestTube.png" />
     <BundleResource Include="Resources\Tick.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\Barcode.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />
@@ -566,6 +585,14 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="calabash">
       <Version>16.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="Facebook.Pop">
+      <Version>1.0.7</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="zxing.net.mobile">
+      <Version>1.5.1.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
