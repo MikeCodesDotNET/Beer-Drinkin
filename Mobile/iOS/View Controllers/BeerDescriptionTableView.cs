@@ -183,6 +183,11 @@ namespace BeerDrinkin.iOS
 
                         beer.UPC = result.Text;
                         barcodeCell.BarCodeNumber = beer.UPC;
+
+                        Insights.Track("User added barcode", new Dictionary<string, string> {
+                            {"Beer Name", beer.Name},
+                            {"Beer Id", beer.UPC}
+                        });
                     }
                     catch(Exception ex)
                     {

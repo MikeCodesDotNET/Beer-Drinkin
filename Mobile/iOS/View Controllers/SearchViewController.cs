@@ -7,6 +7,7 @@ using BeerDrinkin.Service.DataObjects;
 using CoreGraphics;
 using Foundation;
 using UIKit;
+using Xamarin;
 
 namespace BeerDrinkin.iOS
 {
@@ -126,6 +127,11 @@ namespace BeerDrinkin.iOS
                     searchBar.Text = response.BeerName;
                     searchBar.BecomeFirstResponder();
                     UserDialogs.Instance.HideLoading();
+
+                    Insights.Track("User searched with barcode", new Dictionary<string, string> {
+                        {"Beer Name", response.BeerName},
+                        {"Beer UPC", result.Text}
+                    });
                 }
                 else
                 {
