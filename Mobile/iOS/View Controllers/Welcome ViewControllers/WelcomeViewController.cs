@@ -93,8 +93,6 @@ namespace BeerDrinkin.iOS
                 var vc = Storyboard.InstantiateViewController("tabBarController");
                 await PresentViewControllerAsync(vc, false);
 
-                var userService = new UserService();
-                await userService.SaveUser(user);
                 await Client.Instance.BeerDrinkinClient.RefreshAll();
 
                 if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)

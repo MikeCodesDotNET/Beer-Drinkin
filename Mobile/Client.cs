@@ -1,5 +1,4 @@
 ﻿using System;
-using Akavache;
 using BeerDrinkin.API;
 using BeerDrinkin.Core.Helpers;
 using BeerDrinkin.Service.DataObjects;
@@ -20,7 +19,6 @@ namespace BeerDrinkin
         {
             BeerDrinkinClient = new APIClient(Keys.ServiceUrl, Keys.ServiceKey);
 
-            BlobCache.ApplicationName = "BeerDrinkin";
 
             //Make sure we keep everything in sync!
             CrossConnectivity.Current.ConnectivityChanged += async (sender, e) =>

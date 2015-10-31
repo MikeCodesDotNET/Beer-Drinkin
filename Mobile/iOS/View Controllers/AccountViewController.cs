@@ -9,11 +9,9 @@ using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
 using System.Collections.Generic;
 using Xamarin;
-using Splat;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.IO;
-using Akavache;
 using System.Reactive.Linq; 
 
 
@@ -163,26 +161,11 @@ namespace BeerDrinkin.iOS
             public async Task<IBitmap> DownloadImageAsync(string imageUrl)
             {
                 IBitmap image = null;
-
-                try
-                {
-                    var bytes = await BlobCache.LocalMachine.Get(imageUrl);
-                    image = await BitmapLoader.Current.Load(new MemoryStream(bytes), null, null);
-                }
-                catch(Exception ex)
-                {
-                    if (ex.GetType() != typeof(KeyNotFoundException))
-                        Insights.Report(ex);
-                }
-
-                if (image == null)
-                {
-                    var client = new HttpClient();
-                    var imageBase64 = await client.GetStringAsync(new Uri(imageUrl));
-                    var imageByte = Convert.FromBase64String(imageBase64);
-                    await BlobCache.LocalMachine.Insert(imageUrl, imageByte);
-                    image = await BitmapLoader.Current.Load(new MemoryStream(imageByte), null, null);
-                }
+                var client = new HttpClient();
+                var imageBase64 = await client.GetStringAsync(new Uri(imageUrl));
+                var imageByte = Convert.FromBase64String(imageBase64);
+                image = await BitmapLoader.Current.Load(new MemoryStream(imageByte), null, null);
+                
                 return image;
             }
 

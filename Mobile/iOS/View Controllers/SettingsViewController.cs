@@ -36,10 +36,6 @@ namespace BeerDrinkin.iOS
         {
             if (indexPath.Section == 1 && indexPath.Row == 1)
             {
-                //Sign out! 
-                var userService = new UserService();
-                userService.RemoveAuthToken(); //This means we wont automatically log in
-
                 var signInView = UIApplication.SharedApplication.KeyWindow.RootViewController.ChildViewControllers[1];
                 var tabView = signInView.ChildViewControllers[0];
 

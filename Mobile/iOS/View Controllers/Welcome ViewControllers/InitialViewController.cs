@@ -25,26 +25,8 @@ namespace BeerDrinkin.iOS
 
         async Task AttemptSignIn()
         {
-            var userService = new UserService();
-
-            /*
-#if DEBUG
-           // await userService.RemoveAuthToken();
-#endif
-            */
-                         
-            var user = await userService.GetUser();
-
-            if (user != null)
-            {
-                var vc = Storyboard.InstantiateViewController("tabBarController");
-                await PresentViewControllerAsync(vc, false);
-            }
-            else
-            {
-                var vc = Storyboard.InstantiateViewController("welcomeViewController");
-                PresentViewController(vc, false, null);
-            }
+            var vc = Storyboard.InstantiateViewController("welcomeViewController");
+            PresentViewController(vc, false, null);
         }
     }
 }

@@ -71,24 +71,8 @@
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Acr.Support.1.0.2\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Akavache, Version=4.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\akavache.core.4.0.4\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Akavache.Sqlite3, Version=4.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\akavache.sqlite3.4.0.4\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Facebook.Pop">
       <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCL.raw_basic.0.6.1\lib\portable-net45+netcore45+wp8+MonoAndroid10+MonoTouch10\SQLitePCL.raw.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -193,6 +177,9 @@
     </Reference>
     <Reference Include="ZXingNetMobile">
       <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\ZXingNetMobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Acr.Support.1.0.2\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -454,7 +441,6 @@
     <Compile Include="Custom Controls\UITableViewCells\BarCodeTableViewCell.designer.cs">
       <DependentUpon>BarCodeTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="AkavacheSqliteLinkerOverride.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />

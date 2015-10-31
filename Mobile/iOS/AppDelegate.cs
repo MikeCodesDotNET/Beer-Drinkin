@@ -25,11 +25,7 @@ namespace BeerDrinkin.iOS
             Insights.HasPendingCrashReport += PurgeCrashReports;
             Insights.Initialize(Keys.XamarinInsightsKey);
 
-            //Akavache
-            Akavache.BlobCache.ApplicationName = "BeerDrinkin";
-
             #if DEBUG
-            Akavache.BlobCache.UserAccount.InvalidateAll();
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
             #endif
 

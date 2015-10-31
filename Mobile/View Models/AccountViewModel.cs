@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BeerDrinkin.Service.Models;
 using System.Net.Http;
 using System.Collections.Generic;
-using Akavache;
 using System.Reactive.Linq; 
 using System.Linq;
 using Splat;
@@ -79,22 +78,9 @@ namespace BeerDrinkin.Core.ViewModels
 
             try
             {
-                //We'll sometimes want to ensure we're loading data straight from the web rather than the cache
-                if (forceRemoteRefresh == false)
-                {
-                    BlobCache.UserAccount.GetAndFetchLatest("headerInfo", GetRemoteHeaderInfo, null, null).Subscribe(header =>{
-                        HeaderInfo = header;
-                    });
+                HeaderInfo = await GetRemoteHeaderInfo();
+                BeerPhotosUrls = await GetRemoteBeerPhotosUrls();
 
-                    BlobCache.UserAccount.GetAndFetchLatest("beerPhotosUrls", GetRemoteBeerPhotosUrls, null, null).Subscribe(photoUrls =>{
-                        BeerPhotosUrls = photoUrls;
-                    });
-                }
-                else
-                {
-                    HeaderInfo = await GetRemoteHeaderInfo();
-                    BeerPhotosUrls = await GetRemoteBeerPhotosUrls();
-                }
             }
             catch(Exception ex)
             {
@@ -113,7 +99,6 @@ namespace BeerDrinkin.Core.ViewModels
 
             if (response.Error == null)
             {               
-                await BlobCache.UserAccount.InsertObject("beerPhotosUrls", response.Result);
                 return response.Result;
             }
             return new List<string>();
@@ -126,7 +111,6 @@ namespace BeerDrinkin.Core.ViewModels
             var result = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(Client.Instance.BeerDrinkinClient.GetUserId);
             header = result.Result;
             //Store it for next time
-            await BlobCache.UserAccount.InsertObject("headerInfo", header);
 
             return header;
         }
