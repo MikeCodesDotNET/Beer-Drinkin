@@ -546,7 +546,6 @@
     <BundleResource Include="Resources\camera-switch%402x.png" />
     <BundleResource Include="Resources\TestTube.png" />
     <BundleResource Include="Resources\Tick.png" />
-    <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\Barcode.png" />
   </ItemGroup>
   <ItemGroup>
