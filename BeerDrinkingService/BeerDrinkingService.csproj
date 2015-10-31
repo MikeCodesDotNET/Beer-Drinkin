@@ -64,8 +64,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Reference Include="Bing.RestClient, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bing.RestClient.0.8.0\lib\portable-net45+wp8+win8\Bing.RestClient.dll</HintPath>
       <Private>True</Private>
@@ -78,7 +76,6 @@
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
->>>>>>> origin/master
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
@@ -109,8 +106,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-=======
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.1.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.3.1.0.1\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
@@ -135,7 +130,6 @@
       <HintPath>..\packages\Sendgrid.6.1.0\lib\SendGridMail.dll</HintPath>
       <Private>True</Private>
     </Reference>
->>>>>>> origin/master
     <Reference Include="System.Data" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -282,6 +276,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountItemController.cs" />
     <Compile Include="Controllers\BeerItemController.cs" />
+    <Compile Include="Controllers\BarcodeController.cs" />
     <Compile Include="Controllers\HeaderInfoController.cs" />
     <Compile Include="Controllers\PopularBeerItemController.cs" />
     <Compile Include="Controllers\PopularBeersController.cs" />
@@ -335,6 +330,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\mobile-BeerDrinkinDev.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BreweryDB\BreweryDB\BreweryDB.csproj">
+      <Project>{84d549c9-b9ca-4c37-8c99-2c12db8906b6}</Project>
+      <Name>BreweryDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RateBeer\RateBeer.csproj">
+      <Project>{d65c06c1-5387-4340-af21-86b652dcc0ec}</Project>
+      <Name>RateBeer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

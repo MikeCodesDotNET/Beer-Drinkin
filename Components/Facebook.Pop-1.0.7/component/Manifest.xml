@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="Facebook.Pop">
+  <name>Facebook Pop</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>https://xamarin.com/</publisher-url>
+  <src-url>https://github.com/facebook/pop</src-url>
+  <version>1.0.7</version>
+  <summary>An extensible iOS and OS X animation library, useful for physics-based interactions.</summary>
+  <samples>
+    <sample id="PopSample">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

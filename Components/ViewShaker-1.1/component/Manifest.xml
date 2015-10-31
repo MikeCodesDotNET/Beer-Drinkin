@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="ViewShaker">
+  <name>View Shaker animation</name>
+  <publisher>Robert Waggott</publisher>
+  <publisher-url>https://github.com/robert-waggott/Xamarin.ViewShaker</publisher-url>
+  <version>1.1</version>
+  <summary>An animation helper which adds a shaking effect to your views.</summary>
+  <samples>
+    <sample id="Sample">
+      <name>iOS Sample.</name>
+      <summary>Sample of how to use the component in your iOS application.</summary>
+    </sample>
+  </samples>
+</component>
