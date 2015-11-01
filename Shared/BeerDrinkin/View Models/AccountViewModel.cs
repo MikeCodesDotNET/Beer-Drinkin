@@ -40,7 +40,7 @@ namespace BeerDrinkin.Core.ViewModels
 
         public AccountViewModel()
         {
-            this.PropertyChanged += async delegate(object sender, PropertyChangedEventArgs e)
+            PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
             {
                 if(e.PropertyName == "HeaderInfo")
                 {
