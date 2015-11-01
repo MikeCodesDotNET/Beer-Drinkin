@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using UIKit;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -34,6 +35,13 @@ namespace BeerDrinkin.iOS
                 scrollView = value;
                 SetNeedsDisplay();
             }
+        }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+            imgLogo.Alpha = 0;
+            imgLogo.FadeIn(0.6, 0.2f);
         }
     }
 }

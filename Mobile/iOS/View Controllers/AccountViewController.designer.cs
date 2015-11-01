@@ -20,6 +20,10 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIBarButtonItem btnSettings { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgAvatar { get; set; }
 
 		[Outlet]
@@ -62,11 +66,19 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void btnAvatar_TouchUpInside (UIButton sender);
 
+		[Action ("BtnSettings_Activated:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void BtnSettings_Activated (UIBarButtonItem sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnAvatar != null) {
 				btnAvatar.Dispose ();
 				btnAvatar = null;
+			}
+			if (btnSettings != null) {
+				btnSettings.Dispose ();
+				btnSettings = null;
 			}
 			if (imgAvatar != null) {
 				imgAvatar.Dispose ();

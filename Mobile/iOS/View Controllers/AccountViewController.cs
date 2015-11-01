@@ -13,7 +13,8 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.IO;
 using System.Reactive.Linq; 
-
+using BeerDrinkin.iOS.Helpers;
+using CoreAnimation;
 
 namespace BeerDrinkin.iOS
 {
@@ -118,6 +119,12 @@ namespace BeerDrinkin.iOS
                 }
             }
  
+        }
+
+
+        partial void BtnSettings_Activated(UIBarButtonItem sender)
+        {
+            var vc = Storyboard.InstantiateViewController("accountNavigation");
         }
 
         partial void btnAvatar_TouchUpInside(UIButton sender)
