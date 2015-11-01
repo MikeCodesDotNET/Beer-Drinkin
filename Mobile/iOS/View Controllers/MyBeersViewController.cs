@@ -41,7 +41,7 @@ namespace BeerDrinkin.iOS
                 dataSource = new MyBeersDataSource(viewModel.Beers);
                 dataSource.DidSelectBeer += (beer) =>
                 {
-                    var navctlr = Storyboard.InstantiateViewController("beerDescription") as BeerDescriptionTableView;
+                    var navctlr = Storyboard.InstantiateViewController("beerDescriptionView") as BeerDescriptionTableView;
                     if (navctlr == null)
                         return;
 

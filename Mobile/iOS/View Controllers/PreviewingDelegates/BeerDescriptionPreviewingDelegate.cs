@@ -45,7 +45,7 @@ namespace BeerDrinkin.iOS.PreviewingDelegates
             var item = SearchController.DataSource.Beers[indexPath.Row];
 
             // Grab a controller and set it to the default sizes
-            var detailViewController = SearchController.Storyboard.InstantiateViewController ("beerDescription") as BeerDescriptionTableView;
+            var detailViewController = SearchController.Storyboard.InstantiateViewController ("beerDescriptionView") as BeerDescriptionTableView;
             detailViewController.PreferredContentSize = new CGSize (0, 0);
 
             // Set the data for the display

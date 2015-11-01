@@ -71,7 +71,7 @@ namespace BeerDrinkin.iOS
 
             byte[] imageByteArray = null;
 
-            var cameraView = Storyboard.InstantiateViewController("cameraViewController") as CameraViewController;
+            var cameraView = Storyboard.InstantiateViewController("customCameraView") as CameraViewController;
             cameraView.PhotoTaken += (image) => { imageByteArray = image; };
 
             checkInCell.DidCheckIn += async () =>
