@@ -449,8 +449,6 @@ namespace BeerDrinkin.API
                     await SyncAsync(table, id);
                     var beerTable = serviceClient.GetSyncTable<BeerItem>();
                     await SyncAsync(beerTable, id);
-                    var reviewTable = serviceClient.GetSyncTable<ReviewItem>();
-                    await SyncAsync(reviewTable, id);
 
                     //unique list of beer ids consumed by current user
                     var beerIds =
@@ -471,10 +469,6 @@ namespace BeerDrinkin.API
                                 beerInfo.CheckIns = checkinsResponse.Result;
                                 beerInfo.AverageRating = beerInfo.CheckIns.Select(f => f.Rating).Average();
                             }
-                            beerInfo.Reviews = await reviewTable.Where(f => f.BeerId == beerId).ToListAsync();
-                            var binaryResponse = await GetBinariesForObject(beerId, BinaryTypes.CheckIn);
-                            if (!binaryResponse.HasError)
-                                beerInfo.ImagesURLs = binaryResponse.Result;
                             results.Add(beerInfo);
                         }
                     }
@@ -575,14 +569,12 @@ namespace BeerDrinkin.API
             }
             return new APIResponse<List<string>>(null, new UnauthorizedAccessException("User is unauthenticated"));
         }
-
-
+           
         public async Task<APIResponse<List<string>>> GetPhotosForUser()
         {
             return await GetPhotosForUser(GetUserId);
         }
-
-
+           
 
         #endregion
 
@@ -608,9 +600,6 @@ namespace BeerDrinkin.API
             {
                 return new APIResponse<List<BeerItem>>(null, ex);
             }
-               
-
-            return new APIResponse<List<BeerItem>>(null, new UnauthorizedAccessException("User is unauthenticated"));
         }
     
 
@@ -623,11 +612,8 @@ namespace BeerDrinkin.API
         public async Task InitializeStoreAsync(string localDbPath)
         {
             var store = new MobileServiceSQLiteStore(localDbPath);
-            store.DefineTable<UserItem>();
             store.DefineTable<AccountItem>();
-            store.DefineTable<FollowerItem>();
             store.DefineTable<CheckInItem>();
-            store.DefineTable<ReviewItem>();
             store.DefineTable<BeerItem>();
             store.DefineTable<BeerStyle>();
 
@@ -669,11 +655,8 @@ namespace BeerDrinkin.API
 
         public async Task RefreshAll()
         {
-            await SyncAsync<UserItem>("allUsers");
             await SyncAsync<AccountItem>("allUsers");
-            await SyncAsync<FollowerItem>("allUsers");
             await SyncAsync<CheckInItem>("allUsers");
-            await SyncAsync<ReviewItem>("allUsers");
             await SyncAsync<BeerItem>("allUsers");
             await SyncAsync<BeerStyle>("allUsers");
 

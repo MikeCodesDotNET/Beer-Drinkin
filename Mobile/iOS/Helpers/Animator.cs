@@ -200,9 +200,6 @@ namespace BeerDrinkin.iOS.Helpers
                 }, null);  
             }
         }
-
-       
-
     }
 }
 

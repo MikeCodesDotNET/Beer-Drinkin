@@ -19,8 +19,7 @@ namespace BeerDrinkin.iOS
             tbxDescription.AlwaysBounceVertical = false;
         }
 
-
-        public string Description
+        public string Text
         {
             get { return tbxDescription.Text; }
             set { tbxDescription.Text = value; }

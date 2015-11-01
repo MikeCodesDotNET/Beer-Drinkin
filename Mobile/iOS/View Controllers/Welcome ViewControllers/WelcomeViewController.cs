@@ -88,7 +88,7 @@ namespace BeerDrinkin.iOS
                 //We'll hide all the subviews
                 View.FadeSubviewsOut(1, 0);
 
-                var user = await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
 
                 var vc = Storyboard.InstantiateViewController("tabBarController");
                 await PresentViewControllerAsync(vc, false);

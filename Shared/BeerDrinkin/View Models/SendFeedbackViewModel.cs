@@ -17,7 +17,7 @@ namespace BeerDrinkin.Core.ViewModels
 
         public string Feedback { get; set; }
 
-        public async Task SendFeedback()
+        public void SendFeedback()
         {
             Insights.Track("Feedback Provided", new Dictionary<string, string>
                 {

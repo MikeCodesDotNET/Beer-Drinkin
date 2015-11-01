@@ -23,7 +23,7 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        async partial void btnBack_Activated(UIBarButtonItem sender)
+        partial void btnBack_Activated(UIBarButtonItem sender)
         {
             NavigationController.PopViewController(true);
         }

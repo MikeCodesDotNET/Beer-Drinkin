@@ -72,7 +72,7 @@ namespace BeerDrinkin.iOS
             byte[] imageByteArray = null;
 
             var cameraView = Storyboard.InstantiateViewController("cameraViewController") as CameraViewController;
-            cameraView.PhotoTaken += async (image) => { imageByteArray = image; };
+            cameraView.PhotoTaken += (image) => { imageByteArray = image; };
 
             checkInCell.DidCheckIn += async () =>
             {
@@ -251,7 +251,7 @@ namespace BeerDrinkin.iOS
                 var cellIdentifier = new NSString("descriptionCell");
                 var cell = TableView.DequeueReusableCell(cellIdentifier) as BeerDescriptionCell ??
                     new BeerDescriptionCell(cellIdentifier);
-                cell.Description = beer.Description;
+                cell.Text = beer.Description;
                 cells.Add(cell);
             }
         }

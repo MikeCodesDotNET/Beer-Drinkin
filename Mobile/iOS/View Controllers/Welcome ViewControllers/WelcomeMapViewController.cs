@@ -70,10 +70,10 @@ namespace BeerDrinkin.iOS
                     return;
                 }};
 
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 var location = Geolocator.Plugin.CrossGeolocator.Current.GetPositionAsync().Result;
-                var topsBeers = BeerDrinkin.Client.Instance.BeerDrinkinClient.GetPopularBeersAsync(location.Longitude, location.Latitude).Result;
+                var topsBeers = Client.Instance.BeerDrinkinClient.GetPopularBeersAsync(location.Longitude, location.Latitude).Result;
             });
 
             UIView.Animate(1, 0.2, UIViewAnimationOptions.TransitionCurlUp,
@@ -89,7 +89,7 @@ namespace BeerDrinkin.iOS
                 });      
 
             var skakeView = Storyboard.InstantiateViewController("shakeWelcomeView");
-            this.PresentViewControllerAsync(skakeView, false);
+            await PresentViewControllerAsync(skakeView, false);
         }
 	}
 }

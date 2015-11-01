@@ -23,7 +23,7 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
-            btnSend.Clicked += async delegate { await viewModel.SendFeedback(); };
+            btnSend.Clicked += delegate { viewModel.SendFeedback(); };
             var ratingConfig = new RatingConfig(UIImage.FromBundle("emptyStar"), UIImage.FromBundle("filledStar"), UIImage.FromBundle("filledStar"));
 
             var uiRatingView = new PDRatingView(new CGRect(30, 10, userInterfaceRatingPlaceholder.Frame.Width - 60, userInterfaceRatingPlaceholder.Frame.Height - 20), ratingConfig);

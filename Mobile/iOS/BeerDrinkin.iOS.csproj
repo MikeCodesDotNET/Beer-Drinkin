@@ -184,6 +184,9 @@
     <Reference Include="RateBeer">
       <HintPath>..\..\packages\RateBeer.1.0.0\lib\RateBeer.dll</HintPath>
     </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\..\..\BTProgressHUD\BTProgressHUD\bin\unified\Debug\BTProgressHUD.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -527,7 +530,6 @@
     <BundleResource Include="Resources\locationPin.png" />
     <BundleResource Include="Resources\Map.png" />
     <BundleResource Include="Resources\Entitlements.plist" />
-    <BundleResource Include="Resources\Info.plist" />
     <BundleResource Include="Resources\camera-flash.png" />
     <BundleResource Include="Resources\camera-flash%402x.png" />
     <BundleResource Include="Resources\camera-switch.png" />

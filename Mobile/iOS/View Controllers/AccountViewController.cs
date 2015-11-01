@@ -20,8 +20,6 @@ namespace BeerDrinkin.iOS
     partial class AccountViewController : UIViewController
     {
         bool avatarBusy;
-
-        bool busy;
         readonly AccountViewModel viewModel = new AccountViewModel();
        
         public AccountViewController(IntPtr handle) : base(handle)
@@ -53,14 +51,9 @@ namespace BeerDrinkin.iOS
 
         private void SetupBindings()
         {
-            viewModel.PropertyChanged += (sender, e) =>
-            {
-                    InvokeOnMainThread(() =>{
-                        RefreshUI();
-                    });      
-            };
+            viewModel.PropertyChanged += (sender, e) => InvokeOnMainThread(RefreshUI);
 
-            scrollView.Scrolled += (object sender, EventArgs e) =>
+            scrollView.Scrolled += (sender, e) =>
             {
                 parallaxScrollView.ContentOffset = new CGPoint(0, scrollView.ContentOffset.Y / 3);
 
@@ -141,19 +134,33 @@ namespace BeerDrinkin.iOS
             {
                 imageUrls = new List<string>();
 
-                if(urls.Count != this.imageUrls.Count)
+                if(urls.Count != imageUrls.Count)
                     imageUrls = urls;
             }
 
             public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
             {
                 var cell = (PhotoCollectionViewCell)collectionView.DequeueReusableCell("photoCell", indexPath);
+                UIImage image = new UIImage();
+                string key = imageUrls[indexPath.Row];
 
-                DownloadImageAsync(imageUrls[indexPath.Row]).ContinueWith((task) => InvokeOnMainThread(() =>
+                //Do we already have the image cached?
+                if(SDImageCache.SharedImageCache.DiskImageExists(key) == false)
                 {
-                    cell.ImageView.Image = task.Result.ToNative();
-                }));
+                    //Nope. Lets go and download it
+                    DownloadImageAsync(key).ContinueWith((task) => InvokeOnMainThread(() =>
+                    {
+                        image = task.Result.ToNative();
+                        SDImageCache.SharedImageCache.StoreImage(image, key);
+                    }));  
+                }
+                else 
+                {
+                    //We've already downloaded the image. Let load it from memory / disk
+                    image = SDImageCache.SharedImageCache.ImageFromMemoryCache(key);
+                }
 
+                cell.ImageView.Image = image;
                 cell.BackgroundColor = Color.White.ToNative();
                 return cell;
             }

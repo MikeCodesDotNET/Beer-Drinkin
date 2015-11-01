@@ -20,13 +20,15 @@ namespace BeerDrinkin.iOS
             await AttemptSignIn();
 
             var vc = Storyboard.InstantiateViewController("welcomeViewController");
-            PresentViewController(vc, false, null);
+            await PresentViewControllerAsync(vc, false);
         }
 
         async Task AttemptSignIn()
         {
+            //TODO Check in an auth token already exists. I removed this code when ripping out Akavache
+
             var vc = Storyboard.InstantiateViewController("welcomeViewController");
-            PresentViewController(vc, false, null);
+            await PresentViewControllerAsync(vc, false);
         }
     }
 }

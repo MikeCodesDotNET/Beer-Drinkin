@@ -13,11 +13,6 @@ namespace BeerDrinkin.iOS.CustomControls
         }
 
         UIColor Green = UIColor.FromRGBA(0.292f, 0.788f, 0.709f, 1.000f);
-        UIColor Blue = UIColor.FromRGBA(0.082f, 0.663f, 1.000f, 1.000f);
-        UIColor Purple = UIColor.FromRGBA(0.475f, 0.431f, 1.000f, 1.000f);
-        UIColor Pink = UIColor.FromRGBA(0.792f, 0.290f, 0.761f, 1.000f);
-        UIColor DeepPurple = UIColor.FromRGBA(0.322f, 0.302f, 0.576f, 1.000f);
-        UIColor Red = UIColor.FromRGBA(0.988f, 0.078f, 0.329f, 1.000f);
         UIColor OffWhite = UIColor.FromRGBA(0.973f, 0.973f, 0.973f, 1.000f);
         UIColor SimpleWhite = UIColor.FromRGBA(1.000f, 1.000f, 1.000f, 1.000f);
 

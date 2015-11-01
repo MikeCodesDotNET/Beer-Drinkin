@@ -189,8 +189,6 @@ namespace BeerDrinkin.iOS
         private void SetupUserInterface()
         {
             liveCameraStream = new UIView();
-
-            var totalHeightToReduce = topBar.Frame.Height + bottomBar.Frame.Height;
             liveCameraStream.Frame = new CGRect(0f, 0f, View.Frame.Width, View.Frame.Height);
             liveCameraStream.BackgroundColor = UIColor.Red;
             View.Add(liveCameraStream);

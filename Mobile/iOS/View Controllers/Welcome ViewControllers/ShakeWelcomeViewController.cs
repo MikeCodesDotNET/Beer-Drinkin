@@ -54,7 +54,7 @@ namespace BeerDrinkin.iOS
         async partial void BtnGotIt_TouchUpInside(UIButton sender)
         {
             var tinderView = Storyboard.InstantiateViewController("tinderView");
-            this.PresentViewControllerAsync(tinderView, true);
+            await PresentViewControllerAsync(tinderView, true);
 
         }
 	}

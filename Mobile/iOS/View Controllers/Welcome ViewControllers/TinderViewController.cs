@@ -46,7 +46,7 @@ namespace BeerDrinkin.iOS
             imgBeer4.Alpha = 0f;
         }
 
-        public async override void ViewDidAppear(bool animated)
+        public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);   
 
@@ -56,7 +56,6 @@ namespace BeerDrinkin.iOS
             tinderView.AddSubview(DemoCardView);
             tinderView.BackgroundColor = UIColor.Clear;
             DemoCardView.DataSource = this;
-           
 
             UIView.Animate(1, 0, UIViewAnimationOptions.TransitionCurlUp,
                 () =>
@@ -75,18 +74,7 @@ namespace BeerDrinkin.iOS
             lblBeersCount.Text = "0 Beers";
         }
 
-        public override void ViewWillLayoutSubviews()
-        {
-            base.ViewWillLayoutSubviews();
-
-        }
-
-        public override void ViewDidLayoutSubviews()
-        {
-            base.ViewDidLayoutSubviews();
-        }
-
-        private int progressCount = 0;
+        int progressCount = 0;
 
         public UIView NextCardForCardView(CardView cardView)
         {
@@ -213,7 +201,7 @@ namespace BeerDrinkin.iOS
 
         public CardView DemoCardView { get; set; }
 
-        async partial void BtnFinished_TouchUpInside(UIButton sender)
+        partial void BtnFinished_TouchUpInside(UIButton sender)
         {
             UIView.Animate(0.4, 0, UIViewAnimationOptions.TransitionCurlUp,
                 () =>
