@@ -112,6 +112,12 @@ namespace BeerDrinkin.iOS
         string upc = string.Empty;
         async partial void BtnBarCodeScanner_Activated(UIBarButtonItem sender)
         {
+            if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false)
+            {
+                Acr.UserDialogs.UserDialogs.Instance.ShowError("No camera found :(");
+                return;
+            }
+
             try
             {
                 var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);

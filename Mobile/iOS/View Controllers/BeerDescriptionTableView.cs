@@ -176,6 +176,12 @@ namespace BeerDrinkin.iOS
 
             barcodeCell.AddBarcode += async () =>
                 {
+                    if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false)
+                    {
+                        Acr.UserDialogs.UserDialogs.Instance.ShowError("No camera found :(");
+                        return;
+                    }
+
                     try
                     {
                         var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
