@@ -77,9 +77,6 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="ViewShaker">
-      <HintPath>..\..\Components\ViewShaker-1.1\lib\ios-unified\ViewShaker.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Auth.iOS">
       <HintPath>..\Components\xamarin.auth-1.2.3.1\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
     </Reference>
@@ -478,10 +475,6 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="XCardView">
-      <Version>1.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="ViewShaker">
       <Version>1.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

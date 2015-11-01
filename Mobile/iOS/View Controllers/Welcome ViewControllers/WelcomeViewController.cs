@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;
 using Facebook.Pop;
+using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS
 {
@@ -32,12 +33,6 @@ namespace BeerDrinkin.iOS
             View.BackgroundColor = Color.Blue.ToNative();
 
             btnFacebookConnect.Alpha = 0;
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-        
         }
 
         public override void ViewWillAppear(bool animated)
@@ -71,6 +66,13 @@ namespace BeerDrinkin.iOS
                 });    
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
+            imgLogo.Pop(1, 0, 1);
+        }
+
         public override void ViewDidDisappear(bool animated)
         {
             base.ViewDidDisappear(animated);
@@ -85,8 +87,10 @@ namespace BeerDrinkin.iOS
         {
             try
             {   
+                btnFacebookConnect.PulseToSize(0.9f, 0.2, false);
                 //We'll hide all the subviews
-                View.FadeSubviewsOut(1, 0);
+                View.FadeSubviewsOut(0.5, 0.2f);
+                await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
                 await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
 
@@ -116,7 +120,7 @@ namespace BeerDrinkin.iOS
             catch
             {
                 //We'll make all the subviews visible again
-                View.FadeSubviewsOut(2, 0);
+                View.FadeSubviewsIn(2, 0);
 
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
             }

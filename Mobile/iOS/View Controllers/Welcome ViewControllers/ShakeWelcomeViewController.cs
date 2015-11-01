@@ -2,6 +2,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -36,8 +37,7 @@ namespace BeerDrinkin.iOS
 
                 }, () =>
                 {  
-                    var viewShaker = new ViewShaker.ViewShaker(this.imgDevice);
-                    viewShaker.Shake(1f);
+                    imgDevice.ShakeHorizontally();
                 });    
         }
 
