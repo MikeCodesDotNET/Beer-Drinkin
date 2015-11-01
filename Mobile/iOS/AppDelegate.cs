@@ -45,7 +45,7 @@ namespace BeerDrinkin.iOS
 
         public override bool ContinueUserActivity(UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
         {          
-            //TODO Complete loading the beer
+            //TODO Complete loading the beer - This is part of iOS 9 integration.
             var userInfo = userActivity.UserInfo;
             var beerID = userInfo.ValueForKey(new NSString("kCSSearchableItemActivityIdentifier"));
             Console.WriteLine(beerID);

@@ -121,10 +121,11 @@ namespace BeerDrinkin.iOS
  
         }
 
-
-        partial void BtnSettings_Activated(UIBarButtonItem sender)
+        //Not using a segue because I want to animate the button to rotate 180* on tap. Thats a TODO item...
+        async partial void BtnSettings_Activated(UIBarButtonItem sender)
         {
             var vc = Storyboard.InstantiateViewController("accountNavigation");
+            await PresentViewControllerAsync(vc, true);
         }
 
         partial void btnAvatar_TouchUpInside(UIButton sender)

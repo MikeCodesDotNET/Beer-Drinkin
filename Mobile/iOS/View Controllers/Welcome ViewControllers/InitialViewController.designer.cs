@@ -14,8 +14,16 @@ namespace BeerDrinkin.iOS
 	[Register ("InitialViewController")]
 	partial class InitialViewController
 	{
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIImageView imgLogo { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgLogo != null) {
+				imgLogo.Dispose ();
+				imgLogo = null;
+			}
 		}
 	}
 }

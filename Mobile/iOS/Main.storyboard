@@ -80,6 +80,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.082352943720000002" green="0.66274511810000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="imgLogo" destination="ASx-cf-VQj" id="name-outlet-ASx-cf-VQj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUC-Gj-5lr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -476,7 +479,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" id="Ds0-w3-bO1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="630" height="558"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="840" height="744"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </imageView>
                                                             </subviews>

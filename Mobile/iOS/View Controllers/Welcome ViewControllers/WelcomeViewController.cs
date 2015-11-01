@@ -1,14 +1,12 @@
 using System;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
-using BeerDrinkin.Service;
 using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;
-using Facebook.Pop;
 using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS
@@ -69,7 +67,6 @@ namespace BeerDrinkin.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-
             imgLogo.Pop(1, 0, 1);
         }
 

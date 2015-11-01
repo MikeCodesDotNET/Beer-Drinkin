@@ -1,10 +1,7 @@
-using Foundation;
 using System;
-using System.CodeDom.Compiler;
 using UIKit;
 using System.Threading.Tasks;
-using BeerDrinkin.Service;
-using NotificationCenter;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -21,6 +18,12 @@ namespace BeerDrinkin.iOS
 
             var vc = Storyboard.InstantiateViewController("welcomeView");
             await PresentViewControllerAsync(vc, false);
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            imgLogo.FadeOut(0.3, 0);
         }
 
         async Task AttemptSignIn()
