@@ -221,7 +221,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.6705882353" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.97149226639999997" green="0.97149226639999997" blue="0.97149226639999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="rj1-Fd-p9o">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="rj1-Fd-p9o" customClass="SearchBar">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="barTintColor" red="0.082352943720000002" green="0.66274511810000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -301,17 +301,9 @@
                         <color key="backgroundColor" red="0.97149226639999997" green="0.97149226639999997" blue="0.97149226639999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="708-search.png" id="33t-rj-vtG"/>
-                    <navigationItem key="navigationItem" title="Search" id="M3j-Lt-7Nh">
-                        <barButtonItem key="rightBarButtonItem" image="Barcode.png" id="8yB-lH-Djb">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="BtnBarCodeScanner_Activated:" destination="TyU-Ng-M9x" id="1094"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Search" id="M3j-Lt-7Nh"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="btnBarCodeScanner" destination="8yB-lH-Djb" id="name-outlet-8yB-lH-Djb"/>
                         <outlet property="imgSearch" destination="xr7-tz-g5H" id="name-outlet-xr7-tz-g5H"/>
                         <outlet property="lblFindBeers" destination="CHR-jF-gT0" id="name-outlet-CHR-jF-gT0"/>
                         <outlet property="lblSearchBeerDrinkin" destination="kOI-fy-WIi" id="name-outlet-kOI-fy-WIi"/>
@@ -479,7 +471,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" id="Ds0-w3-bO1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="840" height="744"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="1260" height="1116"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 </imageView>
                                                             </subviews>

@@ -16,10 +16,6 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnBarCodeScanner { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgSearch { get; set; }
 
 		[Outlet]
@@ -36,22 +32,14 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UISearchBar searchBar { get; set; }
+		SearchBar searchBar { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tableView { get; set; }
 
-		[Action ("BtnBarCodeScanner_Activated:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnBarCodeScanner_Activated (UIBarButtonItem sender);
-
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnBarCodeScanner != null) {
-				btnBarCodeScanner.Dispose ();
-				btnBarCodeScanner = null;
-			}
 			if (imgSearch != null) {
 				imgSearch.Dispose ();
 				imgSearch = null;

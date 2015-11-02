@@ -7,6 +7,7 @@ using CoreGraphics;
 using Xamarin;
 using System.Collections.Generic;
 
+//TODO Make the camera view something to be proud of. This is by far the ugliest thing since the birth of my nephew
 namespace BeerDrinkin.iOS
 {
     partial class CameraViewController : UIViewController

@@ -64,10 +64,10 @@ namespace BeerDrinkin.iOS
             Title = BeerDrinkin.Core.Helpers.Strings.SearchTitle;
             lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.SearchPlaceHolderTitle;
             lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.SearchSubPlaceHolderTitle;
-
-            var textfield = searchBar.Subviews[0].Subviews[1] as UITextField;
-            if (textfield != null)
-                textfield.Font = UIFont.FromName("Avenir-Book", 14);
+            searchBar.Clicked += delegate
+            {
+                ScanBarcode();
+            };
 
             View.BringSubviewToFront(scrllPlaceHolder);
         }
@@ -110,15 +110,9 @@ namespace BeerDrinkin.iOS
         }
 
         string upc = string.Empty;
-        async partial void BtnBarCodeScanner_Activated(UIBarButtonItem sender)
+        async void ScanBarcode()
         {
-            if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false)
-            {
-                Acr.UserDialogs.UserDialogs.Instance.ShowError("No camera found :(");
-                return;
-            }
-
-            try
+           try
             {
                 var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
                 var result =  await scanner.Scan();
