@@ -37,7 +37,8 @@ namespace BeerDrinkin.iOS
 
             var cell = tableView.DequeueReusableCell(cellIdentifier) as MyBeersTableViewCell ?? new MyBeersTableViewCell(cellIdentifier);
             cell.Name = beerCheckedIn.Name;
-
+            cell.Brewery = beer.Brewery;
+           
 
             if (beer.Large != null)
             {

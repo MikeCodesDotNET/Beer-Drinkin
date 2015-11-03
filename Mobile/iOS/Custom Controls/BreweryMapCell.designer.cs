@@ -16,10 +16,18 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView divider { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		MapKit.MKMapView mapView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
+			}
 			if (mapView != null) {
 				mapView.Dispose ();
 				mapView = null;

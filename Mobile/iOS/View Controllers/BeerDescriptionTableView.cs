@@ -22,6 +22,8 @@ namespace BeerDrinkin.iOS
         const string activityName = "com.beerdrinkin.beer";
         List<UITableViewCell> cells = new List<UITableViewCell>();
 
+
+
         public BeerDescriptionTableView(IntPtr handle) : base(handle)
         {
         }
@@ -167,7 +169,7 @@ namespace BeerDrinkin.iOS
           
             if(string.IsNullOrEmpty(beer.UPC))
             {
-                barcodeCell.BarCodeNumber = "0 0000 000 000";
+                barcodeCell.BarCodeNumber = "* * * *";
             }
             else
             {
@@ -280,6 +282,9 @@ namespace BeerDrinkin.iOS
             TableView.Delegate = new DescriptionDelegate(ref cells);
             TableView.ReloadData();
             View.SetNeedsDisplay();
+
+
+       
         }
 
         public override void ViewDidAppear(bool animated)
@@ -287,6 +292,7 @@ namespace BeerDrinkin.iOS
             base.ViewDidAppear(animated);
             TabBarController.TabBar.Hidden = false;
             TableView.ReloadData();
+
 
         }
 
@@ -384,8 +390,7 @@ namespace BeerDrinkin.iOS
 
                 if (cell.GetType() == typeof(BeerHeaderImageCell))
                 {
-                    var c = cell as BeerHeaderImageCell;
-                    return c.Frame.Height;
+                    return 150;
                 }
 
                 if (cell.GetType() == typeof(CheckInLocationMapCell))
@@ -410,6 +415,8 @@ namespace BeerDrinkin.iOS
             {
                 return GetHeightForRow(tableView, indexPath);
             }
+
+
         }
 
         protected class CheckInMapViewAnnotation : MKAnnotation

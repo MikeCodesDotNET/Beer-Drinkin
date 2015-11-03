@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;
 using System.Threading.Tasks;
+using Awesomizer;
 
 namespace BeerDrinkin.iOS
 {

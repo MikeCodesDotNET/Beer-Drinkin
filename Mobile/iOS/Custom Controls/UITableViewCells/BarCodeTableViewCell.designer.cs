@@ -20,6 +20,10 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView divider { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblBarcodeNumber { get; set; }
 
 		[Action ("BtnAddBarcode_TouchUpInside:")]
@@ -31,6 +35,10 @@ namespace BeerDrinkin.iOS
 			if (btnAddBarcode != null) {
 				btnAddBarcode.Dispose ();
 				btnAddBarcode = null;
+			}
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
 			}
 			if (lblBarcodeNumber != null) {
 				lblBarcodeNumber.Dispose ();

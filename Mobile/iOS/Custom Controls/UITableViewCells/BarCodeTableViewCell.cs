@@ -18,6 +18,13 @@ namespace BeerDrinkin.iOS
            
         }
 
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            Helpers.Animator.GrowDivider(divider, this);
+        }
+
         public string BarCodeNumber
         {
             get

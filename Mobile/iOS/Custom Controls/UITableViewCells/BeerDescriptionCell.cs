@@ -2,6 +2,7 @@ using System;
 using CoreGraphics;
 using Foundation;
 using UIKit;
+using CoreAnimation;
 
 namespace BeerDrinkin.iOS
 {
@@ -28,6 +29,13 @@ namespace BeerDrinkin.iOS
         public nfloat PreferredHeight
         {
             get { return tbxDescription.SizeThatFits(new CGSize(tbxDescription.Frame.Width, float.MaxValue)).Height; }
+        }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            Helpers.Animator.GrowDivider(divider, this);
         }
     }
 }

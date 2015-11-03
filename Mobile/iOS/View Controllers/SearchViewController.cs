@@ -8,6 +8,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using Xamarin;
+using Awesomizer;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -32,6 +34,21 @@ namespace BeerDrinkin.iOS
                 //This devices supports 3D Touch
                 RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);
             }
+        }
+
+        bool isFirstRun = true;
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
+            if (isFirstRun)
+            {
+                imgSearch.Pop(0.7f, 0, 0.2f);
+                lblFindBeers.Pop(0.7f, 0, 0.2f);
+                lblSearchBeerDrinkin.Pop(0.7f, 0, 0.2f);
+            }
+
+            isFirstRun = false;
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -74,8 +91,8 @@ namespace BeerDrinkin.iOS
 
         public void SetupEvents()
         {
-            searchBar.TextChanged += SearchBarTextChanged;
-            
+            searchBar.TextChanged += SearchBarTextChanged;           
+
             searchBar.SearchButtonClicked += async delegate
             {
                 UserDialogs.Instance.ShowLoading("Searching");

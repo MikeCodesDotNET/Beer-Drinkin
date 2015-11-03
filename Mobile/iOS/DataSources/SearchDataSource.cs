@@ -26,6 +26,7 @@ namespace BeerDrinkin.iOS
         {
             var beer = Beers[indexPath.Row];
 
+
             var cell = tableView.DequeueReusableCell(cellIdentifier) as SearchBeerTableViewCell ??
                        new SearchBeerTableViewCell(cellIdentifier);
             cell.Name = beer.Name;
@@ -46,15 +47,7 @@ namespace BeerDrinkin.iOS
                 CheckInBeer?.Invoke(beer, indexPath);
             };
 
-            cell.Delegate = cellDelegate;
-            var quickCheckInButton = new UIButton(UIButtonType.RoundedRect)
-            {
-                BackgroundColor = Color.Green.ToNative(),
-                Font = UIFont.FromName("Avenir Book", 12),
-                TintColor = UIColor.White
-            };
-            quickCheckInButton.SetTitle("Check In", UIControlState.Normal);
-            cell.SetLeftUtilityButtons(new[] { quickCheckInButton }, 90);
+            cell.Delegate = cellDelegate;           
             return cell;
         }
 

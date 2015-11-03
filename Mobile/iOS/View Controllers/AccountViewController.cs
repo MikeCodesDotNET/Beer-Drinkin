@@ -15,6 +15,7 @@ using System.IO;
 using System.Reactive.Linq; 
 using BeerDrinkin.iOS.Helpers;
 using CoreAnimation;
+using Awesomizer;
 
 namespace BeerDrinkin.iOS
 {
@@ -42,12 +43,18 @@ namespace BeerDrinkin.iOS
             viewModel.FetchData();
         }
 
+        bool isFirstRun = true;
         async public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
 
             NavigationController.NavigationBar.BarTintColor = Color.Blue.ToNative();
             await viewModel.FetchData();
+
+            if(isFirstRun)
+                imgAvatar.Pop(0.7f, 0, 0.2f);
+
+            isFirstRun = false;
         }
 
         private void SetupBindings()

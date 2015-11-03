@@ -3,6 +3,8 @@ using UIKit;
 using Xamarin;
 using System.Collections.Generic;
 using Foundation;
+using SafariServices;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -33,23 +35,31 @@ namespace BeerDrinkin.iOS
         {
             if (indexPath.Section == 0 && indexPath.Row == 0)
             {
-                //Xamarin
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("http://www.xamarin.com/"));
+                //Xamarin    
+                OpenUrl("http://www.xamarin.com/");
             }
 
             if (indexPath.Section == 1 && indexPath.Row == 0)
             {
                 //Facebook
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("https://www.facebook.com/beerdrinkinapp"));
+                OpenUrl("https://www.facebook.com/beerdrinkinapp");
             }
 
             if (indexPath.Section == 1 && indexPath.Row == 1)
             {
                 //Twitter
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("http://twitter.com/BeerDrinkinApp"));
+                OpenUrl("http://twitter.com/BeerDrinkinApp");
             }
+        }
+
+        void OpenUrl(string url)
+        {
+            var sfViewController = new SafariServices.SFSafariViewController(new NSUrl(url));
+            sfViewController.View.TintColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
+            sfViewController.View.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();           
 
 
+            PresentViewControllerAsync(sfViewController, true);
         }
     }
 }

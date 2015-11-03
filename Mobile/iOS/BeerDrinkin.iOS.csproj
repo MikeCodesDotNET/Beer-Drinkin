@@ -353,6 +353,11 @@
     <Compile Include="SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Awesomizer.cs" />
+    <Compile Include="ParallaxTableHeader.cs" />
+    <Compile Include="ParallaxTableHeader.designer.cs">
+      <DependentUpon>ParallaxTableHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -451,6 +456,9 @@
     <BundleResource Include="Resources\TestTube.png" />
     <BundleResource Include="Resources\Tick.png" />
     <BundleResource Include="Resources\Barcode.png" />
+    <BundleResource Include="Resources\Arrows-Left-icon.png" />
+    <BundleResource Include="Resources\oie_transparent-20.png" />
+    <BundleResource Include="Resources\BlueTick.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

@@ -16,6 +16,10 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView divider { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblAbv { get; set; }
 
 		[Outlet]
@@ -44,6 +48,10 @@ namespace BeerDrinkin.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
+			}
 			if (lblAbv != null) {
 				lblAbv.Dispose ();
 				lblAbv = null;

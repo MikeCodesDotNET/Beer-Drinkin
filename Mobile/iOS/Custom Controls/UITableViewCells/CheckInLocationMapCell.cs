@@ -34,5 +34,11 @@ namespace BeerDrinkin.iOS
                 SetNeedsDisplay();
             }
         }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+        }
     }
 }

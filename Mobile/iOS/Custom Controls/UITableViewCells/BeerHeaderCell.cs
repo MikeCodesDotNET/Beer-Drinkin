@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using UIKit;
+using CoreGraphics;
 
 namespace BeerDrinkin.iOS
 {
@@ -85,7 +86,14 @@ namespace BeerDrinkin.iOS
                 lblConsumed.Alpha = value;
                 lblConsumedTitle.Alpha = value;
                 SetNeedsDisplay();
-            }
+            } 
+        }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            Helpers.Animator.GrowDivider(divider, this);
         }
     }
 }

@@ -32,11 +32,11 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblRating { get; set; }
+		UIView divider { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblSnapAPhoto { get; set; }
+		UILabel lblRating { get; set; }
 
 		[Action ("btnCheckIn_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -72,13 +72,13 @@ namespace BeerDrinkin.iOS
 				btnSnapAPhoto.Dispose ();
 				btnSnapAPhoto = null;
 			}
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
+			}
 			if (lblRating != null) {
 				lblRating.Dispose ();
 				lblRating = null;
-			}
-			if (lblSnapAPhoto != null) {
-				lblSnapAPhoto.Dispose ();
-				lblSnapAPhoto = null;
 			}
 		}
 	}

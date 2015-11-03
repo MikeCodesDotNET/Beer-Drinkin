@@ -20,6 +20,10 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIImageView imgTick { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblBrewery { get; set; }
 
 		[Outlet]
@@ -30,15 +34,15 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblStyle { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView sideColor { get; set; }
-
 		void ReleaseDesignerOutlets ()
 		{
 			if (imgLabel != null) {
 				imgLabel.Dispose ();
 				imgLabel = null;
+			}
+			if (imgTick != null) {
+				imgTick.Dispose ();
+				imgTick = null;
 			}
 			if (lblBrewery != null) {
 				lblBrewery.Dispose ();
@@ -51,10 +55,6 @@ namespace BeerDrinkin.iOS
 			if (lblStyle != null) {
 				lblStyle.Dispose ();
 				lblStyle = null;
-			}
-			if (sideColor != null) {
-				sideColor.Dispose ();
-				sideColor = null;
 			}
 		}
 	}

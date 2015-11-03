@@ -30,6 +30,16 @@ namespace BeerDrinkin.iOS
             }
         }
 
+        public string Brewery
+        {
+            get { return lblBrewery.Text; }
+            set 
+            { 
+                lblBrewery.Text = value; 
+                lblBrewery.SizeToFit();
+                this.LayoutIfNeeded();
+            }
+        }
         public string BeerCount
         {
             get { return lblBeerCount.Text; }

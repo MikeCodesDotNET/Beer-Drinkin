@@ -41,7 +41,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDefault</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Find the most popular beers in your area</string>
 	<key>NSAppTransportSecurity</key>

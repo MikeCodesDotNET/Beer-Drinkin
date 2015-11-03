@@ -44,7 +44,7 @@ namespace BeerDrinkin.iOS
             get { return checkedIn; }
             set
             {
-                sideColor.Alpha = !value ? 0f : 1f;
+                imgTick.Alpha = !value ? 0f : 1f;
                 checkedIn = value;
             }
         }
@@ -64,7 +64,7 @@ namespace BeerDrinkin.iOS
             imgLabel.Layer.BorderWidth = 0.8f;
             imgLabel.Layer.MasksToBounds = true;
 
-            sideColor.Alpha = 0f;
+            imgTick.Alpha = 0f;
             ShowRightUtilityButtons(false);
         }
     }

@@ -16,10 +16,18 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView divider { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextView tbxDescription { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
+			}
 			if (tbxDescription != null) {
 				tbxDescription.Dispose ();
 				tbxDescription = null;
