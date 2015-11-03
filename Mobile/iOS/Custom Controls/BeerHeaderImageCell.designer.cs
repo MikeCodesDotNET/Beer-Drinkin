@@ -16,14 +16,26 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton btnLike { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgLogo { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIScrollView scrollView { get; set; }
 
+		[Action ("BtnLike_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void BtnLike_TouchUpInside (UIButton sender);
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnLike != null) {
+				btnLike.Dispose ();
+				btnLike = null;
+			}
 			if (imgLogo != null) {
 				imgLogo.Dispose ();
 				imgLogo = null;

@@ -63,5 +63,10 @@ namespace BeerDrinkin.iOS
 
             imgLogo.Frame = new CGRect (x, y, w, h);
         }
+
+        partial void BtnLike_TouchUpInside(UIButton sender)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
