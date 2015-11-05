@@ -64,6 +64,7 @@ namespace BeerDrinkin.iOS
             var rowPath = tableView.IndexPathForSelectedRow;
             var item = viewModel.Beers[rowPath.Row];
             item.UPC = upc;
+            item.RateBeerId = rateBeerId;
 
             navctlr.EnableCheckIn = true;
             navctlr.SetBeer(item);
@@ -127,6 +128,7 @@ namespace BeerDrinkin.iOS
         }
 
         string upc = string.Empty;
+        int rateBeerId;
         async void ScanBarcode()
         {
            try
@@ -141,6 +143,7 @@ namespace BeerDrinkin.iOS
 
                 if(response != null)
                 {
+                    rateBeerId = response.BeerID;
                     searchBar.Text = response.BeerName;
                     searchBar.BecomeFirstResponder();
                     UserDialogs.Instance.HideLoading();

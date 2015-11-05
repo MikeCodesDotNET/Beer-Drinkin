@@ -16,7 +16,11 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnFacebookConnect { get; set; }
+		UIButton btnConnectWithFacebook { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton btnConnectWithGoogle { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -34,15 +38,23 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIScrollView scrollView { get; set; }
 
-		[Action ("BtnFacebookConnect_TouchUpInside:")]
+		[Action ("BtnConnectWithFacebook_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnFacebookConnect_TouchUpInside (UIButton sender);
+		partial void BtnConnectWithFacebook_TouchUpInside (UIButton sender);
+
+		[Action ("BtnConnectWithGoogle_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void BtnConnectWithGoogle_TouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnFacebookConnect != null) {
-				btnFacebookConnect.Dispose ();
-				btnFacebookConnect = null;
+			if (btnConnectWithFacebook != null) {
+				btnConnectWithFacebook.Dispose ();
+				btnConnectWithFacebook = null;
+			}
+			if (btnConnectWithGoogle != null) {
+				btnConnectWithGoogle.Dispose ();
+				btnConnectWithGoogle = null;
 			}
 			if (imgLogo != null) {
 				imgLogo.Dispose ();

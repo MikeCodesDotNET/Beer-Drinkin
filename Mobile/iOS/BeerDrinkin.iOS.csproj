@@ -459,6 +459,7 @@
     <BundleResource Include="Resources\Arrows-Left-icon.png" />
     <BundleResource Include="Resources\oie_transparent-20.png" />
     <BundleResource Include="Resources\BlueTick.png" />
+    <BundleResource Include="Resources\goolgeButton.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

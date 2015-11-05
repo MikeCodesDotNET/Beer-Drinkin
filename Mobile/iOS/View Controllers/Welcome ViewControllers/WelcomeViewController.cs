@@ -28,17 +28,17 @@ namespace BeerDrinkin.iOS
            
             lblTitle.Text = Strings.WelcomeTitle;
             lblPromise.Text = Strings.WelcomePromise;
-            btnFacebookConnect.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
+            btnConnectWithFacebook.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
             View.BackgroundColor = Color.Blue.ToNative();
 
-            btnFacebookConnect.Alpha = 0;
+            btnConnectWithFacebook.Alpha = 0;
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
 
-            btnFacebookConnect.Alpha = 0;
+            btnConnectWithFacebook.Alpha = 0;
             lblTitle.Alpha = 0;
             imgLogo.Alpha = 0;
             lblPromise.Alpha = 0;
@@ -55,7 +55,7 @@ namespace BeerDrinkin.iOS
                 () =>
                 {
 
-                    btnFacebookConnect.Alpha = 1;
+                    btnConnectWithFacebook.Alpha = 1;
                     lblTitle.Alpha = 1;
                     imgLogo.Alpha = 1;
                     lblPromise.Alpha = 1;
@@ -81,39 +81,17 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        async partial void BtnFacebookConnect_TouchUpInside(UIButton sender)
+        async partial void BtnConnectWithFacebook_TouchUpInside(UIButton sender)
         {
             try
             {   
-                btnFacebookConnect.PulseToSize(0.9f, 0.2, false);
+                btnConnectWithFacebook.PulseToSize(0.9f, 0.2, false);
                 //We'll hide all the subviews
                 View.FadeSubviewsOut(0.5, 0.2f);
                 await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
                 await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
-
-                var vc = Storyboard.InstantiateViewController("tabBarController");
-                await PresentViewControllerAsync(vc, false);
-
-                await Client.Instance.BeerDrinkinClient.RefreshAll();
-
-                if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-                {
-                    var account = Client.Instance.BeerDrinkinClient.CurrentAccount;
-                    var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
-                    DateTime today = DateTime.Today;
-                    int age = today.Year - dateOfBirth.Year;
-                    string gender = account.IsMale ? "Male" : "Female";
-
-                    var traits = new Dictionary<string, string> {
-                        {Insights.Traits.Email, account.Email},
-                        {Insights.Traits.FirstName, account.FirstName},
-                        {Insights.Traits.LastName, account.LastName},
-                        {Insights.Traits.Age, age.ToString()},
-                        {Insights.Traits.Gender, gender},
-                    };
-                    Insights.Identify(account.Id, traits);
-                }
+                UserAuthenticiated();
             }
             catch
             {
@@ -123,5 +101,54 @@ namespace BeerDrinkin.iOS
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
             }
         }
+
+        async partial void BtnConnectWithGoogle_TouchUpInside(UIButton sender)
+        {
+            try
+            {   
+                btnConnectWithGoogle.PulseToSize(0.9f, 0.2, false);
+                //We'll hide all the subviews
+                View.FadeSubviewsOut(0.5, 0.2f);
+                await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
+
+                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
+                UserAuthenticiated();
+            }
+            catch
+            {
+                //We'll make all the subviews visible again
+                View.FadeSubviewsIn(2, 0);
+
+                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
+            }
+        }
+
+        async void UserAuthenticiated()
+        {
+            var vc = Storyboard.InstantiateViewController("tabBarController");
+            await PresentViewControllerAsync(vc, false);
+
+            await Client.Instance.BeerDrinkinClient.RefreshAll();
+
+            if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
+            {
+                var account = Client.Instance.BeerDrinkinClient.CurrentAccount;
+                var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
+                DateTime today = DateTime.Today;
+                int age = today.Year - dateOfBirth.Year;
+                string gender = account.IsMale ? "Male" : "Female";
+
+                var traits = new Dictionary<string, string> {
+                    {Insights.Traits.Email, account.Email},
+                    {Insights.Traits.FirstName, account.FirstName},
+                    {Insights.Traits.LastName, account.LastName},
+                    {Insights.Traits.Age, age.ToString()},
+                    {Insights.Traits.Gender, gender},
+                };
+                Insights.Identify(account.Id, traits);
+            }
+        }
+
+       
     }
 }
