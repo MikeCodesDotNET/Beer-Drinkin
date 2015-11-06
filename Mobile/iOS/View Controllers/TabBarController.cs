@@ -18,7 +18,13 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
 
             SetupUI();
-            SetupTabChangeAnimation();
+            SetupTabChangeAnimation();           
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
         }
 
         void SetupUI()

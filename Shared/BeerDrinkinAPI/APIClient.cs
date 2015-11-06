@@ -626,7 +626,7 @@ namespace BeerDrinkin.API
         {
             try
             {
-                //await serviceClient.SyncContext.PushAsync();
+                await serviceClient.SyncContext.PushAsync();
                 await table.PullAsync(queryId, table.CreateQuery());
             }
             catch (MobileServiceInvalidOperationException e)
@@ -644,8 +644,12 @@ namespace BeerDrinkin.API
                 var table = serviceClient.GetSyncTable<T>();
                 t = table;
                 await serviceClient.SyncContext.PushAsync();
+                Debug.WriteLine(string.Format("QueryId: {0}", queryId));
+
                 await table.PullAsync(queryId, table.CreateQuery());
+
             }
+
             catch (MobileServiceInvalidOperationException e)
             {
                 //TODO Implement some logger
@@ -656,9 +660,9 @@ namespace BeerDrinkin.API
         public async Task RefreshAll()
         {
             await SyncAsync<AccountItem>("allUsers");
-            await SyncAsync<CheckInItem>("allUsers");
-            await SyncAsync<BeerItem>("allUsers");
-            await SyncAsync<BeerStyle>("allUsers");
+            await SyncAsync<CheckInItem>("CheckInItems");
+            await SyncAsync<BeerItem>("beers");
+            await SyncAsync<BeerStyle>("styles");
 
             currentAccount = await GetCurrentAccount();
         }
