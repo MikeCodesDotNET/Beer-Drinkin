@@ -18,7 +18,7 @@ namespace BeerDrinkin.iOS
         #region Overrides
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-        {            
+        {          
             SetupGlobalAppearances();
 
             //Xamarin Insights
@@ -93,6 +93,11 @@ namespace BeerDrinkin.iOS
                 {
                     File.Create(path).Dispose();
                 }
+
+                #if DEBUG
+                File.Delete(path);
+                #endif
+
                 return path;
             }
         }
