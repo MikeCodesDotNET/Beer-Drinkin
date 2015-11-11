@@ -163,6 +163,10 @@ namespace BeerDrinkin.iOS
             {
                 Xamarin.Insights.Report(ex);
             }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         /// <summary>

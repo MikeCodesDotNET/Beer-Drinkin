@@ -38,7 +38,7 @@ namespace BeerDrinkin.iOS
             foreach(var view in Subviews[0].Subviews)
             {
                 if (cameraFound && view.GetType() == typeof(UITextField))
-                    view.Frame = new CoreGraphics.CGRect(6, 5, view.Frame.Width - 44, 30);
+                    view.Frame = new CoreGraphics.CGRect(view.Frame.X, view.Frame.Y - 5, view.Frame.Width - 44, view.Frame.Height);
 
                 var textfield = Subviews[0].Subviews[1] as UITextField;
                 if (textfield != null)
