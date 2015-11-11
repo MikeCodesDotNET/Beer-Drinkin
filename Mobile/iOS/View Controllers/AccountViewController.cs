@@ -105,7 +105,8 @@ namespace BeerDrinkin.iOS
             if (viewModel.BeerPhotosUrls != null)
             {
                 View.SendSubviewToBack(placeHolderView);
-                placeHolderView.Alpha = 0;
+                if(viewModel.BeerPhotosUrls.Count > 0)
+                    placeHolderView.Alpha = 0;
 
                 //No cells here to check if equal. Lets create everything from new
                 if (photoCollectionViewDataSource == null)
