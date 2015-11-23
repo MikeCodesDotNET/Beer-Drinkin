@@ -29,6 +29,18 @@ namespace BeerDrinkin.iOS
         }
 
 
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier != "addBeerSegue")
+                return;
+
+            // set in Storyboard
+            var navctlr = segue.DestinationViewController as AddBeerTableViewController;
+            if (navctlr == null)
+                return;
+            navctlr.SetBeer(beer);
+        }
+
         async partial void btnShare_Activated(UIBarButtonItem sender)
         {
             var text = string.Format("Grab yourself a {0}, its a great beer!", beer.Name);
@@ -39,6 +51,7 @@ namespace BeerDrinkin.iOS
 
         public bool EnableCheckIn = false;
 
+        //This is normally called from the search tab 
         public void SetBeer(BeerItem item)
         {
             beer = item;           
@@ -47,7 +60,6 @@ namespace BeerDrinkin.iOS
             AddHeaderImage();
             AddHeaderInfo();
             AddDescription();
-            AddBarCode();
             AddCheckIn();
             TableView.ReloadData();
         }
@@ -62,46 +74,15 @@ namespace BeerDrinkin.iOS
         }
 
         #region AddCells
-
+  
         void AddCheckIn()
         {
-            if (!EnableCheckIn)
-                return; 
-            
             var checkInCellIdentifier = new NSString("checkInCell");
-            var checkInCell = TableView.DequeueReusableCell(checkInCellIdentifier) as CheckInTableViewCell ?? new CheckInTableViewCell(checkInCellIdentifier);
-
-            byte[] imageByteArray = null;
-
-            var cameraView = Storyboard.InstantiateViewController("customCameraView") as CameraViewController;
-            cameraView.PhotoTaken += (image) => { imageByteArray = image; };
-
-            checkInCell.DidCheckIn += async () =>
-            {
-                var checkIn = new CheckInItem();
-                checkIn.Beer = beer;
-                checkIn.BeerId = beer.Id;
-                checkIn.CheckedInBy = Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser.UserId;
-                checkIn.Rating = checkInCell.Rating;
-                if(imageByteArray != null)
-                    await Client.Instance.BeerDrinkinClient.UploadBinaryAsync(beer.Id, BeerDrinkin.Models.BinaryTypes.CheckIn, imageByteArray);
-
-                await Client.Instance.BeerDrinkinClient.CheckInBeerAsync(checkIn);
-                Acr.UserDialogs.UserDialogs.Instance.ShowSuccess(string.Format("Checked in {0}", beer.Name));
-            };
-
-            checkInCell.SnapPhoto += async () =>
-            {
-                    if(UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == true)
-                    {
-                        await PresentViewControllerAsync(cameraView, false);
-                        return;
-                    }
-
-                    Acr.UserDialogs.UserDialogs.Instance.ShowError("No camera found on this device");
-            };
-
+            var checkInCell = TableView.DequeueReusableCell(checkInCellIdentifier) as BeerDescriptionCheckInCell ??
+                new BeerDescriptionCheckInCell(checkInCellIdentifier);
+            
             cells.Add(checkInCell);
+            
         }
 
         void AddCheckInMap()
@@ -159,50 +140,6 @@ namespace BeerDrinkin.iOS
             }
 
             cells.Add(headerImageCell);
-        }
-
-        void AddBarCode()
-        {
-            var barcodeCellIdentifier = new NSString("barcodeCell");
-            var barcodeCell = TableView.DequeueReusableCell(barcodeCellIdentifier) as BarCodeTableViewCell ??
-                new BarCodeTableViewCell(barcodeCellIdentifier);
-          
-            if(string.IsNullOrEmpty(beer.UPC))
-            {
-                barcodeCell.BarCodeNumber = "* * * *";
-            }
-            else
-            {
-                barcodeCell.BarCodeNumber = beer.UPC;
-            }
-
-            barcodeCell.AddBarcode += async () =>
-                {
-                    if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false)
-                    {
-                        Acr.UserDialogs.UserDialogs.Instance.ShowError("No camera found :(");
-                        return;
-                    }
-
-                    try
-                    {
-                        var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
-                        var result =  await scanner.Scan();
-
-                        beer.UPC = result.Text;
-                        barcodeCell.BarCodeNumber = beer.UPC;
-
-                        Insights.Track("User added barcode", new Dictionary<string, string> {
-                            {"Beer Name", beer.Name},
-                            {"Beer Id", beer.UPC}
-                        });
-                    }
-                    catch(Exception ex)
-                    {
-                        Insights.Report(ex);
-                    }
-                };
-            cells.Add(barcodeCell);
         }
 
         void AddHeaderInfo()
@@ -290,7 +227,9 @@ namespace BeerDrinkin.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            TabBarController.TabBar.Hidden = false;
+            if(TabBarController != null)
+                TabBarController.TabBar.Hidden = false;
+            
             TableView.ReloadData();
 
 
@@ -389,24 +328,13 @@ namespace BeerDrinkin.iOS
                 }
 
                 if (cell.GetType() == typeof(BeerHeaderImageCell))
-                {
                     return 150;
-                }
 
                 if (cell.GetType() == typeof(CheckInLocationMapCell))
-                {
                     return 200;
-                }
 
-                if (cell.GetType() == typeof(CheckInTableViewCell))
-                {
-                    return 241;
-                }
-
-                if(cell.GetType() == typeof(BarCodeTableViewCell))
-                {
-                    return 123;
-                }
+                if (cell.GetType() == typeof(BeerDescriptionCheckInCell))
+                    return 50;
 
                 return 0;
             }

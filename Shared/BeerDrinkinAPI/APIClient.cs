@@ -20,6 +20,8 @@ namespace BeerDrinkin.API
 
         private readonly MobileServiceClient serviceClient;
 
+
+
         #endregion
 
         #region Constructor
@@ -235,12 +237,43 @@ namespace BeerDrinkin.API
 
         #region Search
 
+        async Task CheckBeerCheckin(BeerItem beer, IMobileServiceSyncTable<BeerStyle> beerStyleTable, IMobileServiceSyncTable<CheckInItem> checkInTable)
+        {
+            try
+            {
+                beer.Style = await beerStyleTable.LookupAsync(beer.StyleId ?? string.Empty);
+                var test = await checkInTable.Where(f => f.BeerId == beer.Id && f.CheckedInBy == GetUserId).Take(0).IncludeTotalCount().ToEnumerableAsync();
+                // How to get to the total count?
+                var prov = (ITotalCountProvider)test;
+                beer.IsCheckedIn = prov.TotalCount > 0;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
         public async Task<APIResponse<List<BeerItem>>> SearchBeerAsync(string keyword)
         {
+            var table = serviceClient.GetSyncTable<BeerStyle>();
+            var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
+
+            keyword = keyword.ToLowerInvariant();
+            var items = await cacheTable.Where(b => b.NameLower.Contains(keyword)).ToEnumerableAsync();
+            if(items.Any())
+            {
+                var beers = new List<BeerItem>();
+                foreach (var item in items)
+                {
+                    var beer = new BeerItem(item);
+                    await CheckBeerCheckin(beer, table, checkInTable);
+                    beers.Add(beer);
+                }
+                return new APIResponse<List<BeerItem>>(beers, null);
+            }
+
             //are we in?
             var results = new List<BeerItem>();
-            if (!string.IsNullOrEmpty(CurrenMobileServicetUser.UserId))
-            {
+
                 var parameters = new Dictionary<string, string>();
 
                 parameters.Add("keyword", keyword);
@@ -254,18 +287,16 @@ namespace BeerDrinkin.API
                         //sync db to update new beers && styles
                         await SyncAsync<BeerItem>("allUsers");
 
-                        var table = serviceClient.GetSyncTable<BeerStyle>();
-                        var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
+                       
 
                         await SyncAsync(table, "allUsers");
                         await SyncAsync(checkInTable, CurrenMobileServicetUser.UserId);
 
                         foreach (var beer in results)
                         {
-                            beer.Style = await table.LookupAsync(beer.StyleId);
-                            beer.IsCheckedIn =
-                                (await checkInTable.Where(f => f.BeerId == beer.Id && f.CheckedInBy == GetUserId)
-                                    .ToListAsync()).Any();
+                            await cacheTable.InsertAsync(new BeerItemCache(beer));
+                            CheckBeerCheckin(beer, table, checkInTable);
+
                         }
 
                         return new APIResponse<List<BeerItem>>(results, null);
@@ -276,8 +307,7 @@ namespace BeerDrinkin.API
                 {
                     return new APIResponse<List<BeerItem>>(results, ex);
                 }
-            }
-            return new APIResponse<List<BeerItem>>(results, new UnauthorizedAccessException("User is unauthenticated"));
+
         }
 
         /*
@@ -609,16 +639,27 @@ namespace BeerDrinkin.API
 
         #region OfflineSync
 
+        IMobileServiceSyncTable<BeerItemCache> cacheTable;
+
         public async Task InitializeStoreAsync(string localDbPath)
         {
-            var store = new MobileServiceSQLiteStore(localDbPath);
+            var store = new MobileServiceSQLiteStore("beerdrinkin.db");
             store.DefineTable<AccountItem>();
             store.DefineTable<CheckInItem>();
             store.DefineTable<BeerItem>();
             store.DefineTable<BeerStyle>();
-
+            store.DefineTable<BeerItemCache>();
+           
             //Use simple conflicts handler
             await serviceClient.SyncContext.InitializeAsync(store, new AzureSyncHandler());
+
+            cacheTable = serviceClient.GetSyncTable<BeerItemCache>();
+
+            //clear cache
+            var items = await cacheTable.ToEnumerableAsync();
+            foreach (var item in items)
+                await cacheTable.DeleteAsync(item);
+
             await RefreshAll();
         }
 
@@ -632,28 +673,35 @@ namespace BeerDrinkin.API
             catch (MobileServiceInvalidOperationException e)
             {
                 //TODO Implement some logger
-                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", table.ToString(), e.Message);
+                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", table, e.Message);
+            }
+            catch(Exception ex)
+            {
+                //TODO Implement some logger
+                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", table, ex.Message);
             }
         }
 
         private async Task SyncAsync<T>(string queryId)
         {
-            IMobileServiceSyncTable t = null;
+            IMobileServiceSyncTable<T> table = null;
             try
             {
-                var table = serviceClient.GetSyncTable<T>();
-                t = table;
+                table = serviceClient.GetSyncTable<T>();
+                await table.PullAsync(queryId, table.CreateQuery());
                 await serviceClient.SyncContext.PushAsync();
                 Debug.WriteLine(string.Format("QueryId: {0}", queryId));
 
-                await table.PullAsync(queryId, table.CreateQuery());
-
             }
-
             catch (MobileServiceInvalidOperationException e)
             {
                 //TODO Implement some logger
-                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", t.ToString(), e.Message);
+                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", table?.ToString() ?? string.Empty, e.Message);
+            }
+            catch(Exception ex)
+            {
+                //TODO Implement some logger
+                Debug.WriteLine(@"Sync Failed on {0} table with message of: {1}", table?.ToString() ?? string.Empty, ex.Message);
             }
         }
 
@@ -663,6 +711,7 @@ namespace BeerDrinkin.API
             await SyncAsync<CheckInItem>("CheckInItems");
             await SyncAsync<BeerItem>("beers");
             await SyncAsync<BeerStyle>("styles");
+
 
             currentAccount = await GetCurrentAccount();
         }

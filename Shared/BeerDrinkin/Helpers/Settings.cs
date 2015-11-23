@@ -30,6 +30,12 @@ namespace BeerDrinkin.Core.Helpers
         private const string FirstRunName = "first_run";
         private static readonly bool FirstRunDefault = true;
 
+        private const string FacebookTokenName = "facebookToken";
+        private static readonly string FacebookTokenDefault = string.Empty;
+
+        private const string GoogleTokenName = "googleToken";
+        private static readonly string GoogleTokenDefault = string.Empty;
+
         #endregion
 
         public static bool UserTrackingEnabled
@@ -48,6 +54,18 @@ namespace BeerDrinkin.Core.Helpers
         {
             get { return AppSettings.GetValueOrDefault<bool>(FirstRunName, FirstRunDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(FirstRunName, value); }
+        }
+
+        public static string FacebookToken
+        {
+            get { return AppSettings.GetValueOrDefault<string>(FacebookTokenName, FacebookTokenDefault); }
+            set { AppSettings.AddOrUpdateValue<string>(FacebookTokenName, value); }
+        }
+
+        public static string GoogleToken
+        {
+            get { return AppSettings.GetValueOrDefault<string>(GoogleTokenName, GoogleTokenDefault); }
+            set { AppSettings.AddOrUpdateValue<string>(GoogleTokenName, value); }
         }
 
     }

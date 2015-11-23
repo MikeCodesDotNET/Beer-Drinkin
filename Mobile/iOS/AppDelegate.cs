@@ -27,6 +27,7 @@ namespace BeerDrinkin.iOS
 
             #if DEBUG
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
+            Calabash.Start();
             #endif
 
             //Windows Azure
@@ -95,7 +96,7 @@ namespace BeerDrinkin.iOS
                 }
 
                 #if DEBUG
-                File.Delete(path);
+                //File.Delete(path);
                 #endif
 
                 return path;

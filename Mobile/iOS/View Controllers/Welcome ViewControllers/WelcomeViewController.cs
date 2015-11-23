@@ -51,18 +51,14 @@ namespace BeerDrinkin.iOS
                 PresentViewControllerAsync(tinderBeer, false);
             }
 
-            UIView.Animate(0.4f, 0.3f, UIViewAnimationOptions.TransitionCurlUp,
-                () =>
-                {
+            const double duration = 0.4;
+            const float delay = 0.3f;
 
-                    btnConnectWithFacebook.Alpha = 1;
-                    lblTitle.Alpha = 1;
-                    imgLogo.Alpha = 1;
-                    lblPromise.Alpha = 1;
-
-                }, () =>
-                {                    
-                });    
+            btnConnectWithFacebook.FadeIn(duration, delay);
+            btnConnectWithGoogle.FadeIn(duration, delay);
+            lblTitle.FadeIn(duration, delay);
+            lblPromise.FadeIn(duration, delay);
+   
         }
 
         public override void ViewDidAppear(bool animated)

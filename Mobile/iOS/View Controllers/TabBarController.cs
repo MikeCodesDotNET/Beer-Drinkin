@@ -17,6 +17,13 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
+            //On the inital launch of the app (ie, the user is not authenticated, we want to only show the search tab). 
+            if(Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser == null)
+            {
+                //We just want the middle on and we've 3 tabs. This is a little flaky...TODO, probably make this more robust.
+                ViewControllers = new UIViewController[] { ViewControllers[1] };
+            }
+
             SetupUI();
             SetupTabChangeAnimation();           
         }

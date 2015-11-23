@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{188215
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.iOS", "Mobile\iOS\BeerDrinkin.iOS.csproj", "{586D37FE-B247-44A7-B218-278458571D5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{76E7C1B5-5FCD-47B2-948B-CD2B61018F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest", "UITest\UITest.csproj", "{F5A40FD3-C77D-4A18-9100-B832B3E38181}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -43,10 +47,19 @@ Global
 		{AB1004CB-BECB-4EDD-979F-71B74C5C2539}.Release|iPhone.Build.0 = Release|Any CPU
 		{AB1004CB-BECB-4EDD-979F-71B74C5C2539}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{AB1004CB-BECB-4EDD-979F-71B74C5C2539}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Release|iPhone.Build.0 = Release|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AB1004CB-BECB-4EDD-979F-71B74C5C2539} = {2157A7C6-3D65-4C2A-9B77-186B9740D540}
 		{70F2F312-0E9F-40B2-BA23-37F994708DAE} = {2157A7C6-3D65-4C2A-9B77-186B9740D540}
 		{586D37FE-B247-44A7-B218-278458571D5A} = {188215A9-41D2-4422-8F02-0DFA601BFFFE}
+		{F5A40FD3-C77D-4A18-9100-B832B3E38181} = {76E7C1B5-5FCD-47B2-948B-CD2B61018F38}
 	EndGlobalSection
 EndGlobal

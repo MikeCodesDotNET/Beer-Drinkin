@@ -14,10 +14,21 @@ namespace BeerDrinkin.iOS
         public async override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            await AttemptSignIn();
 
-            var vc = Storyboard.InstantiateViewController("welcomeView");
-            await PresentViewControllerAsync(vc, false);
+            //Lets check if we've got any tokens sitting around
+            if(!string.IsNullOrEmpty(BeerDrinkin.Core.Helpers.Settings.FacebookToken))
+            {
+                //We've a facebook token!    
+            }
+
+            if(!string.IsNullOrEmpty(BeerDrinkin.Core.Helpers.Settings.GoogleToken))
+            {
+                //We've a Google token!    
+            }
+
+            //We've nothing. Lets go ahead and load the inital view. 
+            var vc = Storyboard.InstantiateViewController("searchNavigation");
+            await PresentViewControllerAsync(vc, true);
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -26,12 +37,5 @@ namespace BeerDrinkin.iOS
             imgLogo.FadeOut(0.3, 0);
         }
 
-        async Task AttemptSignIn()
-        {
-            //TODO Check in an auth token already exists. I removed this code when ripping out Akavache
-
-            var vc = Storyboard.InstantiateViewController("welcomeView");
-            await PresentViewControllerAsync(vc, false);
-        }
     }
 }

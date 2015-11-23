@@ -11,26 +11,22 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("BeerHeaderImageCell")]
-	partial class BeerHeaderImageCell
+	[Register ("BeerDescriptionCheckInCell")]
+	partial class BeerDescriptionCheckInCell
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgLogo { get; set; }
+		UIButton btnCheckIn { get; set; }
 
-		[Outlet]
+		[Action ("BtnCheckIn_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
+		partial void BtnCheckIn_TouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (imgLogo != null) {
-				imgLogo.Dispose ();
-				imgLogo = null;
-			}
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
+			if (btnCheckIn != null) {
+				btnCheckIn.Dispose ();
+				btnCheckIn = null;
 			}
 		}
 	}
