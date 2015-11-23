@@ -60,7 +60,6 @@ namespace BeerDrinkin.iOS
             AddHeaderImage();
             AddHeaderInfo();
             AddDescription();
-            AddCheckIn();
             TableView.ReloadData();
         }
 
