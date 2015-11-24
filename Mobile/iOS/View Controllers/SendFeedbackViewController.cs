@@ -1,8 +1,11 @@
 using System;
-using BeerDrinkin.Core.ViewModels;
+
 using CoreGraphics;
-using PatridgeDev;
 using UIKit;
+
+using BeerDrinkin.Core.ViewModels;
+
+using PatridgeDev;
 
 namespace BeerDrinkin.iOS
 {
@@ -10,9 +13,12 @@ namespace BeerDrinkin.iOS
     {
         private readonly SendFeedbackViewModel viewModel = new SendFeedbackViewModel();
 
+        #region Constructor
         public SendFeedbackViewController(IntPtr handle) : base(handle)
         {
         }
+
+        #endregion
 
         partial void btnBack_Activated(UIBarButtonItem sender)
         {

@@ -30,7 +30,7 @@ namespace BeerDrinkin.iOS
                 button.TouchUpInside += (sender, e) =>
                 {
                     button.PulseToSize(0.7f, 0.3, false);
-                    Clicked();
+                    BarcodeButtonClicked();
                 };
                 Subviews[0].AddSubview(button);
             }                      
@@ -48,6 +48,6 @@ namespace BeerDrinkin.iOS
         }
 
         public delegate void ClickedHandler();
-        public event ClickedHandler Clicked;
+        public event ClickedHandler BarcodeButtonClicked;
 	}
 }

@@ -1,34 +1,41 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using BeerDrinkin.Service.Models;
+
 using Foundation;
-using SDWebImage;
 using UIKit;
-using SWTableViewCell;
-using BeerDrinkin.iOS.Helpers;
-using System.Collections.Generic;
+
+using BeerDrinkin.Service.Models;
 using Colour = BeerDrinkin.Helpers.Colours;
+
+using SDWebImage;
+using SWTableViewCell;
 using Splat;
 
 namespace BeerDrinkin.iOS
 {
     public class MyBeersDataSource : UITableViewSource
     {
+        #region Fields
         private readonly ObservableCollection<BeerInfo> beers;
         private readonly NSString cellIdentifier = new NSString("beercell");
 
+        #endregion
+
+        #region Constructor
         public MyBeersDataSource(ObservableCollection<BeerInfo> beers)
         {
             this.beers = beers;
         }
+
+        #endregion
 
         async void DeleteItem(string beerId)
         {
             await Client.Instance.BeerDrinkinClient.DeleteBeerCheckinsAsync(beerId);
         }
 
-        #region implemented abstract members of UITableViewSourceSink
+        #region Implemented abstract members of UITableViewSourceSink
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
@@ -102,6 +109,5 @@ namespace BeerDrinkin.iOS
 
             public event DeleteBeerHandler DeleteBeer;
         }
-
     }
 }

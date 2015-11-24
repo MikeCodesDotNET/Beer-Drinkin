@@ -26,9 +26,10 @@ namespace BeerDrinkin.iOS
             trackerHandle = Insights.TrackTime("Time spent on welcome screen");
             trackerHandle.Start();
            
-            lblTitle.Text = Strings.WelcomeTitle;
-            lblPromise.Text = Strings.WelcomePromise;
-            btnConnectWithFacebook.SetTitle(Strings.WelcomeFacebookButton, UIControlState.Normal);
+            lblTitle.Text = Strings.Welcome_Title;
+            lblPromise.Text = Strings.Welcome_Promise;
+            btnConnectWithFacebook.SetTitle(Strings.Welcome_Facebook, UIControlState.Normal);
+            btnConnectWithGoogle.SetTitle(Strings.Welcome_Google, UIControlState.Normal);
             View.BackgroundColor = Color.Blue.ToNative();
 
             btnConnectWithFacebook.Alpha = 0;
@@ -94,7 +95,7 @@ namespace BeerDrinkin.iOS
                 //We'll make all the subviews visible again
                 View.FadeSubviewsIn(2, 0);
 
-                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
+                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
             }
         }
 
@@ -115,7 +116,7 @@ namespace BeerDrinkin.iOS
                 //We'll make all the subviews visible again
                 View.FadeSubviewsIn(2, 0);
 
-                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.WelcomeAuthError);
+                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
             }
         }
 

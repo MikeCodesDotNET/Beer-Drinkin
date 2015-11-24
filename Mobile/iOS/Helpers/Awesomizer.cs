@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Linq;
+
 using CoreAnimation;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using System.Drawing;
-using System.Linq;
 
 namespace Awesomizer
 {

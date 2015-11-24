@@ -1,17 +1,14 @@
 ﻿using System;
+
 using UIKit;
 using CoreGraphics;
-using CoreAnimation;
-using Foundation;
-using System.Collections.Generic;
-using System.Linq;
+
 using Awesomizer;
 
 namespace BeerDrinkin.iOS.Helpers
 {
     public static class Animator
-    {        
-
+    {    
         //EWWW TODO - Move this babe boy
         public static void GrowDivider(this UIView divider, UIView parent)
         {
@@ -29,7 +26,6 @@ namespace BeerDrinkin.iOS.Helpers
                 },() =>{}); 
         }
 
-
         public static void FadeOut(this UIView view, double duration, float delay)
         {      
             UIView.AnimateNotify (duration, delay, 0, 1, 0, () => {
@@ -44,7 +40,6 @@ namespace BeerDrinkin.iOS.Helpers
                 view.Alpha = 1;
             },() =>{ });
         }
-
     }
 }
 

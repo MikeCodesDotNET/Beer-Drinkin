@@ -1,18 +1,25 @@
 using System;
+
 using CoreGraphics;
 using UIKit;
+
 using Color = BeerDrinkin.Helpers.Colours;
-using Splat;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
+
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
     partial class TabBarController : UITabBarController
     {
+        #region Constructor
         public TabBarController(IntPtr handle) : base(handle)
         {
         }
 
+        #endregion
+
+        #region Overrides
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -28,17 +35,14 @@ namespace BeerDrinkin.iOS
             SetupTabChangeAnimation();           
         }
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-
-        }
+        #endregion
 
         void SetupUI()
         {
-            TabBar.Items[0].Title = Strings.TabControllerMyBeers;
-            TabBar.Items[1].Title = Strings.TabControllerSearchTab;
-            TabBar.Items[2].Title = Client.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.TabControllerProfile : Client.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
+            TabBar.Items[0].Title = Strings.Tabs_MyBeers;
+            TabBar.Items[1].Title = Strings.Tabs_Search;
+            TabBar.Items[2].Title = Client.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.Tabs_Profile : Client.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
+
             TabBar.SelectedImageTintColor = Color.Blue.ToNative();
         }
 
@@ -71,6 +75,6 @@ namespace BeerDrinkin.iOS
                     });
                 return true;
             };
-                 }
+         }
     }
 }

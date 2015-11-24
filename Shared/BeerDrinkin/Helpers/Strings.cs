@@ -6,26 +6,29 @@ namespace BeerDrinkin.Core.Helpers
     {
         #region WelcomePage
 
-        public static readonly string WelcomeTitle = "Create an account for saving beers!";
-        public static readonly string WelcomeFacebookButton = "Connect to Facebook";
-        public static readonly string WelcomePromise = "I promise we'll never post anything to your facebook";
-        public static readonly string WelcomeAuthError = "Failed to authenticate with Facebook";
+        public static readonly string Welcome_Title = "Create an account for saving beers!";
+        public static readonly string Welcome_Facebook = "Connect to Facebook";
+        public static readonly string Welcome_Google = "Connect to Google";
+        public static readonly string Welcome_Promise = "I promise we'll never post anything to your facebook";
+        public static readonly string Welcome_AuthError = "Failed to authenticate with Facebook";
 
         #endregion
 
         #region Tabs
 
-        public static readonly string TabControllerMyBeers = "My Beers";
-        public static readonly string TabControllerSearchTab = "Search";
-        public static readonly string TabControllerProfile = "Profile";
+        public static readonly string Tabs_MyBeers = "My Beers";
+        public static readonly string Tabs_Search = "Search";
+        public static readonly string Tabs_Profile = "Profile";
 
         #endregion
 
         #region SearchTab
 
-        public static readonly string SearchTitle = "Search";
-        public static readonly string SearchPlaceHolderTitle = "Search BeerDrinkin";
-        public static readonly string SearchSubPlaceHolderTitle = "Find beers & breweries that interest you";
+        public static readonly string Search_Title = "Search";
+        public static readonly string Search_PlaceHolderTitle = "Search BeerDrinkin";
+        public static readonly string Search_SubPlaceHolderTitle = "Find beers & breweries that interest you";
+        public static readonly string Search_BarcodeNoResponse = "Unable to find beer with that barcode :(";
+        public static readonly string Search_SearchingDatabase = "Searching for beer";
 
         #endregion
     }

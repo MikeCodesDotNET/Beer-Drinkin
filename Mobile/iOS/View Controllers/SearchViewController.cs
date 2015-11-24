@@ -14,6 +14,7 @@ using BeerDrinkin.Service.DataObjects;
 using Acr.UserDialogs;
 using Awesomizer;
 using Xamarin;
+using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS
 {
@@ -55,9 +56,8 @@ namespace BeerDrinkin.iOS
                 imgSearch.Pop(0.7f, 0, 0.2f);
                 lblFindBeers.Pop(0.7f, 0, 0.2f);
                 lblSearchBeerDrinkin.Pop(0.7f, 0, 0.2f);
+                isFirstRun = false;
             }
-
-            isFirstRun = false;
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -86,10 +86,6 @@ namespace BeerDrinkin.iOS
             Title = BeerDrinkin.Core.Helpers.Strings.Search_Title;
             lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.Search_PlaceHolderTitle;
             lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.Search_SubPlaceHolderTitle;
-            searchBar.Clicked += delegate
-            {
-                ScanBarcode();
-            };
 
             View.BringSubviewToFront(scrllPlaceHolder);
         }
@@ -100,29 +96,34 @@ namespace BeerDrinkin.iOS
 
             searchBar.SearchButtonClicked += SearchForBeers;
 
+            searchBar.BarcodeButtonClicked += async () => await ScanBarcode();
+
             viewModel.Beers.CollectionChanged += delegate
             {
                 DisplayBeers(viewModel.Beers.ToList());
 
                 UserDialogs.Instance.HideLoading();
-
-                View.BringSubviewToFront(tableView);
                 searchBar.ResignFirstResponder();
             };
         }
             
-        private async void ScanBarcode()
+        private async Task ScanBarcode()
         {
            try
             {
                 var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(this);
                 var barcodeResult =  await barcodeScanner.Scan();
 
+                if(string.IsNullOrEmpty(barcodeResult.Text))
+                    return;
+
+                //UserDialogs.Instance.Loading("Core.Helpers.Strings.Search_SearchingDatabase");
                 var beerItems = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
 
                 if(beerItems != null)
+                {
                     DisplayBeers(beerItems);
-                
+                }
             }
             catch (Exception ex)
             {
@@ -146,14 +147,7 @@ namespace BeerDrinkin.iOS
             tableView.Source = DataSource;
             tableView.ReloadData();
 
-            DataSource.CheckInBeer += async (beer, index) =>
-            {
-                var result = await viewModel.QuickCheckIn(beer);
-                var cell = tableView.CellAt(index) as SearchBeerTableViewCell;
-                if (cell != null)
-                    cell.isCheckedIn = result;
-            };
-
+            View.BringSubviewToFront(tableView);
             UserDialogs.Instance.HideLoading();
         }
 

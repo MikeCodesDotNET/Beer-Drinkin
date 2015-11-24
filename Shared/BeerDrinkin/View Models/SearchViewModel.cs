@@ -6,7 +6,6 @@ using Xamarin;
 using BeerDrinkin.Service.DataObjects;
 using System.Collections.ObjectModel;
 using Acr.UserDialogs;
-using Splat;
 using Geolocator.Plugin;
 
 namespace BeerDrinkin.Core.ViewModels

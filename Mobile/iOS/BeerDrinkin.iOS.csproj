@@ -233,7 +233,6 @@
       <DependentUpon>SearchViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\SearchDataSource.cs" />
-    <Compile Include="Helpers\KeychainHelpers.cs" />
     <Compile Include="View Controllers\AboutViewController.cs" />
     <Compile Include="View Controllers\AboutViewController.designer.cs">
       <DependentUpon>AboutViewController.cs</DependentUpon>

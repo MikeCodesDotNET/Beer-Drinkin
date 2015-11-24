@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using BeerDrinkin.Models;
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
+
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
@@ -98,6 +100,7 @@ namespace BeerDrinkin.API
             return new APIResponse<HeaderInfo>(null, new UnauthorizedAccessException("User is unauthenticated"));
         }
 
+       
 
         private async Task<AccountItem> GetCurrentAccount()
         {
@@ -118,120 +121,6 @@ namespace BeerDrinkin.API
                 return string.Empty; 
             }
         }
-
-        #endregion
-
-        #region FollowerItem
-
-        /*
-        public async Task<APIResponse<bool>> FollowUserAsync(string usernameToFollow)
-        {
-            var username = GetUsername(AuthTypes.any);
-            if (!string.IsNullOrEmpty(username) && username != usernameToFollow)
-                //user is logged in and don't want to follow himself
-            {
-                //TODO do we need to check whether user to follow exists or not?
-                var followItem = FollowerItem.NewFollowerItem(usernameToFollow, username);
-                var table = serviceClient.GetSyncTable<FollowerItem>();
-                await table.InsertAsync(followItem);
-                await SyncAsync(table, followItem.Id);
-                return new APIResponse<bool>(true, null);
-            }
-            if (username == usernameToFollow)
-                return new APIResponse<bool>(false, new ArgumentException("User can't follow himself"));
-            return new APIResponse<bool>(false, new UnauthorizedAccessException("User is unauthenticated"));
-        }
-
-        public async Task<APIResponse<bool>> UnfollowUserAsync(string usernameToUnfollow)
-        {
-            var username = GetUsername(AuthTypes.any);
-            if (!string.IsNullOrEmpty(username) && username != usernameToUnfollow)
-            {
-                var followItem = FollowerItem.NewFollowerItem(usernameToUnfollow, username);
-
-                var table = serviceClient.GetSyncTable<FollowerItem>();
-                await table.DeleteAsync(followItem);
-                await SyncAsync(table, followItem.Id);
-                return new APIResponse<bool>(true, null);
-            }
-            if (username == usernameToUnfollow)
-                return new APIResponse<bool>(false, new ArgumentException("User can't follow himself"));
-            return new APIResponse<bool>(false, new UnauthorizedAccessException("User is unauthenticated"));
-        }
-
-        public async Task<APIResponse<bool>> UnfollowAllUsersAsync()
-        {
-            var username = GetUsername(AuthTypes.any);
-            if (!string.IsNullOrEmpty(username)) //user is logged in 
-            {
-                var table = serviceClient.GetSyncTable<FollowerItem>();
-                var all = await table.Where(f => f.FollowedBy == username).ToListAsync();
-                foreach (var followItem in all)
-                {
-                    await table.DeleteAsync(followItem);
-                }
-                await SyncAsync(table, username);
-                return new APIResponse<bool>(true, null);
-            }
-            return new APIResponse<bool>(false, new UnauthorizedAccessException("User is unauthenticated"));
-        }
-
-        /// <summary>
-        /// Returns list of users who follow current user
-        /// </summary>
-        /// <returns></returns>
-        public async Task<APIResponse<List<UserItem>>> GetMyFollowersAsync()
-        {
-            var username = GetUsername(AuthTypes.any);
-            var rv = new List<UserItem>();
-            if (!string.IsNullOrEmpty(username)) //user is logged in 
-            {
-                await RefreshAll();
-                var table = serviceClient.GetSyncTable<FollowerItem>();
-                var all = await table.Where(f => f.Username == username).ToListAsync();
-                if (all.Any())
-                {
-                    var usersTable = serviceClient.GetSyncTable<UserItem>();
-                    foreach (var followItem in all)
-                    {
-                        var userItem = await usersTable.LookupAsync(followItem.FollowedBy);
-                        if (userItem != null)
-                            rv.Add(userItem);
-                    }
-                }
-                return new APIResponse<List<UserItem>>(rv, null);
-            }
-            return new APIResponse<List<UserItem>>(rv, new UnauthorizedAccessException("User is unauthenticated"));
-        }
-
-        /// <summary>
-        /// Returns list of users followed by current user
-        /// </summary>
-        /// <returns></returns>
-        public async Task<APIResponse<List<UserItem>>> GetUsersFollowedByMeAsync()
-        {
-            var username = GetUsername(AuthTypes.any);
-            var rv = new List<UserItem>();
-            if (!string.IsNullOrEmpty(username)) //user is logged in 
-            {
-                await RefreshAll();
-                var table = serviceClient.GetSyncTable<FollowerItem>();
-                var all = await table.Where(f => f.FollowedBy == username).ToListAsync();
-                if (all.Any())
-                {
-                    var usersTable = serviceClient.GetSyncTable<UserItem>();
-                    foreach (var followItem in all)
-                    {
-                        var userItem = await usersTable.LookupAsync(followItem.FollowedBy);
-                        if (userItem != null)
-                            rv.Add(userItem);
-                    }
-                }
-                return new APIResponse<List<UserItem>>(rv, null);
-            }
-            return new APIResponse<List<UserItem>>(rv, new UnauthorizedAccessException("User is unauthenticated"));
-        }
-        */
 
         #endregion
 
@@ -308,6 +197,21 @@ namespace BeerDrinkin.API
                     return new APIResponse<List<BeerItem>>(results, ex);
                 }
 
+        }
+
+        public async Task<APIResponse<List<BeerItem>>> LookupUpcAsync(string upc)
+        {                       
+            var parameters = new Dictionary<string, string>();
+
+            parameters.Add("upc", upc);
+            try
+            {
+                return new APIResponse<List<BeerItem>>(await serviceClient.InvokeApiAsync<List<BeerItem>>("UPC", HttpMethod.Get, parameters), null);
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerItem>>(null, ex);
+            }
         }
 
         /*
@@ -609,8 +513,6 @@ namespace BeerDrinkin.API
         #endregion
 
         #region PopularBeers
-
-
         public async Task<APIResponse<List<BeerItem>>> GetPopularBeersAsync(double longitude, double latitude)
         {
             //are we in? 

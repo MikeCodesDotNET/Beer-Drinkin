@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 using BeerDrinkin.Service.DataObjects;
 
-using Acr.UserDialogs;
-
 namespace BeerDrinkin.Core.Services
 {
     /*  Description
@@ -35,14 +33,11 @@ namespace BeerDrinkin.Core.Services
         public async Task<List<BeerItem>> SearchForBeer(string upc)
         {
             UPC = upc; 
-          
-            UserDialogs.Instance.Loading(Helpers.Strings.Search_SearchingDatabase);
 
             //Search Azure
             var azureResult = await Client.Instance.BeerDrinkinClient.LookupUpcAsync(upc);
             if (azureResult.Result != null)
             {
-                UserDialogs.Instance.HideLoading();
                 return azureResult.Result;
             }
 
@@ -57,12 +52,9 @@ namespace BeerDrinkin.Core.Services
                 azureResult = await Client.Instance.BeerDrinkinClient.SearchBeerAsync(rateBeerResponse.BeerName);
                 if(azureResult.Result != null)
                 {
-                    UserDialogs.Instance.HideLoading();
                     return azureResult.Result;
                 }
             }
-
-            UserDialogs.Instance.ShowError(Helpers.Strings.Search_BarcodeNoResponse);
             return null;
         }
 
