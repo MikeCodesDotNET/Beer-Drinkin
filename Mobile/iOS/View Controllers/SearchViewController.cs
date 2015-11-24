@@ -1,42 +1,51 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Acr.UserDialogs;
-using BeerDrinkin.Core.ViewModels;
-using BeerDrinkin.Service.DataObjects;
+
 using CoreGraphics;
 using Foundation;
 using UIKit;
-using Xamarin;
+
+using BeerDrinkin.Core.ViewModels;
+using BeerDrinkin.Core.Services;
+
+using BeerDrinkin.Service.DataObjects;
+
+using Acr.UserDialogs;
 using Awesomizer;
-using BeerDrinkin.iOS.Helpers;
+using Xamarin;
 
 namespace BeerDrinkin.iOS
 {
     public partial class SearchViewController : BaseViewController
     {
+        #region Fields
         private readonly SearchViewModel viewModel = new SearchViewModel();
+        private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
+        private bool isFirstRun = true;
+        #endregion
 
+        #region Constructor
         public SearchViewController(IntPtr handle) : base(handle)
         {
         }
 
-        public override void ViewDidLoad()
+        #endregion
+
+        #region Overrides
+        public override void ViewWillAppear(bool animated)
         {
-            base.ViewDidLoad();
+            base.ViewWillAppear(animated);
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
             SetupEvents(); 
 
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-            {
-                //This devices supports 3D Touch
                 RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);
-            }
+            
         }
 
-        bool isFirstRun = true;
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
@@ -53,35 +62,30 @@ namespace BeerDrinkin.iOS
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
+            var index = tableView.IndexPathForSelectedRow.Row;
+            var selectedBeer = viewModel.Beers[index];
+
+            selectedBeer.UPC = barcodeLookupService.UPC;
+            selectedBeer.RateBeerId = barcodeLookupService.RateBeerID;
+          
             if (segue.Identifier != "beerDescriptionSegue")
                 return;
 
-            // set in Storyboard
-            var navctlr = segue.DestinationViewController as BeerDescriptionTableView;
-            if (navctlr == null)
+            var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
+            if (beerDescriptoinViewController == null)
                 return;
 
-            var rowPath = tableView.IndexPathForSelectedRow;
-            var item = viewModel.Beers[rowPath.Row];
-            item.UPC = upc;
-            item.RateBeerId = rateBeerId;
-
-            navctlr.EnableCheckIn = true;
-            navctlr.SetBeer(item);
+            beerDescriptoinViewController.EnableCheckIn = true;
+            beerDescriptoinViewController.SetBeer(selectedBeer);
         }
 
-        public void SetupUI()
-        {
-            var bounds = this.NavigationController.NavigationBar.Bounds;         
-            var blur = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
-            var visualEffectView = new UIVisualEffectView(blur);
-            visualEffectView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
-            this.NavigationController.NavigationBar.AddSubview(visualEffectView);
-            this.NavigationController.NavigationBar.Translucent = true;
+        #endregion
 
-            Title = BeerDrinkin.Core.Helpers.Strings.SearchTitle;
-            lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.SearchPlaceHolderTitle;
-            lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.SearchSubPlaceHolderTitle;
+        private void SetupUI()
+        {
+            Title = BeerDrinkin.Core.Helpers.Strings.Search_Title;
+            lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.Search_PlaceHolderTitle;
+            lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.Search_SubPlaceHolderTitle;
             searchBar.Clicked += delegate
             {
                 ScanBarcode();
@@ -90,35 +94,15 @@ namespace BeerDrinkin.iOS
             View.BringSubviewToFront(scrllPlaceHolder);
         }
 
-        public void SetupEvents()
+        private void SetupEvents()
         {
             searchBar.TextChanged += SearchBarTextChanged;           
 
-            searchBar.SearchButtonClicked += async delegate
-            {
-                UserDialogs.Instance.ShowLoading("Searching");
-                await viewModel.SearchForBeersCommand(searchBar.Text);
-            };
+            searchBar.SearchButtonClicked += SearchForBeers;
 
             viewModel.Beers.CollectionChanged += delegate
             {
-                datasource = new SearchDataSource(viewModel.Beers.ToList());
-                datasource.DidSelectBeer += delegate
-                {
-                    PerformSegue("beerDescriptionSegue", this);
-                    tableView.DeselectRow(tableView.IndexPathForSelectedRow, true);
-                };
-
-                tableView.Source = datasource;
-                tableView.ReloadData();
-
-                datasource.CheckInBeer += async (beer, index) =>
-                {
-                    var result = await viewModel.QuickCheckIn(beer);
-                    var cell = tableView.CellAt(index) as SearchBeerTableViewCell;
-                    if (cell != null)
-                        cell.isCheckedIn = result;
-                };
+                DisplayBeers(viewModel.Beers.ToList());
 
                 UserDialogs.Instance.HideLoading();
 
@@ -126,42 +110,23 @@ namespace BeerDrinkin.iOS
                 searchBar.ResignFirstResponder();
             };
         }
-
-        string upc = string.Empty;
-        int rateBeerId;
-        async void ScanBarcode()
+            
+        private async void ScanBarcode()
         {
            try
             {
-                var scanner = new ZXing.Mobile.MobileBarcodeScanner(this);
-                var result =  await scanner.Scan();
+                var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(this);
+                var barcodeResult =  await barcodeScanner.Scan();
 
-                UserDialogs.Instance.ShowLoading("Searching for beer");
-                upc = result.Text;
-                var client = new RateBeer.Client();
-                var response = await client.SearchForBeer(upc);
+                var beerItems = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
 
-                if(response != null)
-                {
-                    rateBeerId = response.BeerID;
-                    searchBar.Text = response.BeerName;
-                    searchBar.BecomeFirstResponder();
-                    UserDialogs.Instance.HideLoading();
-
-                    Insights.Track("User searched with barcode", new Dictionary<string, string> {
-                        {"Beer Name", response.BeerName},
-                        {"Beer UPC", result.Text}
-                    });
-                }
-                else
-                {
-                    UserDialogs.Instance.ShowError("Unable to find beer with that barcode :(");
-                }
-
+                if(beerItems != null)
+                    DisplayBeers(beerItems);
+                
             }
             catch (Exception ex)
             {
-                Xamarin.Insights.Report(ex);
+                Insights.Report(ex);
             }
             finally
             {
@@ -169,14 +134,33 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        /// <summary>
-        /// Handles showing the placeholder when the text is null or empty. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="uiSearchBarTextChangedEventArgs"></param>
-        void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
+        private void DisplayBeers(List<BeerItem> beers)
         {
-            upc = string.Empty;
+            DataSource = new SearchDataSource(beers);
+            DataSource.DidSelectBeer += delegate
+            {
+                PerformSegue("beerDescriptionSegue", this);
+                tableView.DeselectRow(tableView.IndexPathForSelectedRow, true);
+            };
+
+            tableView.Source = DataSource;
+            tableView.ReloadData();
+
+            DataSource.CheckInBeer += async (beer, index) =>
+            {
+                var result = await viewModel.QuickCheckIn(beer);
+                var cell = tableView.CellAt(index) as SearchBeerTableViewCell;
+                if (cell != null)
+                    cell.isCheckedIn = result;
+            };
+
+            UserDialogs.Instance.HideLoading();
+        }
+
+        #region UI Control Event Handlers
+        private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
+        {
+            barcodeLookupService.ForgetLastSearch();
 
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
@@ -210,6 +194,17 @@ namespace BeerDrinkin.iOS
                 });
         }
 
+        private async void SearchForBeers (object sender, EventArgs e)
+        {
+            UserDialogs.Instance.ShowLoading("Searching");
+            await viewModel.SearchForBeersCommand(searchBar.Text);
+        }
+
+        #endregion
+
+        #region Properties
+        public SearchDataSource DataSource {get; private set;}
+
         public UITableView SearchResultsTableView
         {
             get
@@ -218,14 +213,7 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        SearchDataSource datasource;
-        public SearchDataSource DataSource
-        {
-            get
-            {
-                return datasource;
-            }
-        }
+        #endregion
 
     }
 }
