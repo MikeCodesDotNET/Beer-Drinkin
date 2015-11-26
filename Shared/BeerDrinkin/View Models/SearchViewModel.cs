@@ -7,6 +7,7 @@ using BeerDrinkin.Service.DataObjects;
 using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using Geolocator.Plugin;
+using System.Linq;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -20,14 +21,15 @@ namespace BeerDrinkin.Core.ViewModels
             if (Helpers.Settings.UserTrackingEnabled)
                 Insights.Track("Beer Database Searched", "Search term", searchTerm);
 
-
             APIResponse<List<BeerItem>> results = await Client.Instance.BeerDrinkinClient.SearchBeerAsync(searchTerm);
 
             Beers.Clear();
 
             if (results.Result.Count > 0)
             {
-                foreach (var beer in results.Result)
+                var beers = results.Result.OrderBy(e => String.IsNullOrEmpty(e.Name)).ThenBy(e => string.IsNullOrEmpty(e.Brewery));
+
+                foreach (var beer in beers)
                 {
                     Beers.Add(beer);                  
                 }  
