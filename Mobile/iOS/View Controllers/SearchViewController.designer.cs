@@ -16,19 +16,7 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgSearch { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblFindBeers { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblSearchBeerDrinkin { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrllPlaceHolder { get; set; }
+		UIBarButtonItem btnSearch { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -36,29 +24,29 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView searchView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tableView { get; set; }
+
+		[Action ("BtnSearch_Activated:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void BtnSearch_Activated (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (imgSearch != null) {
-				imgSearch.Dispose ();
-				imgSearch = null;
-			}
-			if (lblFindBeers != null) {
-				lblFindBeers.Dispose ();
-				lblFindBeers = null;
-			}
-			if (lblSearchBeerDrinkin != null) {
-				lblSearchBeerDrinkin.Dispose ();
-				lblSearchBeerDrinkin = null;
-			}
-			if (scrllPlaceHolder != null) {
-				scrllPlaceHolder.Dispose ();
-				scrllPlaceHolder = null;
+			if (btnSearch != null) {
+				btnSearch.Dispose ();
+				btnSearch = null;
 			}
 			if (searchBar != null) {
 				searchBar.Dispose ();
 				searchBar = null;
+			}
+			if (searchView != null) {
+				searchView.Dispose ();
+				searchView = null;
 			}
 			if (tableView != null) {
 				tableView.Dispose ();

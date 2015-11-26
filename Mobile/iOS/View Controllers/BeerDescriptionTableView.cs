@@ -3,31 +3,112 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+
+using CoreGraphics;
+using CoreLocation;
+using Foundation;
+using MapKit;
+using UIKit;
+
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
-using Foundation;
+
 using SDWebImage;
-using UIKit;
-using CoreLocation;
-using MapKit;
-using CoreSpotlight;
 using Xamarin;
 
 namespace BeerDrinkin.iOS
 {
-    partial class BeerDescriptionTableView : UITableViewController
+    partial class BeerDescriptionTableView : UIViewController
     {
-        BeerItem beer;
-        BeerInfo beerInfo;
-        const string activityName = "com.beerdrinkin.beer";
-        List<UITableViewCell> cells = new List<UITableViewCell>();
+        #region Fields
+        /// <summary>
+        /// The tracker handle for Insights.
+        /// </summary>
+        ITrackHandle trackerHandle;
+        private BeerItem beer;
+        private BeerInfo beerInfo;
+        private const string activityName = "com.beerdrinkin.beer";
+        private List<UITableViewCell> cells = new List<UITableViewCell>();
+        private UIView headerView;
+        private nfloat headerViewHeight = 200;
 
+        #endregion
 
-
+        #region Constructor 
         public BeerDescriptionTableView(IntPtr handle) : base(handle)
         {
         }
 
+        #endregion 
+
+        #region Overrides
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            StartInsightsTracking();
+
+            //TODO make title case on the server...
+            Title = new CultureInfo("en-US").TextInfo.ToTitleCase(beer.Name);
+
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem(
+                UIImage.FromFile("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
+                NavigationController.PopViewController(true);
+            }), true);
+
+          
+            headerView = tableView.TableHeaderView;
+            tableView.TableHeaderView = null;
+            tableView.AddSubview(headerView);
+            tableView.ContentInset = new UIEdgeInsets(headerViewHeight, 0, 0, 0);
+            tableView.BackgroundColor = UIColor.Clear;
+
+            if (beer.Large != null)
+            {
+                imgHeaderView.SetImage(new NSUrl(beer.Large), UIImage.FromBundle("BeerDrinkin.png"));
+            }
+            else
+            {
+                imgHeaderView.Image = UIImage.FromBundle("BeerDrinkin.png");
+            }
+                
+            AddHeaderInfo();
+            AddDescription();
+
+            tableView.Source =  new DescriptionTableViewSource(ref cells);
+            var deleg = new DescriptionDelegate(ref cells);
+            deleg.DidScroll += UpdateHeaderView;
+            tableView.Delegate = deleg;
+            tableView.RowHeight = UITableView.AutomaticDimension;;
+            tableView.ReloadData();
+            View.SetNeedsDisplay();
+
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            if(TabBarController != null)
+                TabBarController.TabBar.Hidden = false;
+
+            tableView.ReloadData();
+        
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+            headerView.Frame = new CGRect(headerView.Frame.Location, new CGSize(tableView.Frame.Width, headerView.Frame.Height));
+        }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            if (trackerHandle != null)
+            {
+                trackerHandle.Stop();
+                trackerHandle = null;
+            }
+        }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
@@ -41,6 +122,9 @@ namespace BeerDrinkin.iOS
             navctlr.SetBeer(beer);
         }
 
+        #endregion
+
+        #region UI Control Events
         async partial void btnShare_Activated(UIBarButtonItem sender)
         {
             var text = string.Format("Grab yourself a {0}, its a great beer!", beer.Name);
@@ -49,102 +133,60 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync (activityController, true);
         }
 
+        #endregion
+
+        #region Properties
         public bool EnableCheckIn = false;
 
-        //This is normally called from the search tab 
+        #endregion
+
         public void SetBeer(BeerItem item)
         {
-            beer = item;           
-
-            //Start adding cells 
-            AddHeaderImage();
-            AddHeaderInfo();
-            AddDescription();
-            TableView.ReloadData();
+            beer = item;    
         }
 
         public void SetBeerInfo(BeerInfo item)
         {
             beerInfo = item;
-            if (beerInfo.CheckIns.Any(ch => ch.Latitude != 0))
+
+        }
+
+        private void UpdateHeaderView()
+        {
+            var headerRect = new CGRect(0, -headerViewHeight, tableView.Frame.Width, headerViewHeight);
+            if(tableView.ContentOffset.Y < -headerViewHeight)
             {
-                AddCheckInMap();
+                headerRect.Location = new CGPoint(headerRect.Location.X, tableView.ContentOffset.Y);
+                headerRect.Size = new CGSize(headerRect.Size.Width, -tableView.ContentOffset.Y);
+            }
+            headerView.Frame = headerRect;
+        }
+
+        void StartInsightsTracking()
+        {
+            if (BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
+            {
+                trackerHandle = Insights.TrackTime("Time Viewing BeerDescription");
+                trackerHandle.Start();
+                Insights.Track("Beer Description Loaded", new Dictionary<string, string> {
+                    {
+                        "Beer Name",
+                        beer.Name
+                    },
+                    {
+                        "Beer Id",
+                        beer.Id
+                    }
+                });
             }
         }
 
         #region AddCells
-  
-        void AddCheckIn()
-        {
-            var checkInCellIdentifier = new NSString("checkInCell");
-            var checkInCell = TableView.DequeueReusableCell(checkInCellIdentifier) as BeerDescriptionCheckInCell ??
-                new BeerDescriptionCheckInCell(checkInCellIdentifier);
-            
-            cells.Add(checkInCell);
-            
-        }
-
-        void AddCheckInMap()
-        {
-            var mapViewCellIdentifier = new NSString("mapViewCell");
-            var mapViewCell = TableView.DequeueReusableCell(mapViewCellIdentifier) as CheckInLocationMapCell ??
-                              new CheckInLocationMapCell(mapViewCellIdentifier);
-
-            if (mapViewCell.MapView == null)
-                return;
-
-            foreach (var checkin in beerInfo.CheckIns)
-            {
-                var location = new CLLocationCoordinate2D(checkin.Latitude, checkin.Longitude);
-                var annotation = new CheckInMapViewAnnotation((location), beerInfo.Name, checkin.CreatedAt.ToString());
-                mapViewCell.MapView.AddAnnotation(annotation);             
-            }
-
-            /*
-            //Zooming 
-            var minLatitude = beerInfo.CheckIns.Min(x => x.Latitude);
-            var maxLatitude = beerInfo.CheckIns.Max(x => x.Latitude);
-            var minLongitude = beerInfo.CheckIns.Min(x => x.Longitude);
-            var maxLongitude = beerInfo.CheckIns.Max(x => x.Latitude);
-
-            var loc = new CLLocationCoordinate2D(minLatitude + maxLatitude / 2, minLongitude + maxLongitude / 2);
-            var span = new MKCoordinateSpan(maxLatitude - minLatitude, maxLongitude - minLongitude);
-            mapViewCell.MapView.Region = new MKCoordinateRegion(loc, span);
-
-            var tap = new UITapGestureRecognizer { CancelsTouchesInView = false };
-            tap.AddTarget(() =>
-                {
-                    var vc = new UIStoryboard().InstantiateViewController("fullScreenMapView");
-                    PresentViewController(vc, true, null);
-                });
-            
-            mapViewCell.MapView.AddGestureRecognizer(tap);
-            */
-            cells.Add(mapViewCell);
-           
-        }
-
-        void AddHeaderImage()
-        {
-            var headerImageCellIdentifier = new NSString("headerImageCell");
-            var headerImageCell = TableView.DequeueReusableCell(headerImageCellIdentifier) as BeerHeaderImageCell ??
-                                  new BeerHeaderImageCell(headerImageCellIdentifier);
-            if (beer.Large != null)
-            {
-                headerImageCell.LogoImageView.SetImage(new NSUrl(beer.Large), UIImage.FromBundle("BeerDrinkin.png"));
-            }
-            else
-            {
-                headerImageCell.LogoImageView.Image = UIImage.FromBundle("BeerDrinkin.png");
-            }
-
-            cells.Add(headerImageCell);
-        }
 
         void AddHeaderInfo()
         {
             var headerCellIdentifier = new NSString("headerCell");
-            var headerCell = TableView.DequeueReusableCell(headerCellIdentifier) as BeerHeaderCell ??
+            var headerCell = tableView.DequeueReusableCell(headerCellIdentifier) as BeerHeaderCell ??
                              new BeerHeaderCell(headerCellIdentifier);
             headerCell.Name = beer?.Name;
             headerCell.Brewery = beer?.Brewery;
@@ -187,7 +229,7 @@ namespace BeerDrinkin.iOS
             if (!string.IsNullOrEmpty(beer.Description))
             {
                 var cellIdentifier = new NSString("descriptionCell");
-                var cell = TableView.DequeueReusableCell(cellIdentifier) as BeerDescriptionCell ??
+                var cell = tableView.DequeueReusableCell(cellIdentifier) as BeerDescriptionCell ??
                     new BeerDescriptionCell(cellIdentifier);
                 cell.Text = beer.Description;
                 cells.Add(cell);
@@ -195,85 +237,6 @@ namespace BeerDrinkin.iOS
         }
        
         #endregion 
-
-        #region Overrides
-
-        ITrackHandle trackerHandle;
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-            if (BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-            {
-                trackerHandle = Insights.TrackTime("Time Viewing BeerDescription");
-                trackerHandle.Start();
-
-                Insights.Track("Beer Description Loaded", new Dictionary<string, string> {
-                    {"Beer Name", beer.Name},
-                    {"Beer Id", beer.Id}
-                });
-            }
-
-            TableView.Source = new DescriptionTableViewSource(ref cells);
-            TableView.Delegate = new DescriptionDelegate(ref cells);
-            TableView.ReloadData();
-            View.SetNeedsDisplay();
-
-
-       
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-            if(TabBarController != null)
-                TabBarController.TabBar.Hidden = false;
-            
-            TableView.ReloadData();
-
-
-        }
-
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-            if (trackerHandle != null)
-            {
-                trackerHandle.Stop();
-                trackerHandle = null;
-            }
-        }
-
-        public override void UpdateUserActivityState(NSUserActivity activity)
-        {
-            activity.AddUserInfoEntries(NSDictionary.FromObjectAndKey(new NSString(beer.Id), new NSString("id")));
-            base.UpdateUserActivityState(activity);
-        }
-
-        #endregion
-
-        #region Useful snippets
-
-        double MilesToLatitudeDegrees(double miles)
-        {
-            double earthRadius = 3960.0;
-            double radiansToDegrees = 180.0 / Math.PI;
-            return (miles / earthRadius) * radiansToDegrees;
-        }
-
-        double MilesToLongitudeDegrees(double miles, double atLatitude)
-        {
-            double earthRadius = 3960.0;
-            double degreesToRadians = Math.PI / 180.0;
-            double radiansToDegrees = 180.0 / Math.PI;
-
-            // derive the earth's radius at that point in latitude
-            double radiusAtLatitude = earthRadius * Math.Cos(atLatitude * degreesToRadians);
-            return (miles / radiusAtLatitude) * radiansToDegrees;
-        }
-
-
-        #endregion
 
         #region Classses
 
@@ -310,14 +273,16 @@ namespace BeerDrinkin.iOS
                 this.cells = cells;
             }
 
+
             public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
             {
                 var cell = cells[indexPath.Row];
 
+              
                 if (cell.GetType() == typeof(BeerDescriptionCell))
                 {
                     var c = cell as BeerDescriptionCell;
-                    return c.PreferredHeight + 24;
+                    return c.PreferredHeight + 50;
                 }
 
                 if (cell.GetType() == typeof(BeerHeaderCell))
@@ -325,25 +290,30 @@ namespace BeerDrinkin.iOS
                     var c = cell as BeerHeaderCell;
                     return c.Frame.Height;
                 }
-
-                if (cell.GetType() == typeof(BeerHeaderImageCell))
-                    return 150;
+                    
 
                 if (cell.GetType() == typeof(CheckInLocationMapCell))
                     return 200;
 
-                if (cell.GetType() == typeof(BeerDescriptionCheckInCell))
-                    return 50;
-
                 return 0;
+
+
             }
+                
+
 
             public override nfloat EstimatedHeight(UITableView tableView, NSIndexPath indexPath)
             {
                 return GetHeightForRow(tableView, indexPath);
             }
 
+            public override void Scrolled(UIScrollView scrollView)
+            {
+                DidScroll();
+            }
 
+            public delegate void DidScrollEventHandler();
+            public event DidScrollEventHandler DidScroll;
         }
 
         protected class CheckInMapViewAnnotation : MKAnnotation

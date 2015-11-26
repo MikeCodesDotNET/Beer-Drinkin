@@ -74,9 +74,6 @@
     </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Facebook.Pop">
-      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -187,6 +184,9 @@
     <Reference Include="Calabash">
       <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.16.4\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook.Pop">
+      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -204,7 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Settings.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -297,21 +298,9 @@
     <Compile Include="View Controllers\Welcome ViewControllers\navigationController.designer.cs">
       <DependentUpon>navigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\ShakeWelcomeViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\ShakeWelcomeViewController.designer.cs">
-      <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\TinderViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\TinderViewController.designer.cs">
-      <DependentUpon>TinderViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.cs" />
     <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.designer.cs">
       <DependentUpon>WelcomeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeMapViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeMapViewController.designer.cs">
-      <DependentUpon>WelcomeMapViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.cs" />
     <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.designer.cs">
@@ -327,10 +316,6 @@
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Awesomizer.cs" />
-    <Compile Include="ParallaxTableHeader.cs" />
-    <Compile Include="ParallaxTableHeader.designer.cs">
-      <DependentUpon>ParallaxTableHeader.cs</DependentUpon>
-    </Compile>
     <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.designer.cs">
       <DependentUpon>..\Custom Controls\UITableViewCells\AboutThisBeerCell.cs</DependentUpon>
@@ -386,6 +371,10 @@
     <Compile Include="View Controllers\AddBeerTableViewController.cs" />
     <Compile Include="View Controllers\AddBeerTableViewController.designer.cs">
       <DependentUpon>AddBeerTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShakeWelcomeViewController.cs" />
+    <Compile Include="ShakeWelcomeViewController.designer.cs">
+      <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -494,6 +483,9 @@
     <BundleResource Include="Resources\BeerTap_Selected.png" />
     <BundleResource Include="Resources\BeerTap.png" />
     <BundleResource Include="Resources\BarcodeDark.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\Storyboards\.DS_Store" />
+    <BundleResource Include="Resources\backArrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />
@@ -574,5 +566,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UITableViewCells\" />
+    <Folder Include="Storyboards\" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 using CoreAnimation;
 
+using Awesomizer;
+
 namespace BeerDrinkin.iOS
 {
     partial class BeerDescriptionCell : UITableViewCell
@@ -18,6 +20,29 @@ namespace BeerDrinkin.iOS
         {
             tbxDescription.ScrollEnabled = false;
             tbxDescription.AlwaysBounceVertical = false;
+            tbxDescription.Alpha = 0;
+        }
+
+        public bool IsTextVisible
+        {
+            get
+            {
+                if (tbxDescription.Alpha == 0)
+                    return false;
+                else
+                    return true;
+            }
+            set
+            {
+                if(value == false)
+                {
+                   tbxDescription.FadeSubviewsOut(0.5, 0);
+                }
+                else
+                {
+                    tbxDescription.FadeSubviewsIn(0.5, 0);
+                }
+            }
         }
 
         public string Text

@@ -23,6 +23,11 @@ namespace BeerDrinkin.iOS
             TableView.Delegate = new AddBeerDelegate(ref cells);
             TableView.ReloadData();
             View.SetNeedsDisplay();
+
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem(
+                UIImage.FromFile("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
+                NavigationController.PopViewController(true);
+            }), true);
         }
 
         public void SetBeer(BeerItem beer)

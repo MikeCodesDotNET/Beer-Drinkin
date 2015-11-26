@@ -23,7 +23,6 @@ namespace BeerDrinkin.iOS
         #region Fields
         private readonly SearchViewModel viewModel = new SearchViewModel();
         private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
-        private bool isFirstRun = true;
         #endregion
 
         #region Constructor
@@ -44,22 +43,8 @@ namespace BeerDrinkin.iOS
 
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
                 RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);
+        }
             
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-
-            if (isFirstRun)
-            {
-                imgSearch.Pop(0.7f, 0, 0.2f);
-                lblFindBeers.Pop(0.7f, 0, 0.2f);
-                lblSearchBeerDrinkin.Pop(0.7f, 0, 0.2f);
-                isFirstRun = false;
-            }
-        }
-
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             var index = tableView.IndexPathForSelectedRow.Row;
@@ -84,10 +69,6 @@ namespace BeerDrinkin.iOS
         private void SetupUI()
         {
             Title = BeerDrinkin.Core.Helpers.Strings.Search_Title;
-            lblSearchBeerDrinkin.Text = BeerDrinkin.Core.Helpers.Strings.Search_PlaceHolderTitle;
-            lblFindBeers.Text = BeerDrinkin.Core.Helpers.Strings.Search_SubPlaceHolderTitle;
-
-            View.BringSubviewToFront(scrllPlaceHolder);
         }
 
         private void SetupEvents()
@@ -152,6 +133,13 @@ namespace BeerDrinkin.iOS
         }
 
         #region UI Control Event Handlers
+
+        partial void BtnSearch_Activated(UIBarButtonItem sender)
+        {
+            //Animate SearchView into frame
+            this.View.AddSubview(searchView);
+        }
+
         private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
             barcodeLookupService.ForgetLastSearch();
@@ -159,33 +147,10 @@ namespace BeerDrinkin.iOS
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
 
-            //Setup text and image for scaling animation
-            scrllPlaceHolder.Alpha = 0.6f;
-            var smallTransform = CGAffineTransform.MakeIdentity();
-            smallTransform.Scale(0.6f, 0.6f);
-            imgSearch.Transform = smallTransform;
-            lblFindBeers.Transform = smallTransform;
-            lblSearchBeerDrinkin.Transform = smallTransform;
-
             //Send table view to back and clear it.
             View.SendSubviewToBack(tableView);
             tableView.Source = new SearchDataSource(new List<BeerItem>());
             tableView.ReloadData();
-
-            //Animate the placeholder 
-            var normalTransform = CGAffineTransform.MakeIdentity();
-            smallTransform.Scale(1f, 1f);
-            UIView.Animate(0.3, 0, UIViewAnimationOptions.TransitionCurlUp,
-                () =>
-                {
-                    scrllPlaceHolder.Alpha = 1;
-
-                    imgSearch.Transform = normalTransform;
-                    lblFindBeers.Transform = normalTransform;
-                    lblSearchBeerDrinkin.Transform = normalTransform;
-                }, () =>
-                {
-                });
         }
 
         private async void SearchForBeers (object sender, EventArgs e)
