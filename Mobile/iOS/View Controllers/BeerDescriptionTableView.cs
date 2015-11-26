@@ -133,6 +133,19 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync (activityController, true);
         }
 
+
+        partial void BtnCheckIn_TouchUpInside(UIButton sender)
+        {
+            if(BeerDrinkin.Client.Instance.BeerDrinkinClient.CurrentAccount != null)
+            {
+                
+            }
+            else
+            {
+                var welcomeViewController = Storyboard.InstantiateViewController("welcomeView");
+                this.PresentModalViewController(welcomeViewController, true);
+            }
+        }
         #endregion
 
         #region Properties
@@ -148,7 +161,6 @@ namespace BeerDrinkin.iOS
         public void SetBeerInfo(BeerInfo item)
         {
             beerInfo = item;
-
         }
 
         private void UpdateHeaderView()

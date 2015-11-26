@@ -20,17 +20,33 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIBarButtonItem btnShare { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgHeaderView { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tableView { get; set; }
 
+		[Action ("BtnCheckIn_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void BtnCheckIn_TouchUpInside (UIButton sender);
+
+		[Action ("btnShare_Activated:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void btnShare_Activated (UIBarButtonItem sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnCheckIn != null) {
 				btnCheckIn.Dispose ();
 				btnCheckIn = null;
+			}
+			if (btnShare != null) {
+				btnShare.Dispose ();
+				btnShare = null;
 			}
 			if (imgHeaderView != null) {
 				imgHeaderView.Dispose ();
