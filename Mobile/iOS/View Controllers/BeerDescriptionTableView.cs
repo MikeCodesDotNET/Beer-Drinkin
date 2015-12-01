@@ -143,7 +143,7 @@ namespace BeerDrinkin.iOS
             else
             {
                 var welcomeViewController = Storyboard.InstantiateViewController("welcomeView");
-                this.PresentModalViewController(welcomeViewController, true);
+                PresentModalViewController(welcomeViewController, true);
             }
         }
         #endregion

@@ -47,14 +47,14 @@ namespace BeerDrinkin.iOS
             
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
+            if (segue.Identifier != "beerDescriptionSegue")
+                return;
+            
             var index = tableView.IndexPathForSelectedRow.Row;
             var selectedBeer = viewModel.Beers[index];
 
             selectedBeer.UPC = barcodeLookupService.UPC;
             selectedBeer.RateBeerId = barcodeLookupService.RateBeerID;
-          
-            if (segue.Identifier != "beerDescriptionSegue")
-                return;
 
             var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
             if (beerDescriptoinViewController == null)
@@ -133,13 +133,6 @@ namespace BeerDrinkin.iOS
         }
 
         #region UI Control Event Handlers
-
-        partial void BtnSearch_Activated(UIBarButtonItem sender)
-        {
-            //Animate SearchView into frame
-            this.View.AddSubview(searchView);
-        }
-
         private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
             barcodeLookupService.ForgetLastSearch();
@@ -157,8 +150,8 @@ namespace BeerDrinkin.iOS
         {
             UserDialogs.Instance.ShowLoading("Searching");
             await viewModel.SearchForBeersCommand(searchBar.Text);
-        }
-
+        } 
+       
         #endregion
 
         #region Properties

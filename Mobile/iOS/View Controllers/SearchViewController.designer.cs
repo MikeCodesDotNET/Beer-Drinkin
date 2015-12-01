@@ -16,7 +16,7 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnSearch { get; set; }
+		UIBarButtonItem btnSettings { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -24,29 +24,21 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView searchView { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tableView { get; set; }
 
-		[Action ("BtnSearch_Activated:")]
+		[Action ("BtnSettings_Activated:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnSearch_Activated (UIBarButtonItem sender);
+		partial void BtnSettings_Activated (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnSearch != null) {
-				btnSearch.Dispose ();
-				btnSearch = null;
+			if (btnSettings != null) {
+				btnSettings.Dispose ();
+				btnSettings = null;
 			}
 			if (searchBar != null) {
 				searchBar.Dispose ();
 				searchBar = null;
-			}
-			if (searchView != null) {
-				searchView.Dispose ();
-				searchView = null;
 			}
 			if (tableView != null) {
 				tableView.Dispose ();

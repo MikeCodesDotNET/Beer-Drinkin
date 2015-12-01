@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-using BeerDrinkin.API;
 using System.Collections.Generic;
-using Xamarin;
-using BeerDrinkin.Service.DataObjects;
 using System.Collections.ObjectModel;
+
+using BeerDrinkin.API;
+using BeerDrinkin.Service.DataObjects;
+
+using Xamarin;
+
 using Acr.UserDialogs;
 using Geolocator.Plugin;
-using System.Linq;
+using Connectivity.Plugin;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -17,6 +21,16 @@ namespace BeerDrinkin.Core.ViewModels
 
         public async Task SearchForBeersCommand(string searchTerm)
         {
+
+            var isConnected = await CrossConnectivity.Current.IsReachable("google.com", 1000);
+            if(!isConnected)
+            {
+                //We're not connected to the internet so we need to search the current beers table instead. 
+                var beers = Client.Instance.BeerDrinkinClient.SearchCacheAsync(searchTerm);
+
+            }
+          
+
             //Track what beers people are searching for.
             if (Helpers.Settings.UserTrackingEnabled)
                 Insights.Track("Beer Database Searched", "Search term", searchTerm);

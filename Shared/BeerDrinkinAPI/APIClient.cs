@@ -23,11 +23,9 @@ namespace BeerDrinkin.API
         private readonly MobileServiceClient serviceClient;
 
 
-
         #endregion
 
         #region Constructor
-
         public APIClient(string serviceUrl, string serviceKey)
         {
             serviceClient = new MobileServiceClient(serviceUrl, serviceKey);
@@ -36,7 +34,6 @@ namespace BeerDrinkin.API
         #endregion
 
         #region Properties
-
         /// <summary>
         /// Gets or sets the curren mobile servicet user. Used to keep hold of the auth token to persist
         /// </summary>
@@ -67,15 +64,10 @@ namespace BeerDrinkin.API
                 return currentAccount;
             }
         }
-
         #endregion
 
-        #region Methods
 
-        #region API Calls
-
-        #region UserItem
-
+        #region User
         public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(string userId)
         {
             //Is the user authenticated? 
@@ -126,39 +118,12 @@ namespace BeerDrinkin.API
 
         #region Search
 
-        async Task CheckBeerCheckin(BeerItem beer, IMobileServiceSyncTable<BeerStyle> beerStyleTable, IMobileServiceSyncTable<CheckInItem> checkInTable)
-        {
-            try
-            {
-                beer.Style = await beerStyleTable.LookupAsync(beer.StyleId ?? string.Empty);
-                var test = await checkInTable.Where(f => f.BeerId == beer.Id && f.CheckedInBy == GetUserId).Take(0).IncludeTotalCount().ToEnumerableAsync();
-                // How to get to the total count?
-                var prov = (ITotalCountProvider)test;
-                beer.IsCheckedIn = prov.TotalCount > 0;
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
         public async Task<APIResponse<List<BeerItem>>> SearchBeerAsync(string keyword)
         {
             var table = serviceClient.GetSyncTable<BeerStyle>();
             var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
 
             keyword = keyword.ToLowerInvariant();
-            var items = await cacheTable.Where(b => b.NameLower.Contains(keyword)).ToEnumerableAsync();
-            if(items.Any())
-            {
-                var beers = new List<BeerItem>();
-                foreach (var item in items)
-                {
-                    var beer = new BeerItem(item);
-                    await CheckBeerCheckin(beer, table, checkInTable);
-                    beers.Add(beer);
-                }
-                return new APIResponse<List<BeerItem>>(beers, null);
-            }
 
             //are we in?
             var results = new List<BeerItem>();
@@ -169,24 +134,20 @@ namespace BeerDrinkin.API
 
                 try
                 {
-                    results =
-                        await serviceClient.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
+                    results = await serviceClient.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
                     if (results != null && results.Any())
                     {
-                        //sync db to update new beers && styles
-                        await SyncAsync<BeerItem>("allUsers");
-
-                       
-
-                        await SyncAsync(table, "allUsers");
-                        await SyncAsync(checkInTable, CurrenMobileServicetUser.UserId);
-
+                        //Have we got every beer returned in our local cache? If not then lets go ahead and add it. 
                         foreach (var beer in results)
                         {
-                            await cacheTable.InsertAsync(new BeerItemCache(beer));
-                            CheckBeerCheckin(beer, table, checkInTable);
-
+                            var cachedBeer = await cacheTable.Where(x => x.Id == beer.Id).ToListAsync();
+                            if(cachedBeer.Count == 0)
+                                await cacheTable.InsertAsync(new BeerItemCache(beer));
                         }
+                        //sync db to update new beers && styles
+                        await SyncAsync<BeerItem>("allUsers");
+                        await SyncAsync(table, "allUsers");
+                        await SyncAsync(checkInTable, CurrenMobileServicetUser.UserId);
 
                         return new APIResponse<List<BeerItem>>(results, null);
                     }
@@ -244,8 +205,7 @@ namespace BeerDrinkin.API
 
         #endregion
 
-        #region Beer CheckIn
-
+        #region CheckIn
         public async Task<APIResponse<bool>> CheckInBeerAsync(CheckInItem checkInItem)
         {
             var id = GetUserId;
@@ -342,7 +302,6 @@ namespace BeerDrinkin.API
         #endregion
 
         #region BeerInfo
-
         public async Task<APIResponse<BeerInfo>> GetBeerInfoAsync(string beerId)
         {
             //are we in?
@@ -418,9 +377,47 @@ namespace BeerDrinkin.API
 
         #endregion
 
+        #region Basic Caching
+        public async Task<List<BeerItem>> SearchCacheAsync(string searchTerm)
+        {
+            var byName = cacheTable.Where(x => x.Name.Contains(searchTerm));
+                
+
+
+            return null;
+        }
+
+        public async Task<bool> ClearCache()
+        {
+            try
+            {
+                await serviceClient.SyncContext.PushAsync();
+
+                var items = await cacheTable.ToEnumerableAsync();
+                foreach (var item in items)
+                {
+                    await cacheTable.DeleteAsync(item);
+                }
+                
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Xamarin.Insights.Report(ex);
+                return false;
+            }
+        }
+
+        public async Task<int> GetCacheItemCountAsync()
+        {
+            var items = await cacheTable.ToListAsync();
+            return items.Count;
+        }
+
+        #endregion
 
         #region Binary
-
         //Methods in this region is to post/get binary data related to any object like beer or review,
         //where we may have several images
 
@@ -537,8 +534,6 @@ namespace BeerDrinkin.API
 
         #endregion
 
-        #endregion
-
         #region OfflineSync
 
         IMobileServiceSyncTable<BeerItemCache> cacheTable;
@@ -556,12 +551,6 @@ namespace BeerDrinkin.API
             await serviceClient.SyncContext.InitializeAsync(store, new AzureSyncHandler());
 
             cacheTable = serviceClient.GetSyncTable<BeerItemCache>();
-
-            //clear cache
-            var items = await cacheTable.ToEnumerableAsync();
-            foreach (var item in items)
-                await cacheTable.DeleteAsync(item);
-
             await RefreshAll();
         }
 
@@ -619,7 +608,7 @@ namespace BeerDrinkin.API
         }
 
         #endregion
-
-        #endregion
+    
+    
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+
 using UIKit;
 using Foundation;
 using CoreGraphics;
+
 using BeerDrinkin.Core.ViewModels;
 
 namespace BeerDrinkin.iOS.PreviewingDelegates
@@ -10,6 +12,7 @@ namespace BeerDrinkin.iOS.PreviewingDelegates
     {
         #region Computed Properties
         SearchViewController SearchController;
+
         #endregion
 
         #region Constructors
@@ -59,8 +62,6 @@ namespace BeerDrinkin.iOS.PreviewingDelegates
             return detailViewController;
         }
         #endregion
-
-
     }
 }
 

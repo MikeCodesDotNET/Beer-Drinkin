@@ -4,6 +4,7 @@ using Foundation;
 using UIKit;
 using Colour = BeerDrinkin.Helpers.Colours;
 using Splat;
+using Xamarin;
 
 namespace BeerDrinkin.iOS
 {
@@ -32,7 +33,7 @@ namespace BeerDrinkin.iOS
 
         //TODO FIX THIS!
         [Export("tableView:didSelectRowAtIndexPath:")]
-        public void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        async public void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             if (indexPath.Section == 1 && indexPath.Row == 1)
             {
@@ -44,6 +45,30 @@ namespace BeerDrinkin.iOS
                     tabView.DismissViewController(true, null);
                 }
             }
+
+            if( indexPath.Section == 3 & indexPath.Row == 0)
+            {
+                var numberOfBeersInCache = await Client.Instance.BeerDrinkinClient.GetCacheItemCountAsync();
+                if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
+                {
+                    Insights.Track("Cache Cleared", "Items Removed", numberOfBeersInCache.ToString());
+                }
+
+                if(numberOfBeersInCache == 0)
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.InfoToast("Your cache is already empty");
+
+                    return;
+                }
+
+                //Clear Cache 
+                var result = await Client.Instance.BeerDrinkinClient.ClearCache();
+                if (result)
+                    Acr.UserDialogs.UserDialogs.Instance.ShowSuccess(string.Format("{0} beers removed from your cache", numberOfBeersInCache));
+                else
+                    Acr.UserDialogs.UserDialogs.Instance.ShowError("Failure to clear cache");
+            }
+
         }
     }
 }

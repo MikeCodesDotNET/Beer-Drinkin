@@ -42,8 +42,8 @@ namespace BeerDrinkin.iOS
         }
         public string BeerCount
         {
-            get { return lblBeerCount.Text; }
-            set { lblBeerCount.Text = value; }
+            get { return lblNumberOfServings.Text; }
+            set { lblNumberOfServings.Text = value; }
         }
 
         public UIImageView Image

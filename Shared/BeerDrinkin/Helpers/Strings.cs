@@ -9,7 +9,7 @@ namespace BeerDrinkin.Core.Helpers
         public static readonly string Welcome_Title = "Create an account for saving beers!";
         public static readonly string Welcome_Facebook = "Connect to Facebook";
         public static readonly string Welcome_Google = "Connect to Google";
-        public static readonly string Welcome_Promise = "I promise we'll never post anything to your facebook";
+        public static readonly string Welcome_Promise = "We promise to never post on your accounts.";
         public static readonly string Welcome_AuthError = "Failed to authenticate with Facebook";
 
         #endregion

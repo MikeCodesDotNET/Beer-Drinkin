@@ -30,7 +30,6 @@ namespace BeerDrinkin.iOS
             lblPromise.Text = Strings.Welcome_Promise;
             btnConnectWithFacebook.SetTitle(Strings.Welcome_Facebook, UIControlState.Normal);
             btnConnectWithGoogle.SetTitle(Strings.Welcome_Google, UIControlState.Normal);
-            View.BackgroundColor = Color.Blue.ToNative();
 
             btnConnectWithFacebook.Alpha = 0;
         }
@@ -40,9 +39,10 @@ namespace BeerDrinkin.iOS
             base.ViewWillAppear(animated);
 
             btnConnectWithFacebook.Alpha = 0;
+            btnConnectWithGoogle.Alpha = 0;
             lblTitle.Alpha = 0;
-            imgLogo.Alpha = 0;
             lblPromise.Alpha = 0;
+            lblAmazingFeatures.Alpha = 0;
 
             if (BeerDrinkin.Core.Helpers.Settings.FirstRun == true)
             {
@@ -55,17 +55,19 @@ namespace BeerDrinkin.iOS
             const double duration = 0.4;
             const float delay = 0.3f;
 
-            btnConnectWithFacebook.FadeIn(duration, delay);
-            btnConnectWithGoogle.FadeIn(duration, delay);
+            //btnClose.FadeIn(duration, delay);
             lblTitle.FadeIn(duration, delay);
-            lblPromise.FadeIn(duration, delay);
-   
+            lblAmazingFeatures.FadeIn(duration, delay);
+
+            btnConnectWithFacebook.FadeIn(duration, delay + 0.5f);
+            btnConnectWithGoogle.FadeIn(duration, delay + 0.7f);
+            lblPromise.FadeIn(duration, delay + 0.7f);
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            imgLogo.Pop(1, 0, 1);
+
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -143,9 +145,15 @@ namespace BeerDrinkin.iOS
                     {Insights.Traits.Gender, gender},
                 };
                 Insights.Identify(account.Id, traits);
+
+
             }
         }
 
-       
+     
+        partial void BtnCancel_TouchUpInside(UIButton sender)
+        {
+            this.DismissViewController(true, null);
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton btnCancel { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIButton btnConnectWithFacebook { get; set; }
 
 		[Outlet]
@@ -24,7 +28,7 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgLogo { get; set; }
+		UILabel lblAmazingFeatures { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -34,9 +38,9 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblTitle { get; set; }
 
-		[Outlet]
+		[Action ("BtnCancel_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
+		partial void BtnCancel_TouchUpInside (UIButton sender);
 
 		[Action ("BtnConnectWithFacebook_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -48,6 +52,10 @@ namespace BeerDrinkin.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnCancel != null) {
+				btnCancel.Dispose ();
+				btnCancel = null;
+			}
 			if (btnConnectWithFacebook != null) {
 				btnConnectWithFacebook.Dispose ();
 				btnConnectWithFacebook = null;
@@ -56,9 +64,9 @@ namespace BeerDrinkin.iOS
 				btnConnectWithGoogle.Dispose ();
 				btnConnectWithGoogle = null;
 			}
-			if (imgLogo != null) {
-				imgLogo.Dispose ();
-				imgLogo = null;
+			if (lblAmazingFeatures != null) {
+				lblAmazingFeatures.Dispose ();
+				lblAmazingFeatures = null;
 			}
 			if (lblPromise != null) {
 				lblPromise.Dispose ();
@@ -67,10 +75,6 @@ namespace BeerDrinkin.iOS
 			if (lblTitle != null) {
 				lblTitle.Dispose ();
 				lblTitle = null;
-			}
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
 			}
 		}
 	}

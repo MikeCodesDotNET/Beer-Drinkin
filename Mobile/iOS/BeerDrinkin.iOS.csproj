@@ -204,8 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
     <InterfaceDefinition Include="Storyboards\Settings.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -218,8 +218,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers\ViewExtensions.cs" />
-    <Compile Include="Custom Controls\SignUpBox.cs" />
-    <Compile Include="Custom Controls\SignInBox.cs" />
     <Compile Include="View Controllers\MyBeersViewController.cs" />
     <Compile Include="View Controllers\MyBeersViewController.designer.cs">
       <DependentUpon>MyBeersViewController.cs</DependentUpon>
@@ -260,14 +258,6 @@
       <DependentUpon>TabBarController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions.cs" />
-    <Compile Include="Custom Controls\BeerHeaderImageCell.cs" />
-    <Compile Include="Custom Controls\BeerHeaderImageCell.designer.cs">
-      <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Custom Controls\BreweryMapCell.cs" />
-    <Compile Include="Custom Controls\BreweryMapCell.designer.cs">
-      <DependentUpon>BreweryMapCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\FullScreenMapView.cs" />
     <Compile Include="View Controllers\FullScreenMapView.designer.cs">
       <DependentUpon>FullScreenMapView.cs</DependentUpon>
@@ -276,24 +266,15 @@
     <Compile Include="View Controllers\CameraViewController.designer.cs">
       <DependentUpon>CameraViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
-    <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs">
-      <DependentUpon>PhotoCollectionViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\ReleaseNotesViewController.cs" />
     <Compile Include="View Controllers\ReleaseNotesViewController.designer.cs">
       <DependentUpon>ReleaseNotesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\TinderBox.cs" />
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\BeerLoadingView.cs" />
     <Compile Include="Helpers\Animator.cs" />
-    <Compile Include="Custom Controls\PhotosOfBeerCell.cs" />
-    <Compile Include="Custom Controls\PhotosOfBeerCell.designer.cs">
-      <DependentUpon>PhotosOfBeerCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\Welcome ViewControllers\navigationController.cs" />
     <Compile Include="View Controllers\Welcome ViewControllers\navigationController.designer.cs">
       <DependentUpon>navigationController.cs</DependentUpon>
@@ -376,6 +357,16 @@
     <Compile Include="ShakeWelcomeViewController.designer.cs">
       <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
+    <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs" />
+    <Compile Include="Storyboards\BreweryMapCell.cs" />
+    <Compile Include="Storyboards\BreweryMapCell.designer.cs">
+      <DependentUpon>BreweryMapCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Storyboards\BeerHeaderImageCell.cs" />
+    <Compile Include="Storyboards\BeerHeaderImageCell.designer.cs">
+      <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -395,9 +386,6 @@
     <BundleResource Include="Resources\menu.png" />
     <BundleResource Include="Resources\menu%402x.png" />
     <BundleResource Include="Resources\menu%403x.png" />
-    <BundleResource Include="Resources\close.png" />
-    <BundleResource Include="Resources\close%402x.png" />
-    <BundleResource Include="Resources\close%403x.png" />
     <BundleResource Include="Resources\create.png" />
     <BundleResource Include="Resources\create%402x.png" />
     <BundleResource Include="Resources\create%403x.png" />
@@ -484,8 +472,9 @@
     <BundleResource Include="Resources\BeerTap.png" />
     <BundleResource Include="Resources\BarcodeDark.png" />
     <BundleResource Include="Resources\.DS_Store" />
-    <BundleResource Include="Resources\Storyboards\.DS_Store" />
     <BundleResource Include="Resources\backArrow.png" />
+    <BundleResource Include="Resources\close.png" />
+    <BundleResource Include="Resources\Patterned Image.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

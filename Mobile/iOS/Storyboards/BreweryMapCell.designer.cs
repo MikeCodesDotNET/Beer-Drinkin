@@ -9,28 +9,28 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace BeerDrinkin.iOS
+namespace BeerDrinkin.iOS.Storyboards
 {
-	[Register ("BeerHeaderImageCell")]
-	partial class BeerHeaderImageCell
+	[Register ("BreweryMapCell")]
+	partial class BreweryMapCell
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgLogo { get; set; }
+		UIView divider { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
+		MapKit.MKMapView mapView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (imgLogo != null) {
-				imgLogo.Dispose ();
-				imgLogo = null;
+			if (divider != null) {
+				divider.Dispose ();
+				divider = null;
 			}
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
+			if (mapView != null) {
+				mapView.Dispose ();
+				mapView = null;
 			}
 		}
 	}
