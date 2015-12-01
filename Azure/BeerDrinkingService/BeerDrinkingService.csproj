@@ -332,11 +332,11 @@
     <None Include="Properties\PublishProfiles\mobile-BeerDrinkinDev.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BreweryDB\BreweryDB\BreweryDB.csproj">
+    <ProjectReference Include="..\..\..\BreweryDB\BreweryDB\BreweryDB.csproj">
       <Project>{84d549c9-b9ca-4c37-8c99-2c12db8906b6}</Project>
       <Name>BreweryDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RateBeer\RateBeer.csproj">
+    <ProjectReference Include="..\..\..\RateBeer\RateBeer.csproj">
       <Project>{d65c06c1-5387-4340-af21-86b652dcc0ec}</Project>
       <Name>RateBeer</Name>
     </ProjectReference>
