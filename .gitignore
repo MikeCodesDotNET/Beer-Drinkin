@@ -202,3 +202,5 @@ FakesAssemblies/
 *.opt
 
 Mobile/Helpers/Keys.cs
+
+Shared/BeerDrinkin/Helpers/Keys.cs
