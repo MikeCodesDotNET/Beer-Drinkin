@@ -23,7 +23,18 @@ namespace BeerDrinkin.Service.Models
 
         public BeerDrinkinContext() : base(connectionStringName)
         {
-        } 
+        }
+
+        public DbSet<Beer> Beers { get; set; }
+        public DbSet<Style> BeerStyles { get; set; }
+        public DbSet<Available> Availablity { get; set; }
+        public DbSet<Brewery> Breweries { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Glass> Glasses { get; set; }
+        public DbSet<Images> Imageses { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<SocailMedia> SocalMedia { get; set; }
 
         public DbSet<UserItem> UserItems { get; set; }
         public DbSet<FollowerItem> FollowerItems { get; set; }
@@ -31,9 +42,7 @@ namespace BeerDrinkin.Service.Models
         public DbSet<BinaryItem> BinaryItems { get; set; }
         public DbSet<ReviewItem> ReviewItems { get; set; }
         public DbSet<UserPrivateData> UserPrivateItems { get; set; }
-        public DbSet<BeerItem> BeerItems { get; set; }
-        public DbSet<BeerStyle> BeerStyles { get; set; }
-        public DbSet<PopularBeerItem>PopularBeerItems { get; set; }
+        public DbSet<PopularBeerItem> PopularBeerItems { get; set; }
         public DbSet<AccountItem> AccountItems { get; set; }
         public DbSet<KeywordSpellingCorrection> KeywordCorrections { get; set; }
         public DbSet<SearchEventItem> SearchEvents { get; set; }

@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
 using System.Threading.Tasks;
+using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.Service.Helpers;
 using Microsoft.WindowsAzure.Mobile.Service.Security;
 using BeerDrinkin.Service.Models;
 
@@ -22,7 +24,7 @@ namespace BeerDrinkin.Service.Controllers
             Services.Log.Info(string.Format("Search brewery call with keyword {0}",keyword));
             var rv = new List<Brewery>();
 
-            if (!BreweryDBHelper.InsureBreweryDBIsInitialized(Services))
+            if (!BreweryDBHelper.InsureBreweryDbIsInitialized(Services))
                 return rv;
 
             try

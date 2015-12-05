@@ -16,13 +16,13 @@ namespace BeerDrinkin.Service.DataObjects
         public string FourSquareId { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public CurrentWeatherResponse Weather { get; set; }
+        public WeatherCondition Weather { get; set; }
 
 #if CLIENT
         [IgnoreDataMember]
-        public string[] Images {get;set;}
+        public string[] Image {get;set;}
         [IgnoreDataMember]
-        public BeerItem Beer{get;set;}
+        public Beer Beer{get;set;}
 #endif
     }
 }

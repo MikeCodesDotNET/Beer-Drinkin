@@ -18,12 +18,12 @@ namespace BeerDrinkin.Service.Controllers
         public ApiServices Services { get; set; }
 
         // GET api/UPC
-        public List<BeerItem> Get(string upc)
+        public List<Beer> Get(string upc)
         {
             Services.Log.Info(string.Format("Searching for Barcode number: {0}", upc));
 
             BeerDrinkinContext context = new BeerDrinkinContext();
-            var beers = context.BeerItems.Where(x => x.UPC == upc).ToList();
+            var beers = context.Beers.Where(x => x.UPC == upc).ToList();
             return beers;
         }
 

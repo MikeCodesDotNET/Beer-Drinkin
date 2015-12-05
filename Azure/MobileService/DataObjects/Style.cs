@@ -5,9 +5,10 @@ using Microsoft.WindowsAzure.Mobile.Service;
 #endif
 namespace BeerDrinkin.Service.DataObjects
 {
-    public class BeerStyle:EntityData
+    public class Style : EntityData
     {
-        public string Category { get; set; }
+        public string CategoryId { get; set; }
+        public Category Category { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string Description { get; set; }

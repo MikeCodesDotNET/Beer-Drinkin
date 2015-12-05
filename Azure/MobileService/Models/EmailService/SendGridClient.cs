@@ -14,29 +14,25 @@ namespace BeerDrinkin.Service.Models.EmailService
 {
     public class SendGridClient
     {
-        string _apiKey;
+        readonly string apiKey;
 
         public SendGridClient(string apiKey)
         {
-            _apiKey = apiKey;
+            this.apiKey = apiKey;
         }
         public async Task<bool> SendMessage(string from, string to, string subject, string body)
         {
             try
             {
                 // Create the email object first, then add the properties.
-                var message = new SendGridMessage();
+                var message = new SendGridMessage {From = new MailAddress(@from)};
 
                 // Add the message properties.
-                message.From = new MailAddress(from);
-
                 message.AddTo(to);
-
                 message.Subject = subject;
-
                 message.Text = body;
 
-                var transportWeb = new Web(_apiKey);
+                var transportWeb = new Web(apiKey);
 
                 // Send the email.
                 await transportWeb.DeliverAsync(message);

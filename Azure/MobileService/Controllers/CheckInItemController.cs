@@ -8,6 +8,7 @@ using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
 using Microsoft.WindowsAzure.Mobile.Service.Security;
 using OpenWeatherMap;
+using BeerDrinkin.Service.Utils;
 
 namespace BeerDrinkin.Service.Controllers
 {
@@ -47,7 +48,7 @@ namespace BeerDrinkin.Service.Controllers
             {
                 var client = new OpenWeatherMapClient();
                 var currentWeather = await client.CurrentWeather.GetByCoordinates(new Coordinates { Longitude = item.Longitude, Latitude = item.Latitude });
-                item.Weather = currentWeather;
+                item.Weather = currentWeather.ToWeatherCondition();
             }            
 
             CheckInItem current = await InsertAsync(item);

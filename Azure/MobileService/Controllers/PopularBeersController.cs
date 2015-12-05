@@ -19,7 +19,7 @@ namespace BeerDrinkin.Service.Controllers
         public ApiServices Services { get; set; }
 
         // GET api/PopularBeers
-        public async Task<List<BeerItem>> Get(double longitude, double latitude)
+        public async Task<List<Beer>> Get(double longitude, double latitude)
         {
             //Find the current country of the user
             string bingKey;
@@ -49,7 +49,7 @@ namespace BeerDrinkin.Service.Controllers
 
 
             var context = new BeerDrinkinContext();
-            var beerList = new List<BeerItem>();
+            var beerList = new List<Beer>();
             
             //Setup BreweryDB Client 
             if (string.IsNullOrEmpty(BreweryDBClient.ApplicationKey))

@@ -17,7 +17,7 @@ namespace BeerDrinkin.Service.Helpers
 
             public Spelling()
             {
-                List<string> wordList = context.BeerItems.Select(x => x.Name).ToList();
+                List<string> wordList = context.Beers.Select(x => x.Name).ToList();
                 foreach (var word in wordList)
                 {
                     string trimmedWord = word.Trim().ToLower();
