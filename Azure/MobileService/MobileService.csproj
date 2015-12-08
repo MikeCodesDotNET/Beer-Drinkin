@@ -23,7 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ApplicationInsightsResourceId>/subscriptions/4c596816-e5d9-4d41-80a3-b1b7a1c7f0c2/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MobileService</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/62083f52-d1ec-42da-8d71-808c210cc109/resourcegroups/Default-Web-NorthEurope/providers/microsoft.insights/components/BeerDrinkin Insights</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
