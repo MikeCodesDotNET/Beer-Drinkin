@@ -1,28 +1,39 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
+﻿
 using System.Web.Http;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Tracing;
 using BeerDrinkin.Service.DataObjects;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.Azure.Mobile.Server;
+using Xamarin;
 
 namespace BeerDrinkin.Service.Helpers
 {
     public static class BreweryDBHelper
     {
-        public static bool InsureBreweryDbIsInitialized(ApiServices services)
+        private static MobileAppSettingsDictionary settings;
+        private static ITraceWriter tracer;
+
+        public static bool InsureBreweryDbIsInitialized(MobileAppSettingsDictionary appSettings, ITraceWriter logger)
         {
+            settings = appSettings;
+            tracer = logger;
+
             if (string.IsNullOrEmpty(BreweryDB.BreweryDBClient.ApplicationKey))
             {
                 string apiKey;
                 // Try to get the BreweryDB API key  app settings.  
-                if (!(services.Settings.TryGetValue("BREWERYDB_API_KEY", out apiKey)))
+                if (!(settings.TryGetValue("BREWERYDB_API_KEY", out apiKey)))
                 {
-                    services.Log.Error("Could not retrieve BreweryDB API key.");
+                    tracer.Error("Could not retrieve BreweryDB API key.");
                     return false;
                 }
-                services.Log.Info($"BreweryDB API Key {apiKey}");
+                tracer.Info($"BreweryDB API Key {apiKey}");
                 BreweryDB.BreweryDBClient.Initialize(apiKey);
             }
             return true;
@@ -54,50 +65,65 @@ namespace BeerDrinkin.Service.Helpers
 
         public static Beer ToBeerItem(this BreweryDB.Models.Beer breweryDbBeer, Beer beer = null)
         {
-            if (beer == null)
+            try
             {
-                beer = new Beer
+                if (beer == null)
                 {
-                    Id = breweryDbBeer.Id,
-                    BreweryDbId = breweryDbBeer.Id,
-
-                    Name = breweryDbBeer.Name,
-                    Description = breweryDbBeer.Description,
-                    ABV = breweryDbBeer.Abv
-                };
-            }
-
-            //Check for BreweryData
-            if (breweryDbBeer.Breweries != null || breweryDbBeer.Breweries.Count > 0)
-            {
-                var brewery = breweryDbBeer.Breweries.FirstOrDefault();
-                if (brewery != null)
-                {
-                    beer.Brewery.Name = breweryDbBeer.Name;
-                    beer.Brewery.Description = brewery.Description;
-                    beer.Brewery.ImageUrls = new Images()
+                    beer = new Beer
                     {
-                        Icon = brewery.Image?.Icon,
-                        Medium = brewery.Image?.Medium,
-                        Large = brewery.Image?.Large
+                        Id = breweryDbBeer.Id,
+                        BreweryDbId = breweryDbBeer.Id,
+
+                        Name = breweryDbBeer?.Name,
+                        Description = breweryDbBeer?.Description,
+                        ABV = breweryDbBeer?.Abv
                     };
-                    beer.Brewery.IsOrganic = brewery.IsOrganic == "Y";
-                    beer.Brewery.Website = brewery.Website;
                 }
+
+                //Check for BreweryData
+                if (breweryDbBeer.Breweries != null || breweryDbBeer.Breweries.Count > 0)
+                {
+                    var breweryDbBrewery = breweryDbBeer?.Breweries?.FirstOrDefault();
+                    if (breweryDbBrewery != null)
+                    {
+                        var brewery = new Brewery();
+                        brewery.Name = breweryDbBrewery?.Name;
+                        brewery.Description = breweryDbBrewery?.Description;
+                        if(breweryDbBrewery.Image != null)
+                            brewery.ImageUrls = new Images()
+                            {
+                                Icon = breweryDbBrewery.Image?.Icon,
+                                Medium = breweryDbBrewery.Image?.Medium,
+                                Large = breweryDbBrewery.Image?.Large
+                            };
+
+                        brewery.IsOrganic = breweryDbBrewery?.IsOrganic == "Y";
+                        brewery.Website = breweryDbBrewery?.Website;
+                        beer.Brewery = brewery;
+                    }
+                }
+
+                beer.ABV = breweryDbBeer?.Abv;
+                if (breweryDbBeer.Labels == null) return beer;
+
+                var images = new Images()
+                {
+                    Icon = breweryDbBeer.Labels.Icon,
+                    Medium = breweryDbBeer.Labels.Medium,
+                    Large = breweryDbBeer.Labels.Large
+                };
+                beer.Images = images;
+
+                return beer;
             }
-
-            beer.ABV = breweryDbBeer.Abv;
-            if (breweryDbBeer.Labels == null) return beer;
-
-            var images = new Images()
+            catch (Exception ex)
             {
-                Icon = breweryDbBeer.Labels.Icon,
-                Medium = breweryDbBeer.Labels.Medium,
-                Large = breweryDbBeer.Labels.Large
-            };
-            beer.Images = images;
-
-            return beer;
+                telemetry.TrackException(ex);
+            }
+            return null;
         }
+
+        private static readonly Microsoft.ApplicationInsights.TelemetryClient telemetry =
+            new Microsoft.ApplicationInsights.TelemetryClient(TelemetryConfiguration.Active);
     }
 }

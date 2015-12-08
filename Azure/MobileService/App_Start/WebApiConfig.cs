@@ -3,12 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
+using BeerDrinkin.Service.Services;
 using Facebook;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
-using Microsoft.WindowsAzure.Mobile.Service.Security.Providers;
+using Microsoft.Azure.Mobile.Server.Authentication;
+using Microsoft.Azure.Mobile.Server.Config;
+using Newtonsoft.Json.Serialization;
 
 namespace BeerDrinkin.Service
 {
@@ -16,6 +17,12 @@ namespace BeerDrinkin.Service
     {
         public static void Register()
         {
+            HttpConfiguration config = new HttpConfiguration();
+            new MobileAppConfiguration().UseDefaultConfiguration().ApplyTo(config);
+
+            config.Services.Replace(typeof(ITraceWriter), new NLogger());
+
+            /*
             // Use this class to set configuration options for your mobile service
             ConfigOptions options = new ConfigOptions();
 
@@ -28,6 +35,7 @@ namespace BeerDrinkin.Service
             // Use this class to set WebAPI configuration options
             HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
 
+
             // To display errors in the browser during development, uncomment the following
             // line. Comment it out again when you deploy your service for production use.
             // config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
@@ -37,9 +45,11 @@ namespace BeerDrinkin.Service
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
             
             Database.SetInitializer(new BeerdrinkingtestInitializer());
+            */
         }
     }
 
+    /*
     public class CustomFacebookLoginProvider : FacebookLoginProvider
     {
         public CustomFacebookLoginProvider(HttpConfiguration config, IServiceTokenHandler tokenHandler)
@@ -154,30 +164,13 @@ namespace BeerDrinkin.Service
             }
             catch (Exception ex)
             {
-                Services.Log.Info(ex.Message);
+                tracer.Info(ex.Message);
                 return null;
             }
             
         }
-    }
-
-    public class BeerdrinkingtestInitializer : ClearDatabaseSchemaIfModelChanges<BeerDrinkinContext>
-    {
-        protected override void Seed(BeerDrinkinContext context)
-        {
-            /*List<UserItem> todoItems = new List<UserItem>
-            {
-                new UserItem { Id = Guid.NewGuid().ToString(), Text = "First item", Complete = false },
-                new UserItem { Id = Guid.NewGuid().ToString(), Text = "Second item", Complete = false },
-            };
-
-            foreach (UserItem todoItem in todoItems)
-            {
-                context.Set<UserItem>().Add(todoItem);
-            }*/
-
-            base.Seed(context);
-        }
-    }
+    }    */
 }
 
+
+    

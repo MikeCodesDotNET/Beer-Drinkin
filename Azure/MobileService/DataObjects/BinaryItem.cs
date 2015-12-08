@@ -1,6 +1,8 @@
 ﻿using System;
 
-using Microsoft.WindowsAzure.Mobile.Service;
+#if !CLIENT
+using Microsoft.Azure.Mobile.Server;
+#endif
 
 namespace BeerDrinkin.Service.DataObjects
 {

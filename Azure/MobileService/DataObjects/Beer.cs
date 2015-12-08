@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Microsoft.Azure.Search.Models;
 using Newtonsoft.Json;
+
 #if !CLIENT
-using Microsoft.WindowsAzure.Mobile.Service;
+using Microsoft.Azure.Mobile.Server;
 #endif
+
 namespace BeerDrinkin.Service.DataObjects
 {
-    [SerializePropertyNamesAsCamelCase]
     public class Beer:EntityData 
     {
         //3rd Party beer databases.

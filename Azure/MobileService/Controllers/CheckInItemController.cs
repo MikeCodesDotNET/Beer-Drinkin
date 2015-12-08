@@ -3,16 +3,17 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+
 using OpenWeatherMap;
 using BeerDrinkin.Service.Utils;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.User)]
+     [Authorize]
     public class CheckInItemController : TableController<CheckInItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
@@ -20,7 +21,6 @@ namespace BeerDrinkin.Service.Controllers
             base.Initialize(controllerContext);
             BeerDrinkinContext context = new BeerDrinkinContext();
             //Enable SoftDelete to simplify offline sync
-            DomainManager = new EntityDomainManager<CheckInItem>(context, Request, Services, true);
         }
 
         // GET tables/CheckInItem

@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using Microsoft.WindowsAzure.Mobile.Service;
-using Microsoft.WindowsAzure.Mobile.Service.Tables;
+
 using BeerDrinkin.Service.DataObjects;
+using Microsoft.Azure.Mobile.Server.Tables;
 
 namespace BeerDrinkin.Service.Models
 {
@@ -47,6 +47,7 @@ namespace BeerDrinkin.Service.Models
         public DbSet<KeywordSpellingCorrection> KeywordCorrections { get; set; }
         public DbSet<SearchEventItem> SearchEvents { get; set; }
 
+        /*
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             string schema = ServiceSettingsDictionary.GetSchemaName();
@@ -59,6 +60,7 @@ namespace BeerDrinkin.Service.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
+        */
 
     }
 

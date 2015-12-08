@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+using Microsoft.Azure.Mobile.Server;
+
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.Anonymous)]
+    
     public class KeywordSpellingCorrectionController : TableController<KeywordSpellingCorrection>
     {
         protected override void Initialize(HttpControllerContext controllerContext)

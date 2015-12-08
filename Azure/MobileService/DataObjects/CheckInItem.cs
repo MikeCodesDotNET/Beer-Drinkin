@@ -3,8 +3,9 @@ using System.Runtime.Serialization;
 using OpenWeatherMap;
 
 #if !CLIENT
-using Microsoft.WindowsAzure.Mobile.Service;
+using Microsoft.Azure.Mobile.Server;
 #endif
+
 namespace BeerDrinkin.Service.DataObjects
 {
     public class CheckInItem:EntityData

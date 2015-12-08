@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using BeerDrinkin.Service.Models;
 using System.Linq;
 using System.Net.Http;

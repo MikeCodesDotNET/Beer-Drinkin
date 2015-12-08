@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+using Microsoft.Azure.Mobile.Server;
+
 
 namespace BeerDrinkin.Service.Controllers
 {
@@ -17,7 +18,6 @@ namespace BeerDrinkin.Service.Controllers
             base.Initialize(controllerContext);
             BeerDrinkinContext context = new BeerDrinkinContext();
             //Enable SoftDelete to simplify offline sync
-            DomainManager = new EntityDomainManager<UserItem>(context, Request, Services, enableSoftDelete: true);
         }
 
         // GET tables/UserItem

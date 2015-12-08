@@ -2,30 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+using System.Web.Http.Tracing;
 using BeerDrinkin.Service.Models;
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Utils;
 using BeerDrinkin.Service.Helpers;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.Anonymous)]
     public class SearchBeerController : ApiController
     {
-        public ApiServices Services { get; set; }
+        private readonly MobileAppSettingsDictionary settings;
+        private readonly ITraceWriter tracer;
+
+        public SearchBeerController()
+        {
+            settings = Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+            tracer = Configuration.Services.GetTraceWriter();
+        }
+
+
         BeerDrinkinContext context = new BeerDrinkinContext();
 
         // GET api/SearchBeer
         public async Task<List<Beer>> Get(string keyword)
         {
-            Services.Log.Info(string.Format("Search beer call with keyword {0}",keyword));
+            tracer.Info(string.Format("Search beer call with keyword {0}",keyword));
             var rv = new List<Beer>();
             bool needSave = false;
 
-            if (!BreweryDBHelper.InsureBreweryDbIsInitialized(Services))
+            if (!BreweryDBHelper.InsureBreweryDbIsInitialized(settings, tracer))
                 return rv;
 
             try
@@ -34,7 +43,7 @@ namespace BeerDrinkin.Service.Controllers
 
                 if (results != null && results.Any())
                 {
-                    Services.Log.Info(string.Format("Found {0} beers", results.Count()));
+                    tracer.Info(string.Format("Found {0} beers", results.Count()));
 
                     var context = new BeerDrinkinContext();
                     foreach (var r in results)
@@ -43,7 +52,7 @@ namespace BeerDrinkin.Service.Controllers
                         var beer = context.Beers.FirstOrDefault(f => f.BreweryDbId == r.Id);
                         if (beer == null)
                         {
-                            Services.Log.Info(string.Format("Beer {0} wasn't logged yet", r.Name));
+                            tracer.Info(string.Format("Beer {0} wasn't logged yet", r.Name));
                             needSave = true;
                             try
                             {
@@ -53,7 +62,7 @@ namespace BeerDrinkin.Service.Controllers
                             }
                             catch (Exception ex)
                             {
-                                Services.Log.Error(string.Format("Exception creating beer: {0}", ex.Message));
+                                tracer.Error(string.Format("Exception creating beer: {0}", ex.Message));
                             }
                         }                        
                         rv.Add(beer);
@@ -62,7 +71,7 @@ namespace BeerDrinkin.Service.Controllers
             }
             catch (Exception ex)
             {
-                Services.Log.Error(ex.Message);
+                tracer.Error(ex.Message);
             }
             finally
             {

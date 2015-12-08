@@ -4,19 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+using System.Web.Http.Tracing;
 using BeerDrinkin.Service.Models;
 using BeerDrinkin.Service.DataObjects;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.User)]
+     [Authorize]
     public class UserPrivateDataController : ApiController
     {
-        public ApiServices Services { get; set; }
+        private readonly MobileAppSettingsDictionary settings;
+        private readonly ITraceWriter tracer;
 
+        public UserPrivateDataController()
+        {
+            settings = Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+            tracer = Configuration.Services.GetTraceWriter();
+        }
         // GET api/UserPrivateData
         public UserPrivateData Get(string username)
         {
@@ -27,7 +34,7 @@ namespace BeerDrinkin.Service.Controllers
             }
             catch (Exception ex)
             {
-                Services.Log.Error(ex.Message);
+                tracer.Error(ex.Message);
             }
 
             return null;

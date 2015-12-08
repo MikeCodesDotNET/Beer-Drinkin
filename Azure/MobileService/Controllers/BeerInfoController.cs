@@ -4,18 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+using System.Web.Http.Tracing;
 using BeerDrinkin.Service.Models;
 using BeerDrinkin.Service.DataObjects;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.User)]
+    [Authorize]
     public class BeerInfoController : ApiController
     {
-        public ApiServices Services { get; set; }
+        private readonly MobileAppSettingsDictionary settings;
+        private readonly ITraceWriter tracer;
+
+        public BeerInfoController()
+        {
+            settings = Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+            tracer = Configuration.Services.GetTraceWriter();
+        }
 
         BeerDrinkinContext _context;
 
@@ -36,12 +44,12 @@ namespace BeerDrinkin.Service.Controllers
             {
                 string apiKey;
                 // Try to get the BreweryDB API key  app settings.  
-                if (!(Services.Settings.TryGetValue("BREWERYDB_API_KEY", out apiKey)))
+                if (!(settings.TryGetValue("BREWERYDB_API_KEY", out apiKey)))
                 {
-                    Services.Log.Error("Could not retrieve BreweryDB API key.");
+                    tracer.Error("Could not retrieve BreweryDB API key.");
                     return null;
                 }
-                Services.Log.Info(string.Format("BreweryDB API Key {0}", apiKey));
+                tracer.Info(string.Format("BreweryDB API Key {0}", apiKey));
                 BreweryDB.BreweryDBClient.Initialize(apiKey);
             }
 
@@ -64,7 +72,7 @@ namespace BeerDrinkin.Service.Controllers
             }
             catch (Exception ex)
             {
-                Services.Log.Error(ex.Message);
+                tracer.Error(ex.Message);
             }
 
             return null;

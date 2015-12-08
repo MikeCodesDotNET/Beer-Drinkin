@@ -7,6 +7,7 @@ namespace BeerDrinkin.Service
     {
         protected void Application_Start()
         {
+
             WebApiConfig.Register();
         }
     }

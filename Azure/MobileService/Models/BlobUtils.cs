@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
+﻿
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Models
 {
     public static class BlobUtils
     {
-        public static async Task<string> SaveBinaryToAzureStorage(ApiServices services, string blobId, string blobData )
+        public static async Task<string> SaveBinaryToAzureStorage(MobileAppSettingsDictionary settings, string blobId, string blobData )
         {
             string storageAccountName;
             string storageAccountKey;
 
 
             // Try to get the Azure storage account token from app settings.  
-            if (!(services.Settings.TryGetValue("STORAGE_ACCOUNT_NAME", out storageAccountName) |
-            services.Settings.TryGetValue("STORAGE_ACCOUNT_ACCESS_KEY", out storageAccountKey)))
+            if (!(settings.TryGetValue("STORAGE_ACCOUNT_NAME", out storageAccountName) |
+                settings.TryGetValue("STORAGE_ACCOUNT_ACCESS_KEY", out storageAccountKey)))
             {
                 return string.Empty;
             }

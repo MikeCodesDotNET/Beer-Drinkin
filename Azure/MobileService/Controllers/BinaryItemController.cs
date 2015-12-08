@@ -3,22 +3,30 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using Microsoft.WindowsAzure.Mobile.Service;
+
 using BeerDrinkin.Service.DataObjects;
 using BeerDrinkin.Service.Models;
-using Microsoft.WindowsAzure.Mobile.Service.Security;
+
 using System.Net.Http;
 using System.Net;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
+using System.Web.Http.Tracing;
+using Microsoft.Azure.Mobile.Server;
 
 namespace BeerDrinkin.Service.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.User)]
+     [Authorize]
     public class BinaryItemController : ApiController
     {
-        public ApiServices Services { get; set; }
+        private readonly MobileAppSettingsDictionary settings;
+        private readonly ITraceWriter tracer;
+
+        public BinaryItemController()
+        {
+            settings = Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+            tracer = Configuration.Services.GetTraceWriter();
+        }
 
         /*
         // GET api/BinaryItem
@@ -54,7 +62,7 @@ namespace BeerDrinkin.Service.Controllers
             };
 
             binaryItem.BinaryUrl =
-                await BlobUtils.SaveBinaryToAzureStorage(Services, binaryItem.Id, binaryUploadRequest.BinaryData);
+                await BlobUtils.SaveBinaryToAzureStorage(settings, binaryItem.Id, binaryUploadRequest.BinaryData);
 
             if (!string.IsNullOrEmpty(binaryItem.BinaryUrl))
             {

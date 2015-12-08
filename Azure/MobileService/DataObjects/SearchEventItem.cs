@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.WindowsAzure.Mobile.Service;
 
+#if !CLIENT
+using Microsoft.Azure.Mobile.Server;
+#endif
 
 namespace BeerDrinkin.Service.DataObjects
 {
