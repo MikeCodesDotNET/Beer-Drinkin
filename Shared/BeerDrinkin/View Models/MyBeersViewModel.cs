@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using BeerDrinkin.Service.DataObjects;
-using BeerDrinkin.Service.Models;
 using System.Threading.Tasks;
 using System.Linq;
 

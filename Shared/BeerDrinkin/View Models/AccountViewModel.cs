@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BeerDrinkin.Service.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
+using BeerDrinkin.Service.DataObjects;
 
 namespace BeerDrinkin.Core.ViewModels
 {

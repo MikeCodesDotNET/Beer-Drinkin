@@ -11,7 +11,6 @@ using MapKit;
 using UIKit;
 
 using BeerDrinkin.Service.DataObjects;
-using BeerDrinkin.Service.Models;
 
 using SDWebImage;
 using Xamarin;
@@ -62,9 +61,9 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets(headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-            if (beer.Large != null)
+            if (beer?.Labels?.Large != null)
             {
-                imgHeaderView.SetImage(new NSUrl(beer.Large), UIImage.FromBundle("BeerDrinkin.png"));
+                imgHeaderView.SetImage(new NSUrl(beer?.Labels?.Large), UIImage.FromBundle("BeerDrinkin.png"));
             }
             else
             {

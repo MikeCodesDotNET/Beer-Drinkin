@@ -35,17 +35,16 @@ namespace BeerDrinkin.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var beerItem = Beers[indexPath.Row];
+            var Beer = Beers[indexPath.Row];
 
             var cell = tableView.DequeueReusableCell(cellIdentifier) as SearchBeerTableViewCell ?? new SearchBeerTableViewCell(cellIdentifier);
 
-            cell.Name = beerItem.Name;
-            cell.Brewery = beerItem.Brewery;
-            cell.Style = beerItem.Style?.Name;
-            cell.isCheckedIn = beerItem.IsCheckedIn;
-            if (beerItem.Large != null)
+            cell.Name = Beer.Name;
+            cell.Brewery = Beer?.Brewery;
+            cell.Style = Beer?.Style?.Name;
+            if (Beer.Labels != null)
             {
-                cell.Image.SetImage(new NSUrl(beerItem.Large), UIImage.FromBundle("BeerDrinkin.png"));
+                cell.Image.SetImage(new NSUrl(Beer.Labels.Large), UIImage.FromBundle("BeerDrinkin.png"));
             }
             else
             {

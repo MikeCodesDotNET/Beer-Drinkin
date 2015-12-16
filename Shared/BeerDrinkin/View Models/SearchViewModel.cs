@@ -10,8 +10,8 @@ using BeerDrinkin.Service.DataObjects;
 using Xamarin;
 
 using Acr.UserDialogs;
-using Geolocator.Plugin;
-using Connectivity.Plugin;
+using Plugin.Geolocator;
+using Plugin.Connectivity;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -26,7 +26,7 @@ namespace BeerDrinkin.Core.ViewModels
             if(!isConnected)
             {
                 //We're not connected to the internet so we need to search the current beers table instead. 
-                var beers = Client.Instance.BeerDrinkinClient.SearchCacheAsync(searchTerm);
+                //var beers = Client.Instance.BeerDrinkinClient.SearchCacheAsync(searchTerm);
 
             }
           
@@ -40,10 +40,8 @@ namespace BeerDrinkin.Core.ViewModels
             Beers.Clear();
 
             if (results.Result.Count > 0)
-            {
-                var beers = results.Result.OrderBy(e => String.IsNullOrEmpty(e.Name)).ThenBy(e => string.IsNullOrEmpty(e.Brewery));
-
-                foreach (var beer in beers)
+            {          
+                foreach (var beer in results.Result)
                 {
                     Beers.Add(beer);                  
                 }  

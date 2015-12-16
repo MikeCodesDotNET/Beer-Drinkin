@@ -53,7 +53,7 @@ namespace BeerDrinkin.iOS
             var index = tableView.IndexPathForSelectedRow.Row;
             var selectedBeer = viewModel.Beers[index];
 
-            selectedBeer.UPC = barcodeLookupService.UPC;
+            selectedBeer.Upc = barcodeLookupService.UPC;
             selectedBeer.RateBeerId = barcodeLookupService.RateBeerID;
 
             var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
@@ -99,11 +99,11 @@ namespace BeerDrinkin.iOS
                     return;
 
                 //UserDialogs.Instance.Loading("Core.Helpers.Strings.Search_SearchingDatabase");
-                var beerItems = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
+                var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
 
-                if(beerItems != null)
+                if(Beers != null)
                 {
-                    DisplayBeers(beerItems);
+                    DisplayBeers(Beers);
                 }
             }
             catch (Exception ex)

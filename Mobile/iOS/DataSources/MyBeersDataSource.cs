@@ -5,12 +5,12 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-using BeerDrinkin.Service.Models;
 using Colour = BeerDrinkin.Helpers.Colours;
 
 using SDWebImage;
 using SWTableViewCell;
 using Splat;
+using BeerDrinkin.Service.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
@@ -44,12 +44,11 @@ namespace BeerDrinkin.iOS
 
             var cell = tableView.DequeueReusableCell(cellIdentifier) as MyBeersTableViewCell ?? new MyBeersTableViewCell(cellIdentifier);
             cell.Name = beerCheckedIn.Name;
-            cell.Brewery = beer.Brewery;
+            cell.Brewery = beer?.Brewery;
            
-
-            if (beer.Large != null)
+            if (beer.Labels != null)
             {
-                cell.Image.SetImage(new NSUrl(beer.Large), UIImage.FromBundle("BeerDrinkin.png"));
+                cell.Image.SetImage(new NSUrl(beer?.Labels?.Large), UIImage.FromBundle("BeerDrinkin.png"));
             }
             else
             {
@@ -59,7 +58,7 @@ namespace BeerDrinkin.iOS
             var cellDelegate = new MyBeerCellDelegate();
             cellDelegate.DeleteBeer += () =>
             {
-                var beerId = beers[indexPath.Row].BreweryDBId;
+                var beerId = beers[indexPath.Row].BreweryDbId;
                 DeleteItem(beerId);
                 beers.RemoveAt(indexPath.Row);                
             };

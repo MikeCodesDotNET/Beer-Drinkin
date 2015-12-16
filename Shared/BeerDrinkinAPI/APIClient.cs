@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 using BeerDrinkin.Models;
 using BeerDrinkin.Service.DataObjects;
-using BeerDrinkin.Service.Models;
 
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
@@ -26,9 +25,9 @@ namespace BeerDrinkin.API
         #endregion
 
         #region Constructor
-        public APIClient(string serviceUrl, string serviceKey)
+        public APIClient(string serviceUrl)
         {
-            serviceClient = new MobileServiceClient(serviceUrl, serviceKey);
+            serviceClient = new MobileServiceClient(serviceUrl);
         }
 
         #endregion
@@ -136,18 +135,10 @@ namespace BeerDrinkin.API
                 {
                     results = await serviceClient.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
                     if (results != null && results.Any())
-                    {
-                        //Have we got every beer returned in our local cache? If not then lets go ahead and add it. 
-                        foreach (var beer in results)
-                        {
-                            var cachedBeer = await cacheTable.Where(x => x.Id == beer.Id).ToListAsync();
-                            if(cachedBeer.Count == 0)
-                                await cacheTable.InsertAsync(new BeerItemCache(beer));
-                        }
+                    {                      
                         //sync db to update new beers && styles
                         await SyncAsync<BeerItem>("allUsers");
                         await SyncAsync(table, "allUsers");
-                        await SyncAsync(checkInTable, CurrenMobileServicetUser.UserId);
 
                         return new APIResponse<List<BeerItem>>(results, null);
                     }
@@ -351,11 +342,11 @@ namespace BeerDrinkin.API
                     foreach (var beerId in beerIds)
                     {
                         var beerInfo = new BeerInfo();
-                        var beerItem = (await beerTable.Where(f => f.BreweryDBId == beerId).ToListAsync()).FirstOrDefault();
+                        var beerItem = (await beerTable.Where(f => f.BreweryDbId == beerId).ToListAsync()).FirstOrDefault();
                         if (beerItem != null)
                         {
                             beerInfo.Name = beerItem.Name;
-                            beerInfo.BreweryDBId = beerId;
+                            beerInfo.BreweryDbId = beerId;
                             var checkinsResponse = await GetBeerCheckIns(beerId);
                             if (checkinsResponse.Result != null && checkinsResponse.Result.Any())
                             {
@@ -378,41 +369,11 @@ namespace BeerDrinkin.API
         #endregion
 
         #region Basic Caching
-        public async Task<List<BeerItem>> SearchCacheAsync(string searchTerm)
-        {
-            var byName = cacheTable.Where(x => x.Name.Contains(searchTerm));
-                
 
-
-            return null;
-        }
 
         public async Task<bool> ClearCache()
         {
-            try
-            {
-                await serviceClient.SyncContext.PushAsync();
-
-                var items = await cacheTable.ToEnumerableAsync();
-                foreach (var item in items)
-                {
-                    await cacheTable.DeleteAsync(item);
-                }
-                
-
-                return true;
-            }
-            catch(Exception ex)
-            {
-                Xamarin.Insights.Report(ex);
-                return false;
-            }
-        }
-
-        public async Task<int> GetCacheItemCountAsync()
-        {
-            var items = await cacheTable.ToListAsync();
-            return items.Count;
+            return true;
         }
 
         #endregion
@@ -430,24 +391,7 @@ namespace BeerDrinkin.API
         /// <returns></returns>
         public async Task<APIResponse<bool>> UploadBinaryAsync(string objectId, BinaryTypes objectType, string binaryData)
         {
-            var request = new BinaryUploadRequest
-            {
-                BinaryId = objectId,
-                BinaryData = binaryData,
-                UserId = GetUserId
-            };
-
-            try
-            {
-                await serviceClient.InvokeApiAsync("BinaryItem", JToken.FromObject(request));
-
-                await SyncAsync<UserItem>(CurrenMobileServicetUser.UserId);
-                return new APIResponse<bool>(true, null);
-            }
-            catch (Exception ex)
-            {
-                return new APIResponse<bool>(false, ex);
-            }
+            return null;
         }
 
         public async Task<APIResponse<bool>> UploadBinaryAsync(string objectId, BinaryTypes objectType, byte[] data)
@@ -536,7 +480,6 @@ namespace BeerDrinkin.API
 
         #region OfflineSync
 
-        IMobileServiceSyncTable<BeerItemCache> cacheTable;
 
         public async Task InitializeStoreAsync(string localDbPath)
         {
@@ -545,12 +488,9 @@ namespace BeerDrinkin.API
             store.DefineTable<CheckInItem>();
             store.DefineTable<BeerItem>();
             store.DefineTable<BeerStyle>();
-            store.DefineTable<BeerItemCache>();
            
             //Use simple conflicts handler
             await serviceClient.SyncContext.InitializeAsync(store, new AzureSyncHandler());
-
-            cacheTable = serviceClient.GetSyncTable<BeerItemCache>();
             await RefreshAll();
         }
 
