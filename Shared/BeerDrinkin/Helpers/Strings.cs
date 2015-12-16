@@ -17,8 +17,9 @@ namespace BeerDrinkin.Core.Helpers
         #region Tabs
 
         public static readonly string Tabs_MyBeers = "My Beers";
+        public static readonly string Tabs_WishList = "Wish List";
         public static readonly string Tabs_Search = "Search";
-        public static readonly string Tabs_Profile = "Profile";
+        public static readonly string Tabs_Profile = "Me";
 
         #endregion
 

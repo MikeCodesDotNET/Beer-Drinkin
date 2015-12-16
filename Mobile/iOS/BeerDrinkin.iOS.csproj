@@ -477,6 +477,18 @@
     <BundleResource Include="Resources\backArrow.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\Patterned Image.png" />
+    <BundleResource Include="Resources\tabbar_profile.png" />
+    <BundleResource Include="Resources\tabbar_profile%402x.png" />
+    <BundleResource Include="Resources\tabbar_profile%403x.png" />
+    <BundleResource Include="Resources\tabbar_search.png" />
+    <BundleResource Include="Resources\tabbar_search%402x.png" />
+    <BundleResource Include="Resources\tabbar_search%403x.png" />
+    <BundleResource Include="Resources\tabbar_mybeers.png" />
+    <BundleResource Include="Resources\tabbar_mybeers%402x.png" />
+    <BundleResource Include="Resources\tabbar_mybeers%403x.png" />
+    <BundleResource Include="Resources\tabbar_wishlist.png" />
+    <BundleResource Include="Resources\tabbar_wishlist%402x.png" />
+    <BundleResource Include="Resources\tabbar_wishlist%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

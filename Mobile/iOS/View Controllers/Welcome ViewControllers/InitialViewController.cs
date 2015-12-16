@@ -15,19 +15,8 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidAppear(animated);
 
-            //Lets check if we've got any tokens sitting around
-            if(!string.IsNullOrEmpty(BeerDrinkin.Core.Helpers.Settings.FacebookToken))
-            {
-                //We've a facebook token!    
-            }
-
-            if(!string.IsNullOrEmpty(BeerDrinkin.Core.Helpers.Settings.GoogleToken))
-            {
-                //We've a Google token!    
-            }
-
             //We've nothing. Lets go ahead and load the inital view. 
-            var vc = Storyboard.InstantiateViewController("searchNavigation");
+            var vc = Storyboard.InstantiateViewController("tabBarController");
             await PresentViewControllerAsync(vc, true);
         }
 
