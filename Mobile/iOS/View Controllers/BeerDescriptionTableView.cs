@@ -61,9 +61,9 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets(headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-            if (beer?.Labels?.Large != null)
+            if (beer?.ImageMedium != null)
             {
-                imgHeaderView.SetImage(new NSUrl(beer?.Labels?.Large), UIImage.FromBundle("BeerDrinkin.png"));
+                imgHeaderView.SetImage(new NSUrl(beer?.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));
             }
             else
             {

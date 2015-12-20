@@ -342,7 +342,7 @@ namespace BeerDrinkin.API
                     foreach (var beerId in beerIds)
                     {
                         var beerInfo = new BeerInfo();
-                        var beerItem = (await beerTable.Where(f => f.BreweryDbId == beerId).ToListAsync()).FirstOrDefault();
+                        var beerItem = (await beerTable.Where(f => f.Id == beerId).ToListAsync()).FirstOrDefault();
                         if (beerItem != null)
                         {
                             beerInfo.Name = beerItem.Name;
