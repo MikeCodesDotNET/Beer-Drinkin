@@ -6,6 +6,7 @@ using UIKit;
 using BeerDrinkin.Core.ViewModels;
 
 using PatridgeDev;
+using Splat;
 
 namespace BeerDrinkin.iOS
 {
@@ -28,6 +29,13 @@ namespace BeerDrinkin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+    
+            btnSend.SetTitleTextAttributes(new UITextAttributes
+                {
+                    Font = UIFont.FromName("Avenir-Book", 14f),
+                    TextColor = UIColor.White
+                }, UIControlState.Normal);
 
             btnSend.Clicked += delegate { viewModel.SendFeedback(); };
             var ratingConfig = new RatingConfig(UIImage.FromBundle("emptyStar"), UIImage.FromBundle("filledStar"), UIImage.FromBundle("filledStar"));

@@ -38,7 +38,6 @@
     <Compile Include="AzureSyncHandler.cs" />
     <Compile Include="Enums\BinaryTypes.cs" />
     <Compile Include="Enums\AuthTypes.cs" />
-    <Compile Include="APIResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\AccountItem.cs" />
     <Compile Include="Models\BeerItem.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Models\BeerInfo.cs" />
     <Compile Include="Models\DataConverter.cs" />
     <Compile Include="Models\Labels.cs" />
+    <Compile Include="APIResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

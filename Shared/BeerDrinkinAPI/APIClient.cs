@@ -133,7 +133,7 @@ namespace BeerDrinkin.API
 
                 try
                 {
-                    results = await serviceClient.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
+                    results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Search", HttpMethod.Get, parameters);
                     if (results != null && results.Any())
                     {                      
                         //sync db to update new beers && styles

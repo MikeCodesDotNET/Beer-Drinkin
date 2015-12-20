@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-#if !CLIENT
-using Microsoft.WindowsAzure.Mobile.Service;
-#endif
-namespace BeerDrinkin.Service.DataObjects
+namespace BeerDrinkin.Models
 {
     public class BeerItem:EntityData
     {
@@ -19,7 +16,7 @@ namespace BeerDrinkin.Service.DataObjects
         public int RateBeerId {get; set;}
 
         public Labels Labels {get; set;}
-        public int ViewCount {get; set;}
+
 
         #if CLIENT
         [IgnoreDataMember]
