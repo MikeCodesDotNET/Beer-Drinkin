@@ -1,4 +1,6 @@
 # BeerDrinkin
+<img src="https://raw.githubusercontent.com/MikeCodesDotNet/BeerDrinkin/master/Mobile/iOS/Resources/BeerDrinkin.png" width=125">
+ 
 .NET Beer tracking app for iOS, Android and Windows Phone backed by Azure
 
 BeerDrinkin is a cloud-enabled, C# powered Beer tracking app built using Xamarin and Windows Azure. It is designed to showcase both Xamarin's cross-platform capability and the magic of using Azure Mobile Services. The project is still actively being developed with a rich set of features being added on a regular basis. 
