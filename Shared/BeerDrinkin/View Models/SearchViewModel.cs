@@ -28,8 +28,7 @@ namespace BeerDrinkin.Core.ViewModels
                 //We're not connected to the internet so we need to search the current beers table instead. 
                 //var beers = Client.Instance.BeerDrinkinClient.SearchCacheAsync(searchTerm);
 
-            }
-          
+            }          
 
             //Track what beers people are searching for.
             if (Helpers.Settings.UserTrackingEnabled)

@@ -15,7 +15,7 @@ namespace BeerDrinkin.Service.DataObjects
         public string Brewery{get;set;}
         public string BreweryId { get; set;}
         public string StyleId{get;set;}
-        public string ABV { get; set; }
+        public double? ABV { get; set; }
         public string Upc { get; set;}
 
         public string ImageSmall {get; set;}

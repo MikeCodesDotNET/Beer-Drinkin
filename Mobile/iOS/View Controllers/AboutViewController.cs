@@ -25,10 +25,12 @@ namespace BeerDrinkin.iOS
             }
         }
 
+        /*
         partial void btnBack_Activated(UIBarButtonItem sender)
         {
             NavigationController.PopViewController(true);
         }
+        */
 
         [Export("tableView:didSelectRowAtIndexPath:")]
         public void RowSelected(UITableView tableView, NSIndexPath indexPath)

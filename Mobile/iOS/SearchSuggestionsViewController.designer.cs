@@ -11,12 +11,12 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("SearchViewController")]
-	partial class SearchViewController
+	[Register ("SearchSuggestionsViewController")]
+	partial class SearchSuggestionsViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView placeHolderTableView { get; set; }
+		UIButton btnCancel { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -24,29 +24,25 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView searchResultsTableView { get; set; }
+		UITableView tableView { get; set; }
 
-		[Outlet]
+		[Action ("BtnCancel_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView suggestionsTableView { get; set; }
+		partial void BtnCancel_TouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (placeHolderTableView != null) {
-				placeHolderTableView.Dispose ();
-				placeHolderTableView = null;
+			if (btnCancel != null) {
+				btnCancel.Dispose ();
+				btnCancel = null;
 			}
 			if (searchBar != null) {
 				searchBar.Dispose ();
 				searchBar = null;
 			}
-			if (searchResultsTableView != null) {
-				searchResultsTableView.Dispose ();
-				searchResultsTableView = null;
-			}
-			if (suggestionsTableView != null) {
-				suggestionsTableView.Dispose ();
-				suggestionsTableView = null;
+			if (tableView != null) {
+				tableView.Dispose ();
+				tableView = null;
 			}
 		}
 	}

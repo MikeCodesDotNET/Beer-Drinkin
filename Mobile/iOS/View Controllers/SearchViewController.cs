@@ -1,20 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-using CoreGraphics;
 using Foundation;
 using UIKit;
 
 using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.Core.Services;
-
 using BeerDrinkin.Service.DataObjects;
 
 using Acr.UserDialogs;
 using Awesomizer;
 using Xamarin;
 using System.Threading.Tasks;
+using Microsoft.Azure.Search;
+using Microsoft.Azure.Search.Models;
+using BeerDrinkin.iOS.DataSources;
+using BeerDrinkin.Models;
+using System.Linq;
 
 namespace BeerDrinkin.iOS
 {
@@ -23,6 +25,9 @@ namespace BeerDrinkin.iOS
         #region Fields
         private readonly SearchViewModel viewModel = new SearchViewModel();
         private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
+        private SearchServiceClient serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials(Core.Helpers.Keys.AzureSearchKey));
+        private SearchIndexClient indexClient;
+        private BeerItem selectedBeer;
         #endregion
 
         #region Constructor
@@ -33,26 +38,27 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Overrides
-        public override void ViewWillAppear(bool animated)
+        public override void ViewDidLoad()
         {
-            base.ViewWillAppear(animated);
+            base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
             SetupEvents(); 
 
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-                RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);
+                RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);           
         }
             
+
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
+        {            
             if (segue.Identifier != "beerDescriptionSegue")
                 return;
-            
-            var index = tableView.IndexPathForSelectedRow.Row;
-            var selectedBeer = viewModel.Beers[index];
-
+            /*
+            var index = placeHolderTableView.IndexPathForSelectedRow.Row;
+            selectedBeer = selectedBeer ?? viewModel.Beers[index];
+*/
             selectedBeer.Upc = barcodeLookupService.UPC;
             selectedBeer.RateBeerId = barcodeLookupService.RateBeerID;
 
@@ -62,30 +68,86 @@ namespace BeerDrinkin.iOS
 
             beerDescriptoinViewController.EnableCheckIn = true;
             beerDescriptoinViewController.SetBeer(selectedBeer);
+
+            selectedBeer = null;
         }
+
 
         #endregion
 
-        private void SetupUI()
+        private void SetupUI() 
         {
             Title = BeerDrinkin.Core.Helpers.Strings.Search_Title;
+            searchBar.Layer.BorderWidth = 1;
+            searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
+
+            serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials(Core.Helpers.Keys.AzureSearchKey));
+            indexClient = serviceClient.Indexes.GetClient("beers");
+
+            View.AddSubview(suggestionsTableView);
+
+            var dataSource = new DataSources.SearchPlaceholderDataSource();
+            placeHolderTableView.Source = dataSource;
+            placeHolderTableView.ReloadData();
+
+            placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
+            placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
+            placeHolderTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+
+            View.BringSubviewToFront(placeHolderTableView);
+
+            searchBar.TextChanged += async delegate
+            {
+                if(searchBar.Text != "")
+                {
+                    View.BringSubviewToFront(suggestionsTableView);
+
+                    var suggestParameters = new SuggestParameters();
+                    suggestParameters.UseFuzzyMatching = true;
+                    suggestParameters.Top = 25;
+                    suggestParameters.HighlightPreTag = "[";
+                    suggestParameters.HighlightPostTag = "]";
+                    suggestParameters.MinimumCoverage = 100;
+                                               
+                    var response = await indexClient.Documents.SuggestAsync<IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
+                    var results = new List<string>();
+                    foreach(var r in response)
+                    {
+                        results.Add(r.Text);
+                    }
+
+                    var suggestionSource = new SearchSuggestionDataSource(results); 
+                    suggestionSource.SelectedRow += async (int index) =>
+                    {
+                        searchBar.Text = response.Results[index].Document.Name;
+                        SearchForBeers(this, null);
+                    };
+                    suggestionsTableView.Source = suggestionSource;
+                    suggestionsTableView.ReloadData();
+                }
+                else
+                {
+                    View.BringSubviewToFront(placeHolderTableView);
+                }
+            };
+
         }
 
         private void SetupEvents()
         {
-            searchBar.TextChanged += SearchBarTextChanged;           
+            
+           // searchBar.TextChanged += SearchBarTextChanged;           
 
             searchBar.SearchButtonClicked += SearchForBeers;
 
-            searchBar.BarcodeButtonClicked += async () => await ScanBarcode();
+           // searchBar.BarcodeButtonClicked += async () => await ScanBarcode();
 
             viewModel.Beers.CollectionChanged += delegate
             {
-                DisplayBeers(viewModel.Beers.ToList());
-
                 UserDialogs.Instance.HideLoading();
                 searchBar.ResignFirstResponder();
             };
+            
         }
             
         private async Task ScanBarcode()
@@ -98,12 +160,9 @@ namespace BeerDrinkin.iOS
                 if(string.IsNullOrEmpty(barcodeResult.Text))
                     return;
 
-                //UserDialogs.Instance.Loading("Core.Helpers.Strings.Search_SearchingDatabase");
                 var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
-
                 if(Beers != null)
                 {
-                    DisplayBeers(Beers);
                 }
             }
             catch (Exception ex)
@@ -122,13 +181,13 @@ namespace BeerDrinkin.iOS
             DataSource.DidSelectBeer += delegate
             {
                 PerformSegue("beerDescriptionSegue", this);
-                tableView.DeselectRow(tableView.IndexPathForSelectedRow, true);
+                    placeHolderTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
             };
 
-            tableView.Source = DataSource;
-            tableView.ReloadData();
+            placeHolderTableView.Source = DataSource;
+            placeHolderTableView.ReloadData();
 
-            View.BringSubviewToFront(tableView);
+            View.BringSubviewToFront(placeHolderTableView);
             UserDialogs.Instance.HideLoading();
         }
 
@@ -136,7 +195,7 @@ namespace BeerDrinkin.iOS
         private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
             barcodeLookupService.ForgetLastSearch();
-
+            /*
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
 
@@ -144,14 +203,60 @@ namespace BeerDrinkin.iOS
             View.SendSubviewToBack(tableView);
             tableView.Source = new SearchDataSource(new List<BeerItem>());
             tableView.ReloadData();
+
+            */
         }
 
         private async void SearchForBeers (object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading("Searching");
-            await viewModel.SearchForBeersCommand(searchBar.Text);
-        } 
-       
+            var response = await indexClient.Documents.SearchAsync<IndexedBeer>(searchBar.Text);             
+            var beers = new List<BeerItem>();
+            foreach(var result in response)
+            {
+                var beerResult = result.Document; 
+                if (beerResult != null)
+                {
+                    var beer = new BeerItem
+                    {
+                      ABV = beerResult.Abv,
+                            Name = beerResult.Name,
+                            Brewery = beerResult.BreweryName,
+                            Description = beerResult.Description,
+                            Id = beerResult.Id,
+                            BreweryId = beerResult.BreweryId,
+                            Upc = beerResult.Upc
+                        };
+                    try
+                    {
+                        if(beerResult.Images != null || beerResult.Images[0] != null)
+                        {
+                            beer.ImageLarge = beerResult.Images[0];
+                            beer.ImageMedium = beerResult.Images[1];
+                            beer.ImageSmall = beerResult.Images[2];
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Insights.Report(ex);
+                    }
+                    beers.Add(beer);
+                }
+            }
+            var source = new SearchDataSource(beers);
+            source.DidSelectBeer += (beer) => 
+            {
+                selectedBeer = beer;
+                PerformSegue("beerDescriptionSegue", this);
+                searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
+            };
+            
+            searchResultsTableView.Source = source;
+            searchResultsTableView.ReloadData();
+            View.BringSubviewToFront(searchResultsTableView);
+            UserDialogs.Instance.HideLoading();
+        }       
+           
         #endregion
 
         #region Properties
@@ -161,11 +266,10 @@ namespace BeerDrinkin.iOS
         {
             get
             {
-                return tableView;
+                return placeHolderTableView;
             }
         }
 
-        #endregion
-
+       #endregion
     }
 }

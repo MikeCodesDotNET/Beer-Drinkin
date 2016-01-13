@@ -7,7 +7,7 @@ using Color = BeerDrinkin.Helpers.Colours;
 
 namespace BeerDrinkin.iOS
 {
-    partial class SearchBeerTableViewCell : SWTableViewCell.SWTableViewCell
+    partial class SearchBeerTableViewCell : UITableViewCell
     {
         private bool checkedIn;
 
@@ -64,8 +64,7 @@ namespace BeerDrinkin.iOS
             imgLabel.Layer.BorderWidth = 0.8f;
             imgLabel.Layer.MasksToBounds = true;
 
-            imgTick.Alpha = 0f;
-            ShowRightUtilityButtons(false);
+            //ShowRightUtilityButtons(false);
         }
     }
 }

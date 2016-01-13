@@ -16,10 +16,6 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnBack { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIButton btnTermsAndConditions { get; set; }
 
 		[Outlet]
@@ -42,16 +38,8 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tableView { get; set; }
 
-		[Action ("btnBack_Activated:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnBack_Activated (UIBarButtonItem sender);
-
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnBack != null) {
-				btnBack.Dispose ();
-				btnBack = null;
-			}
 			if (btnTermsAndConditions != null) {
 				btnTermsAndConditions.Dispose ();
 				btnTermsAndConditions = null;

@@ -28,6 +28,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -61,7 +62,6 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
@@ -70,8 +70,6 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <CodesignProvision>1772ce60-5bb2-4270-88e4-394dafda871c</CodesignProvision>
-    <MtouchI18n>
-    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -188,6 +186,30 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.2.0.0\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="RZTransitions">
+      <HintPath>..\..\Components\RZTransitions-1.2.0.0\lib\ios-unified\RZTransitions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Hyak.Common">
+      <HintPath>..\..\packages\Hyak.Common.1.0.2\lib\portable-net403+win+wpa81\Hyak.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Common">
+      <HintPath>..\..\packages\Microsoft.Azure.Common.2.0.4\lib\portable-net45+wp8+wpa81+win\Microsoft.Azure.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Spatial">
+      <HintPath>..\..\packages\Microsoft.Spatial.6.10.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Search">
+      <HintPath>..\..\packages\Microsoft.Azure.Search.0.13.0-preview\lib\portable-net45+wp8+wpa81+win\Microsoft.Azure.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="AMViralSwitch">
+      <HintPath>..\..\Components\AMViralSwitch-1.0.0.0\lib\ios-unified\AMViralSwitch.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -369,13 +391,52 @@
     <Compile Include="Storyboards\BeerHeaderImageCell.designer.cs">
       <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchSuggestionsViewController.cs" />
+    <Compile Include="SearchSuggestionsViewController.designer.cs">
+      <DependentUpon>SearchSuggestionsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="recentSearches.cs" />
+    <Compile Include="recentSearches.designer.cs">
+      <DependentUpon>recentSearches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="trendingSearches.cs" />
+    <Compile Include="trendingSearches.designer.cs">
+      <DependentUpon>trendingSearches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
+    <Compile Include="RecentSearchesTableViewCell.cs" />
+    <Compile Include="RecentSearchesTableViewCell.designer.cs">
+      <DependentUpon>RecentSearchesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrendingSearchesTableViewCell.cs" />
+    <Compile Include="TrendingSearchesTableViewCell.designer.cs">
+      <DependentUpon>TrendingSearchesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchHeaderViewCell.cs" />
+    <Compile Include="SearchHeaderViewCell.designer.cs">
+      <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NoRecentSearchesViewCell.cs" />
+    <Compile Include="NoRecentSearchesViewCell.designer.cs">
+      <DependentUpon>NoRecentSearchesViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
+    <Compile Include="BarcodeSearchTableViewCell.cs" />
+    <Compile Include="BarcodeSearchTableViewCell.designer.cs">
+      <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalyticsViewController.cs" />
+    <Compile Include="AnalyticsViewController.designer.cs">
+      <DependentUpon>AnalyticsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
+    <Compile Include="IndexedBeer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
     <BundleResource Include="Resources\BeerDrinkin.png" />
-    <BundleResource Include="Resources\Bg.png" />
     <BundleResource Include="Resources\957-beer-mug.png" />
     <BundleResource Include="Resources\957-beer-mug%402x.png" />
     <BundleResource Include="Resources\957-beer-mug%403x.png" />
@@ -385,33 +446,12 @@
     <BundleResource Include="Resources\769-male.png" />
     <BundleResource Include="Resources\769-male%402x.png" />
     <BundleResource Include="Resources\769-male%403x.png" />
-    <BundleResource Include="Resources\menu.png" />
-    <BundleResource Include="Resources\menu%402x.png" />
-    <BundleResource Include="Resources\menu%403x.png" />
-    <BundleResource Include="Resources\create.png" />
-    <BundleResource Include="Resources\create%402x.png" />
-    <BundleResource Include="Resources\create%403x.png" />
-    <BundleResource Include="Resources\edit.png" />
-    <BundleResource Include="Resources\edit%402x.png" />
-    <BundleResource Include="Resources\edit%403x.png" />
-    <BundleResource Include="Resources\logout.png" />
-    <BundleResource Include="Resources\logout%402x.png" />
-    <BundleResource Include="Resources\logout%403x.png" />
     <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\back%402x.png" />
     <BundleResource Include="Resources\back%403x.png" />
-    <BundleResource Include="Resources\add.png" />
-    <BundleResource Include="Resources\add%402x.png" />
-    <BundleResource Include="Resources\add%403x.png" />
-    <BundleResource Include="Resources\more.png" />
-    <BundleResource Include="Resources\more%402x.png" />
-    <BundleResource Include="Resources\more%403x.png" />
     <BundleResource Include="Resources\740-gear.png" />
     <BundleResource Include="Resources\740-gear%402x.png" />
     <BundleResource Include="Resources\740-gear%403x.png" />
-    <BundleResource Include="Resources\BackgroundPattern%402x.png" />
-    <BundleResource Include="Resources\BackgroundPattern%403x.png" />
-    <BundleResource Include="Resources\BackgroundPattern.png" />
     <BundleResource Include="Resources\emptyStar.png" />
     <BundleResource Include="Resources\filledStar.png" />
     <BundleResource Include="Resources\713-refresh-1.png" />
@@ -424,25 +464,6 @@
     <BundleResource Include="Resources\711-trash.png" />
     <BundleResource Include="Resources\711-trash%402x.png" />
     <BundleResource Include="Resources\711-trash%403x.png" />
-    <BundleResource Include="Resources\Camera.png" />
-    <BundleResource Include="Resources\Camera%402x.png" />
-    <BundleResource Include="Resources\Camera%403x.png" />
-    <BundleResource Include="Resources\Heart%401x.png" />
-    <BundleResource Include="Resources\Heart%402x.png" />
-    <BundleResource Include="Resources\Heart%403x.png" />
-    <BundleResource Include="Resources\Minus.png" />
-    <BundleResource Include="Resources\Minus%402x.png" />
-    <BundleResource Include="Resources\Minus%403x.png" />
-    <BundleResource Include="Resources\Pencil.png" />
-    <BundleResource Include="Resources\Pencil%402x.png" />
-    <BundleResource Include="Resources\Pencil%403x.png" />
-    <BundleResource Include="Resources\Plus.png" />
-    <BundleResource Include="Resources\Plus%402x.png" />
-    <BundleResource Include="Resources\Plus%403x.png" />
-    <BundleResource Include="Resources\Share.png" />
-    <BundleResource Include="Resources\Share%402x.png" />
-    <BundleResource Include="Resources\Share%403x.png" />
-    <BundleResource Include="Resources\Photo Button.png" />
     <BundleResource Include="Resources\ReleaseNotes.html" />
     <BundleResource Include="Resources\702-share.png" />
     <BundleResource Include="Resources\702-share%402x.png" />
@@ -450,22 +471,15 @@
     <BundleResource Include="Resources\856-lightning-bolt.png" />
     <BundleResource Include="Resources\856-lightning-bolt%402x.png" />
     <BundleResource Include="Resources\856-lightning-bolt%403x.png" />
-    <BundleResource Include="Resources\flashOff.png" />
-    <BundleResource Include="Resources\flashOn.png" />
     <BundleResource Include="Resources\BeerLight.png" />
-    <BundleResource Include="Resources\shakeToDiscover.png" />
     <BundleResource Include="Resources\locationPin.png" />
     <BundleResource Include="Resources\Map.png" />
     <BundleResource Include="Resources\Entitlements.plist" />
     <BundleResource Include="Resources\camera-flash.png" />
     <BundleResource Include="Resources\camera-flash%402x.png" />
-    <BundleResource Include="Resources\camera-switch.png" />
-    <BundleResource Include="Resources\camera-switch%402x.png" />
-    <BundleResource Include="Resources\TestTube.png" />
     <BundleResource Include="Resources\Tick.png" />
     <BundleResource Include="Resources\Barcode.png" />
     <BundleResource Include="Resources\Arrows-Left-icon.png" />
-    <BundleResource Include="Resources\oie_transparent-20.png" />
     <BundleResource Include="Resources\BlueTick.png" />
     <BundleResource Include="Resources\goolgeButton.png" />
     <BundleResource Include="Resources\BeerBottle_Selected.png" />
@@ -489,6 +503,16 @@
     <BundleResource Include="Resources\tabbar_wishlist.png" />
     <BundleResource Include="Resources\tabbar_wishlist%402x.png" />
     <BundleResource Include="Resources\tabbar_wishlist%403x.png" />
+    <BundleResource Include="Resources\Analytics.png" />
+    <BundleResource Include="Resources\search_barcode.png" />
+    <BundleResource Include="Resources\search_placeholder_beer.png" />
+    <BundleResource Include="Resources\analytics_bug_blue.png" />
+    <BundleResource Include="Resources\analytics_bug_white.png" />
+    <BundleResource Include="Resources\analytics_time_blue.png" />
+    <BundleResource Include="Resources\analytics_time_white.png" />
+    <BundleResource Include="Resources\search_filter.png" />
+    <BundleResource Include="Resources\search_filter%402x.png" />
+    <BundleResource Include="Resources\search_filter%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />
@@ -530,6 +554,14 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="zxing.net.mobile">
       <Version>1.5.1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="RZTransitions">
+      <Version>1.2.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="AMViralSwitch">
+      <Version>1.0.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

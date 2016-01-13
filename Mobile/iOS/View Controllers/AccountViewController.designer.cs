@@ -16,27 +16,11 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnAvatar { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIBarButtonItem btnSettings { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView imgAvatar { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgRepeatingImage { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblBeerCount { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblName { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -46,36 +30,12 @@ namespace BeerDrinkin.iOS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblRatingCount { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView parallaxScrollView { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UICollectionView photoCollection { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView placeHolderView { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
-
-		[Action ("btnAvatar_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnAvatar_TouchUpInside (UIButton sender);
-
 		[Action ("BtnSettings_Activated:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void BtnSettings_Activated (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnAvatar != null) {
-				btnAvatar.Dispose ();
-				btnAvatar = null;
-			}
 			if (btnSettings != null) {
 				btnSettings.Dispose ();
 				btnSettings = null;
@@ -84,18 +44,6 @@ namespace BeerDrinkin.iOS
 				imgAvatar.Dispose ();
 				imgAvatar = null;
 			}
-			if (imgRepeatingImage != null) {
-				imgRepeatingImage.Dispose ();
-				imgRepeatingImage = null;
-			}
-			if (lblBeerCount != null) {
-				lblBeerCount.Dispose ();
-				lblBeerCount = null;
-			}
-			if (lblName != null) {
-				lblName.Dispose ();
-				lblName = null;
-			}
 			if (lblPhotoCount != null) {
 				lblPhotoCount.Dispose ();
 				lblPhotoCount = null;
@@ -103,22 +51,6 @@ namespace BeerDrinkin.iOS
 			if (lblRatingCount != null) {
 				lblRatingCount.Dispose ();
 				lblRatingCount = null;
-			}
-			if (parallaxScrollView != null) {
-				parallaxScrollView.Dispose ();
-				parallaxScrollView = null;
-			}
-			if (photoCollection != null) {
-				photoCollection.Dispose ();
-				photoCollection = null;
-			}
-			if (placeHolderView != null) {
-				placeHolderView.Dispose ();
-				placeHolderView = null;
-			}
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
 			}
 		}
 	}

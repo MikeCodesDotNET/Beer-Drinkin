@@ -126,29 +126,57 @@ namespace BeerDrinkin.API
 
             //are we in?
             var results = new List<BeerItem>();
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("keyword", keyword);
 
-                var parameters = new Dictionary<string, string>();
+            try
+            {
+                results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Search", HttpMethod.Get, parameters);
+                if (results != null && results.Any())
+                {                      
+                    //sync db to update new beers && styles
+                    await SyncAsync<BeerItem>("allUsers");
+                    await SyncAsync(table, "allUsers");
 
-                parameters.Add("keyword", keyword);
-
-                try
-                {
-                    results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Search", HttpMethod.Get, parameters);
-                    if (results != null && results.Any())
-                    {                      
-                        //sync db to update new beers && styles
-                        await SyncAsync<BeerItem>("allUsers");
-                        await SyncAsync(table, "allUsers");
-
-                        return new APIResponse<List<BeerItem>>(results, null);
-                    }
-                    return new APIResponse<List<BeerItem>>(results, new Exception("No results found"));
+                    return new APIResponse<List<BeerItem>>(results, null);
                 }
-                catch (Exception ex)
-                {
-                    return new APIResponse<List<BeerItem>>(results, ex);
-                }
+                return new APIResponse<List<BeerItem>>(results, new Exception("No results found"));
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerItem>>(results, ex);
+            }
+        }
 
+        public async Task<APIResponse<List<BeerItem>>> SuggestBeerAsync(string keyword)
+        {
+            var table = serviceClient.GetSyncTable<BeerStyle>();
+            var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
+
+            keyword = keyword.ToLowerInvariant();
+
+            //are we in?
+            var results = new List<BeerItem>();
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("keyword", keyword);
+
+            try
+            {
+                results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Suggest", HttpMethod.Get, parameters);
+                if (results != null && results.Any())
+                {                      
+                    //sync db to update new beers && styles
+                    await SyncAsync<BeerItem>("allUsers");
+                    await SyncAsync(table, "allUsers");
+
+                    return new APIResponse<List<BeerItem>>(results, null);
+                }
+                return new APIResponse<List<BeerItem>>(results, new Exception("No results found"));
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerItem>>(results, ex);
+            }
         }
 
         public async Task<APIResponse<List<BeerItem>>> LookupUpcAsync(string upc)

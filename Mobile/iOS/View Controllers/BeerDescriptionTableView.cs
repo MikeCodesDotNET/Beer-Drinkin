@@ -175,21 +175,7 @@ namespace BeerDrinkin.iOS
 
         void StartInsightsTracking()
         {
-            if (BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-            {
-                trackerHandle = Insights.TrackTime("Time Viewing BeerDescription");
-                trackerHandle.Start();
-                Insights.Track("Beer Description Loaded", new Dictionary<string, string> {
-                    {
-                        "Beer Name",
-                        beer.Name
-                    },
-                    {
-                        "Beer Id",
-                        beer.Id
-                    }
-                });
-            }
+            
         }
 
         #region AddCells
@@ -201,7 +187,7 @@ namespace BeerDrinkin.iOS
                              new BeerHeaderCell(headerCellIdentifier);
             headerCell.Name = beer?.Name;
             headerCell.Brewery = beer?.Brewery;
-            headerCell.Abv = beer?.ABV;
+            headerCell.Abv = beer.ABV.ToString();
 
             headerCell.ConsumedAlpha = 0.3f;
             headerCell.RatingAlpha = 0.3f;
