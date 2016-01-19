@@ -131,7 +131,7 @@ namespace BeerDrinkin.iOS
 
             if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
             {
-                var account = Client.Instance.BeerDrinkinClient.CurrentAccount;
+                var account = await Client.Instance.BeerDrinkinClient.CurrentUser;
                 var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
                 DateTime today = DateTime.Today;
                 int age = today.Year - dateOfBirth.Year;

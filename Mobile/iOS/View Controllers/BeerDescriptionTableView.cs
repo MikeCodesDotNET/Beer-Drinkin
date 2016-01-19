@@ -44,7 +44,6 @@ namespace BeerDrinkin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            StartInsightsTracking();
 
             //TODO make title case on the server...
             Title = new CultureInfo("en-US").TextInfo.ToTitleCase(beer.Name);
@@ -90,13 +89,13 @@ namespace BeerDrinkin.iOS
                 TabBarController.TabBar.Hidden = false;
 
             tableView.ReloadData();
-        
         }
 
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
             headerView.Frame = new CGRect(headerView.Frame.Location, new CGSize(tableView.Frame.Width, headerView.Frame.Height));
+            View.SetNeedsDisplay();
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -135,7 +134,7 @@ namespace BeerDrinkin.iOS
 
         partial void BtnCheckIn_TouchUpInside(UIButton sender)
         {
-            if(BeerDrinkin.Client.Instance.BeerDrinkinClient.CurrentAccount != null)
+            if(Client.Instance.BeerDrinkinClient.CurrentUser != null)
             {
                 
             }
@@ -171,11 +170,6 @@ namespace BeerDrinkin.iOS
                 headerRect.Size = new CGSize(headerRect.Size.Width, -tableView.ContentOffset.Y);
             }
             headerView.Frame = headerRect;
-        }
-
-        void StartInsightsTracking()
-        {
-            
         }
 
         #region AddCells

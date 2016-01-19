@@ -42,7 +42,7 @@ namespace BeerDrinkin.iOS
             imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
 
             SetupBindings();
-            viewModel.FetchData();
+            viewModel.Reload();
         }
 
         bool isFirstRun = true;
@@ -51,7 +51,7 @@ namespace BeerDrinkin.iOS
             base.ViewDidAppear(animated);
 
             NavigationController.NavigationBar.BarTintColor = Color.Blue.ToNative();
-            await viewModel.FetchData();
+            await viewModel.Reload();
 
             if(isFirstRun)
                 imgAvatar.Pop(0.7f, 0, 0.2f);

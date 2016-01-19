@@ -89,10 +89,12 @@ namespace BeerDrinkin.iOS
             var dataSource = new DataSources.SearchPlaceholderDataSource();
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
-
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
             placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
             placeHolderTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+            placeHolderTableView.ScrollsToTop = true;
+
+            searchResultsTableView.ScrollsToTop = true;
 
             View.BringSubviewToFront(placeHolderTableView);
 
@@ -194,7 +196,6 @@ namespace BeerDrinkin.iOS
         #region UI Control Event Handlers
         private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
-            barcodeLookupService.ForgetLastSearch();
             /*
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
