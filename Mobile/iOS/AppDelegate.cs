@@ -7,92 +7,108 @@ using UIKit;
 using Xamarin;
 using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
+using JudoDotNetXamarin;
+using JudoPayDotNet.Enums;
 
 namespace BeerDrinkin.iOS
 {
-    [Register("AppDelegate")]
+    [Register ("AppDelegate")]
     partial class AppDelegate : UIApplicationDelegate
     {
         public override UIWindow Window { get; set; }
 
         #region Overrides
 
-        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+        public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {          
-            SetupGlobalAppearances();
-
+            SetupGlobalAppearances ();
+            ConfigureJudoPayments ();
             //Xamarin Insights
             Insights.HasPendingCrashReport += PurgeCrashReports;
-            Insights.Initialize(Keys.XamarinInsightsKey);
+            Insights.Initialize (Keys.XamarinInsightsKey);
 
             #if DEBUG
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
-            Calabash.Start();
+            Calabash.Start ();
             #endif
 
             //Windows Azure
-            CurrentPlatform.Init();
-            SQLitePCL.CurrentPlatform.Init();
-            Client.Instance.BeerDrinkinClient.InitializeStoreAsync(SqlDbLocation);
+            CurrentPlatform.Init ();
+            SQLitePCL.CurrentPlatform.Init ();
+            Client.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
            
             return true;
         }
 
-        public override bool WillFinishLaunching(UIApplication application, NSDictionary launchOptions)
+        void ConfigureJudoPayments ()
         {
-            UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+            var configInstance = JudoConfiguration.Instance;
+
+            //setting for Sandnox
+            configInstance.Environment = JudoEnvironment.Live;
+
+            configInstance.ApiToken = "MzEtkQK1bHi8v8qy";
+            configInstance.ApiSecret = "c158b4997dfc7595a149a20852f7af2ea2e70bd2df794b8bdbc019cc5f799aa1";
+            configInstance.JudoId = "100915867";
+        }
+
+        public override bool WillFinishLaunching (UIApplication application, NSDictionary launchOptions)
+        {
+            UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
             return true;
         }
 
-        public override bool ContinueUserActivity(UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
+        public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
         {          
             //TODO Complete loading the beer - This is part of iOS 9 integration.
             var userInfo = userActivity.UserInfo;
-            var beerID = userInfo.ValueForKey(new NSString("kCSSearchableItemActivityIdentifier"));
-            Console.WriteLine(beerID);
+            var beerID = userInfo.ValueForKey (new NSString ("kCSSearchableItemActivityIdentifier"));
+            Console.WriteLine (beerID);
 
-            Window.RestoreUserActivityState(userActivity);
+            Window.RestoreUserActivityState (userActivity);
 
             return true;
         }
 
         #endregion
 
-        static void PurgeCrashReports(object sender, bool isStartupCrash)
+        static void PurgeCrashReports (object sender, bool isStartupCrash)
         {
-            if (isStartupCrash)
-            {
-                Insights.PurgePendingCrashReports().Wait();
+            if (isStartupCrash) {
+                Insights.PurgePendingCrashReports ().Wait ();
             } 
         }
 
-        static void SetupGlobalAppearances()
+        static void SetupGlobalAppearances ()
         {
             //NavigationBar
-            UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
-            UINavigationBar.Appearance.TintColor = Color.White.ToNative();
+            UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative ();
+            UINavigationBar.Appearance.TintColor = Color.White.ToNative ();
           
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Medium", 17f), TextColor = Color.White.ToNative() });
+            UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes {
+                Font = UIFont.FromName ("Avenir-Medium", 17f),
+                TextColor = Color.White.ToNative ()
+            });
             //NavigationBar Buttons 
-            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Medium", 17f), TextColor = Color.White.ToNative() }, UIControlState.Normal);
+            UIBarButtonItem.Appearance.SetTitleTextAttributes (new UITextAttributes {
+                Font = UIFont.FromName ("Avenir-Medium", 17f),
+                TextColor = Color.White.ToNative ()
+            }, UIControlState.Normal);
 
             //TabBar
-            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 10f) }, UIControlState.Normal);
+            UITabBarItem.Appearance.SetTitleTextAttributes (new UITextAttributes{ Font = UIFont.FromName ("Avenir-Book", 10f) }, UIControlState.Normal);
         }
 
-        static string SqlDbLocation
-        {
-            get
-            {
+        static string SqlDbLocation {
+            get {
                 const string filename = "beerdrinkin.db";
 
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var libraryPath = Path.Combine(Directory.GetParent(documentsPath).ToString(), "Library");
-                var path = Path.Combine(libraryPath, filename);
+                var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+                var libraryPath = Path.Combine (Directory.GetParent (documentsPath).ToString (), "Library");
+                var path = Path.Combine (libraryPath, filename);
 
-                if (!File.Exists(path))
-                {
-                    File.Create(path).Dispose();
+                if (!File.Exists (path)) {
+                    File.Create (path).Dispose ();
                 }
 
                 #if DEBUG
