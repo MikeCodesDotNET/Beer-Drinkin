@@ -530,6 +530,8 @@
     <BundleResource Include="Resources\search_filter.png" />
     <BundleResource Include="Resources\search_filter%402x.png" />
     <BundleResource Include="Resources\search_filter%403x.png" />
+    <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%402x.png" />
+    <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />

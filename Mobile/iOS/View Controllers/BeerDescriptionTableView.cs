@@ -38,12 +38,15 @@ namespace BeerDrinkin.iOS
         private JudoPaymentService _paymentService = new JudoPaymentService ();
         int BeerQuantity = 1;
 
+        private ClientService _clientService;
+
         #endregion
 
         #region Constructor
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
+            _clientService = new ClientService ();
         }
 
         #endregion
@@ -122,6 +125,18 @@ namespace BeerDrinkin.iOS
                 _paymentService.BuyBeer (beerModel);
             };
 
+            if (_clientService.ApplePayAvailable) {
+                applePayButton.TouchUpInside += delegate {
+                    BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
+                    beerModel.AddItem (beer, BeerQuantity);
+
+
+                    _paymentService.BuyBeerApplePay (beerModel);
+                };
+            } else {
+                applePayButton.Hidden = true;
+            }
+
         }
 
         public override void ViewDidAppear (bool animated)
@@ -137,7 +152,7 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLayoutSubviews ();
             headerView.Frame = new CGRect (headerView.Frame.Location, new CGSize (tableView.Frame.Width, headerView.Frame.Height));
-            View.SetNeedsDisplay();
+            View.SetNeedsDisplay ();
         }
 
         public override void ViewWillDisappear (bool animated)
@@ -176,8 +191,7 @@ namespace BeerDrinkin.iOS
 
         partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-            if(Client.Instance.BeerDrinkinClient.CurrentUser != null)
-                
+            if (Client.Instance.BeerDrinkinClient.CurrentUser != null) {
             } else {
                 var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
                 PresentModalViewController (welcomeViewController, true);
