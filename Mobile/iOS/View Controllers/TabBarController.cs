@@ -7,6 +7,7 @@ using Color = BeerDrinkin.Helpers.Colours;
 using Strings = BeerDrinkin.Core.Helpers.Strings;
 
 using Splat;
+using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS
 {
@@ -30,12 +31,13 @@ namespace BeerDrinkin.iOS
             
         #endregion
 
-        void SetupUI()
+        async Task SetupUI()
         {
+            var currentUser = await Client.Instance.BeerDrinkinClient.CurrentUser;
             TabBar.Items[0].Title = Strings.Tabs_MyBeers;
             TabBar.Items[1].Title = Strings.Tabs_WishList;
             TabBar.Items[2].Title = Strings.Tabs_Search;
-            TabBar.Items[3].Title = Client.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.Tabs_Profile : Client.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
+            TabBar.Items[3].Title = currentUser == null ? Strings.Tabs_Profile : currentUser.FirstName;
 
             TabBar.SelectedImageTintColor = Color.Blue.ToNative();
         }
