@@ -52,10 +52,6 @@ namespace BeerDrinkin.iOS
                 JudoSuccessCallback successCallback = SuccessPayment;
                 JudoFailureCallback failureCallback = FailurePayment;
 
-           
-                Judo.Instance.MakeApplePayment (GetApplePayViewModel (beerModel), successCallback, failureCallback);
-
-             
                 Judo.Instance.MakeApplePreAuth (GetApplePayViewModel (beerModel), successCallback, failureCallback);        
 
             }
@@ -65,7 +61,7 @@ namespace BeerDrinkin.iOS
         private ApplePayViewModel GetApplePayViewModel (BeerPaymentViewModel beerPaymentModel)
         {
                
-            var summaryItems = new PKPaymentSummaryItem[beerPaymentModel.BeerBasket.Count];
+            var summaryItems = new List<PKPaymentSummaryItem> ();
 
             foreach (KeyValuePair<BeerItem,int> item in beerPaymentModel.BeerBasket.ToList()) {
                 var summary = new  PKPaymentSummaryItem () {
@@ -73,6 +69,7 @@ namespace BeerDrinkin.iOS
                                         Label = item.Key.Name + @" X" + item.Value.ToString ()
 
                 };
+                summaryItems.Add (summary);
             }
                        
             var applePayment = new ApplePayViewModel {
@@ -84,14 +81,14 @@ namespace BeerDrinkin.iOS
                                         new NSString ("MasterCard"),
                                         new NSString ("Amex")
                 },
-                                SummaryItems = summaryItems,
+                                SummaryItems = summaryItems.ToArray (),
                                 TotalSummaryItem = new PKPaymentSummaryItem () {
                                         Amount = new NSDecimalNumber (beerPaymentModel.GetSubTotal ().ToString ()),
                                         Label = @"Beer Drinkin"
 
                 },
                                 ConsumerRef = new NSString (@"ImHereForTheBeer"),
-                                MerchantIdentifier = new NSString ("merchant.com.judo.Xamarin")
+                                MerchantIdentifier = new NSString ("merchant.com.mikejames.beerdrinkin")
             };
                        
             return applePayment;
