@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace BeerDrinkin
 {
-    public sealed class Client
+    public sealed class ClientManager
     {
-        static readonly Lazy<Client> lazy =
-            new Lazy<Client> (() => new Client ());
+        static readonly Lazy<ClientManager> lazy =
+            new Lazy<ClientManager> (() => new ClientManager ());
 
-        public static Client Instance { get { return lazy.Value; } }
+        public static ClientManager Instance { get { return lazy.Value; } }
 
-        Client ()
+        ClientManager ()
         {
             BeerDrinkinClient = new APIClient (Keys.ServiceUrl);
         }

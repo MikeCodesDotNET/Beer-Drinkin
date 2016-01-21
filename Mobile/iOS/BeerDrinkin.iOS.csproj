@@ -40,6 +40,9 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -210,6 +213,12 @@
     <Reference Include="AMViralSwitch">
       <HintPath>..\..\Components\AMViralSwitch-1.0.0.0\lib\ios-unified\AMViralSwitch.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\packages\FluentValidation.6.0.2.0\lib\portable-net45+wp80+win8+wpa81\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog">
+      <HintPath>..\..\packages\Serilog.1.5.12\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
+    </Reference>
     <Reference Include="JudoDotNetXamarin">
       <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamarin.dll</HintPath>
     </Reference>
@@ -222,12 +231,6 @@
     <Reference Include="JudoShieldXamarin">
       <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoShieldXamarin.dll</HintPath>
     </Reference>
-    <Reference Include="FluentValidation">
-      <HintPath>..\..\packages\FluentValidation.6.0.2.0\lib\portable-net45+wp80+win8+wpa81\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog">
-      <HintPath>..\..\packages\Serilog.1.5.12\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -237,6 +240,10 @@
     <ProjectReference Include="..\..\Shared\BeerDrinkin\BeerDrinkin.csproj">
       <Project>{70F2F312-0E9F-40B2-BA23-37F994708DAE}</Project>
       <Name>BeerDrinkin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\BeerDrinkinClient\BeerDrinkinClient.csproj">
+      <Project>{9675233D-18D0-4EBC-B1D4-CB8EBDD1FC84}</Project>
+      <Name>BeerDrinkinClient</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -449,6 +456,10 @@
     <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
     <Compile Include="IndexedBeer.cs" />
     <Compile Include="Service\JudoPaymentService.cs" />
+    <Compile Include="PurchaseTableViewCell.cs" />
+    <Compile Include="PurchaseTableViewCell.designer.cs">
+      <DependentUpon>PurchaseTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />

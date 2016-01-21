@@ -35,7 +35,7 @@ namespace BeerDrinkin.iOS
             TabBar.Items[0].Title = Strings.Tabs_MyBeers;
             TabBar.Items[1].Title = Strings.Tabs_WishList;
             TabBar.Items[2].Title = Strings.Tabs_Search;
-            TabBar.Items[3].Title = Client.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.Tabs_Profile : Client.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
+            TabBar.Items[3].Title = ClientManager.Instance.BeerDrinkinClient.CurrentAccount == null ? Strings.Tabs_Profile : ClientManager.Instance.BeerDrinkinClient.CurrentAccount.FirstName;
 
             TabBar.SelectedImageTintColor = Color.Blue.ToNative();
         }

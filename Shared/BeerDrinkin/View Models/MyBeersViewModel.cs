@@ -24,11 +24,11 @@ namespace BeerDrinkin.Core.ViewModels
 
             IsBusy = true;
 
-            if (Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser == null)
+            if (ClientManager.Instance.BeerDrinkinClient.CurrenMobileServicetUser == null)
                 return;
 
 
-            var usersBeersResponse = await Client.Instance.BeerDrinkinClient.GetBeerInfosByUserAsync();
+            var usersBeersResponse = await ClientManager.Instance.BeerDrinkinClient.GetBeerInfosByUserAsync();
 
             if (usersBeersResponse.Result.Count > 0)
             {

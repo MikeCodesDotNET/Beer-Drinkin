@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BeerDrinkin.Service.DataObjects;
 using System.Linq;
+using BeerDrinkin.Service.DataObjects;
 
 namespace BeerDrinkin
 {

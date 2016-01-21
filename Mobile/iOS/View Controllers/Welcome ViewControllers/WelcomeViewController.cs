@@ -89,7 +89,7 @@ namespace BeerDrinkin.iOS
                 View.FadeSubviewsOut(0.5, 0.2f);
                 await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
-                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+                await ClientManager.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
                 UserAuthenticiated();
             }
             catch
@@ -110,7 +110,7 @@ namespace BeerDrinkin.iOS
                 View.FadeSubviewsOut(0.5, 0.2f);
                 await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
-                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
+                await ClientManager.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
                 UserAuthenticiated();
             }
             catch
@@ -127,11 +127,11 @@ namespace BeerDrinkin.iOS
             var vc = Storyboard.InstantiateViewController("tabBarController");
             await PresentViewControllerAsync(vc, false);
 
-            await Client.Instance.BeerDrinkinClient.RefreshAll();
+            await ClientManager.Instance.BeerDrinkinClient.RefreshAll();
 
             if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
             {
-                var account = Client.Instance.BeerDrinkinClient.CurrentAccount;
+                var account = ClientManager.Instance.BeerDrinkinClient.CurrentAccount;
                 var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
                 DateTime today = DateTime.Today;
                 int age = today.Year - dateOfBirth.Year;

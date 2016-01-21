@@ -35,7 +35,7 @@ namespace BeerDrinkin.Core.Services
             UPC = upc; 
 
             //Search Azure
-            var azureResult = await Client.Instance.BeerDrinkinClient.LookupUpcAsync(upc);
+            var azureResult = await ClientManager.Instance.BeerDrinkinClient.LookupUpcAsync(upc);
             if (azureResult.Result != null)
             {
                 return azureResult.Result;
@@ -49,7 +49,7 @@ namespace BeerDrinkin.Core.Services
             {       
                 RateBeerID = rateBeerResponse.BeerID;
                 
-                azureResult = await Client.Instance.BeerDrinkinClient.SearchBeerAsync(rateBeerResponse.BeerName);
+                azureResult = await ClientManager.Instance.BeerDrinkinClient.SearchBeerAsync(rateBeerResponse.BeerName);
                 if(azureResult.Result != null)
                 {
                     return azureResult.Result;

@@ -137,5 +137,9 @@
       <Project>{AB1004CB-BECB-4EDD-979F-71B74C5C2539}</Project>
       <Name>BeerDrinkinAPI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkinClient\BeerDrinkinClient.csproj">
+      <Project>{9675233D-18D0-4EBC-B1D4-CB8EBDD1FC84}</Project>
+      <Name>BeerDrinkinClient</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

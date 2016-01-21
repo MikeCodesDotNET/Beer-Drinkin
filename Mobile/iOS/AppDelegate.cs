@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO;
+
 using BeerDrinkin.Core.Helpers;
+
 using Foundation;
-using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
-using Xamarin;
+
 using Color = BeerDrinkin.Helpers.Colours;
+using Microsoft.WindowsAzure.MobileServices;
 using Splat;
+using Xamarin;
+
 using JudoDotNetXamarin;
 using JudoPayDotNet.Enums;
 
@@ -21,8 +25,6 @@ namespace BeerDrinkin.iOS
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {          
-            SetupGlobalAppearances ();
-            ConfigureJudoPayments ();
             //Xamarin Insights
             Insights.HasPendingCrashReport += PurgeCrashReports;
             Insights.Initialize (Keys.XamarinInsightsKey);
@@ -35,8 +37,12 @@ namespace BeerDrinkin.iOS
             //Windows Azure
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
-            Client.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
-           
+
+            ClientManager.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
+
+            SetupGlobalAppearances();
+            ConfigureJudoPayments();
+
             return true;
         }
 

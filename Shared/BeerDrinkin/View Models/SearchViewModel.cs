@@ -34,7 +34,7 @@ namespace BeerDrinkin.Core.ViewModels
             if (Helpers.Settings.UserTrackingEnabled)
                 Insights.Track("Beer Database Searched", "Search term", searchTerm);
 
-            APIResponse<List<BeerItem>> results = await Client.Instance.BeerDrinkinClient.SearchBeerAsync(searchTerm);
+            APIResponse<List<BeerItem>> results = await ClientManager.Instance.BeerDrinkinClient.SearchBeerAsync(searchTerm);
 
             Beers.Clear();
 
@@ -54,7 +54,7 @@ namespace BeerDrinkin.Core.ViewModels
             {
                 Beer = beer,
                 BeerId = beer.Id,
-                CheckedInBy = Client.Instance.BeerDrinkinClient.GetUserId
+                    CheckedInBy = ClientManager.Instance.BeerDrinkinClient.GetUserId
             };
 
             var locator = CrossGeolocator.Current;
@@ -67,7 +67,7 @@ namespace BeerDrinkin.Core.ViewModels
                 checkin.Latitude = position.Latitude;
             }
 
-            var checkInResult = await Client.Instance.BeerDrinkinClient.CheckInBeerAsync(checkin);
+            var checkInResult = await ClientManager.Instance.BeerDrinkinClient.CheckInBeerAsync(checkin);
             if (!checkInResult.HasError)
                 return checkInResult.Result;
 

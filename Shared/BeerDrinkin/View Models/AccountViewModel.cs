@@ -52,7 +52,7 @@ namespace BeerDrinkin.Core.ViewModels
 
         void RefreshProperties()
         {
-            var user = Client.Instance.BeerDrinkinClient.CurrentAccount;
+            var user = ClientManager.Instance.BeerDrinkinClient.CurrentAccount;
 
             RatingsCount = headerInfo.Ratings.ToString();
             BeerCount = headerInfo.CheckIns.ToString();
@@ -88,7 +88,7 @@ namespace BeerDrinkin.Core.ViewModels
         async Task<List<string>> GetRemoteBeerPhotosUrls()
         {    
             //Fetch base64 strings for images for the currently signed in user. 
-            var response = await Client.Instance.BeerDrinkinClient.GetPhotosForUser();
+            var response = await ClientManager.Instance.BeerDrinkinClient.GetPhotosForUser();
 
             if (response.Error == null)
             {               
@@ -101,7 +101,7 @@ namespace BeerDrinkin.Core.ViewModels
         {
             HeaderInfo header;
 
-            var result = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(Client.Instance.BeerDrinkinClient.GetUserId);
+            var result = await ClientManager.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(ClientManager.Instance.BeerDrinkinClient.GetUserId);
             header = result.Result;
             //Store it for next time
 

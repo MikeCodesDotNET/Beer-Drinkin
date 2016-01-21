@@ -21,7 +21,7 @@ namespace BeerDrinkin.Core.ViewModels
         {
             Insights.Track("Feedback Provided", new Dictionary<string, string>
                 {
-                    { "User", Client.Instance.BeerDrinkinClient.CurrentAccount.Email },
+                    { "User", ClientManager.Instance.BeerDrinkinClient.CurrentAccount.Email },
                     { "UI Rating", UserInterfaceRating.ToString() },
                     { "Beer Selection", BeerSelectionRating.ToString() },
                     { "Comment", Feedback }
