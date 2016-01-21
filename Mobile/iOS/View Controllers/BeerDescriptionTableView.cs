@@ -91,7 +91,7 @@ namespace BeerDrinkin.iOS
             deleg.DidScroll += UpdateHeaderView;
             tableView.Delegate = deleg;
             tableView.RowHeight = UITableView.AutomaticDimension;
-            ;
+
             tableView.ReloadData ();
             View.SetNeedsDisplay ();
 

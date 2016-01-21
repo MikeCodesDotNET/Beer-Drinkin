@@ -8,6 +8,8 @@ using Foundation;
 using System.Collections.Generic;
 using System.Linq;
 using BeerDrinkin.Service.DataObjects;
+using CoreFoundation;
+using UIKit;
 
 namespace BeerDrinkin.iOS
 {
@@ -24,12 +26,30 @@ namespace BeerDrinkin.iOS
         private void SuccessPayment (PaymentReceiptModel receipt)
         {
 
+            Client.Instance.PaymentToken.CardToken = receipt.CardDetails.CardToken;
+            Client.Instance.PaymentToken.ConsumerToken = receipt.Consumer.ConsumerToken;
+            Client.Instance.PaymentToken.CardLastfour = receipt.CardDetails.CardLastfour;
+            Client.Instance.PaymentToken.CardType = (int)receipt.CardDetails.CardType;
+            DispatchQueue.MainQueue.DispatchAfter (DispatchTime.Now, () => {
+
+                // show receipt
+                ShowMessage ("Transaction Successful", "Receipt ID - " + receipt.ReceiptId);
+
+                // store token to further use
+            });
         }
+
 
         private void FailurePayment (JudoError error, PaymentReceiptModel receipt)
         {
                 
                             
+        }
+
+        private void ShowMessage (string title, string message, string btnText = "OK")
+        {
+            UIAlertView msgbox = new UIAlertView (title, message, null, btnText, null);
+            msgbox.Show ();
         }
 
         public void BuyBeer (BeerPaymentViewModel beerPaymentModel)
@@ -43,7 +63,23 @@ namespace BeerDrinkin.iOS
             };
             JudoSuccessCallback successCallback = SuccessPayment;
             JudoFailureCallback failureCallback = FailurePayment;
-            Judo.Instance.Payment (judoModel, successCallback, failureCallback);
+            if (String.IsNullOrEmpty (Client.Instance.PaymentToken.CardToken)) {
+                Judo.Instance.Payment (judoModel, successCallback, failureCallback);
+            } else {
+                TokenPaymentViewModel tokenModel = new TokenPaymentViewModel () {
+                    Amount = beerPaymentModel.GetSubTotal (),
+                    Currency = "GBP",
+                    ConsumerReference = "ImHereForTheBeer01",
+                    Token = Client.Instance.PaymentToken.CardToken,
+                    ConsumerToken = Client.Instance.PaymentToken.ConsumerToken,
+                    LastFour = Client.Instance.PaymentToken.CardLastfour,
+                    CardType = (CardType)Client.Instance.PaymentToken.CardType  
+                    
+                };
+                Judo.Instance.TokenPayment (tokenModel, successCallback, failureCallback);
+            }
+
+           
         }
 
         public void BuyBeerApplePay (BeerPaymentViewModel beerModel)
