@@ -8,51 +8,16 @@ namespace BeerDrinkin.Core.ViewModels
 {
     public class AccountViewModel : BaseViewModel
     {
-        HeaderInfo headerInfo;
-        HeaderInfo HeaderInfo
-        {
-            get
-            {
-                return headerInfo;
-            }
-            set
-            {    
-                SetProperty(ref headerInfo, value);
-                headerInfo = value;
-            }
-        }
-
-        List<string> beerPhotosUrls;
-        public List<string> BeerPhotosUrls
-        {
-            get
-            {                 
-                return beerPhotosUrls;
-            }
-            set
-            {
-                beerPhotosUrls = value;
-                SetProperty(ref beerPhotosUrls, value);
-            }
-        }
-
-        bool busy;
 
         public AccountViewModel()
         {
-            PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
-            {
-                if(e.PropertyName == "HeaderInfo")
-                {
-                    RefreshProperties();
-                }
-                System.Diagnostics.Debug.WriteLine(e.PropertyName);
-            };
         }
 
-        void RefreshProperties()
+        public async Task Reload()
         {
-            var user = ClientManager.Instance.BeerDrinkinClient.CurrentAccount;
+            var user = await Client.Instance.BeerDrinkinClient.Users.CurrentUser();
+            var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.Id);
+            var headerInfo = headerResult.Result;   
 
             RatingsCount = headerInfo.Ratings.ToString();
             BeerCount = headerInfo.CheckIns.ToString();
@@ -60,52 +25,6 @@ namespace BeerDrinkin.Core.ViewModels
             FirstName = user.FirstName;
             AvararUrl = user.AvatarUrl;
             FullName = string.Format("{0} {1}", user.FirstName, user.LastName);
-        }
-
-        public async Task FetchData(bool forceRemoteRefresh = false)
-        {   
-            //Are we already fetching data? 
-            if (busy == true)
-                return;
-            busy = true;
-
-            try
-            {
-                HeaderInfo = await GetRemoteHeaderInfo();
-                BeerPhotosUrls = await GetRemoteBeerPhotosUrls();
-
-            }
-            catch(Exception ex)
-            {
-                Xamarin.Insights.Report(ex);
-            }
-            finally
-            {
-                busy = false;
-            }
-        }
-
-        async Task<List<string>> GetRemoteBeerPhotosUrls()
-        {    
-            //Fetch base64 strings for images for the currently signed in user. 
-            var response = await ClientManager.Instance.BeerDrinkinClient.GetPhotosForUser();
-
-            if (response.Error == null)
-            {               
-                return response.Result;
-            }
-            return new List<string>();
-        }
-
-        async Task<HeaderInfo> GetRemoteHeaderInfo()
-        {
-            HeaderInfo header;
-
-            var result = await ClientManager.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(ClientManager.Instance.BeerDrinkinClient.GetUserId);
-            header = result.Result;
-            //Store it for next time
-
-            return header;
         }
 
         #region Properties 

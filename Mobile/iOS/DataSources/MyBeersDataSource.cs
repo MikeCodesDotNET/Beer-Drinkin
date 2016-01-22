@@ -32,7 +32,7 @@ namespace BeerDrinkin.iOS
 
         async void DeleteItem(string beerId)
         {
-            await ClientManager.Instance.BeerDrinkinClient.DeleteBeerCheckinsAsync(beerId);
+            await Client.Instance.BeerDrinkinClient.DeleteBeerCheckinsAsync(beerId);
         }
 
         #region Implemented abstract members of UITableViewSourceSink

@@ -1,26 +1,24 @@
 ﻿using System;
 using BeerDrinkin.API;
 using BeerDrinkin.Core.Helpers;
-using BeerDrinkin.Service.DataObjects;
-using Plugin.Connectivity;
-using Polly;
-using System.Threading.Tasks;
 
 namespace BeerDrinkin
 {
-    public sealed class ClientManager
+    public sealed class Client
     {
-        static readonly Lazy<ClientManager> lazy =
-            new Lazy<ClientManager> (() => new ClientManager ());
+        static readonly Lazy<Client> lazy = new Lazy<Client> (() => new Client ());
 
-        public static ClientManager Instance { get { return lazy.Value; } }
+        public static Client Instance { get { return lazy.Value; } }
 
-        ClientManager ()
+        Client ()
         {
             BeerDrinkinClient = new APIClient (Keys.ServiceUrl);
+            PaymentToken = new PaymentStorageToken ();
         }
 
         public APIClient BeerDrinkinClient;
+
+        public PaymentStorageToken PaymentToken{ get; set; }
     }
 }
 

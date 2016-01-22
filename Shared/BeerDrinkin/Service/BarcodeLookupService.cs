@@ -32,36 +32,7 @@ namespace BeerDrinkin.Core.Services
 
         public async Task<List<BeerItem>> SearchForBeer(string upc)
         {
-            UPC = upc; 
-
-            //Search Azure
-            var azureResult = await ClientManager.Instance.BeerDrinkinClient.LookupUpcAsync(upc);
-            if (azureResult.Result != null)
-            {
-                return azureResult.Result;
-            }
-
-            //Search RateBeer 
-            var rateBeerClient = new RateBeer.Client();
-            var rateBeerResponse = await rateBeerClient.SearchForBeer(UPC);
-
-            if(rateBeerResponse != null)
-            {       
-                RateBeerID = rateBeerResponse.BeerID;
-                
-                azureResult = await ClientManager.Instance.BeerDrinkinClient.SearchBeerAsync(rateBeerResponse.BeerName);
-                if(azureResult.Result != null)
-                {
-                    return azureResult.Result;
-                }
-            }
             return null;
-        }
-
-        public void ForgetLastSearch()
-        {
-            UPC = string.Empty;
-            RateBeerID = 0;
         }
     }
 }

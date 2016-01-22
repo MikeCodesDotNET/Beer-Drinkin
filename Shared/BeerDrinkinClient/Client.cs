@@ -10,15 +10,15 @@ using BeerDrinkin.Azure;
 
 namespace BeerDrinkin
 {
-    public class Client
+    public class AzureClient
     {
         public readonly string ServiceUrl;
-        public readonly MobileServiceClient AzureClient;
+        public readonly MobileServiceClient Client;
 
-        public Client(string serviceUrl)
+        public AzureClient(string serviceUrl)
         {
             ServiceUrl = serviceUrl;
-            AzureClient = new MobileServiceClient(serviceUrl);
+            Client = new MobileServiceClient(serviceUrl);
 
             //Resources
             User = new UserResource(this);
@@ -36,7 +36,7 @@ namespace BeerDrinkin
             store.DefineTable<BeerStyle>();
 
             //Use simple conflicts handler
-            await AzureClient.SyncContext.InitializeAsync(store, new AzureSyncHandler());
+            await Client.SyncContext.InitializeAsync(store, new AzureSyncHandler());
             await RefreshAll();
         }
 
@@ -44,7 +44,7 @@ namespace BeerDrinkin
         {
             try
             {
-                await AzureClient.SyncContext.PushAsync();
+                await Client.SyncContext.PushAsync();
                 await table.PullAsync(queryId, table.CreateQuery());
             }
             catch (MobileServiceInvalidOperationException e)
@@ -64,9 +64,9 @@ namespace BeerDrinkin
             IMobileServiceSyncTable<T> table = null;
             try
             {
-                table = AzureClient.GetSyncTable<T>();
+                table = Client.GetSyncTable<T>();
                 await table.PullAsync(queryId, table.CreateQuery());
-                await AzureClient.SyncContext.PushAsync();
+                await Client.SyncContext.PushAsync();
                 Debug.WriteLine(string.Format("QueryId: {0}", queryId));
 
             }

@@ -17,6 +17,10 @@ namespace BeerDrinkin.API
 {
     public class APIClient
     {
+        public Resources.UsersResource Users;
+
+            
+        #region Legacy
         #region Fields
 
         private readonly MobileServiceClient serviceClient;
@@ -28,6 +32,8 @@ namespace BeerDrinkin.API
         public APIClient(string serviceUrl)
         {
             serviceClient = new MobileServiceClient(serviceUrl);
+
+            Users = new BeerDrinkin.API.Resources.UsersResource(this);
         }
 
         #endregion
@@ -43,6 +49,18 @@ namespace BeerDrinkin.API
             set { serviceClient.CurrentUser = value; }
         }
 
+        Task<UserItem> currentUser;
+        public Task<UserItem> CurrentUser
+        {
+            get
+            {
+                if (currentUser == null)
+                    currentUser = GetCurrentUser();
+
+                return currentUser;
+            }
+        }
+            
         public MobileServiceClient ServiceClient
         {
             get
@@ -51,19 +69,20 @@ namespace BeerDrinkin.API
             }
         }
 
-        AccountItem currentAccount;
-
-        public AccountItem CurrentAccount
+        private async Task<UserItem> GetCurrentUser()
         {
-            get
+            var parameters = new Dictionary<string, string>();
+            try
             {
-                if (currentAccount == null)
-                    currentAccount = GetCurrentAccount().Result;
-                
-                return currentAccount;
+                return new APIResponse<UserItem>(await serviceClient.InvokeApiAsync<UserItem>("UserItem", HttpMethod.Get, parameters), null).Result;
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<UserItem>(null, ex).Result;
             }
         }
         #endregion
+
 
 
         #region User
@@ -114,116 +133,7 @@ namespace BeerDrinkin.API
         }
 
         #endregion
-
-        #region Search
-
-        public async Task<APIResponse<List<BeerItem>>> SearchBeerAsync(string keyword)
-        {
-            var table = serviceClient.GetSyncTable<BeerStyle>();
-            var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
-
-            keyword = keyword.ToLowerInvariant();
-
-            //are we in?
-            var results = new List<BeerItem>();
-            var parameters = new Dictionary<string, string>();
-            parameters.Add("keyword", keyword);
-
-            try
-            {
-                results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Search", HttpMethod.Get, parameters);
-                if (results != null && results.Any())
-                {                      
-                    //sync db to update new beers && styles
-                    await SyncAsync<BeerItem>("allUsers");
-                    await SyncAsync(table, "allUsers");
-
-                    return new APIResponse<List<BeerItem>>(results, null);
-                }
-                return new APIResponse<List<BeerItem>>(results, new Exception("No results found"));
-            }
-            catch (Exception ex)
-            {
-                return new APIResponse<List<BeerItem>>(results, ex);
-            }
-        }
-
-        public async Task<APIResponse<List<BeerItem>>> SuggestBeerAsync(string keyword)
-        {
-            var table = serviceClient.GetSyncTable<BeerStyle>();
-            var checkInTable = serviceClient.GetSyncTable<CheckInItem>();
-
-            keyword = keyword.ToLowerInvariant();
-
-            //are we in?
-            var results = new List<BeerItem>();
-            var parameters = new Dictionary<string, string>();
-            parameters.Add("keyword", keyword);
-
-            try
-            {
-                results = await serviceClient.InvokeApiAsync<List<BeerItem>>("Suggest", HttpMethod.Get, parameters);
-                if (results != null && results.Any())
-                {                      
-                    //sync db to update new beers && styles
-                    await SyncAsync<BeerItem>("allUsers");
-                    await SyncAsync(table, "allUsers");
-
-                    return new APIResponse<List<BeerItem>>(results, null);
-                }
-                return new APIResponse<List<BeerItem>>(results, new Exception("No results found"));
-            }
-            catch (Exception ex)
-            {
-                return new APIResponse<List<BeerItem>>(results, ex);
-            }
-        }
-
-        public async Task<APIResponse<List<BeerItem>>> LookupUpcAsync(string upc)
-        {                       
-            var parameters = new Dictionary<string, string>();
-
-            parameters.Add("upc", upc);
-            try
-            {
-                return new APIResponse<List<BeerItem>>(await serviceClient.InvokeApiAsync<List<BeerItem>>("UPC", HttpMethod.Get, parameters), null);
-            }
-            catch (Exception ex)
-            {
-                return new APIResponse<List<BeerItem>>(null, ex);
-            }
-        }
-
-        /*
-        public async Task<APIResponse<List<Brewery>>> SearchBreweryAsync(string keyword)
-        {
-            //are we in?
-            var username = GetUsername(AuthTypes.any);
-            if (!string.IsNullOrEmpty(username))
-            {
-                var parameters = new Dictionary<string, string>();
-
-                parameters.Add("keyword", keyword);
-
-                try
-                {
-                    return
-                        new APIResponse<List<Brewery>>(
-                        await serviceClient.InvokeApiAsync<List<Brewery>>("SearchBrewery", HttpMethod.Get, parameters),
-                        null);
-                }
-                catch (Exception ex)
-                {
-                    return new APIResponse<List<Brewery>>(new List<Brewery>(), ex);
-                }
-            }
-            return new APIResponse<List<Brewery>>(new List<Brewery>(),
-                new UnauthorizedAccessException("User is unauthenticated"));
-        }
-*/
-
-        #endregion
-
+       
         #region CheckIn
         public async Task<APIResponse<bool>> CheckInBeerAsync(CheckInItem checkInItem)
         {
@@ -396,16 +306,6 @@ namespace BeerDrinkin.API
 
         #endregion
 
-        #region Basic Caching
-
-
-        public async Task<bool> ClearCache()
-        {
-            return true;
-        }
-
-        #endregion
-
         #region Binary
         //Methods in this region is to post/get binary data related to any object like beer or review,
         //where we may have several images
@@ -481,34 +381,8 @@ namespace BeerDrinkin.API
 
         #endregion
 
-        #region PopularBeers
-        public async Task<APIResponse<List<BeerItem>>> GetPopularBeersAsync(double longitude, double latitude)
-        {
-            //are we in? 
-           
-            var parameters = new Dictionary<string, string>();
-            parameters.Add("longitude", longitude.ToString());
-            parameters.Add("latitude", latitude.ToString());
-
-            try
-            {
-                return
-                        new APIResponse<List<BeerItem>>(
-                    await serviceClient.InvokeApiAsync<List<BeerItem>>("PopularBeers", HttpMethod.Get, parameters),
-                    null);
-            }
-            catch (Exception ex)
-            {
-                return new APIResponse<List<BeerItem>>(null, ex);
-            }
-        }
-    
-
-        #endregion
 
         #region OfflineSync
-
-
         public async Task InitializeStoreAsync(string localDbPath)
         {
             var store = new MobileServiceSQLiteStore("beerdrinkin.db");
@@ -566,17 +440,14 @@ namespace BeerDrinkin.API
 
         public async Task RefreshAll()
         {
-            await SyncAsync<AccountItem>("allUsers");
-            await SyncAsync<CheckInItem>("CheckInItems");
+            await SyncAsync<UserItem>("user");
+            await SyncAsync<CheckInItem>("checkIns");
             await SyncAsync<BeerItem>("beers");
             await SyncAsync<BeerStyle>("styles");
-
-
-            currentAccount = await GetCurrentAccount();
         }
 
         #endregion
-    
-    
+
+        #endregion
     }
 }

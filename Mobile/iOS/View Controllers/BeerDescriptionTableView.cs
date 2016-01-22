@@ -35,8 +35,10 @@ namespace BeerDrinkin.iOS
         private UIView headerView;
         private nfloat headerViewHeight = 200;
         private PriceLookupService _priceLookup = new PriceLookupService ();
-        private JudoPaymentService paymentService = new JudoPaymentService ();
+        private JudoPaymentService _paymentService = new JudoPaymentService ();
         int BeerQuantity = 1;
+
+        private ClientService _clientService;
 
         #endregion
 
@@ -44,6 +46,7 @@ namespace BeerDrinkin.iOS
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
+            _clientService = new ClientService ();
         }
 
         #endregion
@@ -53,7 +56,6 @@ namespace BeerDrinkin.iOS
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            StartInsightsTracking ();
             SetUpUI ();
             //TODO make title case on the server...
             Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
@@ -63,15 +65,7 @@ namespace BeerDrinkin.iOS
                 NavigationController.PopViewController (true);
             }), true);
 
-            btnCheckIn.TouchUpInside += async delegate
-            {
-                var checkIn = new CheckInItem();
-                checkIn.Beer = beer;
-                checkIn.BeerId = beer.Id;
-                checkIn.CheckedInBy = ClientManager.Instance.BeerDrinkinClient.GetUserId;
-                await ClientManager.Instance.BeerDrinkinClient.CheckInBeerAsync(checkIn);
-            };
-
+          
             headerView = tableView.TableHeaderView;
             tableView.TableHeaderView = null;
             tableView.AddSubview (headerView);
@@ -90,15 +84,14 @@ namespace BeerDrinkin.iOS
             }
                 
             AddHeaderInfo ();
-            AddDescriptionView ();
-            AddPurchaseView();
+            AddDescription ();
 
             tableView.Source = new DescriptionTableViewSource (ref cells);
             var deleg = new DescriptionDelegate (ref cells);
             deleg.DidScroll += UpdateHeaderView;
             tableView.Delegate = deleg;
             tableView.RowHeight = UITableView.AutomaticDimension;
-            ;
+
             tableView.ReloadData ();
             View.SetNeedsDisplay ();
 
@@ -106,11 +99,43 @@ namespace BeerDrinkin.iOS
 
         void RefreshSubTotal ()
         {
+            subTotalLabel.Text = "£" + (!string.IsNullOrEmpty (beer.Price) ? (float.Parse (beer.Price) * BeerQuantity).ToString () : "0.00");
 
         }
 
         void SetUpUI ()
-        {           
+        {
+            BuyNowButton.Layer.CornerRadius = 5f;
+            subTotalButton.Layer.CornerRadius = subTotalButton.Bounds.Size.Width / 2f;
+            subTotalButton.Layer.BorderWidth = 2f;
+          
+            subTotalButton.Layer.BorderColor = UIColor.Black.CGColor;
+
+            subTotalButton.TouchUpInside += delegate {
+                BeerQuantity++;
+                subTotalButton.SetTitle (BeerQuantity.ToString (), UIControlState.Normal);
+                RefreshSubTotal ();
+            };
+
+            BuyNowButton.TouchUpInside += delegate {
+                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
+                beerModel.AddItem (beer, BeerQuantity);
+              
+              
+                _paymentService.BuyBeer (beerModel);
+            };
+
+            if (_clientService.ApplePayAvailable) {
+                applePayButton.TouchUpInside += delegate {
+                    BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
+                    beerModel.AddItem (beer, BeerQuantity);
+
+
+                    _paymentService.BuyBeerApplePay (beerModel);
+                };
+            } else {
+                applePayButton.Hidden = true;
+            }
 
         }
 
@@ -121,13 +146,13 @@ namespace BeerDrinkin.iOS
                 TabBarController.TabBar.Hidden = false;
 
             tableView.ReloadData ();
-        
         }
 
         public override void ViewDidLayoutSubviews ()
         {
             base.ViewDidLayoutSubviews ();
             headerView.Frame = new CGRect (headerView.Frame.Location, new CGSize (tableView.Frame.Width, headerView.Frame.Height));
+            View.SetNeedsDisplay ();
         }
 
         public override void ViewWillDisappear (bool animated)
@@ -166,8 +191,7 @@ namespace BeerDrinkin.iOS
 
         partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-            if (ClientManager.Instance.BeerDrinkinClient.CurrentAccount != null) {
-                
+            if (Client.Instance.BeerDrinkinClient.CurrentUser != null) {
             } else {
                 var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
                 PresentModalViewController (welcomeViewController, true);
@@ -202,11 +226,6 @@ namespace BeerDrinkin.iOS
             headerView.Frame = headerRect;
         }
 
-        void StartInsightsTracking ()
-        {
-            
-        }
-
         #region AddCells
 
         void AddHeaderInfo ()
@@ -222,7 +241,7 @@ namespace BeerDrinkin.iOS
             headerCell.RatingAlpha = 0.3f;
             //Lets fire up another thread so we can continue loading our UI and makes the app seem faster.
             Task.Run (() => {
-                var response = ClientManager.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id).Result;
+                var response = Client.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id).Result;
                 if (response.Result != null)
                     beerInfo = response.Result;
 
@@ -246,84 +265,22 @@ namespace BeerDrinkin.iOS
             cells.Add (headerCell);
         }
 
-        void AddDescriptionView()
+        void AddDescription ()
         {
-            if (!string.IsNullOrEmpty(beer.Description))
-            {
-                var cellIdentifier = new NSString("descriptionCell");
-                var cell = tableView.DequeueReusableCell(cellIdentifier) as BeerDescriptionCell ??
-                           new BeerDescriptionCell(cellIdentifier);
+            if (!string.IsNullOrEmpty (beer.Description)) {
+                var cellIdentifier = new NSString ("descriptionCell");
+                var cell = tableView.DequeueReusableCell (cellIdentifier) as BeerDescriptionCell ??
+                           new BeerDescriptionCell (cellIdentifier);
                 cell.Text = beer.Description;
-                cells.Add(cell);
-            }
-
-        }
-
-        void AddPurchaseView()
-        {
-            if (!string.IsNullOrEmpty (beer.Description)) 
-            {
-                
-                var cellIdentifier = new NSString ("purchaseCell");
-                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-
-                var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ??
-                    new PurchaseTableViewCell (cellIdentifier);
-
-                var price = _priceLookup.GetPriceForBeer(beer.Id);
-                cell.Price.Text = price;
-                BeerQuantity = 0;
-                cell.Quantity.Text = BeerQuantity.ToString();
-                cell.Total.Text = "Total: £0.00";
-
-                cell.AddBeer += delegate
-                {
-                    BeerQuantity++;
-                    cell.Quantity.Text = $"Quantity: {BeerQuantity}";
-                        var p = double.Parse(price);
-                    var total = (p * BeerQuantity).ToString();
-                    cell.Total.Text = $"Total: £{total}";
-                };
-
-                cell.RemoveBeer += delegate
-                {
-                    BeerQuantity--;
-                    cell.Quantity.Text = $"Quantity: {BeerQuantity}";   
-                        var p = double.Parse(price);
-                        var total = (p * BeerQuantity).ToString();
-                        cell.Total.Text = $"Total: £{total}";
-                };
-
-                cell.Pay += delegate
-                {
-                        InvokeOnMainThread(() =>
-                            {
-                                Pay();
-                            });
-                };
-
-                cell.Price.Text = $"Price: £{price}";
-                cell.Quantity.Text = $"Quantity: {BeerQuantity}";
-
-                cells.Add(cell);
+                cells.Add (cell);
             }
         }
-
-        public void Pay()
-        {
-            BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-            beerModel.AddItem(beer, BeerQuantity);
-            paymentService.BuyBeer (beerModel);    
-        }
-
-    }
-  
 
         #endregion
 
         #region Classses
 
-       class DescriptionTableViewSource : UITableViewSource
+        class DescriptionTableViewSource : UITableViewSource
         {
             readonly List<UITableViewCell> cells = new List<UITableViewCell> ();
 
@@ -376,10 +333,9 @@ namespace BeerDrinkin.iOS
                 if (cell.GetType () == typeof(CheckInLocationMapCell))
                     return 200;
 
-                if (cell.GetType() == typeof(PurchaseTableViewCell))
-                    return 129;
-
                 return 0;
+
+
             }
 
 
@@ -399,6 +355,30 @@ namespace BeerDrinkin.iOS
             public event DidScrollEventHandler DidScroll;
         }
 
-       
+        protected class CheckInMapViewAnnotation : MKAnnotation
+        {
+
+            CLLocationCoordinate2D coord;
+            protected string title;
+            protected string subtitle;
+
+            public override CLLocationCoordinate2D Coordinate { get { return coord; } }
+
+            public override string Title
+            { get { return title; } }
+
+            public override string Subtitle
+            { get { return subtitle; } }
+
+            public CheckInMapViewAnnotation (CLLocationCoordinate2D coordinate, string title, string subTitle)
+                : base ()
+            {
+                this.coord = coordinate;
+                this.title = title;
+                this.subtitle = subTitle;
+            }
+        }
+
         #endregion
     }
+}

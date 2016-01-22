@@ -17,11 +17,12 @@ namespace BeerDrinkin.Core.ViewModels
 
         public string Feedback { get; set; }
 
-        public void SendFeedback()
+        public async void SendFeedback()
         {
+            var currentUser = await Client.Instance.BeerDrinkinClient.CurrentUser;
             Insights.Track("Feedback Provided", new Dictionary<string, string>
                 {
-                    { "User", ClientManager.Instance.BeerDrinkinClient.CurrentAccount.Email },
+                    { "User", currentUser.Email},
                     { "UI Rating", UserInterfaceRating.ToString() },
                     { "Beer Selection", BeerSelectionRating.ToString() },
                     { "Comment", Feedback }

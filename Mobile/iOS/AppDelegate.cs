@@ -38,7 +38,7 @@ namespace BeerDrinkin.iOS
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
 
-            ClientManager.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
+            Client.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
 
             SetupGlobalAppearances();
             ConfigureJudoPayments();
