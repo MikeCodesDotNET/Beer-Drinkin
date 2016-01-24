@@ -34,12 +34,6 @@ namespace BeerDrinkin.iOS
             {
                 await viewModel.Reload();
             }
-            else
-            {
-                lblBeersCount.Text = "0";
-                lblPhotoCount.Text = "0";
-                lblRatingCount.Text = "0";
-            }
         }
 
         async public override void ViewDidAppear(bool animated)
@@ -81,6 +75,9 @@ namespace BeerDrinkin.iOS
             
         void RefreshAvatar()
         {
+            if (string.IsNullOrEmpty(viewModel.AvararUrl))
+                return; 
+            
             imgAvatar.Layer.CornerRadius = imgAvatar.Frame.Size.Width / 2;
             imgAvatar.ClipsToBounds = true;
     
