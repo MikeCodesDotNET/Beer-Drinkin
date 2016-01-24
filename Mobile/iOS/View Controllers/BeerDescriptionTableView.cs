@@ -162,6 +162,7 @@ namespace BeerDrinkin.iOS
         public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
+            BeerDrinkin.Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
             tableView.ReloadData ();
         }
 
@@ -301,8 +302,6 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Classses
-
-
         class DescriptionDelegate : UITableViewDelegate
         {
             readonly List<UITableViewCell> cells = new List<UITableViewCell> ();
