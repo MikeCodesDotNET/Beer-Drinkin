@@ -33,7 +33,7 @@ namespace BeerDrinkin.iOS
 
         //TODO FIX THIS!
         [Export("tableView:didSelectRowAtIndexPath:")]
-        async public void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        public void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             if (indexPath.Section == 1 && indexPath.Row == 1)
             {

@@ -447,6 +447,7 @@
     <Compile Include="UITableViewCells\BeerHeaderImageCell.designer.cs">
       <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSources\BeerDescriptionDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />

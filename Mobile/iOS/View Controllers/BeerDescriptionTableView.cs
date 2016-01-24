@@ -11,9 +11,10 @@ using MapKit;
 using UIKit;
 
 using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.iOS.DataSources;
 
-using SDWebImage;
 using Xamarin;
+using SDWebImage;
 using JudoDotNetXamariniOSSDK;
 using JudoPayDotNet.Models;
 using JudoDotNetXamarin;
@@ -24,21 +25,18 @@ namespace BeerDrinkin.iOS
     {
         #region Fields
 
-        /// <summary>
-        /// The tracker handle for Insights.
-        /// </summary>
         ITrackHandle trackerHandle;
-        private BeerItem beer;
-        private BeerInfo beerInfo;
-        private const string activityName = "com.beerdrinkin.beer";
-        private List<UITableViewCell> cells = new List<UITableViewCell> ();
-        private UIView headerView;
-        private nfloat headerViewHeight = 200;
-        private PriceLookupService _priceLookup = new PriceLookupService ();
-        private JudoPaymentService _paymentService = new JudoPaymentService ();
-        int BeerQuantity = 1;
+        ClientService clientService;
+        PriceLookupService priceLookup = new PriceLookupService ();
+        JudoPaymentService paymentService = new JudoPaymentService ();
+        List<UITableViewCell> cells = new List<UITableViewCell> ();
 
-        private ClientService _clientService;
+        BeerItem beer;
+        BeerInfo beerInfo;
+        const string activityName = "com.beerdrinkin.beer";
+        UIView headerView;
+        nfloat headerViewHeight = 200;
+        int BeerQuantity = 1;
 
         #endregion
 
@@ -46,7 +44,7 @@ namespace BeerDrinkin.iOS
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
-            _clientService = new ClientService ();
+            clientService = new ClientService ();
         }
 
         #endregion
@@ -57,41 +55,6 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad ();
             SetUpUI ();
-            //TODO make title case on the server...
-            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
-
-            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (
-                UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
-                NavigationController.PopViewController (true);
-            }), true);
-
-          
-            headerView = tableView.TableHeaderView;
-            tableView.TableHeaderView = null;
-            tableView.AddSubview (headerView);
-            tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
-            tableView.BackgroundColor = UIColor.Clear;
-
-           
-            if (beer?.ImageMedium != null) {
-                imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
-            } else {
-                imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
-            }
-                
-            AddHeaderInfo ();
-            AddDescription ();
-            AddPurchase();
-
-            tableView.Source = new DescriptionTableViewSource (ref cells);
-            var deleg = new DescriptionDelegate (ref cells);
-            deleg.DidScroll += UpdateHeaderView;
-            tableView.Delegate = deleg;
-            tableView.RowHeight = UITableView.AutomaticDimension;
-
-            tableView.ReloadData ();
-            View.SetNeedsDisplay ();
-
         }
 
         void AddPurchase()
@@ -100,7 +63,7 @@ namespace BeerDrinkin.iOS
             var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ??
                 new PurchaseTableViewCell (cellIdentifier);
 
-            var price = _priceLookup.GetPriceForBeer(beer.Id.ToString());
+            var price = priceLookup.GetPriceForBeer(beer.Id.ToString());
             beer.Price = price;
 
             var beerPrice = double.Parse(price);
@@ -110,7 +73,7 @@ namespace BeerDrinkin.iOS
                 BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
                 beerModel.AddItem (beer, BeerQuantity);
 
-                _paymentService.BuyBeerApplePay (beerModel);
+                paymentService.BuyBeerApplePay (beerModel);
             };
 
             cell.BuyNow += delegate
@@ -118,7 +81,7 @@ namespace BeerDrinkin.iOS
                 BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
                 beerModel.AddItem (beer, BeerQuantity);
 
-                _paymentService.BuyBeer (beerModel);
+                paymentService.BuyBeer (beerModel);
             };
 
             cells.Add (cell);
@@ -126,6 +89,40 @@ namespace BeerDrinkin.iOS
 
         void SetUpUI ()
         {
+            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
+
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (
+                UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
+                NavigationController.PopViewController (true);
+            }), true);
+
+
+            headerView = tableView.TableHeaderView;
+            tableView.TableHeaderView = null;
+            tableView.AddSubview (headerView);
+            tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
+            tableView.BackgroundColor = UIColor.Clear;
+
+            if (beer?.ImageMedium != null) {
+                imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
+            } else {
+                imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
+            }
+
+            //Add Cells
+            AddHeaderInfo ();
+            AddDescription ();
+            AddPurchase();
+
+            //Update Tableview
+            tableView.Source = new BeerDescriptionDataSource(ref cells);
+            var deleg = new DescriptionDelegate (ref cells);
+            deleg.DidScroll += UpdateHeaderView;
+            tableView.Delegate = deleg;
+
+            tableView.ReloadData ();
+            View.SetNeedsDisplay ();
+
             /*
             BuyNowButton.Layer.CornerRadius = 5f;
             subTotalButton.Layer.CornerRadius = subTotalButton.Bounds.Size.Width / 2f;
@@ -165,9 +162,6 @@ namespace BeerDrinkin.iOS
         public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
-            if (TabBarController != null)
-                TabBarController.TabBar.Hidden = false;
-
             tableView.ReloadData ();
         }
 
@@ -175,6 +169,7 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLayoutSubviews ();
             headerView.Frame = new CGRect (headerView.Frame.Location, new CGSize (tableView.Frame.Width, headerView.Frame.Height));
+            UpdateHeaderView();
             View.SetNeedsDisplay ();
         }
 
@@ -307,29 +302,6 @@ namespace BeerDrinkin.iOS
 
         #region Classses
 
-        class DescriptionTableViewSource : UITableViewSource
-        {
-            readonly List<UITableViewCell> cells = new List<UITableViewCell> ();
-
-            public DescriptionTableViewSource (ref List<UITableViewCell> cells)
-            {
-                this.cells = cells;
-            }
-
-            #region implemented abstract members of UITableViewSource
-
-            public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
-            {
-                return cells [indexPath.Row];
-            }
-
-            public override nint RowsInSection (UITableView tableview, nint section)
-            {
-                return cells.Count;
-            }
-
-            #endregion
-        }
 
         class DescriptionDelegate : UITableViewDelegate
         {
@@ -369,11 +341,6 @@ namespace BeerDrinkin.iOS
 
 
 
-            public override nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath)
-            {
-                return GetHeightForRow (tableView, indexPath);
-            }
-
             public override void Scrolled (UIScrollView scrollView)
             {
                 DidScroll ();
@@ -382,29 +349,6 @@ namespace BeerDrinkin.iOS
             public delegate void DidScrollEventHandler ();
 
             public event DidScrollEventHandler DidScroll;
-        }
-
-        protected class CheckInMapViewAnnotation : MKAnnotation
-        {
-            CLLocationCoordinate2D coord;
-            protected string title;
-            protected string subtitle;
-
-            public override CLLocationCoordinate2D Coordinate { get { return coord; } }
-
-            public override string Title
-            { get { return title; } }
-
-            public override string Subtitle
-            { get { return subtitle; } }
-
-            public CheckInMapViewAnnotation (CLLocationCoordinate2D coordinate, string title, string subTitle)
-                : base ()
-            {
-                this.coord = coordinate;
-                this.title = title;
-                this.subtitle = subTitle;
-            }
         }
 
         #endregion
