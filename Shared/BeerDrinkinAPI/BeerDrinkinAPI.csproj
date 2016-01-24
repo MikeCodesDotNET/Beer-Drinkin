@@ -43,7 +43,6 @@
     <Compile Include="Models\BeerItem.cs" />
     <Compile Include="Models\BeerStyle.cs" />
     <Compile Include="Models\CheckInItem.cs" />
-    <Compile Include="Models\FollowerItem.cs" />
     <Compile Include="Models\PopularBeerItem.cs" />
     <Compile Include="Models\ReviewItem.cs" />
     <Compile Include="Models\UserItem.cs" />

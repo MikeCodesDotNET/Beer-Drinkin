@@ -72,11 +72,7 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-            if (beer?.Id != null) {
-                beer.Price = _priceLookup.GetPriceForBeer (beer.Id);
-                RefreshSubTotal ();
-            }
-
+           
             if (beer?.ImageMedium != null) {
                 imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
             } else {
@@ -85,6 +81,7 @@ namespace BeerDrinkin.iOS
                 
             AddHeaderInfo ();
             AddDescription ();
+            AddPurchase();
 
             tableView.Source = new DescriptionTableViewSource (ref cells);
             var deleg = new DescriptionDelegate (ref cells);
@@ -97,14 +94,39 @@ namespace BeerDrinkin.iOS
 
         }
 
-        void RefreshSubTotal ()
+        void AddPurchase()
         {
-            subTotalLabel.Text = "£" + (!string.IsNullOrEmpty (beer.Price) ? (float.Parse (beer.Price) * BeerQuantity).ToString () : "0.00");
+            var cellIdentifier = new NSString("purchaseCell");
+            var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ??
+                new PurchaseTableViewCell (cellIdentifier);
 
+            var price = _priceLookup.GetPriceForBeer(beer.Id.ToString());
+            beer.Price = price;
+
+            var beerPrice = double.Parse(price);
+            cell.Price = beerPrice;
+            cell.ApplePay += delegate
+            {
+                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
+                beerModel.AddItem (beer, BeerQuantity);
+
+                _paymentService.BuyBeerApplePay (beerModel);
+            };
+
+            cell.BuyNow += delegate
+            {
+                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
+                beerModel.AddItem (beer, BeerQuantity);
+
+                _paymentService.BuyBeer (beerModel);
+            };
+
+            cells.Add (cell);
         }
 
         void SetUpUI ()
         {
+            /*
             BuyNowButton.Layer.CornerRadius = 5f;
             subTotalButton.Layer.CornerRadius = subTotalButton.Bounds.Size.Width / 2f;
             subTotalButton.Layer.BorderWidth = 2f;
@@ -125,6 +147,7 @@ namespace BeerDrinkin.iOS
                 _paymentService.BuyBeer (beerModel);
             };
 
+
             if (_clientService.ApplePayAvailable) {
                 applePayButton.TouchUpInside += delegate {
                     BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
@@ -136,7 +159,7 @@ namespace BeerDrinkin.iOS
             } else {
                 applePayButton.Hidden = true;
             }
-
+            */
         }
 
         public override void ViewDidAppear (bool animated)
@@ -188,9 +211,13 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync (activityController, true);
         }
 
-
-        partial void BtnCheckIn_TouchUpInside (UIButton sender)
+        async partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
+            var checkInItem = new CheckInItem ();
+            checkInItem.Beer = beer;
+            checkInItem.BeerId = beer.Id;
+            await Client.Instance.BeerDrinkinClient.CheckInBeerAsync (checkInItem);
+
             if (Client.Instance.BeerDrinkinClient.CurrentUser != null) {
             } else {
                 var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
@@ -241,7 +268,7 @@ namespace BeerDrinkin.iOS
             headerCell.RatingAlpha = 0.3f;
             //Lets fire up another thread so we can continue loading our UI and makes the app seem faster.
             Task.Run (() => {
-                var response = Client.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id).Result;
+                var response = Client.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id.ToString()).Result;
                 if (response.Result != null)
                     beerInfo = response.Result;
 
@@ -333,8 +360,10 @@ namespace BeerDrinkin.iOS
                 if (cell.GetType () == typeof(CheckInLocationMapCell))
                     return 200;
 
-                return 0;
+                if (cell.GetType () == typeof(PurchaseTableViewCell))
+                    return 250;
 
+                return 0;
 
             }
 
@@ -357,7 +386,6 @@ namespace BeerDrinkin.iOS
 
         protected class CheckInMapViewAnnotation : MKAnnotation
         {
-
             CLLocationCoordinate2D coord;
             protected string title;
             protected string subtitle;

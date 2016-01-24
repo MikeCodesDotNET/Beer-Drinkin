@@ -24,11 +24,11 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -165,12 +165,6 @@
     <Reference Include="Plugin.Geolocator.Abstractions">
       <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.1\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Connectivity">
-      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.0.0\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Connectivity.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.0.0\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Acr.UserDialogs">
       <HintPath>..\..\packages\Acr.UserDialogs.4.2.0\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
     </Reference>
@@ -231,6 +225,12 @@
     <Reference Include="JudoShieldXamarin">
       <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoShieldXamarin.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.0.2\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.0.2\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -252,18 +252,21 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Storyboards\Settings.storyboard" />
-    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Settings.storyboard">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="PluginsHelp\SettingsReadme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
+    <Compile Include="Main.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers\ViewExtensions.cs" />
     <Compile Include="View Controllers\MyBeersViewController.cs" />
@@ -340,10 +343,6 @@
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\PreviewingDelegates\BeerDescriptionPreviewingDelegate.cs" />
-    <Compile Include="SearchBar.cs" />
-    <Compile Include="SearchBar.designer.cs">
-      <DependentUpon>SearchBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Awesomizer.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.designer.cs">
@@ -401,64 +400,52 @@
     <Compile Include="View Controllers\AddBeerTableViewController.designer.cs">
       <DependentUpon>AddBeerTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShakeWelcomeViewController.cs" />
-    <Compile Include="ShakeWelcomeViewController.designer.cs">
-      <DependentUpon>ShakeWelcomeViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
     <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs" />
-    <Compile Include="Storyboards\BreweryMapCell.cs" />
-    <Compile Include="Storyboards\BreweryMapCell.designer.cs">
-      <DependentUpon>BreweryMapCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Storyboards\BeerHeaderImageCell.cs" />
-    <Compile Include="Storyboards\BeerHeaderImageCell.designer.cs">
-      <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SearchSuggestionsViewController.cs" />
-    <Compile Include="SearchSuggestionsViewController.designer.cs">
-      <DependentUpon>SearchSuggestionsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="recentSearches.cs" />
-    <Compile Include="recentSearches.designer.cs">
-      <DependentUpon>recentSearches.cs</DependentUpon>
-    </Compile>
-    <Compile Include="trendingSearches.cs" />
-    <Compile Include="trendingSearches.designer.cs">
-      <DependentUpon>trendingSearches.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
-    <Compile Include="RecentSearchesTableViewCell.cs" />
-    <Compile Include="RecentSearchesTableViewCell.designer.cs">
-      <DependentUpon>RecentSearchesTableViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TrendingSearchesTableViewCell.cs" />
-    <Compile Include="TrendingSearchesTableViewCell.designer.cs">
-      <DependentUpon>TrendingSearchesTableViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SearchHeaderViewCell.cs" />
-    <Compile Include="SearchHeaderViewCell.designer.cs">
-      <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NoRecentSearchesViewCell.cs" />
-    <Compile Include="NoRecentSearchesViewCell.designer.cs">
-      <DependentUpon>NoRecentSearchesViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
-    <Compile Include="BarcodeSearchTableViewCell.cs" />
-    <Compile Include="BarcodeSearchTableViewCell.designer.cs">
-      <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AnalyticsViewController.cs" />
-    <Compile Include="AnalyticsViewController.designer.cs">
+    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
+    <Compile Include="Service\JudoPaymentService.cs" />
+    <Compile Include="View Controllers\AnalyticsViewController.cs" />
+    <Compile Include="View Controllers\AnalyticsViewController.designer.cs">
       <DependentUpon>AnalyticsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
-    <Compile Include="IndexedBeer.cs" />
-    <Compile Include="Service\JudoPaymentService.cs" />
-    <Compile Include="PurchaseTableViewCell.cs" />
-    <Compile Include="PurchaseTableViewCell.designer.cs">
+    <Compile Include="Models\IndexedBeer.cs" />
+    <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
+    <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
+      <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\NoRecentSearchesViewCell.cs" />
+    <Compile Include="UITableViewCells\NoRecentSearchesViewCell.designer.cs">
+      <DependentUpon>NoRecentSearchesViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\PurchaseTableViewCell.cs" />
+    <Compile Include="UITableViewCells\PurchaseTableViewCell.designer.cs">
       <DependentUpon>PurchaseTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\RecentSearchesTableViewCell.cs" />
+    <Compile Include="UITableViewCells\RecentSearchesTableViewCell.designer.cs">
+      <DependentUpon>RecentSearchesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\SearchHeaderViewCell.cs" />
+    <Compile Include="UITableViewCells\SearchHeaderViewCell.designer.cs">
+      <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SearchSuggestionsViewController.cs" />
+    <Compile Include="View Controllers\SearchSuggestionsViewController.designer.cs">
+      <DependentUpon>SearchSuggestionsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\SearchBar.cs" />
+    <Compile Include="Custom Controls\SearchBar.designer.cs">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BreweryMapCell.cs" />
+    <Compile Include="UITableViewCells\BreweryMapCell.designer.cs">
+      <DependentUpon>BreweryMapCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BeerHeaderImageCell.cs" />
+    <Compile Include="UITableViewCells\BeerHeaderImageCell.designer.cs">
+      <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -545,8 +532,6 @@
     <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PluginsHelp\ConnectivityReadme.txt" />
-    <Content Include="PluginsHelp\GeolocatorReadme.txt" />
     <Content Include="Properties\_SettingsStarted.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -637,5 +622,6 @@
     <Folder Include="UITableViewCells\" />
     <Folder Include="Storyboards\" />
     <Folder Include="Service\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,8 @@ namespace BeerDrinkin.Service.DataObjects
     {
         public int RateBeerId { get; set; }
 
+        public string BreweryDbId { get; set; }
+
         public string Name{ get; set; }
 
         public string Description{ get; set; }

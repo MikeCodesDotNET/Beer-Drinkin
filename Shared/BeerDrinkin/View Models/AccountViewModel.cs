@@ -16,6 +16,14 @@ namespace BeerDrinkin.Core.ViewModels
         public async Task Reload()
         {
             var user = await Client.Instance.BeerDrinkinClient.Users.CurrentUser();
+            if(user == null)
+            {                
+                RatingsCount = "0";
+                BeerCount = "0";
+                PhotoCount = "0";
+                return;
+            }
+
             var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.Id);
             var headerInfo = headerResult.Result;   
 

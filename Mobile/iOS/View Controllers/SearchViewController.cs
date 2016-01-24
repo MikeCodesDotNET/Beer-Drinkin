@@ -219,14 +219,14 @@ namespace BeerDrinkin.iOS
                 {
                     var beer = new BeerItem
                     {
-                            ABV = beerResult.Abv,
-                            Name = beerResult.Name,
-                            Brewery = beerResult.BreweryName,
-                            Description = beerResult.Description,
-                            Id = beerResult.Id,
-                            BreweryId = beerResult.BreweryId,
-                            Upc = beerResult.Upc
-                        };
+                        ABV = beerResult.Abv,
+                        Name = beerResult.Name,
+                        Brewery = beerResult.BreweryName,
+                        Description = beerResult.Description,
+                        BreweryDbId = beerResult.Id,
+                        BreweryId = beerResult.BreweryId,
+                        Upc = beerResult.Upc
+                    };
                     try
                     {
                         if(beerResult.Images != null || beerResult.Images[0] != null)

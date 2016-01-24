@@ -24,6 +24,10 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel lblBeersCount { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel lblPhotoCount { get; set; }
 
 		[Outlet]
@@ -43,6 +47,10 @@ namespace BeerDrinkin.iOS
 			if (imgAvatar != null) {
 				imgAvatar.Dispose ();
 				imgAvatar = null;
+			}
+			if (lblBeersCount != null) {
+				lblBeersCount.Dispose ();
+				lblBeersCount = null;
 			}
 			if (lblPhotoCount != null) {
 				lblPhotoCount.Dispose ();

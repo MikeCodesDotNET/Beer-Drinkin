@@ -1,94 +1,107 @@
 using System;
-using System.Threading.Tasks;
 using BeerDrinkin.Core.ViewModels;
-using CoreGraphics;
 using Foundation;
 using UIKit;
 using SDWebImage;
 using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
-using System.Collections.Generic;
 using Xamarin;
-using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.IO;
-using System.Reactive.Linq; 
-using BeerDrinkin.iOS.Helpers;
-using CoreAnimation;
 using Awesomizer;
+using Plugin.Connectivity;
+using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS
 {
     partial class AccountViewController : UIViewController
     {
-        bool avatarBusy;
         readonly AccountViewModel viewModel = new AccountViewModel();
-       
+        bool isFirstRun = true;
+        bool connected;
+
         public AccountViewController(IntPtr handle) : base(handle)
         {
         }
 
-        public override void ViewDidLoad()
+        async public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            this.NavigationController.NavigationBar.Translucent = false;
-            this.NavigationController.NavigationBar.ShadowImage = new UIImage();
 
-            if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-            {
-                Insights.Track("Loaded AccountView", "ViewController", "AccountViewController");
-            }
-
-            imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
-
+            SetupUI();
             SetupBindings();
-            viewModel.Reload();
+
+            connected = await CrossConnectivity.Current.IsReachable("google.com", 1500);
+            if(connected)
+            {
+                await viewModel.Reload();
+            }
+            else
+            {
+                lblBeersCount.Text = "0";
+                lblPhotoCount.Text = "0";
+                lblRatingCount.Text = "0";
+            }
         }
 
-        bool isFirstRun = true;
         async public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
 
+            connected = await CrossConnectivity.Current.IsReachable("google.com");
+            BeerDrinkin.Core.Services.UserTrackingService.ReportViewLoaded("AccountViewController", "ViewDidAppear");
+            if(connected)
+            {
+                await viewModel.Reload();
+            }
+            else
+            {
+                Acr.UserDialogs.UserDialogs.Instance.ShowError("No internet connectivity");
+            }
+        }
+
+        void SetupUI()
+        {
+            //NavigationBar
             NavigationController.NavigationBar.BarTintColor = Color.Blue.ToNative();
-            await viewModel.Reload();
+            NavigationController.NavigationBar.Translucent = false;
+            NavigationController.NavigationBar.ShadowImage = new UIImage();
 
-            if(isFirstRun)
-                imgAvatar.Pop(0.7f, 0, 0.2f);
-
+            //Profile Image
+            imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
+            if(isFirstRun){imgAvatar.Pop(0.7f, 0, 0.2f);}
             isFirstRun = false;
         }
 
-        private void SetupBindings()
+        void SetupBindings()
         {
-            viewModel.PropertyChanged += (sender, e) => InvokeOnMainThread(RefreshUI);
+            viewModel.PropertyChanged += async delegate
+            {
+                await RefreshUI();
+            };
         }
-
-        public void RefreshAvatar()
+            
+        void RefreshAvatar()
         {
             imgAvatar.Layer.CornerRadius = imgAvatar.Frame.Size.Width / 2;
             imgAvatar.ClipsToBounds = true;
     
             var avatarUrl = viewModel.AvararUrl;
             imgAvatar.SetImage(new NSUrl(avatarUrl), UIImage.FromBundle("BeerDrinkin.png"));
-
         }
 
-        public void RefreshUI()
+        async Task RefreshUI()
         {
             NavigationController.NavigationBar.TopItem.Title = viewModel.FirstName;
             NavigationController.Title = viewModel.FirstName;
 
-            //lblBeerCount.Text = viewModel.BeerCount;
+            lblBeersCount.Text = viewModel.BeerCount;
             lblRatingCount.Text = viewModel.RatingsCount;
             lblPhotoCount.Text = viewModel.PhotoCount;
-            //lblName.Text = viewModel.FullName;
 
             var layout = new UICollectionViewFlowLayout();   
             layout.SectionInset = new UIEdgeInsets(5, 5, 2.5f, 2.5f);
             RefreshAvatar();
 
-        }
- 
+            return;
+         }
     }
 }

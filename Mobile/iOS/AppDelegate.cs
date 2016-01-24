@@ -26,8 +26,8 @@ namespace BeerDrinkin.iOS
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {          
             //Xamarin Insights
-            Insights.HasPendingCrashReport += PurgeCrashReports;
             Insights.Initialize (Keys.XamarinInsightsKey);
+            Insights.HasPendingCrashReport += PurgeCrashReports;
 
             #if DEBUG
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
@@ -38,7 +38,7 @@ namespace BeerDrinkin.iOS
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
 
-            Client.Instance.BeerDrinkinClient.InitializeStoreAsync (SqlDbLocation);
+            Client.Instance.BeerDrinkinClient.InitializeStoreAsync();
 
             SetupGlobalAppearances();
             ConfigureJudoPayments();
@@ -64,18 +64,6 @@ namespace BeerDrinkin.iOS
             return true;
         }
 
-        public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
-        {          
-            //TODO Complete loading the beer - This is part of iOS 9 integration.
-            var userInfo = userActivity.UserInfo;
-            var beerID = userInfo.ValueForKey (new NSString ("kCSSearchableItemActivityIdentifier"));
-            Console.WriteLine (beerID);
-
-            Window.RestoreUserActivityState (userActivity);
-
-            return true;
-        }
-
         #endregion
 
         static void PurgeCrashReports (object sender, bool isStartupCrash)
@@ -88,41 +76,23 @@ namespace BeerDrinkin.iOS
         static void SetupGlobalAppearances ()
         {
             //NavigationBar
-            UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative ();
-            UINavigationBar.Appearance.TintColor = Color.White.ToNative ();
+            UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
+            UINavigationBar.Appearance.TintColor = Color.White.ToNative();
           
-            UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes {
-                Font = UIFont.FromName ("Avenir-Medium", 17f),
-                TextColor = Color.White.ToNative ()
-            });
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
+                {
+                    Font = UIFont.FromName("Avenir-Medium", 17f),
+                    TextColor = Color.White.ToNative()
+                });
             //NavigationBar Buttons 
-            UIBarButtonItem.Appearance.SetTitleTextAttributes (new UITextAttributes {
-                Font = UIFont.FromName ("Avenir-Medium", 17f),
-                TextColor = Color.White.ToNative ()
-            }, UIControlState.Normal);
+            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes
+                {
+                    Font = UIFont.FromName("Avenir-Medium", 17f),
+                    TextColor = Color.White.ToNative()
+                }, UIControlState.Normal);
 
             //TabBar
-            UITabBarItem.Appearance.SetTitleTextAttributes (new UITextAttributes{ Font = UIFont.FromName ("Avenir-Book", 10f) }, UIControlState.Normal);
-        }
-
-        static string SqlDbLocation {
-            get {
-                const string filename = "beerdrinkin.db";
-
-                var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-                var libraryPath = Path.Combine (Directory.GetParent (documentsPath).ToString (), "Library");
-                var path = Path.Combine (libraryPath, filename);
-
-                if (!File.Exists (path)) {
-                    File.Create (path).Dispose ();
-                }
-
-                #if DEBUG
-                //File.Delete(path);
-                #endif
-
-                return path;
-            }
+            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 10f) }, UIControlState.Normal);
         }
     }
 }
