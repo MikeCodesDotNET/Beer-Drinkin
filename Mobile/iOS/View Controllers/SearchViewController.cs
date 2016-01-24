@@ -85,7 +85,7 @@ namespace BeerDrinkin.iOS
 
             View.AddSubview(suggestionsTableView);
 
-            var dataSource = new DataSources.SearchPlaceholderDataSource();
+            var dataSource = new SearchPlaceholderDataSource();
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
@@ -99,6 +99,11 @@ namespace BeerDrinkin.iOS
 
             searchBar.TextChanged += async delegate
             {
+                 
+                var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com", 1000);
+                if(!connected)
+                    return;
+
                 if(searchBar.Text != "")
                 {
                     View.BringSubviewToFront(suggestionsTableView);
