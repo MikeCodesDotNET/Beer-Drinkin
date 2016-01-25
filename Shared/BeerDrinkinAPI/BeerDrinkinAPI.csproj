@@ -55,6 +55,10 @@
     <Compile Include="APIResponse.cs" />
     <Compile Include="Resources\UsersResource.cs" />
     <Compile Include="Models\PaymentStorageToken.cs" />
+    <Compile Include="Models\AddressItem.cs" />
+    <Compile Include="Models\BeerDistributorItem.cs" />
+    <Compile Include="Models\DeliveryInfoItem.cs" />
+    <Compile Include="Models\PriceItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

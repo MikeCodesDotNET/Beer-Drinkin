@@ -16,11 +16,11 @@ namespace BeerDrinkin.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnApplePay { get; set; }
+		UILabel lblDistributorName { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnBuyNow { get; set; }
+		UILabel lblPrice { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -28,33 +28,33 @@ namespace BeerDrinkin.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblTotal { get; set; }
+		UILabel lblTagLine { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIStepper stepper { get; set; }
+		UIView QuantityView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnApplePay != null) {
-				btnApplePay.Dispose ();
-				btnApplePay = null;
+			if (lblDistributorName != null) {
+				lblDistributorName.Dispose ();
+				lblDistributorName = null;
 			}
-			if (btnBuyNow != null) {
-				btnBuyNow.Dispose ();
-				btnBuyNow = null;
+			if (lblPrice != null) {
+				lblPrice.Dispose ();
+				lblPrice = null;
 			}
 			if (lblQuantity != null) {
 				lblQuantity.Dispose ();
 				lblQuantity = null;
 			}
-			if (lblTotal != null) {
-				lblTotal.Dispose ();
-				lblTotal = null;
+			if (lblTagLine != null) {
+				lblTagLine.Dispose ();
+				lblTagLine = null;
 			}
-			if (stepper != null) {
-				stepper.Dispose ();
-				stepper = null;
+			if (QuantityView != null) {
+				QuantityView.Dispose ();
+				QuantityView = null;
 			}
 		}
 	}

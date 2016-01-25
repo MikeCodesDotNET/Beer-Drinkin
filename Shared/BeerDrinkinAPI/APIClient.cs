@@ -11,7 +11,6 @@ using BeerDrinkin.Service.DataObjects;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
-using Newtonsoft.Json.Linq;
 
 namespace BeerDrinkin.API
 {
@@ -81,7 +80,23 @@ namespace BeerDrinkin.API
         }
         #endregion
 
+        #region Distributor
+        public async Task<APIResponse<List<BeerDistributorItem>>> GetBeerDistributors(int beerId)
+        {
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("beerId", beerId.ToString());
 
+            try
+            {
+                return new APIResponse<List<BeerDistributorItem>>(await serviceClient.InvokeApiAsync<List<BeerDistributorItem>>("beerbistributoritem", HttpMethod.Get, parameters), null);
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerDistributorItem>>(null, ex);
+            }
+        }
+
+        #endregion
 
         #region User
         public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(int userId)
@@ -224,7 +239,6 @@ namespace BeerDrinkin.API
         {
             //are we in?
             var id = GetUserId;
-            ;
             if (!string.IsNullOrEmpty(id))
             {
                 var parameters = new Dictionary<string, string>();

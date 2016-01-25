@@ -57,32 +57,25 @@ namespace BeerDrinkin.iOS
             SetUpUI ();
         }
 
-        void AddPurchase()
+        async void AddPurchase()
         {
-            var cellIdentifier = new NSString("purchaseCell");
+
+            var response = await Client.Instance.BeerDrinkinClient.GetBeerDistributors(beer.Id);
+            if (response.Result == null)
+                return;
+
+            var cellIdentifier = new NSString("distributorCell");
             var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ??
                 new PurchaseTableViewCell (cellIdentifier);
 
             var price = priceLookup.GetPriceForBeer(beer.Id.ToString());
             beer.Price = price;
 
-            var beerPrice = double.Parse(price);
+            var beerPrice = decimal.Parse(price);
             cell.Price = beerPrice;
-            cell.ApplePay += delegate
-            {
-                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-                beerModel.AddItem (beer, BeerQuantity);
-
-                paymentService.BuyBeerApplePay (beerModel);
-            };
-
-            cell.BuyNow += delegate
-            {
-                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-                beerModel.AddItem (beer, BeerQuantity);
-
-                paymentService.BuyBeer (beerModel);
-            };
+            cell.Quantity = 0;
+            cell.DistributorName = "Beer Merchants";
+            cell.TagLine = "Great beers to your door";
 
             cells.Add (cell);
         }
@@ -316,7 +309,6 @@ namespace BeerDrinkin.iOS
             {
                 var cell = cells [indexPath.Row];
 
-              
                 if (cell.GetType () == typeof(BeerDescriptionCell)) {
                     var c = cell as BeerDescriptionCell;
                     return c.PreferredHeight + 50;
@@ -332,7 +324,7 @@ namespace BeerDrinkin.iOS
                     return 200;
 
                 if (cell.GetType () == typeof(PurchaseTableViewCell))
-                    return 250;
+                    return 87;
 
                 return 0;
 

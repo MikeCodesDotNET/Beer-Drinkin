@@ -29,35 +29,6 @@ namespace BeerDrinkin.iOS
         {
             base.AwakeFromNib();
             clientService = new ClientService();
-
-            if (!clientService.ApplePayAvailable)
-            {
-                btnApplePay.Enabled = false;
-                btnApplePay.Hidden = true;
-            }
-
-            btnBuyNow.Layer.CornerRadius = 4f;
-            btnBuyNow.Layer.BorderWidth = 0f;
-
-            btnBuyNow.TouchUpInside += delegate
-            {
-                BuyNow();
-            };
-
-            btnApplePay.TouchUpInside += delegate
-            {
-                ApplePay();
-            };
-
-            stepper.MinimumValue = 0;
-            stepper.MaximumValue = 250;
-            stepper.ValueChanged += delegate
-            {
-                Quantity = stepper.Value;
-                Total = (price * Quantity).ToString();
-            };
-
-            Total = (price * Quantity).ToString();
         }
 
         public override void LayoutIfNeeded()
@@ -68,8 +39,8 @@ namespace BeerDrinkin.iOS
             });
         }
        
-        double price;
-        public double Price
+        decimal price;
+        public decimal Price
         {
             get
             {
@@ -78,50 +49,54 @@ namespace BeerDrinkin.iOS
             set
             {
                 price = value;
+                lblPrice.Text = $"Price: £{price}";
             }
         }
 
-        public double Quantity
+        public string DistributorName
         {
             get
             {
-                return stepper.Value;
+                return lblDistributorName.Text;
             }
             set
             {
-                lblQuantity.Text = $"Quantity: {value}";
+                lblDistributorName.Text = value;
                 SetNeedsDisplay();
             }
         }
 
-        public string Total
+        public string TagLine
         {
             get
             {
-                return lblTotal.Text;
+                return lblTagLine.Text;
             }
             set
             {
-                lblTotal.Text = $"Total: £{value}";
+                lblTagLine.Text = value;
+            }
+        }
+
+        int quantity;
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+            set
+            {
+                quantity = value;
+                lblQuantity.Text = quantity.ToString();
                 SetNeedsDisplay();
             }
         }
-            
-
 
         public delegate void AddBeerHandler();
         public event AddBeerHandler AddBeer;
 
         public delegate void RemoveBeerHandler();
         public event RemoveBeerHandler RemoveBeer;
-
-        public delegate void BuyNowHandler();
-        public event BuyNowHandler BuyNow;
-
-        public delegate void ApplePayHandler();
-        public event ApplePayHandler ApplePay;
-
-
-
 	}
 }
