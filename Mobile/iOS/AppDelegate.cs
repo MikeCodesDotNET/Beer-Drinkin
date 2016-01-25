@@ -42,14 +42,14 @@ namespace BeerDrinkin.iOS
 
         void ConfigureJudoPayments ()
         {
-            var configInstance = JudoConfiguration.Instance;
-
-            //setting for Sandnox
-            configInstance.Environment = JudoEnvironment.Live;
-
-            configInstance.ApiToken = "MzEtkQK1bHi8v8qy";
-            configInstance.ApiSecret = "c158b4997dfc7595a149a20852f7af2ea2e70bd2df794b8bdbc019cc5f799aa1";
-            configInstance.JudoId = "100915867";
+//            var configInstance = JudoConfiguration.Instance;
+//
+//            //setting for Sandnox
+//            configInstance.Environment = JudoEnvironment.Live;
+//
+//            configInstance.ApiToken = "TOKEN_HERE";
+//            configInstance.ApiSecret = "SECRET_HERE";
+//            configInstance.JudoId = "JUDOID_HERE";
         }
 
         public override bool WillFinishLaunching (UIApplication application, NSDictionary launchOptions)
