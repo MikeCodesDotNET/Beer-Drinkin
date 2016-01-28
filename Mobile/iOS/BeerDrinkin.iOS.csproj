@@ -487,7 +487,6 @@
     <BundleResource Include="Resources\BeerTap_Selected.png" />
     <BundleResource Include="Resources\BeerTap.png" />
     <BundleResource Include="Resources\BarcodeDark.png" />
-    <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\backArrow.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\Patterned Image.png" />
