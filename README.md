@@ -1,4 +1,6 @@
-# BeerDrinkin
+# BeerDrinkin 
+[![Build Status](https://www.bitrise.io/app/7f04749bb7349e62.svg?token=rtX98mobBuH6nkxy1k8l2w&branch=master)](https://www.bitrise.io/app/7f04749bb7349e62)
+
 <img src="https://raw.githubusercontent.com/MikeCodesDotNet/BeerDrinkin/master/Mobile/iOS/Resources/BeerDrinkin.png" width=125">
  
 .NET Beer tracking app for iOS, Android and Windows Phone backed by Azure
