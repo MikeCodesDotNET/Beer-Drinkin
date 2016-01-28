@@ -200,7 +200,3 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-
-Mobile/Helpers/Keys.cs
-
-Shared/BeerDrinkin/Helpers/Keys.cs
