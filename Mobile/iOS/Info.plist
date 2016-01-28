@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Beer Drinkin</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.mikejames.beerdrinkin</string>
+	<string>com.micjames.beerdrinkin</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
