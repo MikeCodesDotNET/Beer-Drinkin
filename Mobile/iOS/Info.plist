@@ -55,8 +55,6 @@
 	<string>Main</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main</string>
-	<key>CFBundleVersion</key>
-	<string>5</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.micjames.beerdrinkin.mybeers</string>
@@ -65,5 +63,7 @@
 		<string>com.micjames.beerdrinkin.profile</string>
 		<string>com.micjames.beerdrinkin.beerdetails</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>6</string>
 </dict>
 </plist>
