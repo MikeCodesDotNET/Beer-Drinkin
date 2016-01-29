@@ -6,15 +6,19 @@ namespace BeerDrinkin
 {
     public sealed class Client
     {
-        static readonly Lazy<Client> lazy = new Lazy<Client>(() => new Client());
+        static readonly Lazy<Client> lazy = new Lazy<Client> (() => new Client ());
+
         public static Client Instance { get { return lazy.Value; } }
 
-        Client()
+        Client ()
         {
-            BeerDrinkinClient = new APIClient(Keys.ServiceUrl);
+            BeerDrinkinClient = new APIClient (Keys.ServiceUrl);
+            PaymentToken = new PaymentStorageToken ();
         }
 
         public APIClient BeerDrinkinClient;
+
+        public PaymentStorageToken PaymentToken{ get; set; }
     }
 }
 

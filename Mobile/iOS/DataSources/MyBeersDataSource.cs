@@ -59,7 +59,7 @@ namespace BeerDrinkin.iOS
             cellDelegate.DeleteBeer += () =>
             {
                 var beerId = beers[indexPath.Row].BreweryDbId;
-                DeleteItem(beerId);
+                DeleteItem(beerId.ToString());
                 beers.RemoveAt(indexPath.Row);                
             };
 

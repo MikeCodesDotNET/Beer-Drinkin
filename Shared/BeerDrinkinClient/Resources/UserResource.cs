@@ -8,18 +8,18 @@ namespace BeerDrinkin.Resources
 {
     public class UserResource
     {
-        Client client;
+        AzureClient azureClient;
 
-        public UserResource(Client client)
+        public UserResource(AzureClient client)
         {
-            this.client = client;
+            this.azureClient = client;
         }
 
         public string AccessToken
         {
             get
             {
-                return client.AzureClient.CurrentUser.MobileServiceAuthenticationToken;
+                return azureClient.Client.CurrentUser.MobileServiceAuthenticationToken;
             }
         }
 
@@ -27,7 +27,7 @@ namespace BeerDrinkin.Resources
         {
             get
             {
-                return client.AzureClient.CurrentUser.UserId;
+                return azureClient.Client.CurrentUser.UserId;
             }
         }
 
@@ -35,11 +35,11 @@ namespace BeerDrinkin.Resources
         {
             get
             {
-                return client.AzureClient.CurrentUser;
+                return azureClient.Client.CurrentUser;
             }
             set
             {
-                client.AzureClient.CurrentUser = value;
+                azureClient.Client.CurrentUser = value;
             }
         }
 

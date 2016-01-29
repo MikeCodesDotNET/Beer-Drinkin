@@ -31,7 +31,7 @@ namespace BeerDrinkin.API.Resources
             catch (Exception ex)
             {
                 Xamarin.Insights.Report(ex);
-                return new UserItem();
+                return null;
             }
         }
 

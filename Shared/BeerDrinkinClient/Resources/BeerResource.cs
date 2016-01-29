@@ -9,28 +9,28 @@ namespace BeerDrinkin.Resources
 {
     public class BeerResource
     {
-        Client client;
+        AzureClient azureClient;
 
-        public BeerResource(Client client)
+        public BeerResource(AzureClient client)
         {
-            this.client = client;
+            this.azureClient = client;
         }
 
         async public Task<List<BeerItem>> Search(string keyword)
         {
-            var table = client.AzureClient.GetSyncTable<BeerStyle>();
-            var checkInTable = client.AzureClient.GetSyncTable<CheckInItem>();
+            var table = azureClient.Client.GetSyncTable<BeerStyle>();
+            var checkInTable = azureClient.Client.GetSyncTable<CheckInItem>();
 
             var results = new List<BeerItem>();
             var parameters = new Dictionary<string, string>();
             parameters.Add("keyword", keyword);
           
-            results = await client.AzureClient.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
+            results = await azureClient.Client.InvokeApiAsync<List<BeerItem>>("SearchBeer", HttpMethod.Get, parameters);
             if (results != null && results.Any())
             {                      
                 //sync db to update new beers && styles
-                await client.SyncAsync<BeerItem>("allUsers");
-                await client.SyncAsync(table, "allUsers");
+                await azureClient.SyncAsync<BeerItem>("allUsers");
+                await azureClient.SyncAsync(table, "allUsers");
                 return results;
             }
             return null;

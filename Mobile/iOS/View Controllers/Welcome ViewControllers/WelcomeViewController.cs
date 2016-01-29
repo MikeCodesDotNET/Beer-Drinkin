@@ -127,27 +127,7 @@ namespace BeerDrinkin.iOS
             var vc = Storyboard.InstantiateViewController("tabBarController");
             await PresentViewControllerAsync(vc, false);
 
-            await Client.Instance.BeerDrinkinClient.RefreshAll();
-
-            if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-            {
-                var account = await Client.Instance.BeerDrinkinClient.CurrentUser;
-                var dateOfBirth = Convert.ToDateTime(account.DateOfBirth);
-                DateTime today = DateTime.Today;
-                int age = today.Year - dateOfBirth.Year;
-                string gender = account.IsMale ? "Male" : "Female";
-
-                var traits = new Dictionary<string, string> {
-                    {Insights.Traits.Email, account.Email},
-                    {Insights.Traits.FirstName, account.FirstName},
-                    {Insights.Traits.LastName, account.LastName},
-                    {Insights.Traits.Age, age.ToString()},
-                    {Insights.Traits.Gender, gender},
-                };
-                Insights.Identify(account.Id, traits);
-
-
-            }
+            await Client.Instance.BeerDrinkinClient.RefreshAll();           
         }
 
      

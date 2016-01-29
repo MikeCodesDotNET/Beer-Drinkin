@@ -6,7 +6,6 @@ using UIKit;
 
 using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.Core.Services;
-using BeerDrinkin.Service.DataObjects;
 
 using Acr.UserDialogs;
 using Awesomizer;
@@ -15,7 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
-using BeerDrinkin.Models;
+using BeerDrinkin.Service.DataObjects;
 using System.Linq;
 
 namespace BeerDrinkin.iOS
@@ -86,7 +85,7 @@ namespace BeerDrinkin.iOS
 
             View.AddSubview(suggestionsTableView);
 
-            var dataSource = new DataSources.SearchPlaceholderDataSource();
+            var dataSource = new SearchPlaceholderDataSource();
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
@@ -100,6 +99,11 @@ namespace BeerDrinkin.iOS
 
             searchBar.TextChanged += async delegate
             {
+                 
+                var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com", 1000);
+                if(!connected)
+                    return;
+
                 if(searchBar.Text != "")
                 {
                     View.BringSubviewToFront(suggestionsTableView);
@@ -111,7 +115,7 @@ namespace BeerDrinkin.iOS
                     suggestParameters.HighlightPostTag = "]";
                     suggestParameters.MinimumCoverage = 100;
                                                
-                    var response = await indexClient.Documents.SuggestAsync<IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
+                    var response = await indexClient.Documents.SuggestAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
                     var results = new List<string>();
                     foreach(var r in response)
                     {
@@ -211,7 +215,7 @@ namespace BeerDrinkin.iOS
         private async void SearchForBeers (object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading("Searching");
-            var response = await indexClient.Documents.SearchAsync<IndexedBeer>(searchBar.Text);             
+            var response = await indexClient.Documents.SearchAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text);             
             var beers = new List<BeerItem>();
             foreach(var result in response)
             {
@@ -220,14 +224,14 @@ namespace BeerDrinkin.iOS
                 {
                     var beer = new BeerItem
                     {
-                      ABV = beerResult.Abv,
-                            Name = beerResult.Name,
-                            Brewery = beerResult.BreweryName,
-                            Description = beerResult.Description,
-                            Id = beerResult.Id,
-                            BreweryId = beerResult.BreweryId,
-                            Upc = beerResult.Upc
-                        };
+                        ABV = beerResult.Abv,
+                        Name = beerResult.Name,
+                        Brewery = beerResult.BreweryName,
+                        Description = beerResult.Description,
+                        BreweryDbId = beerResult.Id,
+                        BreweryId = beerResult.BreweryId,
+                        Upc = beerResult.Upc
+                    };
                     try
                     {
                         if(beerResult.Images != null || beerResult.Images[0] != null)

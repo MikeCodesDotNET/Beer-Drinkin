@@ -48,6 +48,9 @@
     <Compile Include="Service\BarcodeLookupService.cs" />
     <Compile Include="Helpers\Keys.cs" />
     <Compile Include="Service\SearchHistoryService.cs" />
+    <Compile Include="Service\PriceLookupService.cs" />
+    <Compile Include="View Models\BeerPaymentViewModel.cs" />
+    <Compile Include="Service\UserTrackingService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

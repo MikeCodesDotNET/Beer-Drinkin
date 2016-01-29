@@ -10,7 +10,7 @@ namespace BeerDrinkin.Service.DataObjects
     public class BeerInfo
     {
         public string Name { get; set; }
-        public string BreweryDbId { get; set; }
+        public int BreweryDbId { get; set; }
         public double AverageRating { get; set; }
         public IEnumerable<ReviewItem> Reviews { get; set; }
         public IEnumerable<string> ImagesURLs { get; set; }

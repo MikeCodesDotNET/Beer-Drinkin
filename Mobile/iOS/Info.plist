@@ -17,10 +17,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UIMainStoryboardFile~ipad</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -53,9 +49,21 @@
 	<string>0.1</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Icons.xcassets/AppIcons.appiconset</string>
-	<key>CFBundleVersion</key>
-	<string>2</string>
 	<key>CFBundleName</key>
 	<string>Beer Drinkin</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>Main</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.micjames.beerdrinkin.mybeers</string>
+		<string>com.micjames.beerdrinkin.wishlist</string>
+		<string>com.micjames.beerdrinkin.search</string>
+		<string>com.micjames.beerdrinkin.profile</string>
+		<string>com.micjames.beerdrinkin.beerdetails</string>
+	</array>
 </dict>
 </plist>

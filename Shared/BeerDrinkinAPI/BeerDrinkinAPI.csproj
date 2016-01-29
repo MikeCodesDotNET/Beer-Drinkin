@@ -43,7 +43,6 @@
     <Compile Include="Models\BeerItem.cs" />
     <Compile Include="Models\BeerStyle.cs" />
     <Compile Include="Models\CheckInItem.cs" />
-    <Compile Include="Models\FollowerItem.cs" />
     <Compile Include="Models\PopularBeerItem.cs" />
     <Compile Include="Models\ReviewItem.cs" />
     <Compile Include="Models\UserItem.cs" />
@@ -55,6 +54,11 @@
     <Compile Include="Models\Labels.cs" />
     <Compile Include="APIResponse.cs" />
     <Compile Include="Resources\UsersResource.cs" />
+    <Compile Include="Models\PaymentStorageToken.cs" />
+    <Compile Include="Models\AddressItem.cs" />
+    <Compile Include="Models\BeerDistributorItem.cs" />
+    <Compile Include="Models\DeliveryInfoItem.cs" />
+    <Compile Include="Models\PriceItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

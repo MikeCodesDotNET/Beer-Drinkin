@@ -11,20 +11,17 @@ using BeerDrinkin.Service.DataObjects;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
-using Newtonsoft.Json.Linq;
 
 namespace BeerDrinkin.API
 {
     public class APIClient
     {
         public Resources.UsersResource Users;
-
-            
+                    
         #region Legacy
         #region Fields
 
         private readonly MobileServiceClient serviceClient;
-
 
         #endregion
 
@@ -83,18 +80,32 @@ namespace BeerDrinkin.API
         }
         #endregion
 
+        #region Distributor
+        public async Task<APIResponse<List<BeerDistributorItem>>> GetBeerDistributors(int beerId)
+        {
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("beerId", beerId.ToString());
 
+            try
+            {
+                return new APIResponse<List<BeerDistributorItem>>(await serviceClient.InvokeApiAsync<List<BeerDistributorItem>>("beerbistributoritem", HttpMethod.Get, parameters), null);
+            }
+            catch (Exception ex)
+            {
+                return new APIResponse<List<BeerDistributorItem>>(null, ex);
+            }
+        }
+
+        #endregion
 
         #region User
-        public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(string userId)
+        public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(int userId)
         {
             //Is the user authenticated? 
             if (!string.IsNullOrEmpty(CurrenMobileServicetUser.UserId))
             {                
                 var parameters = new Dictionary<string, string>();
-
-                parameters.Add("userId", userId);
-
+                parameters.Add("userId", userId.ToString());
                 try
                 {
                     return
@@ -109,8 +120,6 @@ namespace BeerDrinkin.API
             }
             return new APIResponse<HeaderInfo>(null, new UnauthorizedAccessException("User is unauthenticated"));
         }
-
-       
 
         private async Task<AccountItem> GetCurrentAccount()
         {
@@ -137,41 +146,36 @@ namespace BeerDrinkin.API
         #region CheckIn
         public async Task<APIResponse<bool>> CheckInBeerAsync(CheckInItem checkInItem)
         {
-            var id = GetUserId;
-            if (!string.IsNullOrEmpty(id)) //user is logged in
+            if (checkInItem.Beer != null)
             {
-                if (checkInItem.Beer != null)
-                {
-                    checkInItem.BeerId = checkInItem.Beer.Id;
-                }
-                var table = serviceClient.GetSyncTable<CheckInItem>();
-                checkInItem.CheckedInBy = id;
-                await table.InsertAsync(checkInItem);
-                await SyncAsync<CheckInItem>(id);
-
-                return new APIResponse<bool>(true, null);
+                checkInItem.BeerId = checkInItem.Beer.Id;
             }
-            return new APIResponse<bool>(false, new UnauthorizedAccessException("User is unauthenticated"));
+            var table = serviceClient.GetSyncTable<CheckInItem>();
+            checkInItem.CheckedInBy = new Guid(checkInItem.Beer.Name).GetHashCode();
+            await table.InsertAsync(checkInItem);
+            await SyncAsync<CheckInItem>(checkInItem.Id.ToString());
+
+            return new APIResponse<bool>(true, null);
         }
 
         /// <summary>
         /// This method returns all checkins of ALL beers by some user
         /// </summary>
         /// <returns></returns>
-        public async Task<APIResponse<List<CheckInItem>>> GetBeerCheckInsBy(string checkedInByUsername)
+        public async Task<APIResponse<List<CheckInItem>>> GetBeerCheckInsBy(int checkedInByUserId)
         {
             var results = new List<CheckInItem>();
             var id = GetUserId;
             if (!string.IsNullOrEmpty(id)) //user is logged in
             {                
                 var table = serviceClient.GetSyncTable<CheckInItem>();
-                await SyncAsync(table, checkedInByUsername);
-                results = await table.Where(f => f.CheckedInBy == checkedInByUsername).ToListAsync();
+                await SyncAsync(table, checkedInByUserId.ToString());
+                results = await table.Where(f => f.CheckedInBy == checkedInByUserId).ToListAsync();
                 if (results != null && results.Any())
                 {
                     var beerTable = serviceClient.GetSyncTable<BeerItem>();
                     foreach (var checkIn in results)
-                        checkIn.Beer = await beerTable.LookupAsync(checkIn.BeerId);
+                        checkIn.Beer = await beerTable.LookupAsync(checkIn.BeerId.ToString());
                 }
                 return new APIResponse<List<CheckInItem>>(results, null);
             }
@@ -192,12 +196,12 @@ namespace BeerDrinkin.API
             {
                 var table = serviceClient.GetSyncTable<CheckInItem>();
                 await SyncAsync(table, id);
-                results = await table.Where(f => f.BeerId == beerId && f.CheckedInBy == id).ToListAsync();
+                results = await table.Where(f => f.BeerId.ToString() == beerId && f.CheckedInBy.ToString() == id).ToListAsync();
                 if (results != null && results.Any())
                 {
                     var beerTable = serviceClient.GetSyncTable<BeerItem>();
                     foreach (var checkIn in results)
-                        checkIn.Beer = await beerTable.LookupAsync(checkIn.BeerId);
+                        checkIn.Beer = await beerTable.LookupAsync(checkIn.BeerId.ToString());
                 }
                 return new APIResponse<List<CheckInItem>>(results, null);
             }
@@ -213,7 +217,7 @@ namespace BeerDrinkin.API
                 var table = serviceClient.GetSyncTable<CheckInItem>();
                 await SyncAsync(table, id);
                 var checkInsToDelete =
-                    await table.Where(f => f.BeerId == beerId && f.CheckedInBy == id).ToListAsync();
+                    await table.Where(f => f.BeerId.ToString() == beerId && f.CheckedInBy.ToString() == id).ToListAsync();
 
                 if (checkInsToDelete == null || !checkInsToDelete.Any())
                     return new APIResponse<bool>(false, new Exception("No items found to delete"));
@@ -235,7 +239,6 @@ namespace BeerDrinkin.API
         {
             //are we in?
             var id = GetUserId;
-            ;
             if (!string.IsNullOrEmpty(id))
             {
                 var parameters = new Dictionary<string, string>();
@@ -274,7 +277,7 @@ namespace BeerDrinkin.API
 
                     //unique list of beer ids consumed by current user
                     var beerIds =
-                        (await table.Where(f => f.CheckedInBy == id).ToListAsync()).Select(b => b.BeerId)
+                        (await table.Where(f => f.CheckedInBy.ToString() == id).ToListAsync()).Select(b => b.BeerId)
                             .GroupBy(x => x)
                             .Select(y => y.First());
                     foreach (var beerId in beerIds)
@@ -285,7 +288,7 @@ namespace BeerDrinkin.API
                         {
                             beerInfo.Name = beerItem.Name;
                             beerInfo.BreweryDbId = beerId;
-                            var checkinsResponse = await GetBeerCheckIns(beerId);
+                            var checkinsResponse = await GetBeerCheckIns(beerId.ToString());
                             if (checkinsResponse.Result != null && checkinsResponse.Result.Any())
                             {
                                 beerInfo.CheckIns = checkinsResponse.Result;
@@ -383,7 +386,7 @@ namespace BeerDrinkin.API
 
 
         #region OfflineSync
-        public async Task InitializeStoreAsync(string localDbPath)
+        public async Task InitializeStoreAsync()
         {
             var store = new MobileServiceSQLiteStore("beerdrinkin.db");
             store.DefineTable<AccountItem>();
