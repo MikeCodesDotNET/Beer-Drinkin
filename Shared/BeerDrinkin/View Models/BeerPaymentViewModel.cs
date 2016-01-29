@@ -39,8 +39,6 @@ namespace BeerDrinkin
             } 
         }
 
-
-
         public decimal GetSubTotal ()
         {
             Decimal subTotal = 0;

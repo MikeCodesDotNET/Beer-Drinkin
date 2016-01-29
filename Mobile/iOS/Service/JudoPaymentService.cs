@@ -124,7 +124,7 @@ namespace BeerDrinkin.iOS
 
                 },
                                 ConsumerRef = new NSString (@"ImHereForTheBeer"),
-                                MerchantIdentifier = new NSString ("merchant.com.mikejames.beerdrinkin")
+                                MerchantIdentifier = new NSString ("merchant.com.micjames.beerdrinkin")
             };
                        
             return applePayment;
