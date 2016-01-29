@@ -18,6 +18,7 @@ using SDWebImage;
 using JudoDotNetXamariniOSSDK;
 using JudoPayDotNet.Models;
 using JudoDotNetXamarin;
+using CoreSpotlight;
 
 namespace BeerDrinkin.iOS
 {
@@ -26,9 +27,7 @@ namespace BeerDrinkin.iOS
         #region Fields
 
         ITrackHandle trackerHandle;
-        ClientService clientService;
         PriceLookupService priceLookup = new PriceLookupService ();
-        JudoPaymentService paymentService = new JudoPaymentService ();
         List<UITableViewCell> cells = new List<UITableViewCell> ();
 
         BeerItem beer;
@@ -36,7 +35,6 @@ namespace BeerDrinkin.iOS
         const string activityName = "com.beerdrinkin.beer";
         UIView headerView;
         nfloat headerViewHeight = 200;
-        int BeerQuantity = 1;
 
         #endregion
 
@@ -44,7 +42,6 @@ namespace BeerDrinkin.iOS
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
-            clientService = new ClientService ();
         }
 
         #endregion
@@ -57,106 +54,13 @@ namespace BeerDrinkin.iOS
             SetUpUI ();
         }
 
-        async void AddPurchase()
-        {
-
-            var response = await Client.Instance.BeerDrinkinClient.GetBeerDistributors(beer.Id);
-            if (response.Result == null)
-                return;
-
-            var cellIdentifier = new NSString("distributorCell");
-            var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ??
-                new PurchaseTableViewCell (cellIdentifier);
-
-            var price = priceLookup.GetPriceForBeer(beer.Id.ToString());
-            beer.Price = price;
-
-            var beerPrice = decimal.Parse(price);
-            cell.Price = beerPrice;
-            cell.Quantity = 0;
-            cell.DistributorName = "Beer Merchants";
-            cell.TagLine = "Great beers to your door";
-
-            cells.Add (cell);
-        }
-
-        void SetUpUI ()
-        {
-            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
-
-            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (
-                UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
-                NavigationController.PopViewController (true);
-            }), true);
-
-
-            headerView = tableView.TableHeaderView;
-            tableView.TableHeaderView = null;
-            tableView.AddSubview (headerView);
-            tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
-            tableView.BackgroundColor = UIColor.Clear;
-
-            if (beer?.ImageMedium != null) {
-                imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
-            } else {
-                imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
-            }
-
-            //Add Cells
-            AddHeaderInfo ();
-            AddDescription ();
-            AddPurchase();
-
-            //Update Tableview
-            tableView.Source = new BeerDescriptionDataSource(ref cells);
-            var deleg = new DescriptionDelegate (ref cells);
-            deleg.DidScroll += UpdateHeaderView;
-            tableView.Delegate = deleg;
-
-            tableView.ReloadData ();
-            View.SetNeedsDisplay ();
-
-            /*
-            BuyNowButton.Layer.CornerRadius = 5f;
-            subTotalButton.Layer.CornerRadius = subTotalButton.Bounds.Size.Width / 2f;
-            subTotalButton.Layer.BorderWidth = 2f;
-          
-            subTotalButton.Layer.BorderColor = UIColor.Black.CGColor;
-
-            subTotalButton.TouchUpInside += delegate {
-                BeerQuantity++;
-                subTotalButton.SetTitle (BeerQuantity.ToString (), UIControlState.Normal);
-                RefreshSubTotal ();
-            };
-
-            BuyNowButton.TouchUpInside += delegate {
-                BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-                beerModel.AddItem (beer, BeerQuantity);
-              
-              
-                _paymentService.BuyBeer (beerModel);
-            };
-
-
-            if (_clientService.ApplePayAvailable) {
-                applePayButton.TouchUpInside += delegate {
-                    BeerPaymentViewModel beerModel = new BeerPaymentViewModel ();
-                    beerModel.AddItem (beer, BeerQuantity);
-
-
-                    _paymentService.BuyBeerApplePay (beerModel);
-                };
-            } else {
-                applePayButton.Hidden = true;
-            }
-            */
-        }
-
         public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
-            BeerDrinkin.Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
+            Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
             tableView.ReloadData ();
+
+            SetupSearch ();
         }
 
         public override void ViewDidLayoutSubviews ()
@@ -222,6 +126,34 @@ namespace BeerDrinkin.iOS
 
         #endregion
 
+        void SetupSearch ()
+        {
+            var activity = new NSUserActivity ("com.micjames.beerdrinkin.beerdetails");
+
+            var info = new NSMutableDictionary ();
+			info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
+            info.Add(new NSString("name"),new NSString(beer.Name));
+            info.Add(new NSString("description"),new NSString(beer.Description));
+            info.Add(new NSString("imageUrl"),new NSString(beer.ImageMedium));
+            info.Add(new NSString("abv"),new NSString(beer.ABV.ToString()));
+			info.Add(new NSString("breweryDbId"),new NSString(beer.BreweryDbId));
+
+            var attributes = new CSSearchableItemAttributeSet ();
+            attributes.DisplayName = beer.Name;
+            attributes.ContentDescription = beer.Description;
+
+            var keywords = new NSString[] { new NSString(beer.Name), new NSString("beerName") };
+            activity.Keywords = new NSSet<NSString>(keywords);
+            activity.ContentAttributeSet = attributes;
+
+            activity.Title = beer.Name;
+            activity.UserInfo = info;
+
+            activity.EligibleForSearch = true;
+            activity.EligibleForPublicIndexing = true;
+            activity.BecomeCurrent ();
+        }
+
         public void SetBeer (BeerItem item)
         {
             beer = item;    
@@ -232,7 +164,7 @@ namespace BeerDrinkin.iOS
             beerInfo = item;
         }
 
-        private void UpdateHeaderView ()
+        void UpdateHeaderView ()
         {
             var headerRect = new CGRect (0, -headerViewHeight, tableView.Frame.Width, headerViewHeight);
             if (tableView.ContentOffset.Y < -headerViewHeight) {
@@ -240,6 +172,65 @@ namespace BeerDrinkin.iOS
                 headerRect.Size = new CGSize (headerRect.Size.Width, -tableView.ContentOffset.Y);
             }
             headerView.Frame = headerRect;
+        }
+
+        void SetUpUI ()
+        {
+            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
+
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (
+                UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
+                    NavigationController.PopViewController (true);
+                }), true);
+
+
+            headerView = tableView.TableHeaderView;
+            tableView.TableHeaderView = null;
+            tableView.AddSubview (headerView);
+            tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
+            tableView.BackgroundColor = UIColor.Clear;
+
+            if (beer?.ImageMedium != null) {
+                imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
+            } else {
+                imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
+            }
+
+            //Add Cells
+            AddHeaderInfo ();
+            AddDescription ();
+            AddPurchase();
+
+            //Update Tableview
+            tableView.Source = new BeerDescriptionDataSource(ref cells);
+            var deleg = new DescriptionDelegate (ref cells);
+            deleg.DidScroll += UpdateHeaderView;
+            tableView.Delegate = deleg;
+
+            tableView.ReloadData ();
+            View.SetNeedsDisplay ();
+        }
+
+        async void AddPurchase()
+        {
+
+            var response = await Client.Instance.BeerDrinkinClient.GetBeerDistributors(beer.Id);
+            if (response.Result == null)
+                return;
+
+            var cellIdentifier = new NSString("distributorCell");
+            var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ?? new PurchaseTableViewCell (cellIdentifier);
+
+            var price = priceLookup.GetPriceForBeer(beer.Id.ToString());
+            beer.Price = price;
+
+            var beerPrice = decimal.Parse(price);
+            cell.Price = beerPrice;
+            cell.Quantity = 0;
+            cell.DistributorName = "Beer Merchants";
+            cell.TagLine = "Great beers to your door";
+
+            cells.Add (cell);
         }
 
         #region AddCells

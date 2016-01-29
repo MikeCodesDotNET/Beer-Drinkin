@@ -242,10 +242,6 @@
       <Project>{70F2F312-0E9F-40B2-BA23-37F994708DAE}</Project>
       <Name>BeerDrinkin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\BeerDrinkinClient\BeerDrinkinClient.csproj">
-      <Project>{9675233D-18D0-4EBC-B1D4-CB8EBDD1FC84}</Project>
-      <Name>BeerDrinkinClient</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\ITunesArtwork" />

@@ -13,6 +13,7 @@ using Xamarin;
 
 using JudoDotNetXamarin;
 using JudoPayDotNet.Enums;
+using BeerDrinkin.Service.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
@@ -61,6 +62,62 @@ namespace BeerDrinkin.iOS
         public override bool WillFinishLaunching (UIApplication application, NSDictionary launchOptions)
         {
             UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
+            return true;
+        }
+
+        public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
+        {
+            switch (userActivity.ActivityType) 
+            {
+				case "com.micjames.beerdrinkin.mybeers":
+                    break;
+				case "com.micjames.beerdrinkin.wishlist":
+                break;
+				case "com.micjames.beerdrinkin.search":
+                break;
+				case "com.micjames.beerdrinkin.profile":
+                break;
+				case "com.micjames.beerdrinkin.beerdetails":
+                    var info = userActivity.UserInfo;
+                if (this.Window.RootViewController.ChildViewControllers[0] is UITabBarController) 
+                {
+					var tabController = this.Window.RootViewController.ChildViewControllers[0] as UITabBarController;
+					tabController.SelectedIndex = 2;
+
+						var beerItem = new BeerItem();
+
+						var id = new NSObject();
+						info.TryGetValue(new NSString("id"), out id);
+
+						var name = new NSObject();
+						info.TryGetValue(new NSString("name"), out name);
+
+						var description = new NSObject();
+						info.TryGetValue(new NSString("description"), out description);
+
+						var imageUrl = new NSObject();
+						info.TryGetValue(new NSString("imageUrl"), out imageUrl);
+
+						var breweryDbId = new NSObject();
+						info.TryGetValue(new NSString("breweryDbId"), out breweryDbId);
+
+						beerItem.Name = name.ToString();
+						beerItem.Description = description.ToString();
+						beerItem.ImageMedium = imageUrl.ToString();
+						beerItem.BreweryDbId = breweryDbId.ToString();
+
+						if (!string.IsNullOrEmpty(beerItem.BreweryDbId))
+						{
+							var storyboard = UIStoryboard.FromName("Main", null);
+							var vc = storyboard.InstantiateViewController ("beerDescriptionTableView") as BeerDescriptionTableView;
+							vc.SetBeer (beerItem);
+							var navigationControler = tabController.SelectedViewController as UINavigationController;
+							navigationControler.PushViewController (vc, true);
+						}
+                }
+                break;
+            }
+
             return true;
         }
 
