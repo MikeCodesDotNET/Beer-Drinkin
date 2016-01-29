@@ -11,55 +11,55 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("SendFeedbackViewController")]
-	partial class SendFeedbackViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView beerSelectionRatingPlaceholder { get; set; }
+    [Register ("SendFeedbackViewController")]
+    partial class SendFeedbackViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView beerSelectionRatingPlaceholder { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem btnBack { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem btnSend { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView tbxFeedback { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView userInterfaceRatingPlaceholder { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnBack { get; set; }
+        [Action ("btnBack_Activated:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void btnBack_Activated (UIKit.UIBarButtonItem sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnSend { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (beerSelectionRatingPlaceholder != null) {
+                beerSelectionRatingPlaceholder.Dispose ();
+                beerSelectionRatingPlaceholder = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextView tbxFeedback { get; set; }
+            if (btnBack != null) {
+                btnBack.Dispose ();
+                btnBack = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView userInterfaceRatingPlaceholder { get; set; }
+            if (btnSend != null) {
+                btnSend.Dispose ();
+                btnSend = null;
+            }
 
-		[Action ("btnBack_Activated:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnBack_Activated (UIBarButtonItem sender);
+            if (tbxFeedback != null) {
+                tbxFeedback.Dispose ();
+                tbxFeedback = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (beerSelectionRatingPlaceholder != null) {
-				beerSelectionRatingPlaceholder.Dispose ();
-				beerSelectionRatingPlaceholder = null;
-			}
-			if (btnBack != null) {
-				btnBack.Dispose ();
-				btnBack = null;
-			}
-			if (btnSend != null) {
-				btnSend.Dispose ();
-				btnSend = null;
-			}
-			if (tbxFeedback != null) {
-				tbxFeedback.Dispose ();
-				tbxFeedback = null;
-			}
-			if (userInterfaceRatingPlaceholder != null) {
-				userInterfaceRatingPlaceholder.Dispose ();
-				userInterfaceRatingPlaceholder = null;
-			}
-		}
-	}
+            if (userInterfaceRatingPlaceholder != null) {
+                userInterfaceRatingPlaceholder.Dispose ();
+                userInterfaceRatingPlaceholder = null;
+            }
+        }
+    }
 }

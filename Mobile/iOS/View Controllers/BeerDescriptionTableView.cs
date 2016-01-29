@@ -5,9 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using CoreGraphics;
-using CoreLocation;
-using Foundation;
-using MapKit;
 using UIKit;
 
 using BeerDrinkin.Service.DataObjects;
@@ -15,10 +12,8 @@ using BeerDrinkin.iOS.DataSources;
 
 using Xamarin;
 using SDWebImage;
-using JudoDotNetXamariniOSSDK;
-using JudoPayDotNet.Models;
-using JudoDotNetXamarin;
 using CoreSpotlight;
+using Foundation;
 
 namespace BeerDrinkin.iOS
 {
@@ -106,13 +101,13 @@ namespace BeerDrinkin.iOS
 
         async partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-            var checkInItem = new CheckInItem ();
-            checkInItem.Beer = beer;
-            checkInItem.BeerId = beer.Id;
-            await Client.Instance.BeerDrinkinClient.CheckInBeerAsync (checkInItem);
-
-            if (Client.Instance.BeerDrinkinClient.CurrentUser != null) {
-            } else {
+			var user = await Client.Instance.BeerDrinkinClient.CurrentUser;
+			if (user != null) 
+			{
+				
+            } 
+			else 
+			{
                 var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
                 PresentModalViewController (welcomeViewController, true);
             }
@@ -124,34 +119,38 @@ namespace BeerDrinkin.iOS
 
         public bool EnableCheckIn = false;
 
-        #endregion
+		#endregion
 
-        void SetupSearch ()
-        {
-            var activity = new NSUserActivity ("com.micjames.beerdrinkin.beerdetails");
+		void SetupSearch()
+		{
+			var activity = new NSUserActivity("com.micjames.beerdrinkin.beerdetails");
 
-            var info = new NSMutableDictionary ();
-			info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
-            info.Add(new NSString("name"),new NSString(beer.Name));
-            info.Add(new NSString("description"),new NSString(beer.Description));
-            info.Add(new NSString("imageUrl"),new NSString(beer.ImageMedium));
-            info.Add(new NSString("abv"),new NSString(beer.ABV.ToString()));
-			info.Add(new NSString("breweryDbId"),new NSString(beer.BreweryDbId));
+			if (!string.IsNullOrEmpty(beer.Description))
+			{
+				var info = new NSMutableDictionary();
+				info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
+				info.Add(new NSString("name"), new NSString(beer.Name));
+				info.Add(new NSString("description"), new NSString(beer.Description));
+				info.Add(new NSString("imageUrl"), new NSString(beer.ImageMedium));
+				info.Add(new NSString("abv"), new NSString(beer?.ABV.ToString()));
+				info.Add(new NSString("breweryDbId"), new NSString(beer.BreweryDbId));
+			
+				var attributes = new CSSearchableItemAttributeSet();
+				attributes.DisplayName = beer.Name;
+				attributes.ContentDescription = beer.Description;
 
-            var attributes = new CSSearchableItemAttributeSet ();
-            attributes.DisplayName = beer.Name;
-            attributes.ContentDescription = beer.Description;
+				var keywords = new NSString[] { new NSString(beer.Name), new NSString("beerName") };
+				activity.Keywords = new NSSet<NSString>(keywords);
+				activity.ContentAttributeSet = attributes;
 
-            var keywords = new NSString[] { new NSString(beer.Name), new NSString("beerName") };
-            activity.Keywords = new NSSet<NSString>(keywords);
-            activity.ContentAttributeSet = attributes;
+				activity.Title = beer.Name;
+				activity.UserInfo = info;
 
-            activity.Title = beer.Name;
-            activity.UserInfo = info;
+				activity.EligibleForSearch = true;
+				activity.EligibleForPublicIndexing = true;
+				activity.BecomeCurrent();
+			}
 
-            activity.EligibleForSearch = true;
-            activity.EligibleForPublicIndexing = true;
-            activity.BecomeCurrent ();
         }
 
         public void SetBeer (BeerItem item)

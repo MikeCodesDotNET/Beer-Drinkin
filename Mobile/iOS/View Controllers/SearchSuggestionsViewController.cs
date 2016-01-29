@@ -16,7 +16,8 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
-            var dataSource = new DataSources.SearchPlaceholderDataSource();
+			/*
+            var dataSource = new DataSources.SearchPlaceholderDataSource(this);
             tableView.Source = dataSource;
             tableView.ReloadData();
 
@@ -26,7 +27,8 @@ namespace BeerDrinkin.iOS
                 textfield.Font = UIFont.FromName("Avenir-Book", 14);
                 textfield.BackgroundColor = "009CFB".ToUIColor();
                 textfield.TextColor = UIColor.White;
-            }            
+            }        
+            */
         }
 
         partial void BtnCancel_TouchUpInside(UIButton sender)

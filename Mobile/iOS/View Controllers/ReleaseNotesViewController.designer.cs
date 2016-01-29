@@ -11,19 +11,19 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("ReleaseNotesViewController")]
-	partial class ReleaseNotesViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIWebView webView { get; set; }
+    [Register ("ReleaseNotesViewController")]
+    partial class ReleaseNotesViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIWebView webView { get; set; }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (webView != null) {
-				webView.Dispose ();
-				webView = null;
-			}
-		}
-	}
+        void ReleaseDesignerOutlets ()
+        {
+            if (webView != null) {
+                webView.Dispose ();
+                webView = null;
+            }
+        }
+    }
 }

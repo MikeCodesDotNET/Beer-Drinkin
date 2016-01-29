@@ -48,8 +48,7 @@ namespace BeerDrinkin.iOS
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
                 RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);           
         }
-            
-
+       
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {            
             if (segue.Identifier != "beerDescriptionSegue")
@@ -85,7 +84,7 @@ namespace BeerDrinkin.iOS
 
             View.AddSubview(suggestionsTableView);
 
-            var dataSource = new SearchPlaceholderDataSource();
+            var dataSource = new SearchPlaceholderDataSource(this);
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
@@ -123,7 +122,7 @@ namespace BeerDrinkin.iOS
                     }
 
                     var suggestionSource = new SearchSuggestionDataSource(results); 
-                    suggestionSource.SelectedRow += async (int index) =>
+                    suggestionSource.SelectedRow += (int index) =>
                     {
                         searchBar.Text = response.Results[index].Document.Name;
                         SearchForBeers(this, null);

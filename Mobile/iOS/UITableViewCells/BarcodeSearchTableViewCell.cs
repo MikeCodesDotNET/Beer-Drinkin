@@ -1,6 +1,5 @@
 using Foundation;
 using System;
-using System.CodeDom.Compiler;
 using UIKit;
 
 namespace BeerDrinkin.iOS
@@ -26,5 +25,13 @@ namespace BeerDrinkin.iOS
             btnClear.Layer.CornerRadius = 4;
             btnClear.Layer.MasksToBounds = true;
         }
+
+		partial void BtnScan_TouchUpInside(UIButton sender)
+		{
+			ScanBeer();
+		}
+
+		public delegate void ScanBeerHandler();
+		public event ScanBeerHandler ScanBeer;
 	}
 }

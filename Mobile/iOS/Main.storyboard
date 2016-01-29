@@ -1428,6 +1428,9 @@
                                                                     <state key="normal" title="Scan">
                                                                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="BtnScan_TouchUpInside:" destination="n3Y-Js-Vet" id="1357" eventType="touchUpInside"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjL-j6-ipa" fixedFrame="YES">
                                                                     <rect key="frame" x="276" y="0.0" width="256" height="32"/>
@@ -2785,7 +2788,6 @@
         <image name="BeerDrinkin.png" width="526" height="526"/>
         <image name="Patterned Image.png" width="7103" height="2025"/>
         <image name="facebook_button.png" width="558" height="89"/>
-        <image name="flashOff.png" width="70" height="70"/>
         <image name="goolgeButton.png" width="558" height="89"/>
         <image name="oie_" width="526" height="526"/>
         <image name="search_filter.png" width="25" height="21"/>

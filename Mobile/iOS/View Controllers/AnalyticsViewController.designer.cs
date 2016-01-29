@@ -11,51 +11,51 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("AnalyticsViewController")]
-	partial class AnalyticsViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgCriticalBugIcon { get; set; }
+    [Register ("AnalyticsViewController")]
+    partial class AnalyticsViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgCriticalBugIcon { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblCriticalBugs { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblCriticalBugsDescription { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        AMViralSwitch.ViralSwitch swtCriticalBugs { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        AMViralSwitch.ViralSwitch swtResponsiveness { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblCriticalBugs { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (imgCriticalBugIcon != null) {
+                imgCriticalBugIcon.Dispose ();
+                imgCriticalBugIcon = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblCriticalBugsDescription { get; set; }
+            if (lblCriticalBugs != null) {
+                lblCriticalBugs.Dispose ();
+                lblCriticalBugs = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		AMViralSwitch.ViralSwitch swtCriticalBugs { get; set; }
+            if (lblCriticalBugsDescription != null) {
+                lblCriticalBugsDescription.Dispose ();
+                lblCriticalBugsDescription = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		AMViralSwitch.ViralSwitch swtResponsiveness { get; set; }
+            if (swtCriticalBugs != null) {
+                swtCriticalBugs.Dispose ();
+                swtCriticalBugs = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (imgCriticalBugIcon != null) {
-				imgCriticalBugIcon.Dispose ();
-				imgCriticalBugIcon = null;
-			}
-			if (lblCriticalBugs != null) {
-				lblCriticalBugs.Dispose ();
-				lblCriticalBugs = null;
-			}
-			if (lblCriticalBugsDescription != null) {
-				lblCriticalBugsDescription.Dispose ();
-				lblCriticalBugsDescription = null;
-			}
-			if (swtCriticalBugs != null) {
-				swtCriticalBugs.Dispose ();
-				swtCriticalBugs = null;
-			}
-			if (swtResponsiveness != null) {
-				swtResponsiveness.Dispose ();
-				swtResponsiveness = null;
-			}
-		}
-	}
+            if (swtResponsiveness != null) {
+                swtResponsiveness.Dispose ();
+                swtResponsiveness = null;
+            }
+        }
+    }
 }

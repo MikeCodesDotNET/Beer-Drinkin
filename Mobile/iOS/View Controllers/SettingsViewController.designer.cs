@@ -11,23 +11,23 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("SettingsViewController")]
-	partial class SettingsViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnClose { get; set; }
+    [Register ("SettingsViewController")]
+    partial class SettingsViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem btnClose { get; set; }
 
-		[Action ("btnClose_Activated:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnClose_Activated (UIBarButtonItem sender);
+        [Action ("btnClose_Activated:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void btnClose_Activated (UIKit.UIBarButtonItem sender);
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnClose != null) {
-				btnClose.Dispose ();
-				btnClose = null;
-			}
-		}
-	}
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnClose != null) {
+                btnClose.Dispose ();
+                btnClose = null;
+            }
+        }
+    }
 }

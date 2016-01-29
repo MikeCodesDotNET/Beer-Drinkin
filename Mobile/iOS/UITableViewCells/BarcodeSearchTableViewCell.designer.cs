@@ -11,35 +11,39 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("BarcodeSearchTableViewCell")]
-	partial class BarcodeSearchTableViewCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnClear { get; set; }
+    [Register ("BarcodeSearchTableViewCell")]
+    partial class BarcodeSearchTableViewCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnClear { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnScan { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblBarcodeNumber { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnScan { get; set; }
+        [Action ("BtnScan_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnScan_TouchUpInside (UIKit.UIButton sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblBarcodeNumber { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnClear != null) {
+                btnClear.Dispose ();
+                btnClear = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnClear != null) {
-				btnClear.Dispose ();
-				btnClear = null;
-			}
-			if (btnScan != null) {
-				btnScan.Dispose ();
-				btnScan = null;
-			}
-			if (lblBarcodeNumber != null) {
-				lblBarcodeNumber.Dispose ();
-				lblBarcodeNumber = null;
-			}
-		}
-	}
+            if (btnScan != null) {
+                btnScan.Dispose ();
+                btnScan = null;
+            }
+
+            if (lblBarcodeNumber != null) {
+                lblBarcodeNumber.Dispose ();
+                lblBarcodeNumber = null;
+            }
+        }
+    }
 }
