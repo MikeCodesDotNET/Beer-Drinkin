@@ -15,7 +15,7 @@ namespace BeerDrinkin.iOS.DataSources
 
         public SearchPlaceholderDataSource(SearchViewController viewController)
         {
-			viewController = viewController;
+			this.viewController = viewController;
         }
 
         #region implemented abstract members of UITableViewSource
@@ -60,7 +60,7 @@ namespace BeerDrinkin.iOS.DataSources
 					}
 					catch (Exception ex)
 					{
-						Xamarin.Insights.Report(ex);
+						Insights.Report(ex);
 					}
 					finally
 					{

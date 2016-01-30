@@ -23,6 +23,16 @@ namespace BeerDrinkin.iOS
             {
                 Insights.Track("Loaded AboutView", "ViewController", "AboutViewController");
             }
+
+			btnClose.SetTitleTextAttributes(new UITextAttributes
+			{
+				Font = UIFont.FromName("Avenir-Book", 14f),
+				TextColor = UIColor.White
+			}, UIControlState.Normal);
+
+			btnClose.Clicked += delegate {
+				DismissViewControllerAsync(true);
+			};
         }
 
         /*

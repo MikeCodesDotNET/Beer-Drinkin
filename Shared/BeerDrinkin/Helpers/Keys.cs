@@ -14,7 +14,7 @@
 
         public static readonly string ServiceKey = "zPjEdUBYuqSTNkZowbRApTbBJBASLZ60";
 
-        public static readonly string FacebookClientId = "1441403606168987";
+		public static readonly string FacebookClientId = "1441403606168987";
 
         public static readonly string BreweryDbKey = "a956af587b434c4c89ef18c7bbd2fac9";
 

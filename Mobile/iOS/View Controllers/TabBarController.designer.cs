@@ -11,11 +11,11 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("TabBarController")]
-	partial class TabBarController
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("TabBarController")]
+    partial class TabBarController
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

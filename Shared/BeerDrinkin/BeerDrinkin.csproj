@@ -57,8 +57,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="PluginsHelp\GeolocatorReadme.txt" />
-    <None Include="PluginsHelp\ConnectivityReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

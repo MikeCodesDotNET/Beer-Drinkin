@@ -15,6 +15,8 @@ using SDWebImage;
 using CoreSpotlight;
 using Foundation;
 
+using Splat;
+
 namespace BeerDrinkin.iOS
 {
     partial class BeerDescriptionTableView : UIViewController
@@ -24,7 +26,7 @@ namespace BeerDrinkin.iOS
         ITrackHandle trackerHandle;
         PriceLookupService priceLookup = new PriceLookupService ();
         List<UITableViewCell> cells = new List<UITableViewCell> ();
-
+		bool justSignedIn;
         BeerItem beer;
         BeerInfo beerInfo;
         const string activityName = "com.beerdrinkin.beer";
@@ -47,13 +49,29 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad ();
             SetUpUI ();
+
+			NavigationController.NavigationBar.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
+			NavigationController.NavigationBar.TintColor = UIColor.White;
+
         }
 
-        public override void ViewDidAppear (bool animated)
+		public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
             Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
             tableView.ReloadData ();
+
+			if (Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser != null)
+			{
+				if (justSignedIn)
+				{
+					//If the user just signed in then it means we didn't check the beer in. Lets go ahead and do this.
+					var vc = Storyboard.InstantiateViewController("addBeerTableViewController");
+					PresentViewControllerAsync(vc, false);
+
+					justSignedIn = false;
+				}
+			}
 
             SetupSearch ();
         }
@@ -99,19 +117,23 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync (activityController, true);
         }
 
-        async partial void BtnCheckIn_TouchUpInside (UIButton sender)
+        partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-			var user = await Client.Instance.BeerDrinkinClient.CurrentUser;
+			var user = Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser;
 			if (user != null) 
 			{
-				
+				var vc = Storyboard.InstantiateViewController("addBeerTableViewController");
+				NavigationController.PresentViewControllerAsync(vc, true);
             } 
 			else 
 			{
                 var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
                 PresentModalViewController (welcomeViewController, true);
+				justSignedIn = true;
             }
         }
+
+
 
         #endregion
 
@@ -245,6 +267,14 @@ namespace BeerDrinkin.iOS
 
             headerCell.ConsumedAlpha = 0.3f;
             headerCell.RatingAlpha = 0.3f;
+
+			headerCell.EditingAbv += delegate {
+				this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Done,delegate {
+					headerCell.EndEditingAbv();
+					this.NavigationItem.RightBarButtonItem = null;
+				}), true);
+			};
+
             //Lets fire up another thread so we can continue loading our UI and makes the app seem faster.
             Task.Run (() => {
                 var response = Client.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id.ToString()).Result;
@@ -333,5 +363,6 @@ namespace BeerDrinkin.iOS
         }
 
         #endregion
-    }
+
+	}
 }

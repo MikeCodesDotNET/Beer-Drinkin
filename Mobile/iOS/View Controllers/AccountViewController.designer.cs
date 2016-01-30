@@ -11,55 +11,55 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("AccountViewController")]
-	partial class AccountViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem btnSettings { get; set; }
+    [Register ("AccountViewController")]
+    partial class AccountViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem btnSettings { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgAvatar { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblBeersCount { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblPhotoCount { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblRatingCount { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgAvatar { get; set; }
+        [Action ("BtnSettings_Activated:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnSettings_Activated (UIKit.UIBarButtonItem sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblBeersCount { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnSettings != null) {
+                btnSettings.Dispose ();
+                btnSettings = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblPhotoCount { get; set; }
+            if (imgAvatar != null) {
+                imgAvatar.Dispose ();
+                imgAvatar = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblRatingCount { get; set; }
+            if (lblBeersCount != null) {
+                lblBeersCount.Dispose ();
+                lblBeersCount = null;
+            }
 
-		[Action ("BtnSettings_Activated:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnSettings_Activated (UIBarButtonItem sender);
+            if (lblPhotoCount != null) {
+                lblPhotoCount.Dispose ();
+                lblPhotoCount = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnSettings != null) {
-				btnSettings.Dispose ();
-				btnSettings = null;
-			}
-			if (imgAvatar != null) {
-				imgAvatar.Dispose ();
-				imgAvatar = null;
-			}
-			if (lblBeersCount != null) {
-				lblBeersCount.Dispose ();
-				lblBeersCount = null;
-			}
-			if (lblPhotoCount != null) {
-				lblPhotoCount.Dispose ();
-				lblPhotoCount = null;
-			}
-			if (lblRatingCount != null) {
-				lblRatingCount.Dispose ();
-				lblRatingCount = null;
-			}
-		}
-	}
+            if (lblRatingCount != null) {
+                lblRatingCount.Dispose ();
+                lblRatingCount = null;
+            }
+        }
+    }
 }

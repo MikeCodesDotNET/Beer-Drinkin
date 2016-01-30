@@ -19,16 +19,8 @@ namespace BeerDrinkin.Core.ViewModels
 
         public async void SendFeedback()
         {
-            var currentUser = await Client.Instance.BeerDrinkinClient.CurrentUser;
-            Insights.Track("Feedback Provided", new Dictionary<string, string>
-                {
-                    { "User", currentUser.Email},
-                    { "UI Rating", UserInterfaceRating.ToString() },
-                    { "Beer Selection", BeerSelectionRating.ToString() },
-                    { "Comment", Feedback }
-                });
-
-            Acr.UserDialogs.UserDialogs.Instance.ShowSuccess("Feedback sent!");
+            var currentUser = Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser;
+           Acr.UserDialogs.UserDialogs.Instance.ShowSuccess("Feedback sent!");
         }
     }
 }

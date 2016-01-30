@@ -11,75 +11,83 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("BeerHeaderCell")]
-	partial class BeerHeaderCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView divider { get; set; }
+    [Register ("BeerHeaderCell")]
+    partial class BeerHeaderCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView divider { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblAbv { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblBrewery { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblConsumed { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblConsumedTitle { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblName { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblRating { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblRatingTitle { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField tbxAbv { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblAbv { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (divider != null) {
+                divider.Dispose ();
+                divider = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblBrewery { get; set; }
+            if (lblAbv != null) {
+                lblAbv.Dispose ();
+                lblAbv = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblConsumed { get; set; }
+            if (lblBrewery != null) {
+                lblBrewery.Dispose ();
+                lblBrewery = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblConsumedTitle { get; set; }
+            if (lblConsumed != null) {
+                lblConsumed.Dispose ();
+                lblConsumed = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblName { get; set; }
+            if (lblConsumedTitle != null) {
+                lblConsumedTitle.Dispose ();
+                lblConsumedTitle = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblRating { get; set; }
+            if (lblName != null) {
+                lblName.Dispose ();
+                lblName = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblRatingTitle { get; set; }
+            if (lblRating != null) {
+                lblRating.Dispose ();
+                lblRating = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (divider != null) {
-				divider.Dispose ();
-				divider = null;
-			}
-			if (lblAbv != null) {
-				lblAbv.Dispose ();
-				lblAbv = null;
-			}
-			if (lblBrewery != null) {
-				lblBrewery.Dispose ();
-				lblBrewery = null;
-			}
-			if (lblConsumed != null) {
-				lblConsumed.Dispose ();
-				lblConsumed = null;
-			}
-			if (lblConsumedTitle != null) {
-				lblConsumedTitle.Dispose ();
-				lblConsumedTitle = null;
-			}
-			if (lblName != null) {
-				lblName.Dispose ();
-				lblName = null;
-			}
-			if (lblRating != null) {
-				lblRating.Dispose ();
-				lblRating = null;
-			}
-			if (lblRatingTitle != null) {
-				lblRatingTitle.Dispose ();
-				lblRatingTitle = null;
-			}
-		}
-	}
+            if (lblRatingTitle != null) {
+                lblRatingTitle.Dispose ();
+                lblRatingTitle = null;
+            }
+
+            if (tbxAbv != null) {
+                tbxAbv.Dispose ();
+                tbxAbv = null;
+            }
+        }
+    }
 }

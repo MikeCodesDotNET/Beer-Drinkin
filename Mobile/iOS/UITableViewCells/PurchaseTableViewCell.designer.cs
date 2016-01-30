@@ -11,51 +11,35 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("PurchaseTableViewCell")]
-	partial class PurchaseTableViewCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblDistributorName { get; set; }
+    [Register ("PurchaseTableViewCell")]
+    partial class PurchaseTableViewCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblDistributorName { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblPrice { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTagLine { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblPrice { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (lblDistributorName != null) {
+                lblDistributorName.Dispose ();
+                lblDistributorName = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblQuantity { get; set; }
+            if (lblPrice != null) {
+                lblPrice.Dispose ();
+                lblPrice = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblTagLine { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView QuantityView { get; set; }
-
-		void ReleaseDesignerOutlets ()
-		{
-			if (lblDistributorName != null) {
-				lblDistributorName.Dispose ();
-				lblDistributorName = null;
-			}
-			if (lblPrice != null) {
-				lblPrice.Dispose ();
-				lblPrice = null;
-			}
-			if (lblQuantity != null) {
-				lblQuantity.Dispose ();
-				lblQuantity = null;
-			}
-			if (lblTagLine != null) {
-				lblTagLine.Dispose ();
-				lblTagLine = null;
-			}
-			if (QuantityView != null) {
-				QuantityView.Dispose ();
-				QuantityView = null;
-			}
-		}
-	}
+            if (lblTagLine != null) {
+                lblTagLine.Dispose ();
+                lblTagLine = null;
+            }
+        }
+    }
 }

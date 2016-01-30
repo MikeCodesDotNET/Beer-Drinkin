@@ -11,59 +11,59 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("AboutViewController")]
-	partial class AboutViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnTermsAndConditions { get; set; }
+    [Register ("AboutViewController")]
+    partial class AboutViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem btnClose { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableViewCell cellOnFacebook { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgAppIcon { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblMadeInGuildford { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblVersion { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView tableView { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableViewCell cellOnFacebook { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnClose != null) {
+                btnClose.Dispose ();
+                btnClose = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgAppIcon { get; set; }
+            if (cellOnFacebook != null) {
+                cellOnFacebook.Dispose ();
+                cellOnFacebook = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblMadeInGuildford { get; set; }
+            if (imgAppIcon != null) {
+                imgAppIcon.Dispose ();
+                imgAppIcon = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblVersion { get; set; }
+            if (lblMadeInGuildford != null) {
+                lblMadeInGuildford.Dispose ();
+                lblMadeInGuildford = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView tableView { get; set; }
+            if (lblVersion != null) {
+                lblVersion.Dispose ();
+                lblVersion = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnTermsAndConditions != null) {
-				btnTermsAndConditions.Dispose ();
-				btnTermsAndConditions = null;
-			}
-			if (cellOnFacebook != null) {
-				cellOnFacebook.Dispose ();
-				cellOnFacebook = null;
-			}
-			if (imgAppIcon != null) {
-				imgAppIcon.Dispose ();
-				imgAppIcon = null;
-			}
-			if (lblMadeInGuildford != null) {
-				lblMadeInGuildford.Dispose ();
-				lblMadeInGuildford = null;
-			}
-			if (lblVersion != null) {
-				lblVersion.Dispose ();
-				lblVersion = null;
-			}
-			if (tableView != null) {
-				tableView.Dispose ();
-				tableView = null;
-			}
-		}
-	}
+            if (tableView != null) {
+                tableView.Dispose ();
+                tableView = null;
+            }
+        }
+    }
 }

@@ -45,18 +45,6 @@ namespace BeerDrinkin.API
             get { return serviceClient.CurrentUser; }
             set { serviceClient.CurrentUser = value; }
         }
-
-        Task<UserItem> currentUser;
-        public Task<UserItem> CurrentUser
-        {
-            get
-            {
-                if (currentUser == null)
-                    currentUser = GetCurrentUser();
-
-                return currentUser;
-            }
-        }
             
         public MobileServiceClient ServiceClient
         {
@@ -148,10 +136,10 @@ namespace BeerDrinkin.API
         {
             if (checkInItem.Beer != null)
             {
-                checkInItem.BeerId = checkInItem.Beer.Id;
+				checkInItem.BeerId = checkInItem.Beer.Id.ToString();
             }
             var table = serviceClient.GetSyncTable<CheckInItem>();
-            checkInItem.CheckedInBy = new Guid(checkInItem.Beer.Name).GetHashCode();
+            checkInItem.CheckedInBy = new Guid(checkInItem.Beer.Name).GetHashCode().ToString();
             await table.InsertAsync(checkInItem);
             await SyncAsync<CheckInItem>(checkInItem.Id.ToString());
 
@@ -170,7 +158,7 @@ namespace BeerDrinkin.API
             {                
                 var table = serviceClient.GetSyncTable<CheckInItem>();
                 await SyncAsync(table, checkedInByUserId.ToString());
-                results = await table.Where(f => f.CheckedInBy == checkedInByUserId).ToListAsync();
+                results = await table.Where(f => f.CheckedInBy == checkedInByUserId.ToString()).ToListAsync();
                 if (results != null && results.Any())
                 {
                     var beerTable = serviceClient.GetSyncTable<BeerItem>();
@@ -283,7 +271,7 @@ namespace BeerDrinkin.API
                     foreach (var beerId in beerIds)
                     {
                         var beerInfo = new BeerInfo();
-                        var beerItem = (await beerTable.Where(f => f.Id == beerId).ToListAsync()).FirstOrDefault();
+                        var beerItem = (await beerTable.Where(f => f.Id.ToString() == beerId).ToListAsync()).FirstOrDefault();
                         if (beerItem != null)
                         {
                             beerInfo.Name = beerItem.Name;

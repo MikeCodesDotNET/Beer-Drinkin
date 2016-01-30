@@ -446,6 +446,7 @@
     </Compile>
     <Compile Include="DataSources\BeerDescriptionDataSource.cs" />
     <Compile Include="Helpers\Style.cs" />
+    <Compile Include="DataSources\CheckInDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -529,6 +530,26 @@
     <BundleResource Include="Resources\search_filter%403x.png" />
     <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%402x.png" />
     <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%403x.png" />
+    <BundleResource Include="Resources\profile_headerBackground.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\settings_about.png" />
+    <BundleResource Include="Resources\settings_analytics.png" />
+    <BundleResource Include="Resources\settings_feedback.png" />
+    <BundleResource Include="Resources\settings_notifications.png" />
+    <BundleResource Include="Resources\settings_signIn.png" />
+    <BundleResource Include="Resources\settings_twitter.png" />
+    <BundleResource Include="Resources\settings_xamarin.png" />
+    <BundleResource Include="Resources\starEmpty.png" />
+    <BundleResource Include="Resources\starFilled.png" />
+    <BundleResource Include="Resources\about_credits.png" />
+    <BundleResource Include="Resources\about_facebook.png" />
+    <BundleResource Include="Resources\about_heart.png" />
+    <BundleResource Include="Resources\about_releaseNotes.png" />
+    <BundleResource Include="Resources\about_support.png" />
+    <BundleResource Include="Resources\about_twitter.png" />
+    <BundleResource Include="Resources\account_settings.png" />
+    <BundleResource Include="Resources\account_starBlueEmpty.png" />
+    <BundleResource Include="Resources\account_starBlueFull.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

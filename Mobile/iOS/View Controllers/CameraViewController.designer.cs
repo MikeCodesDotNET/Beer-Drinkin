@@ -11,71 +11,69 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("CameraViewController")]
-	partial class CameraViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView bottomBar { get; set; }
+    [Register ("CameraViewController")]
+    partial class CameraViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView bottomBar { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnBack { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnTakePhoto { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnToggleFlash { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgPhoto { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView topBar { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnBack { get; set; }
+        [Action ("btnBack_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void btnBack_TouchUpInside (UIKit.UIButton sender);
+        [Action ("btnTakePhoto_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void btnTakePhoto_TouchUpInside (UIKit.UIButton sender);
+        [Action ("btnToggleFlash_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void btnToggleFlash_TouchUpInside (UIKit.UIButton sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnTakePhoto { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (bottomBar != null) {
+                bottomBar.Dispose ();
+                bottomBar = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnToggleFlash { get; set; }
+            if (btnBack != null) {
+                btnBack.Dispose ();
+                btnBack = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgPhoto { get; set; }
+            if (btnTakePhoto != null) {
+                btnTakePhoto.Dispose ();
+                btnTakePhoto = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView topBar { get; set; }
+            if (btnToggleFlash != null) {
+                btnToggleFlash.Dispose ();
+                btnToggleFlash = null;
+            }
 
-		[Action ("btnBack_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnBack_TouchUpInside (UIButton sender);
+            if (imgPhoto != null) {
+                imgPhoto.Dispose ();
+                imgPhoto = null;
+            }
 
-		[Action ("btnTakePhoto_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnTakePhoto_TouchUpInside (UIButton sender);
-
-		[Action ("btnToggleFlash_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void btnToggleFlash_TouchUpInside (UIButton sender);
-
-		void ReleaseDesignerOutlets ()
-		{
-			if (bottomBar != null) {
-				bottomBar.Dispose ();
-				bottomBar = null;
-			}
-			if (btnBack != null) {
-				btnBack.Dispose ();
-				btnBack = null;
-			}
-			if (btnTakePhoto != null) {
-				btnTakePhoto.Dispose ();
-				btnTakePhoto = null;
-			}
-			if (btnToggleFlash != null) {
-				btnToggleFlash.Dispose ();
-				btnToggleFlash = null;
-			}
-			if (imgPhoto != null) {
-				imgPhoto.Dispose ();
-				imgPhoto = null;
-			}
-			if (topBar != null) {
-				topBar.Dispose ();
-				topBar = null;
-			}
-		}
-	}
+            if (topBar != null) {
+                topBar.Dispose ();
+                topBar = null;
+            }
+        }
+    }
 }

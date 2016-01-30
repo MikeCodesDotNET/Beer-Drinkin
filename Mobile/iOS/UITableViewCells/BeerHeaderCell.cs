@@ -2,6 +2,7 @@ using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
+using Awesomizer;
 
 namespace BeerDrinkin.iOS
 {
@@ -94,6 +95,33 @@ namespace BeerDrinkin.iOS
             base.AwakeFromNib();
 
             Helpers.Animator.GrowDivider(divider, this);
+			SetupEvents();
         }
+
+		void SetupEvents()
+		{
+			var abvTap = new UITapGestureRecognizer(() => {
+				lblAbv.Hidden = true;
+				tbxAbv.Hidden = false;
+				tbxAbv.KeyboardType = UIKeyboardType.DecimalPad;
+				tbxAbv.BecomeFirstResponder();
+				EditingAbv();
+			});
+
+			lblAbv.UserInteractionEnabled = true;
+			lblAbv.AddGestureRecognizer(abvTap);
+		}
+
+		public void EndEditingAbv()
+		{
+			tbxAbv.ResignFirstResponder();
+			tbxAbv.Hidden = true;
+			lblAbv.Hidden = false;
+			lblAbv.Text = tbxAbv.Text;
+			lblAbv.Pop(0.5, 0, 1);
+		}
+
+		public delegate void EditingAbvHandler();
+		public event EditingAbvHandler EditingAbv;
     }
 }

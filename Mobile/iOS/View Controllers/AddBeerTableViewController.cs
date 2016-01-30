@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BeerDrinkin.iOS
 {
-	partial class AddBeerTableViewController : UITableViewController
+	partial class AddBeerTableViewController : UIViewController
 	{
         BeerItem beer;
         List<UITableViewCell> cells = new List<UITableViewCell>();
@@ -18,9 +18,9 @@ namespace BeerDrinkin.iOS
 
         public override void ViewDidLoad()
         {
-            TableView.Source = new AddBeerTableViewSource(ref cells);
-            TableView.Delegate = new AddBeerDelegate(ref cells);
-            TableView.ReloadData();
+           // TableView.Source = new AddBeerTableViewSource(ref cells);
+           // TableView.Delegate = new AddBeerDelegate(ref cells);
+            //TableView.ReloadData();
             View.SetNeedsDisplay();
 
             NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem(

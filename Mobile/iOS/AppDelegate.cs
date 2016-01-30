@@ -132,8 +132,8 @@ namespace BeerDrinkin.iOS
 
         static void SetupGlobalAppearances ()
         {
-            //NavigationBar
-            UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
+			//NavigationBar
+			UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
             UINavigationBar.Appearance.TintColor = Color.White.ToNative();
           
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes

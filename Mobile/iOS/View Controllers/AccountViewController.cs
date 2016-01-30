@@ -54,13 +54,13 @@ namespace BeerDrinkin.iOS
 
         void SetupUI()
         {
-            //NavigationBar
-            NavigationController.NavigationBar.BarTintColor = Color.Blue.ToNative();
-            NavigationController.NavigationBar.Translucent = false;
-            NavigationController.NavigationBar.ShadowImage = new UIImage();
+			//NavigationBar
+			NavigationController.NavigationBar.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+			NavigationController.NavigationBar.ShadowImage = new UIImage();
+			NavigationController.NavigationBar.Translucent = true;
 
             //Profile Image
-            imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
+          //  imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
             if(isFirstRun){imgAvatar.Pop(0.7f, 0, 0.2f);}
             isFirstRun = false;
         }
@@ -90,12 +90,14 @@ namespace BeerDrinkin.iOS
             NavigationController.NavigationBar.TopItem.Title = viewModel.FirstName;
             NavigationController.Title = viewModel.FirstName;
 
+			/*
             lblBeersCount.Text = viewModel.BeerCount;
             lblRatingCount.Text = viewModel.RatingsCount;
             lblPhotoCount.Text = viewModel.PhotoCount;
 
             var layout = new UICollectionViewFlowLayout();   
             layout.SectionInset = new UIEdgeInsets(5, 5, 2.5f, 2.5f);
+            */
             RefreshAvatar();
 
             return;

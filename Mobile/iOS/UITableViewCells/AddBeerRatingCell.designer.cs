@@ -11,11 +11,11 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("AddBeerRatingCell")]
-	partial class AddBeerRatingCell
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("AddBeerRatingCell")]
+    partial class AddBeerRatingCell
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

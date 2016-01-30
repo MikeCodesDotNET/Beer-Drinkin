@@ -24,20 +24,20 @@ namespace BeerDrinkin.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-         
-            SetupUI();
+			SetupUI();
             SetupTabChangeAnimation();           
         }
             
         #endregion
 
-        async Task SetupUI()
+        void SetupUI()
         {
-            var currentUser = await Client.Instance.BeerDrinkinClient.CurrentUser;
+            var currentUser = Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser;
             TabBar.Items[0].Title = Strings.Tabs_MyBeers;
             TabBar.Items[1].Title = Strings.Tabs_WishList;
             TabBar.Items[2].Title = Strings.Tabs_Search;
-            TabBar.Items[3].Title = currentUser == null ? Strings.Tabs_Profile : currentUser.FirstName;
+			//TODO get users name
+            //TabBar.Items[3].Title = currentUser == null ? Strings.Tabs_Profile : currentUser.FirstName;
 
             TabBar.SelectedImageTintColor = Color.Blue.ToNative();
         }
@@ -65,8 +65,7 @@ namespace BeerDrinkin.iOS
                         toView.Frame = new CGRect(0, destFrame.Y, destFrame.Width, destFrame.Height);
                     }, () =>
                     {
-                        //Completion handler. Remove old view
-                        fromView.RemoveFromSuperview();
+						fromView.RemoveFromSuperview();
                         SelectedViewController = controller;
                     });
                 return true;

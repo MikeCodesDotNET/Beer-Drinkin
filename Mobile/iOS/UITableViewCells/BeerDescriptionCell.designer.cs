@@ -11,27 +11,27 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("BeerDescriptionCell")]
-	partial class BeerDescriptionCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView divider { get; set; }
+    [Register ("BeerDescriptionCell")]
+    partial class BeerDescriptionCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView divider { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView tbxDescription { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextView tbxDescription { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (divider != null) {
+                divider.Dispose ();
+                divider = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (divider != null) {
-				divider.Dispose ();
-				divider = null;
-			}
-			if (tbxDescription != null) {
-				tbxDescription.Dispose ();
-				tbxDescription = null;
-			}
-		}
-	}
+            if (tbxDescription != null) {
+                tbxDescription.Dispose ();
+                tbxDescription = null;
+            }
+        }
+    }
 }

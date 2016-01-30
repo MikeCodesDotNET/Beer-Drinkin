@@ -117,20 +117,17 @@ namespace BeerDrinkin.iOS
             {
                 //We'll make all the subviews visible again
                 View.FadeSubviewsIn(2, 0);
-
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
             }
         }
 
         async void UserAuthenticiated()
         {
-            var vc = Storyboard.InstantiateViewController("tabBarController");
-            await PresentViewControllerAsync(vc, false);
-
+			Acr.UserDialogs.UserDialogs.Instance.ShowSuccess("Signed In", 1500);
+			await DismissViewControllerAsync(true);
             await Client.Instance.BeerDrinkinClient.RefreshAll();           
         }
 
-     
         partial void BtnCancel_TouchUpInside(UIButton sender)
         {
             this.DismissViewController(true, null);
