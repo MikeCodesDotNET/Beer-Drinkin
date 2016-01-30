@@ -31,7 +31,7 @@ namespace BeerDrinkin.iOS
 			}, UIControlState.Normal);
 
 			btnClose.Clicked += delegate {
-				DismissViewControllerAsync(true);
+				this.NavigationController.PopViewController(true);
 			};
         }
 

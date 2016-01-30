@@ -88,7 +88,7 @@ namespace BeerDrinkin.iOS
             set
             {
                 quantity = value;
-                lblQuantity.Text = quantity.ToString();
+                //lblQuantity.Text = quantity.ToString();
                 SetNeedsDisplay();
             }
         }

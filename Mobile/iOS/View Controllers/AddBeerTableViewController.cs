@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BeerDrinkin.iOS
 {
-	partial class AddBeerTableViewController : UIViewController
+	partial class AddBeerTableViewController : UITableViewController
 	{
         BeerItem beer;
         List<UITableViewCell> cells = new List<UITableViewCell>();
