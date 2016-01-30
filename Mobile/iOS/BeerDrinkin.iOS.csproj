@@ -531,7 +531,6 @@
     <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%402x.png" />
     <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%403x.png" />
     <BundleResource Include="Resources\profile_headerBackground.png" />
-    <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\settings_about.png" />
     <BundleResource Include="Resources\settings_analytics.png" />
     <BundleResource Include="Resources\settings_feedback.png" />
