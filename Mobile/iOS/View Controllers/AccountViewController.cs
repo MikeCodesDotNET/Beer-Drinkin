@@ -55,9 +55,11 @@ namespace BeerDrinkin.iOS
         void SetupUI()
         {
 			//NavigationBar
+			/*
 			NavigationController.NavigationBar.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
 			NavigationController.NavigationBar.ShadowImage = new UIImage();
 			NavigationController.NavigationBar.Translucent = true;
+			*/
 
             //Profile Image
           //  imgAvatar.ContentMode = UIViewContentMode.ScaleAspectFill;
