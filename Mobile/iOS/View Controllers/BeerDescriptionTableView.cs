@@ -155,10 +155,14 @@ namespace BeerDrinkin.iOS
 				info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
 				info.Add(new NSString("name"), new NSString(beer.Name));
 				info.Add(new NSString("description"), new NSString(beer.Description));
-				info.Add(new NSString("imageUrl"), new NSString(beer.ImageMedium));
 				info.Add(new NSString("abv"), new NSString(beer?.ABV.ToString()));
 				info.Add(new NSString("breweryDbId"), new NSString(beer.BreweryDbId));
 			
+				if (string.IsNullOrEmpty(beer.ImageMedium) == false) 
+				{
+					info.Add(new NSString("imageUrl"), new NSString(beer?.ImageMedium));
+				}
+
 				var attributes = new CSSearchableItemAttributeSet();
 				attributes.DisplayName = beer.Name;
 				attributes.ContentDescription = beer.Description;
@@ -213,7 +217,7 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-            if (beer?.ImageMedium != null) {
+			if (string.IsNullOrEmpty(beer.ImageMedium) == false) {
                 imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
             } else {
                 imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
