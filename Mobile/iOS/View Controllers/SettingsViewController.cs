@@ -37,13 +37,8 @@ namespace BeerDrinkin.iOS
         {
             if (indexPath.Section == 1 && indexPath.Row == 1)
             {
-                var signInView = UIApplication.SharedApplication.KeyWindow.RootViewController.ChildViewControllers[1];
-                var tabView = signInView.ChildViewControllers[0];
-
-                if (tabView != null)
-                {
-                    tabView.DismissViewController(true, null);
-                }
+				var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
+				PresentModalViewController (welcomeViewController, true);
             }
 
             if (indexPath.Section == 3 & indexPath.Row == 0)

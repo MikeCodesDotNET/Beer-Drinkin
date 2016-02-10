@@ -12,7 +12,6 @@ namespace BeerDrinkin.Service.DataObjects
         public string CheckedInBy { get; set; }
         public string Comment { get; set; }
         public double Rating { get; set; }
-        public int FourSquareId { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 #if CLIENT

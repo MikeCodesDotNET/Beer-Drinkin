@@ -24,7 +24,7 @@ namespace BeerDrinkin.Core.ViewModels
                 return;
             }
 
-            var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.Id);
+			var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.Id);
             var headerInfo = headerResult.Result;   
 
             RatingsCount = headerInfo.Ratings.ToString();

@@ -61,13 +61,14 @@ namespace BeerDrinkin.iOS
             Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
             tableView.ReloadData ();
 
-			if (Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser != null)
+			if (Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser != null)
 			{
 				if (justSignedIn)
 				{
 					//If the user just signed in then it means we didn't check the beer in. Lets go ahead and do this.
-					var vc = Storyboard.InstantiateViewController("addBeerTableViewController");
-					PresentViewControllerAsync(vc, false);
+					var vc = Storyboard.InstantiateViewController("rateBeerViewController") as RateBeerViewController;
+					vc.SelectedBeer = beer;
+					this.NavigationController.PushViewController(vc, false);
 
 					justSignedIn = false;
 				}
@@ -119,11 +120,12 @@ namespace BeerDrinkin.iOS
 
         partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-			var user = Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser;
+			var user = Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser;
 			if (user != null) 
 			{
-				var vc = Storyboard.InstantiateViewController("addBeerTableViewController");
-				NavigationController.PresentViewControllerAsync(vc, true);
+				var vc = Storyboard.InstantiateViewController("rateBeerViewController") as RateBeerViewController;
+				vc.SelectedBeer = beer;
+				NavigationController.PushViewController(vc, true);
             } 
 			else 
 			{
@@ -324,7 +326,6 @@ namespace BeerDrinkin.iOS
                 this.cells = cells;
             }
 
-
             public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
             {
                 var cell = cells [indexPath.Row];
@@ -350,15 +351,12 @@ namespace BeerDrinkin.iOS
 
             }
 
-
-
             public override void Scrolled (UIScrollView scrollView)
             {
                 DidScroll ();
             }
 
             public delegate void DidScrollEventHandler ();
-
             public event DidScrollEventHandler DidScroll;
         }
 

@@ -11,6 +11,7 @@ using Acr.UserDialogs;
 using Awesomizer;
 using Xamarin;
 using System.Threading.Tasks;
+
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
@@ -114,9 +115,9 @@ namespace BeerDrinkin.iOS
                     suggestParameters.HighlightPostTag = "]";
                     suggestParameters.MinimumCoverage = 100;
                                                
-                    var response = await indexClient.Documents.SuggestAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
+                    var response = await indexClient.Documents.SuggestAsync<Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
                     var results = new List<string>();
-                    foreach(var r in response)
+                    foreach(var r in response.Results)
                     {
                         results.Add(r.Text);
                     }
@@ -214,9 +215,9 @@ namespace BeerDrinkin.iOS
         private async void SearchForBeers (object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading("Searching");
-            var response = await indexClient.Documents.SearchAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text);             
+            var response = await indexClient.Documents.SearchAsync<Models.IndexedBeer>(searchBar.Text);             
             var beers = new List<BeerItem>();
-            foreach(var result in response)
+            foreach(var result in response.Results)
             {
                 var beerResult = result.Document; 
                 if (beerResult != null)

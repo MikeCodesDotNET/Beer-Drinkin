@@ -40,7 +40,7 @@ namespace BeerDrinkin.API
         /// Gets or sets the curren mobile servicet user. Used to keep hold of the auth token to persist
         /// </summary>
         /// <value>The curren mobile servicet user.</value>
-        public MobileServiceUser CurrenMobileServicetUser
+        public MobileServiceUser CurrentMobileServicetUser
         {
             get { return serviceClient.CurrentUser; }
             set { serviceClient.CurrentUser = value; }
@@ -69,10 +69,10 @@ namespace BeerDrinkin.API
         #endregion
 
         #region Distributor
-        public async Task<APIResponse<List<BeerDistributorItem>>> GetBeerDistributors(int beerId)
+        public async Task<APIResponse<List<BeerDistributorItem>>> GetBeerDistributors(string beerId)
         {
             var parameters = new Dictionary<string, string>();
-            parameters.Add("beerId", beerId.ToString());
+            parameters.Add("beerId", beerId);
 
             try
             {
@@ -87,10 +87,10 @@ namespace BeerDrinkin.API
         #endregion
 
         #region User
-        public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(int userId)
+        public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(string userId)
         {
             //Is the user authenticated? 
-            if (!string.IsNullOrEmpty(CurrenMobileServicetUser.UserId))
+            if (!string.IsNullOrEmpty(CurrentMobileServicetUser.UserId))
             {                
                 var parameters = new Dictionary<string, string>();
                 parameters.Add("userId", userId.ToString());
@@ -134,12 +134,8 @@ namespace BeerDrinkin.API
         #region CheckIn
         public async Task<APIResponse<bool>> CheckInBeerAsync(CheckInItem checkInItem)
         {
-            if (checkInItem.Beer != null)
-            {
-				checkInItem.BeerId = checkInItem.Beer.Id.ToString();
-            }
             var table = serviceClient.GetSyncTable<CheckInItem>();
-            checkInItem.CheckedInBy = new Guid(checkInItem.Beer.Name).GetHashCode().ToString();
+			checkInItem.CheckedInBy = CurrentMobileServicetUser.UserId;
             await table.InsertAsync(checkInItem);
             await SyncAsync<CheckInItem>(checkInItem.Id.ToString());
 
@@ -324,7 +320,7 @@ namespace BeerDrinkin.API
         public async Task<APIResponse<List<string>>> GetBinariesForObject(string objectId, BinaryTypes type)
         {
             //are we in?
-            if (!string.IsNullOrEmpty(CurrenMobileServicetUser.UserId))
+            if (!string.IsNullOrEmpty(CurrentMobileServicetUser.UserId))
                 return new APIResponse<List<string>>(new List<string>(),
                     new UnauthorizedAccessException("User is unauthenticated"));
 
@@ -346,7 +342,7 @@ namespace BeerDrinkin.API
         public async Task<APIResponse<List<string>>> GetPhotosForUser(string userId)
         {  
             //Is the user authenticated? 
-            if (!string.IsNullOrEmpty(CurrenMobileServicetUser.UserId))
+            if (!string.IsNullOrEmpty(CurrentMobileServicetUser.UserId))
             {                
                 var parameters = new Dictionary<string, string>();
 

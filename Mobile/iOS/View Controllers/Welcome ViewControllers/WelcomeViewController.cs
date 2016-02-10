@@ -44,9 +44,9 @@ namespace BeerDrinkin.iOS
             lblPromise.Alpha = 0;
             lblAmazingFeatures.Alpha = 0;
 
-            if (BeerDrinkin.Core.Helpers.Settings.FirstRun == true)
+            if (Core.Helpers.Settings.FirstRun == true)
             {
-                BeerDrinkin.Core.Helpers.Settings.FirstRun = false;
+                Core.Helpers.Settings.FirstRun = false;
 
                 var tinderBeer = Storyboard.InstantiateViewController("welcomeMapView");
                 PresentViewControllerAsync(tinderBeer, false);
