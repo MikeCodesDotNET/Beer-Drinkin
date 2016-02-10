@@ -329,10 +329,6 @@
     <Compile Include="View Controllers\CameraViewController.designer.cs">
       <DependentUpon>CameraViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\ReleaseNotesViewController.cs" />
-    <Compile Include="View Controllers\ReleaseNotesViewController.designer.cs">
-      <DependentUpon>ReleaseNotesViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
@@ -573,6 +569,9 @@
     <BundleResource Include="Resources\checkin_camera.png" />
     <BundleResource Include="Resources\checkin_starEmpty.png" />
     <BundleResource Include="Resources\checkin_starFilled.png" />
+    <BundleResource Include="Resources\ReleaseNotes.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

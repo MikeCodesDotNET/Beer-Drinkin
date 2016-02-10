@@ -51,6 +51,13 @@ namespace BeerDrinkin.iOS
                 OpenUrl("http://www.xamarin.com/");
             }
 
+
+			if (indexPath.Section == 0 && indexPath.Row == 1)
+			{
+				var sfViewController = new SFSafariViewController(new NSUrl("ReleaseNotes.md"), true);
+				PresentViewControllerAsync(sfViewController, true);
+			}
+
             if (indexPath.Section == 1 && indexPath.Row == 0)
             {
                 //Facebook
@@ -66,11 +73,9 @@ namespace BeerDrinkin.iOS
 
         void OpenUrl(string url)
         {
-            var sfViewController = new SafariServices.SFSafariViewController(new NSUrl(url));
+            var sfViewController = new SFSafariViewController(new NSUrl(url), true);
             sfViewController.View.TintColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
-            sfViewController.View.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();           
-
-
+            sfViewController.View.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();  
             PresentViewControllerAsync(sfViewController, true);
         }
     }
