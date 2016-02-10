@@ -16,6 +16,7 @@ using CoreSpotlight;
 using Foundation;
 
 using Splat;
+using Plugin.Share;
 
 namespace BeerDrinkin.iOS
 {
@@ -58,6 +59,17 @@ namespace BeerDrinkin.iOS
 		public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
+
+			UIBarButtonItem btnShare = new UIBarButtonItem ();
+			btnShare.Clicked += delegate 
+			{
+				Share();
+			};
+			btnShare.Title = "Share";
+			btnShare.Image = UIImage.FromFile("702-share.png");
+			NavigationItem.RightBarButtonItem = btnShare;
+
+
             Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
             tableView.ReloadData ();
 
@@ -73,9 +85,15 @@ namespace BeerDrinkin.iOS
 					justSignedIn = false;
 				}
 			}
+		
 
             SetupSearch ();
         }
+
+		public void Share()
+		{
+			CrossShare.Current.Share(beer.Name, beer.Description);
+		}
 
         public override void ViewDidLayoutSubviews ()
         {

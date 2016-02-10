@@ -247,6 +247,12 @@
     <Reference Include="Microsoft.Azure.Search">
       <HintPath>..\..\packages\Microsoft.Azure.Search.1.0.2-preview\lib\portable-net403+win8+wpa81\Microsoft.Azure.Search.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">

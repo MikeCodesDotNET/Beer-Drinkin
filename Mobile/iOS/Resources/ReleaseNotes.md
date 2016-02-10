@@ -1,4 +1,15 @@
 #iOS Release Notes
+### Beer Drinkin 0.3.1
+2016 February 10th
+ 
+#### Improvements 
+* Added share button within the beer details view
+
+#### Fixes 
+* App crashes if no beer label image is found.
+* Updated info.plist to add support for background refresh and notifications
+*
+
 ### Beer Drinkin 0.3
 2016 February 10th
 #### Improvements 
