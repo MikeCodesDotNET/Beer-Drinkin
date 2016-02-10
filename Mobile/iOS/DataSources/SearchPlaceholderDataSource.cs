@@ -22,8 +22,8 @@ namespace BeerDrinkin.iOS.DataSources
 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 2;
-        }
+			return CameraDeviceAvailable == true ? 2 : 1;
+		}
 
         public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
@@ -39,55 +39,61 @@ namespace BeerDrinkin.iOS.DataSources
                 }
             }
 
-            if(indexPath.Section == 1)
-            {
-                var cellIdentifier = new NSString("barcodeSearchTableViewCell");
-                var cell = tableView.DequeueReusableCell(cellIdentifier) as BarcodeSearchTableViewCell ?? new BarcodeSearchTableViewCell(cellIdentifier);
-				cell.ScanBeer += async () =>
+			if (UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear) == true)
+			{
+				if(indexPath.Section == 1)
 				{
-					try
+					var cellIdentifier = new NSString("barcodeSearchTableViewCell");
+					var cell = tableView.DequeueReusableCell(cellIdentifier) as BarcodeSearchTableViewCell ?? new BarcodeSearchTableViewCell(cellIdentifier);
+					cell.ScanBeer += async () =>
 					{
-						var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(viewController);
-						var barcodeResult = await barcodeScanner.Scan();
-
-						if (string.IsNullOrEmpty(barcodeResult.Text))
-							return;
-
-						var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
-						if (Beers != null)
+						try
 						{
+							var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(viewController);
+							var barcodeResult = await barcodeScanner.Scan();
+
+							if (string.IsNullOrEmpty(barcodeResult.Text))
+								return;
+
+							var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
+							if (Beers != null)
+							{
+							}
 						}
-					}
-					catch (Exception ex)
-					{
-						Insights.Report(ex);
-					}
-					finally
-					{
-						UserDialogs.Instance.HideLoading();
-					}
-				};
-                return cell;
-            }
+						catch (Exception ex)
+						{
+							Insights.Report(ex);
+						}
+						finally
+						{
+							UserDialogs.Instance.HideLoading();
+						}
+					};
+					return cell;
+				}
+			}
 
             return new UITableViewCell();           
         }
 
-        public override UIView GetViewForHeader(UITableView tableView, nint section)
-        {
-            var cellIdentifier = new NSString("searchHeaderViewCell");
-            var headerCell = tableView.DequeueReusableCell(cellIdentifier) as SearchHeaderViewCell ?? new SearchHeaderViewCell(cellIdentifier);
-            switch (section)
-            {
-                case 0:
-                    headerCell.Title = "Your recent searches";
-                    break;
-                case 1: 
-                    headerCell.Title = "Barcode";
-                    break;
-                default:
-                    break;
-            }
+		public override UIView GetViewForHeader(UITableView tableView, nint section)
+		{
+			var cellIdentifier = new NSString("searchHeaderViewCell");
+			var headerCell = tableView.DequeueReusableCell(cellIdentifier) as SearchHeaderViewCell ?? new SearchHeaderViewCell(cellIdentifier);
+
+			if (section == 0)
+			{
+				headerCell.Title = "Your recent searches";
+			}
+
+			if (CameraDeviceAvailable == true)
+			{
+				if (section == 1)
+				{
+					headerCell.Title = "Barcode";
+				}
+
+			}
             return headerCell;
         }
 
@@ -110,6 +116,14 @@ namespace BeerDrinkin.iOS.DataSources
             }
             return 36;
         }
+
+		bool CameraDeviceAvailable
+		{
+			get
+			{
+				return UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear);
+			}
+		}
 
         #endregion
     }
