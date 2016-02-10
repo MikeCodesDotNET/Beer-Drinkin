@@ -17,6 +17,7 @@ using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.Service.DataObjects;
 using System.Linq;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
@@ -49,6 +50,12 @@ namespace BeerDrinkin.iOS
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
                 RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);           
         }
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			SetupUI();
+		}
        
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {            
@@ -252,6 +259,12 @@ namespace BeerDrinkin.iOS
             source.DidSelectBeer += (beer) => 
             {
                 selectedBeer = beer;
+
+				var searchHistory = SearchHistory.History;
+				searchHistory.Enqueue(beer.Name);
+				if (searchHistory.Count > 3)
+					searchHistory.Dequeue();
+
                 PerformSegue("beerDescriptionSegue", this);
                 searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
             };

@@ -2,6 +2,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
+using BeerDrinkin.iOS.CustomControls;
 
 namespace BeerDrinkin.iOS
 {
@@ -16,6 +17,30 @@ namespace BeerDrinkin.iOS
             : base(UITableViewCellStyle.Default, cellId)
         {
         }
+
+		public string Text
+		{
+			get
+			{
+				return lblTitle.Text;
+			}
+			set
+			{
+				lblTitle.Text = value;
+			}
+		}
+
+		public SearchTableViewCellBackground Background
+		{
+			get
+			{
+				return background;
+			}
+			set
+			{
+				background = value;
+			}
+		}
 
 	}
 }

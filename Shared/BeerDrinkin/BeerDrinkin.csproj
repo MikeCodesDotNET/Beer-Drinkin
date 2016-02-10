@@ -47,7 +47,6 @@
     <Compile Include="View Models\BaseViewModel.cs" />
     <Compile Include="Service\BarcodeLookupService.cs" />
     <Compile Include="Helpers\Keys.cs" />
-    <Compile Include="Service\SearchHistoryService.cs" />
     <Compile Include="Service\PriceLookupService.cs" />
     <Compile Include="View Models\BeerPaymentViewModel.cs" />
     <Compile Include="Service\UserTrackingService.cs" />

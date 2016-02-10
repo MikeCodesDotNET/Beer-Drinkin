@@ -5,6 +5,7 @@ using BeerDrinkin.iOS.CustomControls;
 using Acr.UserDialogs;
 using BeerDrinkin.Core.Services;
 using Xamarin;
+using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS.DataSources
 {
@@ -34,6 +35,16 @@ namespace BeerDrinkin.iOS.DataSources
                 {
                     var cellIdentifier = new NSString("noRecentSearchesViewCell");
                     var cell = tableView.DequeueReusableCell(cellIdentifier) as NoRecentSearchesViewCell ?? new NoRecentSearchesViewCell(cellIdentifier);
+
+					if (SearchHistory.History.Count > 0)
+					{
+						cell.Text = SearchHistory.History.ToArray()[index];
+						if (index == SearchHistory.History.Count)
+						{
+							cell.Background.Footer = true;
+						}
+
+					}
 
                     return cell;
                 }
@@ -99,6 +110,13 @@ namespace BeerDrinkin.iOS.DataSources
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
+			if (section == 0)
+			{
+				var count = SearchHistory.History.Count;
+				if (count == 0)
+					return 1;
+				return count;
+			}
             return 1;
         }
 
