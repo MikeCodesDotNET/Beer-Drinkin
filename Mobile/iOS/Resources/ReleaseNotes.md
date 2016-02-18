@@ -12,6 +12,7 @@
 *
 #### Todo 
 * Persist search history across app runs and sync to cloud.
+* Fix release notes crashing
 
 ### Beer Drinkin 0.3
 2016 February 9th

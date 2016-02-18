@@ -32,7 +32,7 @@
     <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>full</DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -44,6 +44,7 @@
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName></IpaPackageName>
     <CodesignProvision>31aba3cc-2220-4150-abf2-a555e7d4e9e7</CodesignProvision>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -73,6 +74,20 @@
     <IpaPackageName></IpaPackageName>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <CodesignProvision>44fdd764-305f-44ca-a399-4d216fdfcdfd</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\UITest</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>BeerDrinkin.iOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -139,9 +154,6 @@
     <Reference Include="Acr.Support.iOS">
       <HintPath>..\..\packages\Acr.Support.1.1.1\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Calabash">
-      <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.16.4\lib\Xamarin.iOS10\Calabash.dll</HintPath>
-    </Reference>
     <Reference Include="Facebook.Pop">
       <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
     </Reference>
@@ -199,9 +211,6 @@
     <Reference Include="Acr.UserDialogs.Interface">
       <HintPath>..\..\packages\Acr.UserDialogs.4.2.1\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
     </Reference>
-    <Reference Include="BTProgressHUD">
-      <HintPath>..\..\packages\Acr.UserDialogs.4.2.1\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
-    </Reference>
     <Reference Include="System.Collections" />
     <Reference Include="System.Diagnostics.Debug" />
     <Reference Include="System.Diagnostics.Tools" />
@@ -223,12 +232,6 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\..\packages\Xamarin.Insights.1.11.3\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
-    </Reference>
-    <Reference Include="PLCrashReporterUnifiedBinding">
-      <HintPath>..\..\packages\Xamarin.Insights.1.11.3\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Rest.ClientRuntime">
       <HintPath>..\..\packages\Microsoft.Rest.ClientRuntime.1.8.1\lib\portable-net45+win+wpa81\Microsoft.Rest.ClientRuntime.dll</HintPath>
@@ -253,6 +256,15 @@
     <Reference Include="Plugin.Share.Abstractions">
       <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabash">
+      <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.18.0\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -262,6 +274,10 @@
     <ProjectReference Include="..\..\Shared\BeerDrinkin\BeerDrinkin.csproj">
       <Project>{70F2F312-0E9F-40B2-BA23-37F994708DAE}</Project>
       <Name>BeerDrinkin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
+      <Project>{8ECDFDC5-42D0-4540-9691-830EEB2ED874}</Project>
+      <Name>BTProgressHUD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -356,7 +372,6 @@
     <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\PreviewingDelegates\BeerDescriptionPreviewingDelegate.cs" />
     <Compile Include="Helpers\Awesomizer.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.designer.cs">
@@ -583,6 +598,10 @@
     <BundleResource Include="Resources\ReleaseNotes.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\quickAction_myBeers.png" />
+    <BundleResource Include="Resources\quickAction_profile.png" />
+    <BundleResource Include="Resources\quickAction_search.png" />
+    <BundleResource Include="Resources\quickAction_wishlist.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
@@ -645,7 +664,7 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\packages\Xamarin.Insights.1.11.3\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\..\packages\Xamarin.Insights.1.11.3\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
+  <Import Project="..\..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <ItemGroup />
   <ItemGroup>
     <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Contents.json" />
@@ -676,5 +695,6 @@
     <Folder Include="Storyboards\" />
     <Folder Include="Service\" />
     <Folder Include="Models\" />
+    <Folder Include="View Controllers\PreviewingDelegates\" />
   </ItemGroup>
 </Project>

@@ -13,6 +13,20 @@
             <string>Avenir-Book</string>
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Medium</string>
@@ -73,24 +87,10 @@
             <string>Avenir-Book</string>
             <string>Avenir-Book</string>
             <string>Avenir-Book</string>
-            <string>Avenir-Book</string>
-            <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Book</string>
             <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
-            <string>Avenir-Medium</string>
+            <string>Avenir-Book</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1055,6 +1055,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -2328,61 +2329,133 @@
             </objects>
             <point key="canvasLocation" x="-2592" y="4443"/>
         </scene>
-        <!--Rate Beer View Controller-->
-        <scene sceneID="C46-gq-Ri3">
+        <!--Table View Controller-->
+        <scene sceneID="x1F-da-gzl">
             <objects>
-                <viewController restorationIdentifier="rateBeerViewController" storyboardIdentifier="rateBeerViewController" id="AF9-YH-Hna" customClass="RateBeerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="93r-90-1UI"/>
-                        <viewControllerLayoutGuide type="bottom" id="eqo-82-sV7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6EU-P5-TbE">
+                <tableViewController restorationIdentifier="rateBeerViewController" storyboardIdentifier="rateBeerViewController" id="yUw-dO-ghz" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zkc-fJ-KUv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Yq-AFF">
-                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
-                                <color key="backgroundColor" red="0.1215686275" green="0.79607843140000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="zR8-cB-S4f"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="Check in">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="BtnCheckIn_TouchUpInside:" destination="ZxU-bt-Ttk" eventType="touchUpInside" id="gMC-ui-pDZ"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfs-pb-gDR" customClass="PlaceholderTextView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="130"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="rWy-dm-k7M"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" red="0.31764705879999999" green="0.30980392159999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="GcK-Yq-AFF" firstAttribute="bottom" secondItem="eqo-82-sV7" secondAttribute="top" id="9Hu-g2-8M6"/>
-                            <constraint firstItem="Vfs-pb-gDR" firstAttribute="leading" secondItem="6EU-P5-TbE" secondAttribute="leading" id="JQp-lP-vSk"/>
-                            <constraint firstAttribute="trailing" secondItem="Vfs-pb-gDR" secondAttribute="trailing" id="u8t-ZE-ykD"/>
-                            <constraint firstItem="Vfs-pb-gDR" firstAttribute="top" secondItem="93r-90-1UI" secondAttribute="bottom" id="uz9-G1-seT"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="btnCheckIn" destination="GcK-Yq-AFF" id="name-outlet-GcK-Yq-AFF"/>
-                        <outlet property="tbxComment" destination="Vfs-pb-gDR" id="name-outlet-Vfs-pb-gDR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2fR-eO-A3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="6VI-hA-6T1">
+                                <rect key="frame" x="0.0" y="28" width="600" height="67"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6VI-hA-6T1" id="b7E-en-1aR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="usR-Rk-Rvr">
+                                            <rect key="frame" x="128" y="17" width="192" height="32"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4m-7v-uOF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="CUg-FM-GoB"/>
+                                                        <constraint firstAttribute="height" constant="32" id="NWZ-nb-qoo"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="account_starBlueEmpty.png"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBx-cQ-ZED">
+                                                    <rect key="frame" x="40" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="TDl-Zz-X5i"/>
+                                                        <constraint firstAttribute="width" constant="32" id="U2e-RV-2iQ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="account_starBlueEmpty.png"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4y-CK-HgW">
+                                                    <rect key="frame" x="80" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="d8B-ci-21d"/>
+                                                        <constraint firstAttribute="height" constant="32" id="mXe-c1-7HD"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="account_starBlueEmpty.png"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNt-gT-0yN">
+                                                    <rect key="frame" x="120" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="Fuw-vT-GyY"/>
+                                                        <constraint firstAttribute="height" constant="32" id="mbk-5M-3fD"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="account_starBlueEmpty.png"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q05-Ij-ZTE">
+                                                    <rect key="frame" x="160" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="ctg-F7-0zC"/>
+                                                        <constraint firstAttribute="height" constant="32" id="rNK-ee-DyK"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="account_starBlueEmpty.png"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="192" id="248-Ow-TyY"/>
+                                            </constraints>
+                                        </stackView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rating" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-Vc-tFA">
+                                            <rect key="frame" x="8" y="21" width="100" height="25"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="bc5-Aq-ayJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" red="0.31764705879999999" green="0.30980392159999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="usR-Rk-Rvr" firstAttribute="leading" secondItem="gKO-Vc-tFA" secondAttribute="trailing" constant="20" id="Dnh-Vl-pJm"/>
+                                        <constraint firstItem="usR-Rk-Rvr" firstAttribute="top" secondItem="b7E-en-1aR" secondAttribute="topMargin" constant="9" id="EGp-Pt-MOw"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="usR-Rk-Rvr" secondAttribute="bottom" constant="9" id="GYe-9n-43Q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gKO-Vc-tFA" secondAttribute="bottom" constant="12" id="Xmv-zu-cd8"/>
+                                        <constraint firstItem="gKO-Vc-tFA" firstAttribute="centerY" secondItem="b7E-en-1aR" secondAttribute="centerY" id="eTR-NZ-pXu"/>
+                                        <constraint firstItem="gKO-Vc-tFA" firstAttribute="leading" secondItem="b7E-en-1aR" secondAttribute="leadingMargin" id="vX4-oB-ssf"/>
+                                        <constraint firstItem="gKO-Vc-tFA" firstAttribute="top" secondItem="b7E-en-1aR" secondAttribute="topMargin" constant="13" id="zgI-bN-25D"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="i0B-wz-uNR">
+                                <rect key="frame" x="0.0" y="95" width="600" height="67"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0B-wz-uNR" id="MkP-hT-0NR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYD-ZG-tqH">
+                                            <rect key="frame" x="0.0" y="13" width="600" height="45"/>
+                                            <color key="backgroundColor" red="0.1215686275" green="0.79607843140000001" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="XRW-6r-j8O"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                            <state key="normal" title="Check in">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="BtnCheckIn_TouchUpInside:" destination="ZxU-bt-Ttk" eventType="touchUpInside" id="wf2-Wc-sZU"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KYD-ZG-tqH" firstAttribute="leading" secondItem="MkP-hT-0NR" secondAttribute="leadingMargin" constant="-8" id="fZm-65-UcW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KYD-ZG-tqH" secondAttribute="trailing" constant="-8" id="onA-lv-YHe"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="KYD-ZG-tqH" secondAttribute="bottom" id="u7h-Ht-RBa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yUw-dO-ghz" id="3Jn-78-8un"/>
+                            <outlet property="delegate" destination="yUw-dO-ghz" id="VF8-4r-pzy"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJ8-Js-91K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1760" y="4511"/>
+            <point key="canvasLocation" x="-1623" y="4474"/>
         </scene>
         <!--Full Screen Map View-->
         <scene sceneID="t6L-fy-iVd">
@@ -2590,6 +2663,7 @@
         <image name="957-beer-mug@3x.png" width="7103" height="2025"/>
         <image name="BeerDrinkin.png" width="526" height="526"/>
         <image name="Patterned Image.png" width="7103" height="2025"/>
+        <image name="account_starBlueEmpty.png" width="32" height="32"/>
         <image name="facebook_button.png" width="558" height="89"/>
         <image name="flashOff.png" width="7103" height="2025"/>
         <image name="goolgeButton.png" width="558" height="89"/>

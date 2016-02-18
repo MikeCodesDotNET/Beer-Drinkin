@@ -87,26 +87,18 @@ namespace BeerDrinkin.API
         #endregion
 
         #region User
-        public async Task<APIResponse<HeaderInfo>> GetUsersHeaderInfoAsync(string userId)
+        public async Task<HeaderInfo> GetUsersHeaderInfoAsync(string username)
         {
-            //Is the user authenticated? 
-            if (!string.IsNullOrEmpty(CurrentMobileServicetUser.UserId))
-            {                
-                var parameters = new Dictionary<string, string>();
-                parameters.Add("userId", userId.ToString());
-                try
-                {
-                    return
-                        new APIResponse<HeaderInfo>(
-                        await serviceClient.InvokeApiAsync<HeaderInfo>("HeaderInfo", HttpMethod.Get, parameters),
-                        null);
-                }
-                catch (Exception ex)
-                {
-                    return new APIResponse<HeaderInfo>(null, ex);
-                }
+            var parameters = new Dictionary<string, string>();
+            parameters.Add("username", username);
+            try
+            {
+                return await serviceClient.InvokeApiAsync<HeaderInfo>("HeaderInfo", HttpMethod.Get, parameters);
             }
-            return new APIResponse<HeaderInfo>(null, new UnauthorizedAccessException("User is unauthenticated"));
+            catch
+            {
+				return new HeaderInfo();
+            }            
         }
 
         private async Task<AccountItem> GetCurrentAccount()
@@ -367,7 +359,6 @@ namespace BeerDrinkin.API
            
 
         #endregion
-
 
         #region OfflineSync
         public async Task InitializeStoreAsync()

@@ -30,14 +30,16 @@ namespace BeerDrinkin.iOS
 
 		#endregion
 
-		void SetupUI()
+		async Task SetupUI()
 		{
-			var currentUser = Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser;
+			var currentUser = await Client.Instance.BeerDrinkinClient.Users.CurrentUser();
+
 			TabBar.Items[0].Title = Strings.Tabs_MyBeers;
 			TabBar.Items[1].Title = Strings.Tabs_WishList;
 			TabBar.Items[2].Title = Strings.Tabs_Search;
-			//TODO get users name
-			//TabBar.Items[3].Title = currentUser == null ? Strings.Tabs_Profile : currentUser.FirstName;
+
+			if (currentUser != null)
+				TabBar.Items[3].Title = currentUser.UserName;
 
 			TabBar.SelectedImageTintColor = Color.Blue.ToNative();
 		}

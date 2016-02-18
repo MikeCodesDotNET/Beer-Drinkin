@@ -85,12 +85,6 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>My Beers</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.micjames.beerdrinkin.mybeers</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
 			<string>Wish List</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>ccom.micjames.beerdrinkin.wishlist</string>

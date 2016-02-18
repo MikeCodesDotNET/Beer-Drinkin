@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
+using CoreGraphics;
 
 using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.Core.Services;
@@ -21,7 +22,7 @@ using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS
 {
-    public partial class SearchViewController : BaseViewController
+	public partial class SearchViewController : BaseViewController
     {
         #region Fields
         private readonly SearchViewModel viewModel = new SearchViewModel();
@@ -31,24 +32,35 @@ namespace BeerDrinkin.iOS
         private BeerItem selectedBeer;
         #endregion
 
+		public BeerItem SelectedBeer
+		{
+			get
+			{
+				return selectedBeer;
+			}
+		}
+
         #region Constructor
         public SearchViewController(IntPtr handle) : base(handle)
         {
         }
-
         #endregion
 
         #region Overrides
+		public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
+		{
+			//Important: Must call base method
+			base.TraitCollectionDidChange(previousTraitCollection);
+
+		}
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
-            SetupEvents(); 
-
-            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-                RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);           
+            SetupEvents();            
         }
 
 		public override void ViewWillAppear(bool animated)
@@ -76,7 +88,31 @@ namespace BeerDrinkin.iOS
             beerDescriptoinViewController.SetBeer(selectedBeer);
 
             selectedBeer = null;
-        }
+		}
+
+		public UIViewController GetViewControllerForPreview (IUIViewControllerPreviewing previewingContext, CGPoint location)
+		{
+			// Obtain the index path and the cell that was pressed.
+			var indexPath = searchResultsTableView.IndexPathForRowAtPoint (location);
+
+			if (indexPath == null)
+				return null;
+
+			var cell = searchResultsTableView.CellAt (indexPath);
+
+			if (cell == null)
+				return null;
+
+			// Create a detail view controller and set its properties.
+			var detailViewController = (BeerDescriptionTableView)Storyboard.InstantiateViewController ("beerDescriptionTableView");
+			if (detailViewController == null)
+				return null;
+
+			detailViewController.PreferredContentSize = new CoreGraphics.CGSize (0, 200);
+			previewingContext.SourceRect = cell.Frame;
+			return detailViewController;
+		}
+
 
 
         #endregion

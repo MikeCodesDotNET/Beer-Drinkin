@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-
 using BeerDrinkin.Core.Helpers;
 
 using Foundation;
@@ -33,8 +31,11 @@ namespace BeerDrinkin.iOS
 
             #if DEBUG
             //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
-            Calabash.Start ();
             #endif
+
+			#if ENABLE_TEST_CLOUD
+			Calabash.Start();
+			#endif
 
             //Windows Azure
             CurrentPlatform.Init ();
@@ -45,7 +46,27 @@ namespace BeerDrinkin.iOS
             SetupGlobalAppearances();
             ConfigureJudoPayments();
 
-            return true;
+			var shouldPerformAdditionalDelegateHandling = true;
+			// Get possible shortcut item
+			if (launchOptions != null) {
+				LaunchedShortcutItem = launchOptions [UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
+				shouldPerformAdditionalDelegateHandling = (LaunchedShortcutItem == null);
+			}
+
+			// Add dynamic shortcut items
+			if (application.ShortcutItems.Length == 0) {
+				var shortcut3 = new UIMutableApplicationShortcutItem(ShortcutIdentifier.MyBeers, "My Beer")
+				{
+					LocalizedSubtitle = "See the beers you've already had",
+					Icon = UIApplicationShortcutIcon.FromTemplateImageName("quickAction.myBeers.png")
+				};
+
+
+				// Update the application providing the initial 'dynamic' shortcut items.
+				application.ShortcutItems = new UIApplicationShortcutItem[]{shortcut3};
+			}
+
+			return shouldPerformAdditionalDelegateHandling;
         }
 
         private void ConfigureJudoPayments ()

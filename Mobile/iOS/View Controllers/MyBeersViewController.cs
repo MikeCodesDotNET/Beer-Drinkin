@@ -55,6 +55,8 @@ namespace BeerDrinkin.iOS
             };
 
             viewModel.FetchBeersCommand();
+
+
         }
 
         public override void ViewDidAppear(bool animated)

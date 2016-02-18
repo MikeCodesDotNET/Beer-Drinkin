@@ -39,9 +39,7 @@ namespace BeerDrinkin.iOS
 			{
 				Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Checking in");
 				var checkIn = new CheckInItem();
-				checkIn.Comment = tbxComment.Text;
-				checkIn.Beer = beer;
-				checkIn.BeerId = beer.BreweryDbId;
+	
 				await Client.Instance.BeerDrinkinClient.CheckInBeerAsync(checkIn);
 				Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 			};

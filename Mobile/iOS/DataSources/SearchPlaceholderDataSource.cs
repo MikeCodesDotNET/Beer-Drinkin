@@ -43,8 +43,12 @@ namespace BeerDrinkin.iOS.DataSources
 						{
 							cell.Background.Footer = true;
 						}
-
+						else
+						{
+							cell.Background.Default = true;
+						}
 					}
+									
 
                     return cell;
                 }
