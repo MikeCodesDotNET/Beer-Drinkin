@@ -23,7 +23,11 @@ namespace BeerDrinkin.iOS.DataSources
 
         public override nint NumberOfSections(UITableView tableView)
         {
+#if !DEBUG
 			return CameraDeviceAvailable == true ? 2 : 1;
+#else
+			return 2;
+			#endif
 		}
 
         public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
@@ -54,39 +58,28 @@ namespace BeerDrinkin.iOS.DataSources
                 }
             }
 
+			#if !DEBUG
 			if (UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear) == true)
 			{
 				if(indexPath.Section == 1)
 				{
-					var cellIdentifier = new NSString("barcodeSearchTableViewCell");
-					var cell = tableView.DequeueReusableCell(cellIdentifier) as BarcodeSearchTableViewCell ?? new BarcodeSearchTableViewCell(cellIdentifier);
-					cell.ScanBeer += async () =>
-					{
-						try
-						{
-							var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(viewController);
-							var barcodeResult = await barcodeScanner.Scan();
-
-							if (string.IsNullOrEmpty(barcodeResult.Text))
-								return;
-
-							var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
-							if (Beers != null)
-							{
-							}
-						}
-						catch (Exception ex)
-						{
-							Insights.Report(ex);
-						}
-						finally
-						{
-							UserDialogs.Instance.HideLoading();
-						}
-					};
+					var cellIdentifier = new NSString("inAppPurchaseSearchTableViewCell");
+					var cell = tableView.DequeueReusableCell(cellIdentifier) as InAppPurchaseSearchTableViewCell ?? new InAppPurchaseSearchTableViewCell(cellIdentifier);
 					return cell;
 				}
 			}
+			#else
+			if(indexPath.Section == 1)
+			{
+				var cellIdentifier = new NSString("inAppPurchaseSearchTableViewCell");
+				var cell = tableView.DequeueReusableCell(cellIdentifier) as InAppPurchaseSearchTableViewCell ?? new InAppPurchaseSearchTableViewCell(cellIdentifier);
+				cell.LearnMoreButtonClick += delegate 
+				{
+					LearnMoreButtonClick();
+				};
+				return cell;
+			}
+			#endif
 
             return new UITableViewCell();           
         }
@@ -101,14 +94,22 @@ namespace BeerDrinkin.iOS.DataSources
 				headerCell.Title = "Your recent searches";
 			}
 
+			#if !DEBUG
 			if (CameraDeviceAvailable == true)
 			{
 				if (section == 1)
 				{
-					headerCell.Title = "Barcode";
+					headerCell.Title = "Image Recognition";
 				}
 
 			}
+			#else
+			if (section == 1)
+			{
+				headerCell.Title = "Image Recognition";
+			}
+			#endif
+
             return headerCell;
         }
 
@@ -134,7 +135,7 @@ namespace BeerDrinkin.iOS.DataSources
         {
             if(indexPath.Section == 1)
             {
-                return 116;
+				return 164;
             }
             return 36;
         }
@@ -148,6 +149,9 @@ namespace BeerDrinkin.iOS.DataSources
 		}
 
         #endregion
+
+		public delegate void LearnMoreButtonClickHandler();
+		public event LearnMoreButtonClickHandler LearnMoreButtonClick;
     }
 }
 

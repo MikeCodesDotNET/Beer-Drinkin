@@ -17,6 +17,7 @@ using Foundation;
 
 using Splat;
 using Plugin.Share;
+using BeerDrinkin.iOS.PreviewingDelegates;
 
 namespace BeerDrinkin.iOS
 {
@@ -53,7 +54,6 @@ namespace BeerDrinkin.iOS
 
 			NavigationController.NavigationBar.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
 			NavigationController.NavigationBar.TintColor = UIColor.White;
-
         }
 
 		public override void ViewDidAppear (bool animated)

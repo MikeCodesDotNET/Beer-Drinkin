@@ -19,6 +19,7 @@ using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.Service.DataObjects;
 using System.Linq;
 using BeerDrinkin.iOS.Helpers;
+using BeerDrinkin.iOS.PreviewingDelegates;
 
 namespace BeerDrinkin.iOS
 {
@@ -60,7 +61,13 @@ namespace BeerDrinkin.iOS
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
-            SetupEvents();            
+            SetupEvents();
+
+			// Check to see if 3D Touch is available
+			if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available) 
+			{
+				RegisterForPreviewingWithDelegate(new SearchPreviewingDelegate(this), View);
+            }
         }
 
 		public override void ViewWillAppear(bool animated)
@@ -129,10 +136,16 @@ namespace BeerDrinkin.iOS
             View.AddSubview(suggestionsTableView);
 
             var dataSource = new SearchPlaceholderDataSource(this);
+			dataSource.LearnMoreButtonClick += delegate 
+			{
+				var vc = Storyboard.InstantiateViewController("inAppPurchaseViewController");
+				this.PresentModalViewController(vc, true);
+			};
+
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
-            placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
+			placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
             placeHolderTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             placeHolderTableView.ScrollsToTop = true;
 
@@ -141,8 +154,7 @@ namespace BeerDrinkin.iOS
             View.BringSubviewToFront(placeHolderTableView);
 
             searchBar.TextChanged += async delegate
-            {
-                 
+            {                 
                 var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com", 1000);
                 if(!connected)
                     return;
@@ -157,22 +169,31 @@ namespace BeerDrinkin.iOS
                     suggestParameters.HighlightPreTag = "[";
                     suggestParameters.HighlightPostTag = "]";
                     suggestParameters.MinimumCoverage = 100;
-                                               
-                    var response = await indexClient.Documents.SuggestAsync<Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
-                    var results = new List<string>();
-                    foreach(var r in response.Results)
-                    {
-                        results.Add(r.Text);
-                    }
 
-                    var suggestionSource = new SearchSuggestionDataSource(results); 
-                    suggestionSource.SelectedRow += (int index) =>
-                    {
-                        searchBar.Text = response.Results[index].Document.Name;
-                        SearchForBeers(this, null);
-                    };
-                    suggestionsTableView.Source = suggestionSource;
-                    suggestionsTableView.ReloadData();
+					try
+					{
+						var response = await indexClient.Documents.SuggestAsync<Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);
+						var results = new List<string>();
+						foreach (var r in response.Results)
+						{
+							results.Add(r.Text);
+						}
+
+						var suggestionSource = new SearchSuggestionDataSource(results);
+						suggestionSource.SelectedRow += (int index) =>
+						{
+							searchBar.Text = response.Results[index].Document.Name;
+							SearchForBeers(this, null);
+							ResignFirstResponder();
+						};
+						suggestionsTableView.Source = suggestionSource;
+						suggestionsTableView.ReloadData();
+					}
+					catch (Exception ex)
+					{
+						Xamarin.Insights.Report(ex);
+						Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
+					}
                 }
                 else
                 {

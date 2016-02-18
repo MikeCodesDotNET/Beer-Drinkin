@@ -11,12 +11,15 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-    [Register ("BarcodeSearchTableViewCell")]
-    partial class BarcodeSearchTableViewCell
+    [Register ("InAppPurchaseSearchTableViewCell")]
+    partial class InAppPurchaseSearchTableViewCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnScan { get; set; }
+        UIKit.UIButton btnLearnMore { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgLockIcon { get; set; }
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblAvailableForPurchase { get; set; }
@@ -27,9 +30,14 @@ namespace BeerDrinkin.iOS
 
         void ReleaseDesignerOutlets ()
         {
-            if (btnScan != null) {
-                btnScan.Dispose ();
-                btnScan = null;
+            if (btnLearnMore != null) {
+                btnLearnMore.Dispose ();
+                btnLearnMore = null;
+            }
+
+            if (imgLockIcon != null) {
+                imgLockIcon.Dispose ();
+                imgLockIcon = null;
             }
 
             if (lblAvailableForPurchase != null) {

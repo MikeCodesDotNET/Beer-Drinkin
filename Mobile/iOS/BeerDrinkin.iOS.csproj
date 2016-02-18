@@ -489,6 +489,15 @@
     <Compile Include="SearchHistoryViewCell.designer.cs">
       <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Controllers\PreviewingDelegates\SearchPreviewingDelegate.cs" />
+    <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.cs" />
+    <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.designer.cs">
+      <DependentUpon>InAppPurchaseSearchTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InAppPurchaseViewController.cs" />
+    <Compile Include="InAppPurchaseViewController.designer.cs">
+      <DependentUpon>InAppPurchaseViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -602,6 +611,12 @@
     <BundleResource Include="Resources\quickAction_profile.png" />
     <BundleResource Include="Resources\quickAction_search.png" />
     <BundleResource Include="Resources\quickAction_wishlist.png" />
+    <BundleResource Include="Resources\inAppPurhcase_beer.png" />
+    <BundleResource Include="Resources\inAppPurhcase_close.png" />
+    <BundleResource Include="Resources\inAppPurhcase_heart.png" />
+    <BundleResource Include="Resources\inAppPurhcase_tick.png" />
+    <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
+    <BundleResource Include="Resources\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
