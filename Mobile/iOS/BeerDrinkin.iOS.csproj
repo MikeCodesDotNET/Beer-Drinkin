@@ -616,7 +616,6 @@
     <BundleResource Include="Resources\inAppPurhcase_heart.png" />
     <BundleResource Include="Resources\inAppPurhcase_tick.png" />
     <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
-    <BundleResource Include="Resources\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
