@@ -134,12 +134,6 @@
     <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.portable">
-      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\zxing.portable.dll</HintPath>
-    </Reference>
-    <Reference Include="ZXingNetMobile">
-      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\ZXingNetMobile.dll</HintPath>
-    </Reference>
     <Reference Include="RateBeer">
       <HintPath>..\..\packages\RateBeer.1.0.0\lib\RateBeer.dll</HintPath>
     </Reference>
@@ -154,38 +148,17 @@
     <Reference Include="Acr.Support.iOS">
       <HintPath>..\..\packages\Acr.Support.1.1.1\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Pop">
-      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="RZTransitions">
-      <HintPath>..\..\Components\RZTransitions-1.2.0.0\lib\ios-unified\RZTransitions.dll</HintPath>
-    </Reference>
-    <Reference Include="AMViralSwitch">
-      <HintPath>..\..\Components\AMViralSwitch-1.0.0.0\lib\ios-unified\AMViralSwitch.dll</HintPath>
-    </Reference>
     <Reference Include="FluentValidation">
       <HintPath>..\..\packages\FluentValidation.6.0.2.0\lib\portable-net45+wp80+win8+wpa81\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Serilog">
       <HintPath>..\..\packages\Serilog.1.5.12\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="JudoDotNetXamarin">
-      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamarin.dll</HintPath>
-    </Reference>
-    <Reference Include="JudoDotNetXamariniOSSDK">
-      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamariniOSSDK.dll</HintPath>
-    </Reference>
-    <Reference Include="JudoPayDotNet">
-      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoPayDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="JudoShieldXamarin">
-      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoShieldXamarin.dll</HintPath>
     </Reference>
     <Reference Include="Acr.UserDialogs">
       <HintPath>..\..\packages\Acr.UserDialogs.4.2.1\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
@@ -265,8 +238,35 @@
     <Reference Include="Plugin.Settings.Abstractions">
       <HintPath>..\..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="AMViralSwitch">
+      <HintPath>..\Components\AMViralSwitch-1.0.0.0\lib\ios-unified\AMViralSwitch.dll</HintPath>
+    </Reference>
+    <Reference Include="RZTransitions">
+      <HintPath>..\Components\RZTransitions-1.2.0.0\lib\ios-unified\RZTransitions.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.InAppPurchase-Unified">
-      <HintPath>..\..\Components\xamarin.inapppurchase-2.8\lib\ios-unified\Xamarin.InAppPurchase-Unified.dll</HintPath>
+      <HintPath>..\Components\xamarin.inapppurchase-2.8\lib\ios-unified\Xamarin.InAppPurchase-Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoDotNetXamarin">
+      <HintPath>..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamarin.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoDotNetXamariniOSSDK">
+      <HintPath>..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamariniOSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoPayDotNet">
+      <HintPath>..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoPayDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoShieldXamarin">
+      <HintPath>..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoShieldXamarin.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Pop">
+      <HintPath>..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\ZXingNetMobile.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\zxing.portable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

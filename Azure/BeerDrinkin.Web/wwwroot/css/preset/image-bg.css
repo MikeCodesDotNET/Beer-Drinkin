@@ -1,0 +1,31 @@
+#whats-special {
+	background-image:url(../../images/bg/special-bg2.jpg);
+}
+
+#video-section {
+	background-image:url(../../images/bg/video-bg2.jpg);
+}
+
+#call-to-action {
+	background-image:url(../../images/bg/action-bg2.jpg);
+}
+
+#price {
+	background-image:url(../../images/bg/price-bg2.jpg);
+}
+
+#team {
+	background-image:url(../../images/bg/team-bg2.jpg);
+}
+
+#download-apps .overlay-bg{
+	background-color:#f26522;;
+}
+
+.apps ul li a:hover {
+	color:#8d340b;
+}
+
+#main-contact-form .btn-primary {
+	border:3px solid #a0d48c;
+}

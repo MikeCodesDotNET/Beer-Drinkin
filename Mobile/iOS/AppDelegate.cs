@@ -1,5 +1,4 @@
 ﻿using System;
-using BeerDrinkin.Core.Helpers;
 
 using Foundation;
 using UIKit;
