@@ -7,7 +7,7 @@ using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.DataStore.Abstractions
 {
-    public interface IWishListStore : IBaseStore<Beer>
+    public interface IWishListStore : IBaseStore<Wish>
     {
     }
 }

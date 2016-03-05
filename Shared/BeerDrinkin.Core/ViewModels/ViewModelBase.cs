@@ -22,6 +22,8 @@ namespace BeerDrinkin.Core.ViewModels
         {
             ServiceLocator.Instance.Add<IAzureClient, AzureClient.AzureClient>();
             ServiceLocator.Instance.Add<ICheckInStore, CheckInStore>();
+			ServiceLocator.Instance.Add<IBeerStore, BeerStore>();
+			ServiceLocator.Instance.Add<IWishListStore, WishListStore>();
 
             ServiceLocator.Instance.Add<IStoreManager, StoreManager>();
 

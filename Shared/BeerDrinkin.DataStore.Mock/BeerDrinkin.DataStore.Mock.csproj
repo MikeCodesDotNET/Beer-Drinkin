@@ -38,6 +38,8 @@
     <Compile Include="StoreManager.cs" />
     <Compile Include="Stores\BaseStore.cs" />
     <Compile Include="Stores\CheckInStore.cs" />
+    <Compile Include="Stores\WishListStore.cs" />
+    <Compile Include="Stores\BeerStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
