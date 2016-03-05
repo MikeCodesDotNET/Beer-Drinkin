@@ -7,8 +7,8 @@ using BeerDrinkin.DataStore.Mock.Stores;
 using BeerDrinkin.DataStore.Mock;
 
 //Use Azure
-//using MyTrips.DataStore.Azure;
-//using MyTrips.DataStore.Azure.Stores;
+//using BeerDrinkin.DataStore.Azure;
+//using BeerDrinkin.DataStore.Azure.Stores;
 //using BeerDrinkin.DataStore.Azure;
 
 using BeerDrinkin.AzureClient;

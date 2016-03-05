@@ -53,7 +53,7 @@ namespace BeerDrinkin.Utils
             if (!Xamarin.Insights.IsInitialized)
                 return null;
             var handle = Xamarin.Insights.TrackTime(identifier, table);
-            return new MyTripsTrackHandle(handle);
+            return new BeerDrinkinTrackHandle(handle);
         }
         public virtual ITrackHandle TrackTime(string identifier, string key, string value)
         {
@@ -62,7 +62,7 @@ namespace BeerDrinkin.Utils
                 return null;
 
             var handle = Xamarin.Insights.TrackTime(identifier, key, value);
-            return new MyTripsTrackHandle(handle);
+            return new BeerDrinkinTrackHandle(handle);
         }
         public virtual void Report(Exception exception = null, Severity warningLevel = Severity.Warning)
         {
@@ -112,10 +112,10 @@ namespace BeerDrinkin.Utils
         #endregion
     }
 
-    public class MyTripsTrackHandle : ITrackHandle, IDisposable
+    public class BeerDrinkinTrackHandle : ITrackHandle, IDisposable
     {
         readonly Xamarin.ITrackHandle handle;
-        public MyTripsTrackHandle(Xamarin.ITrackHandle handle)
+        public BeerDrinkinTrackHandle(Xamarin.ITrackHandle handle)
         {
             this.handle = handle;
         }
