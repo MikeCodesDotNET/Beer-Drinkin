@@ -8,5 +8,10 @@ namespace BeerDrinkin.DataObjects
     {
         public string BeerId { get; set; }
         public string UserId { get; set; }
+
+		#if !BACKEND
+		public Beer Beer { get; set; }
+		public User User { get; set; }
+		#endif  
     }
 }

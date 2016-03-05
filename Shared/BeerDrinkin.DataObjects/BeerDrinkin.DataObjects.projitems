@@ -14,6 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CheckIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Beer2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Beer.cs" />
   </ItemGroup>
 </Project>
