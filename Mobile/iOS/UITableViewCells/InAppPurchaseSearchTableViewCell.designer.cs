@@ -24,9 +24,9 @@ namespace BeerDrinkin.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblAvailableForPurchase { get; set; }
 
-        [Action ("BtnScan_TouchUpInside:")]
+        [Action ("BtnLearnMore_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void BtnScan_TouchUpInside (UIKit.UIButton sender);
+        partial void BtnLearnMore_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

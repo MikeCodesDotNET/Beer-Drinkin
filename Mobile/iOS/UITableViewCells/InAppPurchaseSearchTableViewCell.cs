@@ -31,12 +31,12 @@ namespace BeerDrinkin.iOS
 
 			btnLearnMore.Layer.CornerRadius = 4;
 			btnLearnMore.Layer.MasksToBounds = true;
-
-			btnLearnMore.TouchUpInside += delegate 
-			{
-				LearnMoreButtonClick();
-			};
 			
+		}
+
+		partial void BtnLearnMore_TouchUpInside(UIButton sender)
+		{
+			LearnMoreButtonClick();
 		}
 
 		public delegate void LearnMoreButtonClickHandler();

@@ -18,5 +18,7 @@
 
         public static readonly string BreweryDbKey = "a956af587b434c4c89ef18c7bbd2fac9";
 
+		public static readonly string iTunesAppStorePublicKey = "";
+
     }
 }

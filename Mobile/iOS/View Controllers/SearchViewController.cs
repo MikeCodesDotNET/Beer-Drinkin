@@ -115,7 +115,7 @@ namespace BeerDrinkin.iOS
 			if (detailViewController == null)
 				return null;
 
-			detailViewController.PreferredContentSize = new CoreGraphics.CGSize (0, 200);
+			detailViewController.PreferredContentSize = new CGSize (0, 200);
 			previewingContext.SourceRect = cell.Frame;
 			return detailViewController;
 		}
