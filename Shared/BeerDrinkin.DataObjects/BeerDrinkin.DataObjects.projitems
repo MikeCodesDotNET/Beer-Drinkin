@@ -10,10 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BaseDataObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Beer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Beer2.cs" />
   </ItemGroup>
 </Project>
