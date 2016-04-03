@@ -7,7 +7,7 @@ using JudoDotNetXamariniOSSDK;
 using JudoPayDotNet.Models;
 using JudoDotNetXamarin;
 using BeerDrinkin.Service.DataObjects;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {
@@ -88,7 +88,7 @@ namespace BeerDrinkin.iOS
             set
             {
                 quantity = value;
-                lblQuantity.Text = quantity.ToString();
+                //lblQuantity.Text = quantity.ToString();
                 SetNeedsDisplay();
             }
         }

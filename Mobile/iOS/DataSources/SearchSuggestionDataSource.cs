@@ -3,7 +3,7 @@ using UIKit;
 using Foundation;
 using BeerDrinkin.iOS.CustomControls;
 using System.Collections.Generic;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using System.Text.RegularExpressions;
 
 namespace BeerDrinkin.iOS.DataSources

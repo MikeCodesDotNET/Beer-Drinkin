@@ -21,14 +21,6 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
 
-            var bounds = this.NavigationController.NavigationBar.Bounds;         
-            var blur = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
-            var visualEffectView = new UIVisualEffectView(blur);
-            visualEffectView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
-            this.NavigationController.NavigationBar.AddSubview(visualEffectView);
-            this.NavigationController.NavigationBar.Translucent = true;
-
-
             var refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += delegate
             {
@@ -63,6 +55,8 @@ namespace BeerDrinkin.iOS
             };
 
             viewModel.FetchBeersCommand();
+
+
         }
 
         public override void ViewDidAppear(bool animated)

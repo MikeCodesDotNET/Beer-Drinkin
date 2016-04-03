@@ -11,51 +11,51 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("MyBeersTableViewCell")]
-	partial class MyBeersTableViewCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView imgLabel { get; set; }
+    [Register ("MyBeersTableViewCell")]
+    partial class MyBeersTableViewCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imgLabel { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblBrewery { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblName { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblNumberOfServings { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView sideColor { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblBrewery { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (imgLabel != null) {
+                imgLabel.Dispose ();
+                imgLabel = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblName { get; set; }
+            if (lblBrewery != null) {
+                lblBrewery.Dispose ();
+                lblBrewery = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblNumberOfServings { get; set; }
+            if (lblName != null) {
+                lblName.Dispose ();
+                lblName = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView sideColor { get; set; }
+            if (lblNumberOfServings != null) {
+                lblNumberOfServings.Dispose ();
+                lblNumberOfServings = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (imgLabel != null) {
-				imgLabel.Dispose ();
-				imgLabel = null;
-			}
-			if (lblBrewery != null) {
-				lblBrewery.Dispose ();
-				lblBrewery = null;
-			}
-			if (lblName != null) {
-				lblName.Dispose ();
-				lblName = null;
-			}
-			if (lblNumberOfServings != null) {
-				lblNumberOfServings.Dispose ();
-				lblNumberOfServings = null;
-			}
-			if (sideColor != null) {
-				sideColor.Dispose ();
-				sideColor = null;
-			}
-		}
-	}
+            if (sideColor != null) {
+                sideColor.Dispose ();
+                sideColor = null;
+            }
+        }
+    }
 }

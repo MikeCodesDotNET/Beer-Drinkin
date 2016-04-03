@@ -1,70 +1,35 @@
 ﻿using System;
-using NUnit.Framework;
-using System.Reflection;
 using System.IO;
+using System.Linq;
+using NUnit.Framework;
 using Xamarin.UITest;
+using Xamarin.UITest.Queries;
 
-namespace UITest
+namespace BeerDrinkin.UITest
 {
-    [TestFixture()]
-    public class Tests
-    {
-        Xamarin.UITest.iOS.iOSApp app = null;
+	[TestFixture(Platform.Android)]
+	[TestFixture(Platform.iOS)]
+	public class Tests
+	{
+		IApp app;
+		Platform platform;
 
-        public string PathToIPA { get; set; }
+		public Tests(Platform platform)
+		{
+			this.platform = platform;
+		}
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetup()
-        {
-            string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
-            FileInfo fi = new FileInfo(currentFile);
-            string dir = fi.Directory.Parent.Parent.Parent.Parent.FullName;
-            PathToIPA = Path.Combine(dir, "BeerDrinkin", "Mobile","iOS", "bin", "iPhoneSimulator", "Debug", "BeerDrinkiniOS.app");
-        }
+		[SetUp]
+		public void BeforeEachTest()
+		{
+			app = AppInitializer.StartApp(platform);
+		}
 
-        [SetUp]
-        public void SetUp()
-        {
-            try
-            {
-                // an API key is required to publish on Xamarin Test Cloud for remote, multi-device testing
-                // this works fine for local simulator testing though
-                // app = ConfigureApp.iOS.AppBundle(PathToIPA).Debug().StartApp();
+		[Test]
+		public void AppLaunches()
+		{
+			app.Screenshot("First screen.");
+		}
+	}
 
-                app = ConfigureApp.iOS.InstalledApp("com.mikejames.beerdrinkin").StartApp();
-
-                if(app == null) 
-                    throw new Exception("something went wrong...");
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        [Test()]
-        public void DemoSomethingInteresting()
-        {
-            //REPL
-            app.Repl();
-        }
-
-        [Test()]
-        public void SignIn()
-        {
-            app.WaitForElement(x => x.Text("Connect to Facebook"));
-            app.Screenshot("I launch the app and should see the welcome view");
-
-            app.Tap(x => x.Text("Connect to Facebook"));
-            app.Screenshot("Then I should see the Facebook Login view");
-
-            var r = app.Query(x => x.WebView().XPath("//*[.=’ELEMENT_NODE']"));     
-
-            app.Repl();
-
-
-
-        }
-    }
 }
-

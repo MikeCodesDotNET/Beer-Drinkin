@@ -11,11 +11,11 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("FullScreenMapView")]
-	partial class FullScreenMapView
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("FullScreenMapView")]
+    partial class FullScreenMapView
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

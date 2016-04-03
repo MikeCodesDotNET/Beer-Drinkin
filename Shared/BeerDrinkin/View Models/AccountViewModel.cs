@@ -21,11 +21,11 @@ namespace BeerDrinkin.Core.ViewModels
                 RatingsCount = "0";
                 BeerCount = "0";
                 PhotoCount = "0";
-                return;
+				return;
             }
 
-            var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.Id);
-            var headerInfo = headerResult.Result;   
+			var headerResult = await Client.Instance.BeerDrinkinClient.GetUsersHeaderInfoAsync(user.UserName);
+            var headerInfo = headerResult;   
 
             RatingsCount = headerInfo.Ratings.ToString();
             BeerCount = headerInfo.CheckIns.ToString();

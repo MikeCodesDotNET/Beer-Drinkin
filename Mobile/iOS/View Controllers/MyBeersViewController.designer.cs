@@ -11,19 +11,19 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("MyBeersViewController")]
-	partial class MyBeersViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView tableView { get; set; }
+    [Register ("MyBeersViewController")]
+    partial class MyBeersViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView tableView { get; set; }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (tableView != null) {
-				tableView.Dispose ();
-				tableView = null;
-			}
-		}
-	}
+        void ReleaseDesignerOutlets ()
+        {
+            if (tableView != null) {
+                tableView.Dispose ();
+                tableView = null;
+            }
+        }
+    }
 }

@@ -11,27 +11,27 @@ using UIKit;
 
 namespace BeerDrinkin.iOS.Storyboards
 {
-	[Register ("BreweryMapCell")]
-	partial class BreweryMapCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView divider { get; set; }
+    [Register ("BreweryMapCell")]
+    partial class BreweryMapCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView divider { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        MapKit.MKMapView mapView { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		MapKit.MKMapView mapView { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (divider != null) {
+                divider.Dispose ();
+                divider = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (divider != null) {
-				divider.Dispose ();
-				divider = null;
-			}
-			if (mapView != null) {
-				mapView.Dispose ();
-				mapView = null;
-			}
-		}
-	}
+            if (mapView != null) {
+                mapView.Dispose ();
+                mapView = null;
+            }
+        }
+    }
 }

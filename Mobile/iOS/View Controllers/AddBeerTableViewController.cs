@@ -18,9 +18,9 @@ namespace BeerDrinkin.iOS
 
         public override void ViewDidLoad()
         {
-            TableView.Source = new AddBeerTableViewSource(ref cells);
-            TableView.Delegate = new AddBeerDelegate(ref cells);
-            TableView.ReloadData();
+           // TableView.Source = new AddBeerTableViewSource(ref cells);
+           // TableView.Delegate = new AddBeerDelegate(ref cells);
+            //TableView.ReloadData();
             View.SetNeedsDisplay();
 
             NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem(

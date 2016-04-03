@@ -1,25 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Foundation;
 using UIKit;
+using CoreGraphics;
 
 using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.Core.Services;
 
 using Acr.UserDialogs;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using Xamarin;
-using System.Threading.Tasks;
+
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.Service.DataObjects;
-using System.Linq;
+using BeerDrinkin.iOS.Helpers;
+using BeerDrinkin.iOS.PreviewingDelegates;
 
 namespace BeerDrinkin.iOS
 {
-    public partial class SearchViewController : BaseViewController
+	public partial class SearchViewController : BaseViewController
     {
         #region Fields
         private readonly SearchViewModel viewModel = new SearchViewModel();
@@ -29,11 +32,18 @@ namespace BeerDrinkin.iOS
         private BeerItem selectedBeer;
         #endregion
 
+		public BeerItem SelectedBeer
+		{
+			get
+			{
+				return selectedBeer;
+			}
+		}
+
         #region Constructor
         public SearchViewController(IntPtr handle) : base(handle)
         {
         }
-
         #endregion
 
         #region Overrides
@@ -43,11 +53,20 @@ namespace BeerDrinkin.iOS
             DismissKeyboardOnBackgroundTap();
 
             SetupUI();
-            SetupEvents(); 
+            SetupEvents();
 
-            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-                RegisterForPreviewingWithDelegate(new PreviewingDelegates.BeerDescriptionPreviewingDelegate(this), View);           
+			// Check to see if 3D Touch is available
+			if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available) 
+			{
+				RegisterForPreviewingWithDelegate(new SearchPreviewingDelegate(this), View);
+            }
         }
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			SetupUI();
+		}
        
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {            
@@ -68,8 +87,30 @@ namespace BeerDrinkin.iOS
             beerDescriptoinViewController.SetBeer(selectedBeer);
 
             selectedBeer = null;
-        }
+		}
 
+		public UIViewController GetViewControllerForPreview (IUIViewControllerPreviewing previewingContext, CGPoint location)
+		{
+			// Obtain the index path and the cell that was pressed.
+			var indexPath = searchResultsTableView.IndexPathForRowAtPoint (location);
+
+			if (indexPath == null)
+				return null;
+
+			var cell = searchResultsTableView.CellAt (indexPath);
+
+			if (cell == null)
+				return null;
+
+			// Create a detail view controller and set its properties.
+			var detailViewController = (BeerDescriptionTableView)Storyboard.InstantiateViewController ("beerDescriptionTableView");
+			if (detailViewController == null)
+				return null;
+
+			detailViewController.PreferredContentSize = new CGSize (0, 200);
+			previewingContext.SourceRect = cell.Frame;
+			return detailViewController;
+		}
 
         #endregion
 
@@ -85,10 +126,11 @@ namespace BeerDrinkin.iOS
             View.AddSubview(suggestionsTableView);
 
             var dataSource = new SearchPlaceholderDataSource(this);
+            dataSource.SnapPhotoButtonTapped += OpticalCharacterRecognition;
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
-            placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
+			placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
             placeHolderTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             placeHolderTableView.ScrollsToTop = true;
 
@@ -97,8 +139,7 @@ namespace BeerDrinkin.iOS
             View.BringSubviewToFront(placeHolderTableView);
 
             searchBar.TextChanged += async delegate
-            {
-                 
+            {                 
                 var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com", 1000);
                 if(!connected)
                     return;
@@ -113,22 +154,31 @@ namespace BeerDrinkin.iOS
                     suggestParameters.HighlightPreTag = "[";
                     suggestParameters.HighlightPostTag = "]";
                     suggestParameters.MinimumCoverage = 100;
-                                               
-                    var response = await indexClient.Documents.SuggestAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);                    
-                    var results = new List<string>();
-                    foreach(var r in response)
-                    {
-                        results.Add(r.Text);
-                    }
 
-                    var suggestionSource = new SearchSuggestionDataSource(results); 
-                    suggestionSource.SelectedRow += (int index) =>
-                    {
-                        searchBar.Text = response.Results[index].Document.Name;
-                        SearchForBeers(this, null);
-                    };
-                    suggestionsTableView.Source = suggestionSource;
-                    suggestionsTableView.ReloadData();
+					try
+					{
+						var response = await indexClient.Documents.SuggestAsync<Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);
+						var results = new List<string>();
+						foreach (var r in response.Results)
+						{
+							results.Add(r.Text);
+						}
+
+						var suggestionSource = new SearchSuggestionDataSource(results);
+						suggestionSource.SelectedRow += (int index) =>
+						{
+							searchBar.Text = response.Results[index].Document.Name;
+							SearchForBeers(this, null);
+							ResignFirstResponder();
+						};
+						suggestionsTableView.Source = suggestionSource;
+						suggestionsTableView.ReloadData();
+					}
+					catch (Exception ex)
+					{
+						Xamarin.Insights.Report(ex);
+						Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
+					}
                 }
                 else
                 {
@@ -140,12 +190,7 @@ namespace BeerDrinkin.iOS
 
         private void SetupEvents()
         {
-            
-           // searchBar.TextChanged += SearchBarTextChanged;           
-
             searchBar.SearchButtonClicked += SearchForBeers;
-
-           // searchBar.BarcodeButtonClicked += async () => await ScanBarcode();
 
             viewModel.Beers.CollectionChanged += delegate
             {
@@ -153,6 +198,11 @@ namespace BeerDrinkin.iOS
                 searchBar.ResignFirstResponder();
             };
             
+        }
+
+        void OpticalCharacterRecognition()
+        {
+            //TODO Implement OCR 
         }
             
         private async Task ScanBarcode()
@@ -214,9 +264,9 @@ namespace BeerDrinkin.iOS
         private async void SearchForBeers (object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading("Searching");
-            var response = await indexClient.Documents.SearchAsync<BeerDrinkin.Models.IndexedBeer>(searchBar.Text);             
+            var response = await indexClient.Documents.SearchAsync<Models.IndexedBeer>(searchBar.Text);             
             var beers = new List<BeerItem>();
-            foreach(var result in response)
+            foreach(var result in response.Results)
             {
                 var beerResult = result.Document; 
                 if (beerResult != null)
@@ -251,6 +301,12 @@ namespace BeerDrinkin.iOS
             source.DidSelectBeer += (beer) => 
             {
                 selectedBeer = beer;
+
+				var searchHistory = SearchHistory.History;
+				searchHistory.Enqueue(beer.Name);
+				if (searchHistory.Count > 3)
+					searchHistory.Dequeue();
+
                 PerformSegue("beerDescriptionSegue", this);
                 searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
             };

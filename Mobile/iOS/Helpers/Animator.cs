@@ -3,7 +3,7 @@
 using UIKit;
 using CoreGraphics;
 
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS.Helpers
 {
@@ -24,21 +24,6 @@ namespace BeerDrinkin.iOS.Helpers
                     divider.Frame = orginalPosition ;
                     divider.SetHeight(1);
                 },() =>{}); 
-        }
-
-        public static void FadeOut(this UIView view, double duration, float delay)
-        {      
-            UIView.AnimateNotify (duration, delay, 0, 1, 0, () => {
-                view.Alpha = 0;
-            }, null);  
-        }
-
-        public static void FadeIn(this UIView view, double duration, float delay)
-        {
-            UIView.Animate(duration, delay, UIViewAnimationOptions.CurveEaseIn,
-                () =>{
-                view.Alpha = 1;
-            },() =>{ });
         }
     }
 }

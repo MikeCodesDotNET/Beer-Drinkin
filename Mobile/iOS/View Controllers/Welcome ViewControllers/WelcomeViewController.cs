@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;
 using System.Threading.Tasks;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {
@@ -44,9 +44,9 @@ namespace BeerDrinkin.iOS
             lblPromise.Alpha = 0;
             lblAmazingFeatures.Alpha = 0;
 
-            if (BeerDrinkin.Core.Helpers.Settings.FirstRun == true)
+            if (Core.Helpers.Settings.FirstRun == true)
             {
-                BeerDrinkin.Core.Helpers.Settings.FirstRun = false;
+                Core.Helpers.Settings.FirstRun = false;
 
                 var tinderBeer = Storyboard.InstantiateViewController("welcomeMapView");
                 PresentViewControllerAsync(tinderBeer, false);
@@ -85,18 +85,12 @@ namespace BeerDrinkin.iOS
             try
             {   
                 btnConnectWithFacebook.PulseToSize(0.9f, 0.2, false);
-                //We'll hide all the subviews
-                View.FadeSubviewsOut(0.5, 0.2f);
-                await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
                 await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
                 UserAuthenticiated();
             }
             catch
             {
-                //We'll make all the subviews visible again
-                View.FadeSubviewsIn(2, 0);
-
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
             }
         }
@@ -106,31 +100,23 @@ namespace BeerDrinkin.iOS
             try
             {   
                 btnConnectWithGoogle.PulseToSize(0.9f, 0.2, false);
-                //We'll hide all the subviews
-                View.FadeSubviewsOut(0.5, 0.2f);
-                await Task.Delay(550); //Delays the loading of the next view so we can see the animation.
 
                 await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
                 UserAuthenticiated();
             }
             catch
             {
-                //We'll make all the subviews visible again
-                View.FadeSubviewsIn(2, 0);
-
                 Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
             }
         }
 
         async void UserAuthenticiated()
         {
-            var vc = Storyboard.InstantiateViewController("tabBarController");
-            await PresentViewControllerAsync(vc, false);
-
+			Acr.UserDialogs.UserDialogs.Instance.ShowSuccess("Signed In", 1500);
+			await DismissViewControllerAsync(true);
             await Client.Instance.BeerDrinkinClient.RefreshAll();           
         }
 
-     
         partial void BtnCancel_TouchUpInside(UIButton sender)
         {
             this.DismissViewController(true, null);

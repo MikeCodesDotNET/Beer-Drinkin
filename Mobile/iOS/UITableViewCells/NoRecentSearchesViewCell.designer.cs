@@ -11,27 +11,27 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("NoRecentSearchesViewCell")]
-	partial class NoRecentSearchesViewCell
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		BeerDrinkin.iOS.CustomControls.SearchTableViewCellBackground background { get; set; }
+    [Register ("NoRecentSearchesViewCell")]
+    partial class NoRecentSearchesViewCell
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        BeerDrinkin.iOS.CustomControls.SearchTableViewCellBackground background { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTitle { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblTitle { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (background != null) {
+                background.Dispose ();
+                background = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (background != null) {
-				background.Dispose ();
-				background = null;
-			}
-			if (lblTitle != null) {
-				lblTitle.Dispose ();
-				lblTitle = null;
-			}
-		}
-	}
+            if (lblTitle != null) {
+                lblTitle.Dispose ();
+                lblTitle = null;
+            }
+        }
+    }
 }

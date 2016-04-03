@@ -20,10 +20,8 @@ namespace BeerDrinkin.iOS
             base.AwakeFromNib();
 
             btnScan.Layer.CornerRadius = 4;
-            btnScan.Layer.MasksToBounds = true;
-
-            btnClear.Layer.CornerRadius = 4;
-            btnClear.Layer.MasksToBounds = true;
+            btnScan.Layer.MasksToBounds = true; 
+            
         }
 
 		partial void BtnScan_TouchUpInside(UIButton sender)

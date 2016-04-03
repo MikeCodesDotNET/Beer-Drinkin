@@ -11,11 +11,11 @@ using UIKit;
 
 namespace BeerDrinkin.iOS.CustomControls
 {
-	[Register ("SearchTableViewCellBackground")]
-	partial class SearchTableViewCellBackground
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("SearchTableViewCellBackground")]
+    partial class SearchTableViewCellBackground
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

@@ -11,39 +11,39 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("SearchSuggestionsViewController")]
-	partial class SearchSuggestionsViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnCancel { get; set; }
+    [Register ("SearchSuggestionsViewController")]
+    partial class SearchSuggestionsViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnCancel { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UISearchBar searchBar { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView tableView { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UISearchBar searchBar { get; set; }
+        [Action ("BtnCancel_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnCancel_TouchUpInside (UIKit.UIButton sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView tableView { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnCancel != null) {
+                btnCancel.Dispose ();
+                btnCancel = null;
+            }
 
-		[Action ("BtnCancel_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnCancel_TouchUpInside (UIButton sender);
+            if (searchBar != null) {
+                searchBar.Dispose ();
+                searchBar = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnCancel != null) {
-				btnCancel.Dispose ();
-				btnCancel = null;
-			}
-			if (searchBar != null) {
-				searchBar.Dispose ();
-				searchBar = null;
-			}
-			if (tableView != null) {
-				tableView.Dispose ();
-				tableView = null;
-			}
-		}
-	}
+            if (tableView != null) {
+                tableView.Dispose ();
+                tableView = null;
+            }
+        }
+    }
 }

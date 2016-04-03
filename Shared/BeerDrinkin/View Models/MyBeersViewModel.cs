@@ -6,49 +6,49 @@ using System.Linq;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class MyBeersViewModel
-    {
+	public class MyBeersViewModel
+	{
 
-        public ObservableCollection<BeerInfo> Beers = new ObservableCollection<BeerInfo>();
+		public ObservableCollection<BeerInfo> Beers = new ObservableCollection<BeerInfo>();
 
-        public bool IsBusy { get; set; }
+		public bool IsBusy { get; set; }
 
-        public MyBeersViewModel()
-        {
-        }
+		public MyBeersViewModel()
+		{
+		}
 
-        public async Task FetchBeersCommand()
-        {
-            if (IsBusy)
-                return;
+		public async Task FetchBeersCommand()
+		{
+			if (IsBusy)
+				return;
 
-            IsBusy = true;
+			IsBusy = true;
 
-            if (Client.Instance.BeerDrinkinClient.CurrenMobileServicetUser == null)
-                return;
+			if (Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser == null)
+				return;
 
 
-            var usersBeersResponse = await Client.Instance.BeerDrinkinClient.GetBeerInfosByUserAsync();
+			var usersBeersResponse = await Client.Instance.BeerDrinkinClient.GetBeerInfosByUserAsync();
 
-            if (usersBeersResponse.Result.Count > 0)
-            {
-                Beers.Clear();
-                var sortedResults = usersBeersResponse.Result.OrderByDescending(x => x.CheckIns.Count()).ToList();
-                foreach (var beerItem in sortedResults)
-                {    
-                    Beers.Add(beerItem);
-                }
-                IsBusy = false;
-                return;
-            }
+			if (usersBeersResponse.Result.Count > 0)
+			{
+				Beers.Clear();
+				var sortedResults = usersBeersResponse.Result.OrderByDescending(x => x.CheckIns.Count()).ToList();
+				foreach (var beerItem in sortedResults)
+				{
+					Beers.Add(beerItem);
+				}
+				IsBusy = false;
+				return;
+			}
 
-            if (usersBeersResponse.HasError)
-            {
-                Acr.UserDialogs.UserDialogs.Instance.ShowError(usersBeersResponse.ErrorMessage);
-                IsBusy = false;
-                return;
-            }
-        }
-    }
+			if (usersBeersResponse.HasError)
+			{
+				Acr.UserDialogs.UserDialogs.Instance.ShowError(usersBeersResponse.ErrorMessage);
+				IsBusy = false;
+				return;
+			}
+		}
+	}
 }
 

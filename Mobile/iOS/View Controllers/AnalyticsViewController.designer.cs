@@ -17,15 +17,19 @@ namespace BeerDrinkin.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView imgCriticalBugIcon { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblCriticalBugs { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblCriticalBugsDescription { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         AMViralSwitch.ViralSwitch swtCriticalBugs { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         AMViralSwitch.ViralSwitch swtResponsiveness { get; set; }

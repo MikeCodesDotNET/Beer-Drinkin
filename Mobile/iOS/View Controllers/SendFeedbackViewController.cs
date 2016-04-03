@@ -30,6 +30,11 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
+			btnBack.SetTitleTextAttributes(new UITextAttributes
+			{
+				Font = UIFont.FromName("Avenir-Book", 14f),
+				TextColor = UIColor.White
+			}, UIControlState.Normal);
     
             btnSend.SetTitleTextAttributes(new UITextAttributes
                 {

@@ -11,71 +11,69 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("WelcomeViewController")]
-	partial class WelcomeViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnCancel { get; set; }
+    [Register ("WelcomeViewController")]
+    partial class WelcomeViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnCancel { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnConnectWithFacebook { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnConnectWithGoogle { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblAmazingFeatures { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblPromise { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTitle { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnConnectWithFacebook { get; set; }
+        [Action ("BtnCancel_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnCancel_TouchUpInside (UIKit.UIButton sender);
+        [Action ("BtnConnectWithFacebook_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnConnectWithFacebook_TouchUpInside (UIKit.UIButton sender);
+        [Action ("BtnConnectWithGoogle_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnConnectWithGoogle_TouchUpInside (UIKit.UIButton sender);
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnConnectWithGoogle { get; set; }
+        void ReleaseDesignerOutlets ()
+        {
+            if (btnCancel != null) {
+                btnCancel.Dispose ();
+                btnCancel = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblAmazingFeatures { get; set; }
+            if (btnConnectWithFacebook != null) {
+                btnConnectWithFacebook.Dispose ();
+                btnConnectWithFacebook = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblPromise { get; set; }
+            if (btnConnectWithGoogle != null) {
+                btnConnectWithGoogle.Dispose ();
+                btnConnectWithGoogle = null;
+            }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel lblTitle { get; set; }
+            if (lblAmazingFeatures != null) {
+                lblAmazingFeatures.Dispose ();
+                lblAmazingFeatures = null;
+            }
 
-		[Action ("BtnCancel_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnCancel_TouchUpInside (UIButton sender);
+            if (lblPromise != null) {
+                lblPromise.Dispose ();
+                lblPromise = null;
+            }
 
-		[Action ("BtnConnectWithFacebook_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnConnectWithFacebook_TouchUpInside (UIButton sender);
-
-		[Action ("BtnConnectWithGoogle_TouchUpInside:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void BtnConnectWithGoogle_TouchUpInside (UIButton sender);
-
-		void ReleaseDesignerOutlets ()
-		{
-			if (btnCancel != null) {
-				btnCancel.Dispose ();
-				btnCancel = null;
-			}
-			if (btnConnectWithFacebook != null) {
-				btnConnectWithFacebook.Dispose ();
-				btnConnectWithFacebook = null;
-			}
-			if (btnConnectWithGoogle != null) {
-				btnConnectWithGoogle.Dispose ();
-				btnConnectWithGoogle = null;
-			}
-			if (lblAmazingFeatures != null) {
-				lblAmazingFeatures.Dispose ();
-				lblAmazingFeatures = null;
-			}
-			if (lblPromise != null) {
-				lblPromise.Dispose ();
-				lblPromise = null;
-			}
-			if (lblTitle != null) {
-				lblTitle.Dispose ();
-				lblTitle = null;
-			}
-		}
-	}
+            if (lblTitle != null) {
+                lblTitle.Dispose ();
+                lblTitle = null;
+            }
+        }
+    }
 }

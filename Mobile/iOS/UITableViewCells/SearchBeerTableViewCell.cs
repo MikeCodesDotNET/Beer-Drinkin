@@ -44,7 +44,6 @@ namespace BeerDrinkin.iOS
             get { return checkedIn; }
             set
             {
-                imgTick.Alpha = !value ? 0f : 1f;
                 checkedIn = value;
             }
         }

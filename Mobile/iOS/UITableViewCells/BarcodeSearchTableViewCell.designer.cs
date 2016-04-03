@@ -16,13 +16,10 @@ namespace BeerDrinkin.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnClear { get; set; }
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton btnScan { get; set; }
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel lblBarcodeNumber { get; set; }
+        UIKit.UILabel lblAvailableForPurchase { get; set; }
 
         [Action ("BtnScan_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -30,19 +27,14 @@ namespace BeerDrinkin.iOS
 
         void ReleaseDesignerOutlets ()
         {
-            if (btnClear != null) {
-                btnClear.Dispose ();
-                btnClear = null;
-            }
-
             if (btnScan != null) {
                 btnScan.Dispose ();
                 btnScan = null;
             }
 
-            if (lblBarcodeNumber != null) {
-                lblBarcodeNumber.Dispose ();
-                lblBarcodeNumber = null;
+            if (lblAvailableForPurchase != null) {
+                lblAvailableForPurchase.Dispose ();
+                lblAvailableForPurchase = null;
             }
         }
     }

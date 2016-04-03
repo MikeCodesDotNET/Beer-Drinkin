@@ -36,6 +36,20 @@ namespace BeerDrinkin.Core.Helpers
         private const string GoogleTokenName = "googleToken";
         private static readonly string GoogleTokenDefault = string.Empty;
 
+		#region Recent Searches
+		private const string RecentSearchOne = "recentSearchOne";
+		private static readonly string RecentSearchOneDefault = string.Empty;
+
+		private const string RecentSearchTwo = "recentSearchTwo";
+		private static readonly string RecentSearchTwoDefault = string.Empty;
+
+		private const string RecentSearchThree = "recentSearchThree";
+		private static readonly string RecentSearchThreeDefault = string.Empty;
+
+		private const string RecentSearchFour = "recentSearchFour";
+		private static readonly string RecentSearchFourDefault = string.Empty;
+		#endregion
+
         #endregion
 
         public static bool UserTrackingEnabled
@@ -68,5 +82,28 @@ namespace BeerDrinkin.Core.Helpers
             set { AppSettings.AddOrUpdateValue<string>(GoogleTokenName, value); }
         }
 
+		public static string RecentSearch1
+		{
+			get { return AppSettings.GetValueOrDefault<string>(RecentSearchOne, RecentSearchOneDefault); }
+			set { AppSettings.AddOrUpdateValue<string>(RecentSearchOne, value); }
+		}
+
+		public static string RecentSearch2
+		{
+			get { return AppSettings.GetValueOrDefault<string>(RecentSearchTwo, RecentSearchTwoDefault); }
+			set { AppSettings.AddOrUpdateValue<string>(RecentSearchTwo, value); }
+		}
+
+		public static string RecentSearch3
+		{
+			get { return AppSettings.GetValueOrDefault<string>(RecentSearchThree, RecentSearchThreeDefault); }
+			set { AppSettings.AddOrUpdateValue<string>(RecentSearchThree, value); }
+		}
+
+		public static string RecentSearch4
+		{
+			get { return AppSettings.GetValueOrDefault<string>(RecentSearchFour, RecentSearchFourDefault); }
+			set { AppSettings.AddOrUpdateValue<string>(RecentSearchFour, value); }
+		}
     }
 }
