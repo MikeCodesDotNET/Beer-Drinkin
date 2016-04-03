@@ -7,7 +7,7 @@ using JudoDotNetXamariniOSSDK;
 using JudoPayDotNet.Models;
 using JudoDotNetXamarin;
 using BeerDrinkin.Service.DataObjects;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {

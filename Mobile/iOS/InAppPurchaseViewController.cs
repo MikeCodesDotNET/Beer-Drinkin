@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using Xamarin.InAppPurchase;
 using Xamarin.InAppPurchase.Utilities;
 using CoreGraphics;
@@ -79,8 +79,6 @@ namespace BeerDrinkin.iOS
 			stvwUnlockOcr.Alpha = 0;
 			stvwDarkTheme.Alpha = 0;
 			stvwEndlessLove.Alpha = 0;
-			lblAlreadyPaid.Alpha = 0;
-			imgHeart.Alpha = 0;
 			btnRestore.Alpha = 0;
 			btnPayOrginalFrame = btnPay.Frame;
 			btnPay.Alpha = 0;
@@ -112,11 +110,8 @@ namespace BeerDrinkin.iOS
 			stvwUnlockOcr.FadeIn(duration, delay + 0.3f);
 			stvwDarkTheme.FadeIn(duration, delay + 0.4f);
 			stvwEndlessLove.FadeIn(duration, delay + 0.5f);
-			lblAlreadyPaid.FadeIn(duration, delay + 0.8f);
-			imgHeart.FadeIn(duration, delay + 0.8f);
 			btnRestore.FadeIn(duration, delay + 0.8f);
 			btnPay.FadeIn(duration, delay + 1.2f);
-			imgHeart.Pop(0.3, 3, 1);
 		}
 
 

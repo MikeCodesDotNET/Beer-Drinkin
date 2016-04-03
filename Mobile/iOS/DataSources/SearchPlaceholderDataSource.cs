@@ -37,7 +37,7 @@ namespace BeerDrinkin.iOS.DataSources
                 var index = indexPath.Row;
                 if (index == 0)
                 {
-                    var cellIdentifier = new NSString("noRecentSearchesViewCell");
+                    var cellIdentifier = new NSString("NO_RECENT_SEARCHES__CELL_IDENTIFER");
                     var cell = tableView.DequeueReusableCell(cellIdentifier) as NoRecentSearchesViewCell ?? new NoRecentSearchesViewCell(cellIdentifier);
 
 					if (SearchHistory.History.Count > 0)
@@ -52,7 +52,6 @@ namespace BeerDrinkin.iOS.DataSources
 							cell.Background.Default = true;
 						}
 					}
-									
 
                     return cell;
                 }
@@ -71,7 +70,7 @@ namespace BeerDrinkin.iOS.DataSources
 			#else
 			if(indexPath.Section == 1)
 			{
-				var cellIdentifier = new NSString("inAppPurchaseSearchTableViewCell");
+				var cellIdentifier = new NSString("IMAGE_SCANNER_CELL_IDENTIFER");
 				var cell = tableView.DequeueReusableCell(cellIdentifier) as InAppPurchaseSearchTableViewCell ?? new InAppPurchaseSearchTableViewCell(cellIdentifier);
 				cell.LearnMoreButtonClick += delegate 
 				{
@@ -86,7 +85,7 @@ namespace BeerDrinkin.iOS.DataSources
 
 		public override UIView GetViewForHeader(UITableView tableView, nint section)
 		{
-			var cellIdentifier = new NSString("searchHeaderViewCell");
+			var cellIdentifier = new NSString("SEARCH_HEADER_CELL_IDENTIFER");
 			var headerCell = tableView.DequeueReusableCell(cellIdentifier) as SearchHeaderViewCell ?? new SearchHeaderViewCell(cellIdentifier);
 
 			if (section == 0)

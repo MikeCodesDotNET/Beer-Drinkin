@@ -2,7 +2,7 @@ using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {

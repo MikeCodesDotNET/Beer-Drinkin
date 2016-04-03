@@ -29,17 +29,22 @@ namespace BeerDrinkin.iOS
 		{
 			base.AwakeFromNib();
 
-			btnLearnMore.Layer.CornerRadius = 4;
-			btnLearnMore.Layer.MasksToBounds = true;
+			btnSnapAPhoto.Layer.CornerRadius = 4;
+			btnSnapAPhoto.Layer.MasksToBounds = true;
 			
 		}
 
-		partial void BtnLearnMore_TouchUpInside(UIButton sender)
+        partial void BtnSnapAPhoto_TouchUpInside(UIButton sender)
+        {
+            SnapPhotoButtonTapped();
+        }
+
+        partial void BtnLearnMore_TouchUpInside(UIButton sender)
 		{
 			LearnMoreButtonClick();
 		}
 
-		public delegate void LearnMoreButtonClickHandler();
-		public event LearnMoreButtonClickHandler LearnMoreButtonClick;
+		public delegate void SnapPhotoButtonTappedHandler();
+		public event SnapPhotoButtonTappedHandler SnapPhotoButtonTapped;
     }
 }

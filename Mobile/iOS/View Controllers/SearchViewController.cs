@@ -9,7 +9,7 @@ using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.Core.Services;
 
 using Acr.UserDialogs;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using Xamarin;
 using System.Threading.Tasks;
 

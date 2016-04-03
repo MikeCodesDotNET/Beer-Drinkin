@@ -16,33 +16,26 @@ namespace BeerDrinkin.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnLearnMore { get; set; }
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView imgLockIcon { get; set; }
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel lblAvailableForPurchase { get; set; }
+        UIKit.UIButton btnSnapAPhoto { get; set; }
 
-        [Action ("BtnLearnMore_TouchUpInside:")]
+        [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void BtnLearnMore_TouchUpInside (UIKit.UIButton sender);
+        UIKit.UIImageView imgCamera { get; set; }
+
+        [Action ("BtnSnapAPhoto_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnSnapAPhoto_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (btnLearnMore != null) {
-                btnLearnMore.Dispose ();
-                btnLearnMore = null;
+            if (btnSnapAPhoto != null) {
+                btnSnapAPhoto.Dispose ();
+                btnSnapAPhoto = null;
             }
 
-            if (imgLockIcon != null) {
-                imgLockIcon.Dispose ();
-                imgLockIcon = null;
-            }
-
-            if (lblAvailableForPurchase != null) {
-                lblAvailableForPurchase.Dispose ();
-                lblAvailableForPurchase = null;
+            if (imgCamera != null) {
+                imgCamera.Dispose ();
+                imgCamera = null;
             }
         }
     }

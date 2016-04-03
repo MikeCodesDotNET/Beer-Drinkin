@@ -3,7 +3,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 using AMViralSwitch;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using Splat;
 
 namespace BeerDrinkin.iOS

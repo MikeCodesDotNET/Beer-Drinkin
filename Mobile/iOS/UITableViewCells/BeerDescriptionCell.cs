@@ -4,7 +4,7 @@ using Foundation;
 using UIKit;
 using CoreAnimation;
 
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {

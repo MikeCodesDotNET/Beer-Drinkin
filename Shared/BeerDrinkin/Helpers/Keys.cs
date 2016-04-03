@@ -2,7 +2,7 @@
 {
     public class Keys
     {
-        public static readonly string AzureSearchKey = "FF2BC68DA8D3C9D57D3C7D0A2919B70B";
+        public static readonly string AzureSearchKey = "1EFFA883093FF79ABA9B19BCD807198C";
 
         public static readonly string XamarinInsightsKey = "7d20afb6d54b4754306ee7c62ba18f2a1e66a442";
 

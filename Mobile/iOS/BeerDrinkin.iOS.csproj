@@ -110,9 +110,6 @@
       <HintPath>..\Components\XCardView-1.1\lib\ios-unified\XCardView.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
     </Reference>
@@ -268,6 +265,15 @@
     <Reference Include="Xamarin.InAppPurchase-Unified">
       <HintPath>..\..\Components\xamarin.inapppurchase-2.8\lib\ios-unified\Xamarin.InAppPurchase-Unified.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectOxford.Vision">
+      <HintPath>..\..\packages\Microsoft.ProjectOxford.Vision.1.0.213\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Vision.dll</HintPath>
+    </Reference>
+    <Reference Include="Awesomizer">
+      <HintPath>..\..\packages\Awesomizer.1.0.2\lib\Awesomizer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
@@ -375,7 +381,6 @@
     <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Awesomizer.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
     <Compile Include="UITableViewCells\AboutThisBeerCell.designer.cs">
       <DependentUpon>..\Custom Controls\UITableViewCells\AboutThisBeerCell.cs</DependentUpon>
@@ -620,6 +625,7 @@
     <BundleResource Include="Resources\inAppPurhcase_heart.png" />
     <BundleResource Include="Resources\inAppPurhcase_tick.png" />
     <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
+    <BundleResource Include="Resources\search_ocr.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

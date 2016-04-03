@@ -5,7 +5,7 @@ using UIKit;
 using BeerDrinkin.iOS.Helpers;
 using Xamarin;
 using System.Collections.Generic;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {

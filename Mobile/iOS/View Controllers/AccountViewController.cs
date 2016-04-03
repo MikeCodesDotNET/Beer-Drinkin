@@ -6,7 +6,7 @@ using SDWebImage;
 using Color = BeerDrinkin.Helpers.Colours;
 using Splat;
 using Xamarin;
-using Awesomizer;
+using MikeCodesDotNET.iOS;
 using Plugin.Connectivity;
 using System.Threading.Tasks;
 
