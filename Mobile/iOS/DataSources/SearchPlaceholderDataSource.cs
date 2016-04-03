@@ -72,9 +72,9 @@ namespace BeerDrinkin.iOS.DataSources
 			{
 				var cellIdentifier = new NSString("IMAGE_SCANNER_CELL_IDENTIFER");
 				var cell = tableView.DequeueReusableCell(cellIdentifier) as InAppPurchaseSearchTableViewCell ?? new InAppPurchaseSearchTableViewCell(cellIdentifier);
-				cell.LearnMoreButtonClick += delegate 
+				cell.SnapPhotoButtonTapped += delegate 
 				{
-					LearnMoreButtonClick();
+					SnapPhotoButtonTapped();
 				};
 				return cell;
 			}
@@ -149,8 +149,8 @@ namespace BeerDrinkin.iOS.DataSources
 
         #endregion
 
-		public delegate void LearnMoreButtonClickHandler();
-		public event LearnMoreButtonClickHandler LearnMoreButtonClick;
+        public delegate void SnapPhotoButtonTappedHandler();
+        public event SnapPhotoButtonTappedHandler SnapPhotoButtonTapped;
     }
 }
 

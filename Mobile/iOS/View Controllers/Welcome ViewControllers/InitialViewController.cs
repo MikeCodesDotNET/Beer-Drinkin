@@ -2,6 +2,7 @@ using System;
 using UIKit;
 using System.Threading.Tasks;
 using BeerDrinkin.iOS.Helpers;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {
@@ -23,7 +24,6 @@ namespace BeerDrinkin.iOS
         public override void ViewDidDisappear(bool animated)
         {
             base.ViewDidDisappear(animated);
-            imgLogo.FadeOut(0.3, 0);
         }
 
     }

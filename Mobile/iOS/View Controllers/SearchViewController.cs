@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Foundation;
 using UIKit;
@@ -11,13 +12,11 @@ using BeerDrinkin.Core.Services;
 using Acr.UserDialogs;
 using MikeCodesDotNET.iOS;
 using Xamarin;
-using System.Threading.Tasks;
 
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.Service.DataObjects;
-using System.Linq;
 using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.iOS.PreviewingDelegates;
 
@@ -48,13 +47,6 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Overrides
-		public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
-		{
-			//Important: Must call base method
-			base.TraitCollectionDidChange(previousTraitCollection);
-
-		}
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -120,8 +112,6 @@ namespace BeerDrinkin.iOS
 			return detailViewController;
 		}
 
-
-
         #endregion
 
         private void SetupUI() 
@@ -136,12 +126,7 @@ namespace BeerDrinkin.iOS
             View.AddSubview(suggestionsTableView);
 
             var dataSource = new SearchPlaceholderDataSource(this);
-			dataSource.LearnMoreButtonClick += delegate 
-			{
-				var vc = Storyboard.InstantiateViewController("inAppPurchaseViewController");
-				this.PresentModalViewController(vc, true);
-			};
-
+            dataSource.SnapPhotoButtonTapped += OpticalCharacterRecognition;
             placeHolderTableView.Source = dataSource;
             placeHolderTableView.ReloadData();
             placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
@@ -205,12 +190,7 @@ namespace BeerDrinkin.iOS
 
         private void SetupEvents()
         {
-            
-           // searchBar.TextChanged += SearchBarTextChanged;           
-
             searchBar.SearchButtonClicked += SearchForBeers;
-
-           // searchBar.BarcodeButtonClicked += async () => await ScanBarcode();
 
             viewModel.Beers.CollectionChanged += delegate
             {
@@ -218,6 +198,11 @@ namespace BeerDrinkin.iOS
                 searchBar.ResignFirstResponder();
             };
             
+        }
+
+        void OpticalCharacterRecognition()
+        {
+            //TODO Implement OCR 
         }
             
         private async Task ScanBarcode()

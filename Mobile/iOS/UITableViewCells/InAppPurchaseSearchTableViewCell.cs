@@ -39,11 +39,6 @@ namespace BeerDrinkin.iOS
             SnapPhotoButtonTapped();
         }
 
-        partial void BtnLearnMore_TouchUpInside(UIButton sender)
-		{
-			LearnMoreButtonClick();
-		}
-
 		public delegate void SnapPhotoButtonTappedHandler();
 		public event SnapPhotoButtonTappedHandler SnapPhotoButtonTapped;
     }
