@@ -16,5 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />
   </ItemGroup>
 </Project>

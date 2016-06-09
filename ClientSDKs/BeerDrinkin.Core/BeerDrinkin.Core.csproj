@@ -49,6 +49,7 @@
     <Compile Include="ViewModels\UserProfileViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WishListViewModel.cs" />
+    <Compile Include="ViewModels\AppFeedbackViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BreweryDB">
