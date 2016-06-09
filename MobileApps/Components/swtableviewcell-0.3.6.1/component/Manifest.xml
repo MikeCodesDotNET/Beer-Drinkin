@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="swtableviewcell">
+  <name>SWTableViewCell</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <src-url>https://github.com/CEWendel/SWTableViewCell</src-url>
+  <version>0.3.6.1</version>
+  <summary>An easy-to-use UITableViewCell subclass that implements a swipeable content view which exposes utility buttons (similar to iOS 7 Mail Application)</summary>
+  <screenshots>
+    <img src="screenshots/screenshot2.png" title="screenshot2" />
+    <img src="screenshots/screenshot3.png" title="screenshot3" />
+    <img src="screenshots/screenshot4.png" title="screenshot4" />
+  </screenshots>
+  <samples>
+    <sample id="SWTableViewCellSample-classic">
+      <name>iOS Classic Sample</name>
+      <summary>iOS Classic Sample</summary>
+    </sample>
+    <sample id="SWTableViewCellSample">
+      <name>iOS Unified Sample</name>
+      <summary>iOS Unified Sample</summary>
+    </sample>
+  </samples>
+</component>
