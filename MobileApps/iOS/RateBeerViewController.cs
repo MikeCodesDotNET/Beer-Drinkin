@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
-using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
@@ -18,8 +18,8 @@ namespace BeerDrinkin.iOS
         {
         }
 
-		BeerItem beer;
-		public BeerItem SelectedBeer
+		Beer beer;
+		public Beer SelectedBeer
 		{
 			get
 			{

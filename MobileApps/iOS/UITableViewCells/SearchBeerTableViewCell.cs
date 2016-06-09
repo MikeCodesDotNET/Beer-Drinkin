@@ -2,7 +2,6 @@ using System;
 using Foundation;
 using UIKit;
 using Splat;
-using Color = BeerDrinkin.Helpers.Colours;
 
 
 namespace BeerDrinkin.iOS

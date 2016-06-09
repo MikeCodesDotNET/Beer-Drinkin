@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-using BeerDrinkin.Service.DataObjects;
-using Color = BeerDrinkin.Helpers.Colours;
-
 using SDWebImage;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
@@ -19,7 +17,7 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Constructor
-        public SearchDataSource(List<BeerItem> beers)
+        public SearchDataSource(List<Beer> beers)
         {
             Beers = beers;
         }
@@ -27,7 +25,7 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Properties
-        public readonly List<BeerItem> Beers;
+        public readonly List<Beer> Beers;
 
         #endregion
 
@@ -63,7 +61,7 @@ namespace BeerDrinkin.iOS
             DidSelectBeer?.Invoke(Beers[indexPath.Row]);
         }
 
-        public delegate void RowSelectedHandler(BeerItem beer);
+        public delegate void RowSelectedHandler(Beer beer);
         public event RowSelectedHandler DidSelectBeer;
 
         #endregion

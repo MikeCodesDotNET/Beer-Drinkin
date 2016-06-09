@@ -2,14 +2,14 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
-using BeerDrinkin.Service.DataObjects;
 using System.Collections.Generic;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
 	partial class AddBeerTableViewController : UITableViewController
 	{
-        BeerItem beer;
+        Beer beer;
         List<UITableViewCell> cells = new List<UITableViewCell>();
 
 		public AddBeerTableViewController (IntPtr handle) : base (handle)
@@ -29,7 +29,7 @@ namespace BeerDrinkin.iOS
             }), true);
         }
 
-        public void SetBeer(BeerItem beer)
+        public void SetBeer(Beer beer)
         {
             this.beer = beer;  
 

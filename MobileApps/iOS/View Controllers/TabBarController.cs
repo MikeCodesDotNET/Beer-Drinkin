@@ -3,10 +3,6 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-using Color = BeerDrinkin.Helpers.Colours;
-using Strings = BeerDrinkin.Core.Helpers.Strings;
-
-using Splat;
 using System.Threading.Tasks;
 
 namespace BeerDrinkin.iOS

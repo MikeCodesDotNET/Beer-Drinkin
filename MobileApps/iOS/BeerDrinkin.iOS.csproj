@@ -90,7 +90,6 @@
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <AssemblyName>BeerDrinkiniOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -238,15 +237,6 @@
     <Reference Include="Plugin.Share.Abstractions">
       <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
-    </Reference>
-    <Reference Include="PLCrashReporterUnifiedBinding">
-      <HintPath>..\..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
-    </Reference>
-    <Reference Include="Calabash">
-      <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.18.0\lib\Xamarin.iOS10\Calabash.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Connectivity">
       <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
     </Reference>
@@ -277,19 +267,34 @@
     <Reference Include="Awesomizer">
       <HintPath>..\..\packages\Awesomizer.1.0.2\lib\Awesomizer.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmHelpers">
+      <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\BeerDrinkinAPI\BeerDrinkinAPI.csproj">
-      <Project>{AB1004CB-BECB-4EDD-979F-71B74C5C2539}</Project>
-      <Name>BeerDrinkinAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\BeerDrinkin\BeerDrinkin.csproj">
-      <Project>{70F2F312-0E9F-40B2-BA23-37F994708DAE}</Project>
-      <Name>BeerDrinkin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
       <Project>{8ECDFDC5-42D0-4540-9691-830EEB2ED874}</Project>
       <Name>BTProgressHUD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.AzureClient\BeerDrinkin.AzureClient.csproj">
+      <Project>{0D1E84BC-8253-46EF-B55B-E00BBD774B52}</Project>
+      <Name>BeerDrinkin.AzureClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Core\BeerDrinkin.Core.csproj">
+      <Project>{E68D035D-D4C0-48E5-B6A9-C2A2C833B167}</Project>
+      <Name>BeerDrinkin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj">
+      <Project>{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}</Project>
+      <Name>BeerDrinkin.DataStore.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.DataStore.Azure\BeerDrinkin.DataStore.Azure.csproj">
+      <Project>{459B00BF-1CF7-44AA-950B-27483C032C2D}</Project>
+      <Name>BeerDrinkin.DataStore.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Utils\BeerDrinkin.Utils.csproj">
+      <Project>{22AD198D-8B6D-40B1-BA0C-05379EED9766}</Project>
+      <Name>BeerDrinkin.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -445,7 +450,6 @@
     <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
     <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
-    <Compile Include="Service\JudoPaymentService.cs" />
     <Compile Include="View Controllers\AnalyticsViewController.cs" />
     <Compile Include="View Controllers\AnalyticsViewController.designer.cs">
       <DependentUpon>AnalyticsViewController.cs</DependentUpon>
@@ -695,7 +699,6 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <ItemGroup />
   <ItemGroup>
     <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Contents.json">
@@ -768,7 +771,6 @@
   <ItemGroup>
     <Folder Include="UITableViewCells\" />
     <Folder Include="Storyboards\" />
-    <Folder Include="Service\" />
     <Folder Include="Models\" />
     <Folder Include="View Controllers\PreviewingDelegates\" />
   </ItemGroup>

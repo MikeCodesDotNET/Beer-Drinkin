@@ -3,8 +3,6 @@ using System;
 
 using UIKit;
 
-using Color = BeerDrinkin.Helpers.Colours;
-
 namespace BeerDrinkin.iOS
 {
     partial class PhotoCollectionViewCell : UICollectionViewCell

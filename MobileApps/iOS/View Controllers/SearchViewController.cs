@@ -7,7 +7,6 @@ using UIKit;
 using CoreGraphics;
 
 using BeerDrinkin.Core.ViewModels;
-using BeerDrinkin.Core.Services;
 
 using Acr.UserDialogs;
 using MikeCodesDotNET.iOS;
@@ -16,7 +15,7 @@ using Xamarin;
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
-using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.iOS.PreviewingDelegates;
 
@@ -29,10 +28,10 @@ namespace BeerDrinkin.iOS
         private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
         private SearchServiceClient serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials(Core.Helpers.Keys.AzureSearchKey));
         private SearchIndexClient indexClient;
-        private BeerItem selectedBeer;
+        private Beer selectedBeer;
         #endregion
 
-		public BeerItem SelectedBeer
+		public Beer SelectedBeer
 		{
 			get
 			{

@@ -1,9 +1,6 @@
 using System;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
-using Color = BeerDrinkin.Helpers.Colours;
-using Splat;
-using Strings = BeerDrinkin.Core.Helpers.Strings;
 using System.Collections.Generic;
 using Xamarin;
 using BeerDrinkin.iOS.Helpers;

@@ -1,6 +1,5 @@
 using System;
 using UIKit;
-using BeerDrinkin.Service.DataObjects;
 using Foundation;
 
 namespace BeerDrinkin.iOS

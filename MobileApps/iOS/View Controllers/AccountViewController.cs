@@ -3,9 +3,6 @@ using BeerDrinkin.Core.ViewModels;
 using Foundation;
 using UIKit;
 using SDWebImage;
-using Color = BeerDrinkin.Helpers.Colours;
-using Splat;
-using Xamarin;
 using MikeCodesDotNET.iOS;
 using Plugin.Connectivity;
 using System.Threading.Tasks;
@@ -14,7 +11,7 @@ namespace BeerDrinkin.iOS
 {
     partial class AccountViewController : UIViewController
     {
-        readonly AccountViewModel viewModel = new AccountViewModel();
+        readonly UserProfileViewModel viewModel = new UserProfileViewModel();
         bool isFirstRun = true;
         bool connected;
 
@@ -41,7 +38,6 @@ namespace BeerDrinkin.iOS
             base.ViewDidAppear(animated);
 
             connected = await CrossConnectivity.Current.IsReachable("google.com");
-            BeerDrinkin.Core.Services.UserTrackingService.ReportViewLoaded("AccountViewController", "ViewDidAppear");
             if(connected)
             {
                 await viewModel.Reload();
@@ -87,7 +83,7 @@ namespace BeerDrinkin.iOS
             imgAvatar.SetImage(new NSUrl(avatarUrl), UIImage.FromBundle("BeerDrinkin.png"));
         }
 
-        async Task RefreshUI()
+        void RefreshUI()
         {
             NavigationController.NavigationBar.TopItem.Title = viewModel.FirstName;
             NavigationController.Title = viewModel.FirstName;
@@ -101,8 +97,6 @@ namespace BeerDrinkin.iOS
             layout.SectionInset = new UIEdgeInsets(5, 5, 2.5f, 2.5f);
             */
             RefreshAvatar();
-
-            return;
          }
     }
 }

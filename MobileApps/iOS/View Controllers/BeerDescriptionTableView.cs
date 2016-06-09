@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using UIKit;
 
-using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.DataSources;
 
 using Xamarin;
@@ -29,8 +29,8 @@ namespace BeerDrinkin.iOS
         PriceLookupService priceLookup = new PriceLookupService ();
         List<UITableViewCell> cells = new List<UITableViewCell> ();
 		bool justSignedIn;
-        BeerItem beer;
-        BeerInfo beerInfo;
+        Beer beer;
+
         const string activityName = "com.beerdrinkin.beer";
         UIView headerView;
         nfloat headerViewHeight = 200;
@@ -199,14 +199,9 @@ namespace BeerDrinkin.iOS
 
         }
 
-        public void SetBeer (BeerItem item)
+        public void SetBeer (Beer item)
         {
             beer = item;    
-        }
-
-        public void SetBeerInfo (BeerInfo item)
-        {
-            beerInfo = item;
         }
 
         void UpdateHeaderView ()
@@ -254,28 +249,6 @@ namespace BeerDrinkin.iOS
 
             tableView.ReloadData ();
             View.SetNeedsDisplay ();
-        }
-
-        async void AddPurchase()
-        {
-
-            var response = await Client.Instance.BeerDrinkinClient.GetBeerDistributors(beer.Id);
-            if (response.Result == null)
-                return;
-
-            var cellIdentifier = new NSString("distributorCell");
-            var cell = tableView.DequeueReusableCell (cellIdentifier) as PurchaseTableViewCell ?? new PurchaseTableViewCell (cellIdentifier);
-
-            var price = priceLookup.GetPriceForBeer(beer.Id.ToString());
-            beer.Price = price;
-
-            var beerPrice = decimal.Parse(price);
-            cell.Price = beerPrice;
-            cell.Quantity = 0;
-            cell.DistributorName = "Beer Merchants";
-            cell.TagLine = "Great beers to your door";
-
-            cells.Add (cell);
         }
 
         #region AddCells

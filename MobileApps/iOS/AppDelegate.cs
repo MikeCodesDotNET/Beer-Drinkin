@@ -1,17 +1,14 @@
 ﻿using System;
-using BeerDrinkin.Core.Helpers;
 
 using Foundation;
 using UIKit;
 
-using Color = BeerDrinkin.Helpers.Colours;
 using Microsoft.WindowsAzure.MobileServices;
-using Splat;
 using Xamarin;
 
 using JudoDotNetXamarin;
 using JudoPayDotNet.Enums;
-using BeerDrinkin.Service.DataObjects;
+using BeerDrinkin.DataObjects;
 using Social;
 
 namespace BeerDrinkin.iOS

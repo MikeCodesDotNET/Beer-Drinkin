@@ -1,10 +1,6 @@
 using System;
-using BeerDrinkin.Service;
 using Foundation;
 using UIKit;
-using Colour = BeerDrinkin.Helpers.Colours;
-using Splat;
-using Xamarin;
 
 namespace BeerDrinkin.iOS
 {

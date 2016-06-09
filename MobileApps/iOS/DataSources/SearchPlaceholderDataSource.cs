@@ -1,10 +1,6 @@
 ﻿using System;
 using UIKit;
 using Foundation;
-using BeerDrinkin.iOS.CustomControls;
-using Acr.UserDialogs;
-using BeerDrinkin.Core.Services;
-using Xamarin;
 using BeerDrinkin.iOS.Helpers;
 
 namespace BeerDrinkin.iOS.DataSources

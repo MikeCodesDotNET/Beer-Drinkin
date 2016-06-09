@@ -1,16 +1,17 @@
 using System;
-using System.Collections.Specialized;
-using BeerDrinkin.Core.ViewModels;
-using UIKit;
-using Foundation;
 using System.Linq;
+using System.Collections.Specialized;
+
+using BeerDrinkin.Core.ViewModels;
+
+using UIKit;
 
 namespace BeerDrinkin.iOS
 {
     partial class MyBeersViewController : BaseViewController
     {
-        private readonly MyBeersViewModel viewModel = new MyBeersViewModel();
-        private MyBeersDataSource dataSource;
+        readonly CheckInsViewModel viewModel = new CheckInsViewModel();
+        MyBeersDataSource dataSource;
 
         public MyBeersViewController(IntPtr handle) : base(handle)
         {
@@ -24,9 +25,12 @@ namespace BeerDrinkin.iOS
             var refreshControl = new UIRefreshControl();
             refreshControl.ValueChanged += delegate
             {
-                viewModel.FetchBeersCommand();
+                Refresh();
             };
             tableView.AddSubview(refreshControl);
+
+
+
 
             viewModel.Beers.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
             {
