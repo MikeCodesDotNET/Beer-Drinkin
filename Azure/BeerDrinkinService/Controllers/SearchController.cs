@@ -67,16 +67,8 @@ namespace BeerDrinkin.Controllers
                         beer.ImageMedium = indexedBeer?.Images[1];
                         beer.ImageLarge = indexedBeer?.Images[2];
                     }
-
                     results.Add(beer);
-
-                    //Lets save the beer if its not already in our DB.
-                    if (context.Beers.FirstOrDefault(x => x.Id == indexedBeer.Id) == null)
-                    {
-                        context.Beers.Add(beer);
-                    }
                 }
-                await context.SaveChangesAsync();
 
                 stopwatch.Stop();
                 telemtryClient.TrackRequest("BeerSearch", DateTime.Now, stopwatch.Elapsed, "200", true);
