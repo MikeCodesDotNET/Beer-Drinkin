@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:BeerDrinkin.Forms.Views;assembly=BeerDrinkin.Forms"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             x:Class="BeerDrinkin.Forms.Pages.SearchPage" BackgroundColor="{StaticResource MainBackgroundColor}" Title="Search">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid RowSpacing="0" x:Name="layout">
+    <Grid RowSpacing="0" Padding="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <SearchBar Grid.Row="0" Placeholder="Search for beers!" SearchCommand="{Binding SearchBeersCommand}" Text="{Binding SearchTerm}"
+                 FontSize="Small" CancelButtonColor="White" BackgroundColor="{StaticResource PrimaryBarColor}" />
+      <ListView Grid.Row="1" IsVisible="{Binding IsSearched}" BackgroundColor="#F7F7F7" RowHeight="80" CachingStrategy="RecycleElement" ItemsSource="{Binding Beers}"
+                SelectedItem="{Binding SelectedBeer}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell Text="{Binding Name}" Detail="{Binding Abv}" ImageSource="{Binding ImageSmall}" StyleId="disclosure" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <views:NotSearchedView Grid.Row="1" IsVisible="{Binding IsSearched, Converter={StaticResource InvertedBooleanConverter}}" />
+    </Grid>
+  </Grid>
+</ContentPage>
