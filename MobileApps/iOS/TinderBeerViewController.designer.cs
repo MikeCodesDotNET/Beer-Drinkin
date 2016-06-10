@@ -11,8 +11,8 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-    [Register ("SearchBar")]
-    partial class SearchBar
+    [Register ("TinderBeerViewController")]
+    partial class TinderBeerViewController
     {
         void ReleaseDesignerOutlets ()
         {

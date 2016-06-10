@@ -16,26 +16,65 @@ namespace BeerDrinkin.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UISearchBar searchBar { get; set; }
+        UIKit.UIButton btnBeer { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView SearchResultsTable { get; set; }
+        UIKit.UIButton btnBreweries { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnUsers { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView scrollView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        BeerDrinkin.iOS.SearchBar searchBar { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView searchTypeView { get; set; }
 
+        [Action ("BtnBeer_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnBeer_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("BtnBreweries_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnBreweries_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("BtnUsers_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnUsers_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
+            if (btnBeer != null) {
+                btnBeer.Dispose ();
+                btnBeer = null;
+            }
+
+            if (btnBreweries != null) {
+                btnBreweries.Dispose ();
+                btnBreweries = null;
+            }
+
+            if (btnUsers != null) {
+                btnUsers.Dispose ();
+                btnUsers = null;
+            }
+
+            if (scrollView != null) {
+                scrollView.Dispose ();
+                scrollView = null;
+            }
+
             if (searchBar != null) {
                 searchBar.Dispose ();
                 searchBar = null;
-            }
-
-            if (SearchResultsTable != null) {
-                SearchResultsTable.Dispose ();
-                SearchResultsTable = null;
             }
 
             if (searchTypeView != null) {

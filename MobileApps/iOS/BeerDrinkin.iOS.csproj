@@ -78,6 +78,8 @@
     <MtouchFastDev>false</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <CodesignProvision>44fdd764-305f-44ca-a399-4d216fdfcdfd</CodesignProvision>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+    <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
     <Optimize>true</Optimize>
@@ -496,6 +498,26 @@
     <Compile Include="View Controllers\Discover\DiscoverViewController.cs" />
     <Compile Include="View Controllers\Discover\DiscoverViewController.designer.cs">
       <DependentUpon>DiscoverViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraViewController.cs" />
+    <Compile Include="CameraViewController.designer.cs">
+      <DependentUpon>CameraViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverBeersViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverBeersViewController.designer.cs">
+      <DependentUpon>DiscoverBeersViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverBreweriesViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverBreweriesViewController.designer.cs">
+      <DependentUpon>DiscoverBreweriesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverUsersViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverUsersViewController.designer.cs">
+      <DependentUpon>DiscoverUsersViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TinderBeerViewController.cs" />
+    <Compile Include="TinderBeerViewController.designer.cs">
+      <DependentUpon>TinderBeerViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -28,6 +28,10 @@ namespace BeerDrinkin.iOS
             Core.ViewModels.ViewModelBase.Init();
             ServiceLocator.Instance.Add<ILogger, Logger>();
 
+#if DEBUG
+            Utils.Helpers.Settings.UserId = string.Empty;
+            #endif
+
             //Windows Azure
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
