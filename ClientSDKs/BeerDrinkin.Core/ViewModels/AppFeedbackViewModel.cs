@@ -18,11 +18,7 @@ namespace BeerDrinkin.Core.ViewModels
 
         public async Task SubmitFeedback(AppFeedback feedback)
         {
-            //TODO implement posting objects to Azure through InvokeAPI
-            var parameters = new Dictionary<string, string>();
-            parameters.Add("searchTerm", searchTerm);
-
-            await azure.Client.InvokeApiAsync("Search", HttpMethod.Get, parameters);
+           // await azure.Client.InvokeApiAsync<bool>("Search", feedback);
         }
     }
 }

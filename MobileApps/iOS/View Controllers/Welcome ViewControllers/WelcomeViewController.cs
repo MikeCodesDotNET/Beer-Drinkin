@@ -15,14 +15,10 @@ namespace BeerDrinkin.iOS
         {
         }
 
-        ITrackHandle trackerHandle;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            trackerHandle = Insights.TrackTime("Time spent on welcome screen");
-            trackerHandle.Start();
-           
+                       
             lblTitle.Text = Strings.Welcome_Title;
             lblPromise.Text = Strings.Welcome_Promise;
             btnConnectWithFacebook.SetTitle(Strings.Welcome_Facebook, UIControlState.Normal);

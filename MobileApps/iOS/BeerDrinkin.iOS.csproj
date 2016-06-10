@@ -342,10 +342,6 @@
     <Compile Include="View Controllers\SettingsViewController.designer.cs">
       <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\SendFeedbackViewController.cs" />
-    <Compile Include="View Controllers\SendFeedbackViewController.designer.cs">
-      <DependentUpon>SendFeedbackViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\MyBeersDataSource.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.designer.cs">
@@ -495,25 +491,25 @@
     <Compile Include="Helpers\Style.cs" />
     <Compile Include="DataSources\CheckInDataSource.cs" />
     <Compile Include="Custom Controls\PlaceholderTextView.cs" />
-    <Compile Include="RateBeerViewController.cs" />
-    <Compile Include="RateBeerViewController.designer.cs">
-      <DependentUpon>RateBeerViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\SearchHistory.cs" />
-    <Compile Include="SearchHistoryViewCell.cs" />
-    <Compile Include="SearchHistoryViewCell.designer.cs">
-      <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\PreviewingDelegates\SearchPreviewingDelegate.cs" />
     <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.designer.cs">
       <DependentUpon>InAppPurchaseSearchTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="InAppPurchaseViewController.cs" />
-    <Compile Include="InAppPurchaseViewController.designer.cs">
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="View Controllers\RateBeerViewController.cs" />
+    <Compile Include="View Controllers\RateBeerViewController.designer.cs">
+      <DependentUpon>RateBeerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SearchHistoryViewCell.cs" />
+    <Compile Include="View Controllers\SearchHistoryViewCell.designer.cs">
+      <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\InAppPurchaseViewController.cs" />
+    <Compile Include="View Controllers\InAppPurchaseViewController.designer.cs">
       <DependentUpon>InAppPurchaseViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />

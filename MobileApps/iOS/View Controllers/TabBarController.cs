@@ -17,10 +17,10 @@ namespace BeerDrinkin.iOS
 		#endregion
 
 		#region Overrides
-		public override void ViewDidAppear(bool animated)
+		public async override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			SetupUI();
+			await SetupUI();
 			SetupTabChangeAnimation();
 		}
 
@@ -28,16 +28,7 @@ namespace BeerDrinkin.iOS
 
 		async Task SetupUI()
 		{
-			var currentUser = await Client.Instance.BeerDrinkinClient.Users.CurrentUser();
-
-			TabBar.Items[0].Title = Strings.Tabs_MyBeers;
-			TabBar.Items[1].Title = Strings.Tabs_WishList;
-			TabBar.Items[2].Title = Strings.Tabs_Search;
-
-			if (currentUser != null)
-				TabBar.Items[3].Title = currentUser.UserName;
-
-			TabBar.SelectedImageTintColor = Color.Blue.ToNative();
+            	
 		}
 
 		void SetupTabChangeAnimation()

@@ -90,7 +90,7 @@ namespace BeerDrinkin.iOS
             DidSelectBeer?.Invoke(beers[indexPath.Row]);
         }
 
-        public delegate void RowSelectedHandler(BeerInfo beer);
+        public delegate void RowSelectedHandler(Beer beer);
 
         public event RowSelectedHandler DidSelectBeer;
 

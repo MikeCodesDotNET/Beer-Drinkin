@@ -5,6 +5,8 @@ using System.Collections.Specialized;
 using BeerDrinkin.Core.ViewModels;
 
 using UIKit;
+using System.Collections.Generic;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
@@ -12,6 +14,7 @@ namespace BeerDrinkin.iOS
     {
         readonly CheckInsViewModel viewModel = new CheckInsViewModel();
         MyBeersDataSource dataSource;
+        List<Beer> beers;
 
         public MyBeersViewController(IntPtr handle) : base(handle)
         {
@@ -22,51 +25,8 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
 
-            var refreshControl = new UIRefreshControl();
-            refreshControl.ValueChanged += delegate
-            {
-                Refresh();
-            };
-            tableView.AddSubview(refreshControl);
 
 
-
-
-            viewModel.Beers.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
-            {
-                dataSource = new MyBeersDataSource(viewModel.Beers);
-                dataSource.DidSelectBeer += (beer) =>
-                {
-                    var navctlr = Storyboard.InstantiateViewController("beerDescriptionView") as BeerDescriptionTableView;
-                    if (navctlr == null)
-                        return;
-
-                    var rowPath = tableView.IndexPathForSelectedRow;
-                    var beerItem = viewModel.Beers[rowPath.Row].CheckIns.FirstOrDefault().Beer;
-                    navctlr.SetBeer(beerItem);
-
-                    var beerInfo = viewModel.Beers[rowPath.Row];
-                        navctlr.SetBeerInfo(beerInfo);
-
-                    NavigationController.PushViewController(navctlr, true);
-                };
-                tableView.Source = dataSource;
-                tableView.ReloadData();
-                refreshControl.EndRefreshing();
-
-                if (viewModel.Beers.Count > 0)
-                    View.BringSubviewToFront(tableView);
-            };
-
-            viewModel.FetchBeersCommand();
-
-
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-            viewModel.FetchBeersCommand();
-        }
+        }      
     }
 }

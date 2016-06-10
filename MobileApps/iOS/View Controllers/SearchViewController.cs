@@ -24,11 +24,10 @@ namespace BeerDrinkin.iOS
 	public partial class SearchViewController : BaseViewController
     {
         #region Fields
-        private readonly SearchViewModel viewModel = new SearchViewModel();
-        private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
-        private SearchServiceClient serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials(Core.Helpers.Keys.AzureSearchKey));
-        private SearchIndexClient indexClient;
-        private Beer selectedBeer;
+        readonly SearchViewModel viewModel = new SearchViewModel();
+
+        SearchIndexClient indexClient;
+        Beer selectedBeer;
         #endregion
 
 		public Beer SelectedBeer
@@ -53,31 +52,13 @@ namespace BeerDrinkin.iOS
 
             SetupUI();
             SetupEvents();
-
-			// Check to see if 3D Touch is available
-			if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available) 
-			{
-				RegisterForPreviewingWithDelegate(new SearchPreviewingDelegate(this), View);
-            }
         }
-
-		public override void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-			SetupUI();
-		}
        
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {            
             if (segue.Identifier != "beerDescriptionSegue")
                 return;
-            /*
-            var index = placeHolderTableView.IndexPathForSelectedRow.Row;
-            selectedBeer = selectedBeer ?? viewModel.Beers[index];
-*/
-            selectedBeer.Upc = barcodeLookupService.UPC;
-            selectedBeer.RateBeerId = barcodeLookupService.RateBeerID;
-
+         
             var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
             if (beerDescriptoinViewController == null)
                 return;
@@ -115,7 +96,7 @@ namespace BeerDrinkin.iOS
 
         private void SetupUI() 
         {
-            Title = BeerDrinkin.Core.Helpers.Strings.Search_Title;
+            Title = "Discover"
             searchBar.Layer.BorderWidth = 1;
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
 
@@ -229,7 +210,7 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        private void DisplayBeers(List<BeerItem> beers)
+        private void DisplayBeers(List<Beer> beers)
         {
             DataSource = new SearchDataSource(beers);
             DataSource.DidSelectBeer += delegate

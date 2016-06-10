@@ -4,12 +4,11 @@ using Foundation;
 using UIKit;
 
 using Microsoft.WindowsAzure.MobileServices;
-using Xamarin;
 
 using JudoDotNetXamarin;
 using JudoPayDotNet.Enums;
 using BeerDrinkin.DataObjects;
-using Social;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS
 {
@@ -21,29 +20,16 @@ namespace BeerDrinkin.iOS
         #region Overrides
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
-        {          
-            //Xamarin Insights
-            Insights.Initialize (Keys.XamarinInsightsKey);
-            Insights.HasPendingCrashReport += PurgeCrashReports;
-
-            #if DEBUG
-            //BeerDrinkin.Core.Helpers.Settings.FirstRun = true;
-            #endif
-
-			#if ENABLE_TEST_CLOUD
-			Calabash.Start();
-			#endif
-
+        {   
             //Windows Azure
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
-
-            Client.Instance.BeerDrinkinClient.InitializeStoreAsync();
 
             SetupGlobalAppearances();
             ConfigureJudoPayments();
 
 			var shouldPerformAdditionalDelegateHandling = true;
+
 			// Get possible shortcut item
 			if (launchOptions != null) {
 				LaunchedShortcutItem = launchOptions [UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
@@ -51,26 +37,25 @@ namespace BeerDrinkin.iOS
 			}
 
 			// Add dynamic shortcut items
-			if (application.ShortcutItems.Length == 0) {
+			if (application.ShortcutItems.Length == 0) 
+            {
 				var shortcut3 = new UIMutableApplicationShortcutItem(ShortcutIdentifier.MyBeers, "My Beer")
 				{
 					LocalizedSubtitle = "See the beers you've already had",
 					Icon = UIApplicationShortcutIcon.FromTemplateImageName("quickAction.myBeers.png")
 				};
 
-
 				// Update the application providing the initial 'dynamic' shortcut items.
 				application.ShortcutItems = new UIApplicationShortcutItem[]{shortcut3};
 			}
-
 			return shouldPerformAdditionalDelegateHandling;
         }
 
-        private void ConfigureJudoPayments ()
+        void ConfigureJudoPayments ()
         {
             var configInstance = JudoConfiguration.Instance;
 
-            //setting for Sandnox
+            //setting for Sandbox
             configInstance.Environment = JudoEnvironment.Live;
 
             configInstance.ApiToken = "MzEtkQK1bHi8v8qy";
@@ -91,11 +76,11 @@ namespace BeerDrinkin.iOS
 				case "com.micjames.beerdrinkin.mybeers":
                     break;
 				case "com.micjames.beerdrinkin.wishlist":
-                break;
+                    break;
 				case "com.micjames.beerdrinkin.search":
-                break;
+                    break;
 				case "com.micjames.beerdrinkin.profile":
-                break;
+                    break;
 				case "com.micjames.beerdrinkin.beerdetails":
                     var info = userActivity.UserInfo;
                 if (this.Window.RootViewController.ChildViewControllers[0] is UITabBarController) 
@@ -103,7 +88,7 @@ namespace BeerDrinkin.iOS
 					var tabController = this.Window.RootViewController.ChildViewControllers[0] as UITabBarController;
 					tabController.SelectedIndex = 2;
 
-						var beerItem = new BeerItem();
+						var beerItem = new Beer();
 
 						var id = new NSObject();
 						info.TryGetValue(new NSString("id"), out id);
@@ -152,24 +137,7 @@ namespace BeerDrinkin.iOS
 		// Called whenever your app performs a background fetch
 		public override async void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
 		{
-			// Do Background Fetch
-			var downloadSuccessful = false;
-			try {
-				// Download data
-				await Client.Instance.BeerDrinkinClient.RefreshAll();
-				downloadSuccessful = true;
-
-			} catch (Exception ex) {
-				Insights.Report(ex);
-			}
-
-			// If you don't call this, your application will be terminated by the OS.
-			// Allows OS to collect stats like data cost and power consumption
-			if (downloadSuccessful) {
-				completionHandler (UIBackgroundFetchResult.NewData);
-			} else {
-				completionHandler (UIBackgroundFetchResult.Failed);
-			}
+			
 		}
 
 
@@ -201,22 +169,17 @@ namespace BeerDrinkin.iOS
 		// if app is already running
 		public override void PerformActionForShortcutItem (UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
 		{
-			Console.WriteLine ("PerformActionForShortcutItem");
-			// Perform action
 			var handled = HandleShortcutItem(shortcutItem);
 			completionHandler(handled);
 		}
 		public bool HandleShortcutItem(UIApplicationShortcutItem shortcutItem)
 		{
-			Console.WriteLine ("HandleShortcutItem ");
 			var handled = false;
 
 			// Anything to process?
 			if (shortcutItem == null) 
 				return false;
-
-			Xamarin.Insights.Track("3DTouch", "Type", shortcutItem.LocalizedTitle);
-
+             
 			// Take action based on the shortcut type
 			switch (shortcutItem.Type) 
 			{
@@ -261,33 +224,27 @@ namespace BeerDrinkin.iOS
 
 		#endregion
 
-        static void PurgeCrashReports (object sender, bool isStartupCrash)
-        {
-            if (isStartupCrash) {
-                Insights.PurgePendingCrashReports ().Wait ();
-            } 
-        }
-
         static void SetupGlobalAppearances ()
         {
-			//NavigationBar
-			UINavigationBar.Appearance.BarTintColor = Color.Blue.ToNative();
-            UINavigationBar.Appearance.TintColor = Color.White.ToNative();
-          
+            //NavigationBar
+            UINavigationBar.Appearance.BarTintColor = Helpers.Style.Colors.NavigationBar;
+            UINavigationBar.Appearance.TintColor = Helpers.Style.Colors.NavigationTint;
+
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
-                {
-                    Font = UIFont.FromName("Avenir-Medium", 17f),
-                    TextColor = Color.White.ToNative()
-                });
+            {
+                    Font = Helpers.Style.Fonts.Heading,
+                    TextColor = Helpers.Style.Colors.NavigationTint
+            });
+
             //NavigationBar Buttons 
             UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes
                 {
-                    Font = UIFont.FromName("Avenir-Medium", 17f),
-                    TextColor = Color.White.ToNative()
+                    Font = Helpers.Style.Fonts.NavigationButton,
+                    TextColor = Helpers.Style.Colors.NavigationTint
                 }, UIControlState.Normal);
 
             //TabBar
-            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = UIFont.FromName("Avenir-Book", 10f) }, UIControlState.Normal);
+            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = Helpers.Style.Fonts.TabBar }, UIControlState.Normal);
         }
     }
 }

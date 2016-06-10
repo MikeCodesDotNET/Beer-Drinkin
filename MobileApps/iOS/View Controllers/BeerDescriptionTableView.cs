@@ -25,8 +25,6 @@ namespace BeerDrinkin.iOS
     {
         #region Fields
 
-        ITrackHandle trackerHandle;
-        PriceLookupService priceLookup = new PriceLookupService ();
         List<UITableViewCell> cells = new List<UITableViewCell> ();
 		bool justSignedIn;
         Beer beer;

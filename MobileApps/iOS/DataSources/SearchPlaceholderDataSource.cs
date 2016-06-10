@@ -7,8 +7,7 @@ namespace BeerDrinkin.iOS.DataSources
 {
     public class SearchPlaceholderDataSource : UITableViewSource
     {        
-		private BarcodeLookupService barcodeLookupService = new BarcodeLookupService();
-		private SearchViewController viewController;
+		SearchViewController viewController;
 
         public SearchPlaceholderDataSource(SearchViewController viewController)
         {
