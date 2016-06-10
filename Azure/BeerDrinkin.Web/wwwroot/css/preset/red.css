@@ -1,0 +1,46 @@
+.navbar-nav li.active a, 
+a:focus, 
+a:hover, 
+.btn-primary:hover, 
+.navbar-nav li a.btn-primary:hover, 
+.compatibility a:hover, 
+.price .btn-primary:hover, 
+.price.featured .btn-primary:hover, 
+.twitter-feed a, 
+#main-contact-form .btn-primary:hover {
+    color: #f7941d;
+}
+
+
+.btn-primary, 
+.owl-theme .owl-controls .owl-page span{
+	background-color:#f7941d;
+}
+
+.form-control:focus {
+	border:1px solid #f7941d;
+}
+
+.btn-primary.btn-animated:hover, 
+.btn-primary.btn-animated:focus, 
+.price .btn-primary:hover, 
+.price.featured .btn-primary:hover, 
+#main-contact-form .btn-primary,  
+#main-contact-form .btn-primary:hover, 
+.price .btn-primary {
+	border:3px solid #f7941d;
+}
+
+.overlay-bg {
+	background: rgb(237,28,36);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZWQxYzI0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Y3OTQxZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+	background: -moz-linear-gradient(-45deg,  rgba(237,28,36,1) 0%, rgba(247,148,29,0.90) 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(237,28,36,1)), color-stop(100%,rgba(247,148,29,0.90)));
+	background: -webkit-linear-gradient(-45deg,  rgba(237,28,36,1) 0%,rgba(247,148,29,0.90) 100%);
+	background: -o-linear-gradient(-45deg,  rgba(237,28,36,1) 0%,rgba(247,148,29,0.90) 100%);
+	background: -ms-linear-gradient(-45deg,  rgba(237,28,36,1) 0%,rgba(247,148,29,0.90) 100%);
+	background: linear-gradient(135deg,  rgba(237,28,36,1) 0%,rgba(247,148,29,0.90) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed1c24', endColorstr='#f7941d',GradientType=1 );
+
+}
+

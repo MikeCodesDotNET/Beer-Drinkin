@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<resources>
+  <!-- All these styles should be prefixed judo-payments- to reduce style name clashes and accidental overrides -->
+  <style name="judo_payments_page">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+    <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+    <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:background">@color/page_bg</item>
+    <item name="android:gravity">center_vertical</item>
+  </style>
+
+  <style name="judo_payments_message">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:padding">10dp</item>
+    <item name="android:textSize">@dimen/default_text_size</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textColor">@color/normal_text</item>
+  </style>
+
+  <style name="judo_payments_label">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/default_text_size</item>
+    <item name="android:textColor">@color/normal_text</item>
+  </style>
+
+  <style name="judo_payments_label.ReceiptList">
+    <item name="android:textSize">@dimen/small_text_size</item>
+  </style>
+
+  <style name="judo_payments_label.Left">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_weight">8</item>
+  </style>
+
+  <style name="judo_payments_label.Right">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_weight">4</item>
+    <item name="android:gravity">right</item>
+  </style>
+
+  <style name="judo_payments_label.RightIcon">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_height">match_parent</item>
+  </style>
+
+
+  <style name="judo_payments_spacer">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_height">0dip</item>
+  </style>
+
+  <style name="judo_payments_cardstrip">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">12dip</item>
+    <item name="android:src">@drawable/ic_card_logo_strip</item>
+    <item name="android:adjustViewBounds">true</item>
+  </style>
+
+  <style name="judo_payments_divider">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">1dp</item>
+    <item name="android:layout_marginTop">16dip</item>
+    <item name="android:background">@color/page_divider</item>
+  </style>
+
+  <style name="judo_payments_EditText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/default_text_size</item>
+    <item name="android:singleLine">true</item>
+    <!-- <item name="android:padding">10dp</item> -->
+    <item name="android:textColor">@color/normal_text</item>
+    <item name="android:background">@android:color/transparent</item>
+  </style>
+
+  <style name="judo_payments_AddressEditText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/default_text_size</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">10dp</item>
+    <item name="android:textColor">@color/default_text</item>
+  </style>
+
+  <!-- parent="android:Widget.Holo.Light.Spinner" -->
+  <style name="judo_payments_Spinner">
+    <item name="android:textSize">@dimen/title_text_size</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:textColor">@color/default_text</item>
+    <item name="android:background">@drawable/spinner_background_judo_payments</item>
+    <!-- <item name="android:dropDownSelector">@drawable/judo_payments_list_selector_holo_light</item> -->
+  </style>
+
+
+
+
+  <style name="judo_payments_EditText.Single">
+    <item name="android:background">@drawable/edit_text_background</item>
+  </style>
+
+
+  <style name="judo_payments_Button" parent="@style/judo_payments_BaseButton">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/button_text_size</item>
+    <!-- <item name="android:padding">10dp</item> -->
+    <item name="android:textStyle">normal</item>
+    <item name="android:textColor">@color/normal_text</item>
+  </style>
+
+  <style name="judo_payments_Button.Main">
+    <item name="android:background">@drawable/main_button_background</item>
+    <item name="android:textColor">@color/button_text</item>
+  </style>
+
+  <style name="judo_payments_Button.Secondary">
+    <item name="android:background">@drawable/secondary_button_background</item>
+    <item name="android:layout_height">38dp</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:minWidth">80dp</item>
+    <item name="android:textSize">@dimen/small_text_size</item>
+    <item name="android:layout_marginTop">@dimen/general_padding</item>
+    <item name="android:textColor">@color/cancel_text</item>
+  </style>
+
+  <style name="judo_payments_Title">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/title_text_size</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/normal_text</item>
+  </style>
+
+  <style name="judo_payments_InfoButton">
+    <item name="android:src">@drawable/ic_info</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:paddingLeft">4dip</item>
+    <item name="android:paddingTop">8dip</item>
+    <item name="android:paddingBottom">8dip</item>
+    <item name="android:paddingRight">8dip</item>
+    <item name="android:layout_gravity">center</item>
+  </style>
+
+  <style name="judo_payments_InfoButton.Home">
+    <item name="android:paddingTop">0dip</item>
+    <item name="android:paddingBottom">0dip</item>
+  </style>
+
+  <style name="judo_payments_InputContainer">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">5dp</item>
+    <item name="android:layout_marginBottom">5dp</item>
+    <item name="android:orientation">horizontal</item>
+  </style>
+
+  <style name="judo_payments_SettingsButton">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:background">@drawable/button_settings</item>
+  </style>
+
+
+  <style name="judo_payments_ContainerFrame">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+  </style>
+
+  <style name="judo_payments_CardText">
+    <item name="android:textColor">@color/default_text</item>
+    <item name="android:layout_gravity">center_vertical</item>
+  </style>
+
+  <style name="judo_payments_HintText">
+    <item name="android:textColor">@color/hint_text</item>
+  </style>
+
+  <style name="judo_payments_ErrorText">
+    <item name="android:textColor">@color/error_text</item>
+    <item name="android:textSize">@dimen/error_text_size</item>
+  </style>
+
+  <style name="judo_payments_InputFieldContainer">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:background">@drawable/field</item>
+    <!-- Override padding so we don't get default padding from 9-patch background -->
+    <item name="android:padding">0dp</item>
+  </style>
+
+  <style name="judo_payments_ProgressBar">
+    <item name="android:layout_width">64dp</item>
+    <item name="android:layout_height">64dp</item>
+    <item name="android:indeterminateDrawable">@drawable/progress_spinner</item>
+  </style>
+  <style name="judo_payments_ProgressDialog" parent="@android:style/Theme.Black.NoTitleBar">
+    <item name="android:windowAnimationStyle">@style/judo_payments_ProgressDialogAnim</item>
+  </style>
+  <style name="judo_payments_ProgressDialogAnim" parent="@android:style/Theme.Black.NoTitleBar">
+    <item name="android:windowEnterAnimation">@anim/fade_in</item>
+    <item name="android:windowExitAnimation">@anim/fade_out</item>
+  </style>
+
+
+</resources>

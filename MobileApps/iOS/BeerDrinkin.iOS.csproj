@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{586D37FE-B247-44A7-B218-278458571D5A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BeerDrinkin.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>BeerDrinkiniOS</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>
+    </DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution: M James (BCTYCQPYCZ)</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IpaPackageName>
+    </IpaPackageName>
+    <CodesignProvision>31aba3cc-2220-4150-abf2-a555e7d4e9e7</CodesignProvision>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <CodesignProvision>44fdd764-305f-44ca-a399-4d216fdfcdfd</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\UITest</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Auth.iOS">
+      <HintPath>..\Components\xamarin.auth-1.2.3.1\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="SDWebImage">
+      <HintPath>..\Components\sdwebimage-3.7.1.4\lib\ios-unified\SDWebImage.dll</HintPath>
+    </Reference>
+    <Reference Include="PDRating">
+      <HintPath>..\Components\pdreview-2.0.2\lib\ios-unified\PDRating.dll</HintPath>
+    </Reference>
+    <Reference Include="SWTableViewCell">
+      <HintPath>..\Components\swtableviewcell-0.3.6.1\lib\ios-unified\SWTableViewCell.dll</HintPath>
+    </Reference>
+    <Reference Include="XCardView">
+      <HintPath>..\Components\XCardView-1.1\lib\ios-unified\XCardView.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\..\Components\zxing.net.mobile-1.5.1.0\lib\ios-unified\ZXingNetMobile.dll</HintPath>
+    </Reference>
+    <Reference Include="RateBeer">
+      <HintPath>..\..\packages\RateBeer.1.0.0\lib\RateBeer.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL">
+      <HintPath>..\..\packages\SQLitePCL.3.8.7.2\lib\Xamarin.iOS10\SQLitePCL.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SQLitePCL.Ext">
+      <HintPath>..\..\packages\SQLitePCL.3.8.7.2\lib\Xamarin.iOS10\SQLitePCL.Ext.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Acr.Support.iOS">
+      <HintPath>..\..\packages\Acr.Support.1.1.1\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Pop">
+      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="RZTransitions">
+      <HintPath>..\..\Components\RZTransitions-1.2.0.0\lib\ios-unified\RZTransitions.dll</HintPath>
+    </Reference>
+    <Reference Include="AMViralSwitch">
+      <HintPath>..\..\Components\AMViralSwitch-1.0.0.0\lib\ios-unified\AMViralSwitch.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\packages\FluentValidation.6.0.2.0\lib\portable-net45+wp80+win8+wpa81\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog">
+      <HintPath>..\..\packages\Serilog.1.5.12\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoDotNetXamarin">
+      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamarin.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoDotNetXamariniOSSDK">
+      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoDotNetXamariniOSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoPayDotNet">
+      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoPayDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="JudoShieldXamarin">
+      <HintPath>..\..\Components\judopay-xamarin-sdk-2.3.0\lib\ios-unified\JudoShieldXamarin.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\..\packages\Acr.UserDialogs.4.2.1\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\..\packages\Acr.UserDialogs.4.2.1\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Diagnostics.Debug" />
+    <Reference Include="System.Diagnostics.Tools" />
+    <Reference Include="System.Globalization" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Primitives" />
+    <Reference Include="System.ObjectModel" />
+    <Reference Include="System.Reflection" />
+    <Reference Include="System.Reflection.Extensions" />
+    <Reference Include="System.Resources.ResourceManager" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Extensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Text.Encoding" />
+    <Reference Include="Microsoft.WindowsAzure.Mobile">
+      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
+      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\Xamarin.iOS10\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime">
+      <HintPath>..\..\packages\Microsoft.Rest.ClientRuntime.1.8.1\lib\portable-net45+win+wpa81\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Xml.ReaderWriter" />
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure">
+      <HintPath>..\..\packages\Microsoft.Rest.ClientRuntime.Azure.2.5.2\lib\portable-net45+win+wpa81\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Xml.XmlSerializer" />
+    <Reference Include="Microsoft.Spatial">
+      <HintPath>..\..\packages\Microsoft.Spatial.6.13.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Search">
+      <HintPath>..\..\packages\Microsoft.Azure.Search.1.0.2-preview\lib\portable-net403+win8+wpa81\Microsoft.Azure.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\..\packages\Plugin.Share.3.4.0-beta3\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.InAppPurchase-Unified">
+      <HintPath>..\..\Components\xamarin.inapppurchase-2.8\lib\ios-unified\Xamarin.InAppPurchase-Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectOxford.Vision">
+      <HintPath>..\..\packages\Microsoft.ProjectOxford.Vision.1.0.213\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Vision.dll</HintPath>
+    </Reference>
+    <Reference Include="Awesomizer">
+      <HintPath>..\..\packages\Awesomizer.1.0.2\lib\Awesomizer.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmHelpers">
+      <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
+      <Project>{8ECDFDC5-42D0-4540-9691-830EEB2ED874}</Project>
+      <Name>BTProgressHUD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.AzureClient\BeerDrinkin.AzureClient.csproj">
+      <Project>{0D1E84BC-8253-46EF-B55B-E00BBD774B52}</Project>
+      <Name>BeerDrinkin.AzureClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Core\BeerDrinkin.Core.csproj">
+      <Project>{E68D035D-D4C0-48E5-B6A9-C2A2C833B167}</Project>
+      <Name>BeerDrinkin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj">
+      <Project>{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}</Project>
+      <Name>BeerDrinkin.DataStore.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.DataStore.Azure\BeerDrinkin.DataStore.Azure.csproj">
+      <Project>{459B00BF-1CF7-44AA-950B-27483C032C2D}</Project>
+      <Name>BeerDrinkin.DataStore.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Utils\BeerDrinkin.Utils.csproj">
+      <Project>{22AD198D-8B6D-40B1-BA0C-05379EED9766}</Project>
+      <Name>BeerDrinkin.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\ITunesArtwork" />
+    <ITunesArtwork Include="Resources\ITunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Settings.storyboard">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Helpers\ViewExtensions.cs" />
+    <Compile Include="View Controllers\MyBeersViewController.cs" />
+    <Compile Include="View Controllers\MyBeersViewController.designer.cs">
+      <DependentUpon>MyBeersViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\BaseViewController.cs" />
+    <Compile Include="View Controllers\AccountViewController.cs" />
+    <Compile Include="View Controllers\AccountViewController.designer.cs">
+      <DependentUpon>AccountViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SearchViewController.cs" />
+    <Compile Include="View Controllers\SearchViewController.designer.cs">
+      <DependentUpon>SearchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\SearchDataSource.cs" />
+    <Compile Include="View Controllers\AboutViewController.cs" />
+    <Compile Include="View Controllers\AboutViewController.designer.cs">
+      <DependentUpon>AboutViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SettingsViewController.cs" />
+    <Compile Include="View Controllers\SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SendFeedbackViewController.cs" />
+    <Compile Include="View Controllers\SendFeedbackViewController.designer.cs">
+      <DependentUpon>SendFeedbackViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\MyBeersDataSource.cs" />
+    <Compile Include="View Controllers\BeerDescriptionTableView.cs" />
+    <Compile Include="View Controllers\BeerDescriptionTableView.designer.cs">
+      <DependentUpon>BeerDescriptionTableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SuggestionsTableViewController.cs" />
+    <Compile Include="View Controllers\SuggestionsTableViewController.designer.cs">
+      <DependentUpon>SuggestionsTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\TabBarController.cs" />
+    <Compile Include="View Controllers\TabBarController.designer.cs">
+      <DependentUpon>TabBarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="View Controllers\FullScreenMapView.cs" />
+    <Compile Include="View Controllers\FullScreenMapView.designer.cs">
+      <DependentUpon>FullScreenMapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\CameraViewController.cs" />
+    <Compile Include="View Controllers\CameraViewController.designer.cs">
+      <DependentUpon>CameraViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\BeerLoadingView.cs" />
+    <Compile Include="Helpers\Animator.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.designer.cs">
+      <DependentUpon>navigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.designer.cs">
+      <DependentUpon>WelcomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.designer.cs">
+      <DependentUpon>InitialViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.cs" />
+    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
+      <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
+    <Compile Include="UITableViewCells\AboutThisBeerCell.designer.cs">
+      <DependentUpon>..\Custom Controls\UITableViewCells\AboutThisBeerCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BeerDescriptionCell.cs" />
+    <Compile Include="UITableViewCells\BeerDescriptionCell.designer.cs" />
+    <Compile Include="UITableViewCells\BeerHeaderCell.cs" />
+    <Compile Include="UITableViewCells\BeerHeaderCell.designer.cs" />
+    <Compile Include="UITableViewCells\CheckInLocationMapCell.cs" />
+    <Compile Include="UITableViewCells\CheckInLocationMapCell.designer.cs">
+      <DependentUpon>..\Custom Controls\UITableViewCells\CheckInLocationMapCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\MyBeersTableViewCell.cs" />
+    <Compile Include="UITableViewCells\MyBeersTableViewCell.designer.cs">
+      <DependentUpon>..\Custom Controls\UITableViewCells\MyBeersTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\SearchBeerTableViewCell.cs" />
+    <Compile Include="UITableViewCells\SearchBeerTableViewCell.designer.cs">
+      <DependentUpon>..\Custom Controls\UITableViewCells\SearchBeerTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddBeerBarcodeCell.cs" />
+    <Compile Include="UITableViewCells\AddBeerBarcodeCell.designer.cs">
+      <DependentUpon>AddBeerBarcodeCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddBeerNotesCell.cs" />
+    <Compile Include="UITableViewCells\AddBeerNotesCell.designer.cs">
+      <DependentUpon>AddBeerNotesCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddBeerPhotosCell.cs" />
+    <Compile Include="UITableViewCells\AddBeerPhotosCell.designer.cs">
+      <DependentUpon>AddBeerPhotosCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddBeerRatingCell.cs" />
+    <Compile Include="UITableViewCells\AddBeerRatingCell.designer.cs">
+      <DependentUpon>AddBeerRatingCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddBeerSourceTypeCell.cs" />
+    <Compile Include="UITableViewCells\AddBeerSourceTypeCell.designer.cs">
+      <DependentUpon>AddBeerSourceTypeCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\NewUserViewController.cs" />
+    <Compile Include="View Controllers\NewUserViewController.designer.cs">
+      <DependentUpon>NewUserViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BeerDescriptionCheckInCell.cs" />
+    <Compile Include="UITableViewCells\BeerDescriptionCheckInCell.designer.cs">
+      <DependentUpon>BeerDescriptionCheckInCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\AddABeerTableViewCell.cs" />
+    <Compile Include="UITableViewCells\AddABeerTableViewCell.designer.cs">
+      <DependentUpon>..\Custom Controls\UITableViewCells\AddABeerTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\AddBeerTableViewController.cs" />
+    <Compile Include="View Controllers\AddBeerTableViewController.designer.cs">
+      <DependentUpon>AddBeerTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
+    <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs" />
+    <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
+    <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
+    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
+    <Compile Include="View Controllers\AnalyticsViewController.cs" />
+    <Compile Include="View Controllers\AnalyticsViewController.designer.cs">
+      <DependentUpon>AnalyticsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IndexedBeer.cs" />
+    <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
+    <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
+      <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\NoRecentSearchesViewCell.cs" />
+    <Compile Include="UITableViewCells\NoRecentSearchesViewCell.designer.cs">
+      <DependentUpon>NoRecentSearchesViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\PurchaseTableViewCell.cs" />
+    <Compile Include="UITableViewCells\PurchaseTableViewCell.designer.cs">
+      <DependentUpon>PurchaseTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\RecentSearchesTableViewCell.cs" />
+    <Compile Include="UITableViewCells\RecentSearchesTableViewCell.designer.cs">
+      <DependentUpon>RecentSearchesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\SearchHeaderViewCell.cs" />
+    <Compile Include="UITableViewCells\SearchHeaderViewCell.designer.cs">
+      <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\SearchSuggestionsViewController.cs" />
+    <Compile Include="View Controllers\SearchSuggestionsViewController.designer.cs">
+      <DependentUpon>SearchSuggestionsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\SearchBar.cs" />
+    <Compile Include="Custom Controls\SearchBar.designer.cs">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BreweryMapCell.cs" />
+    <Compile Include="UITableViewCells\BreweryMapCell.designer.cs">
+      <DependentUpon>BreweryMapCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\BeerHeaderImageCell.cs" />
+    <Compile Include="UITableViewCells\BeerHeaderImageCell.designer.cs">
+      <DependentUpon>BeerHeaderImageCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\BeerDescriptionDataSource.cs" />
+    <Compile Include="Helpers\Style.cs" />
+    <Compile Include="DataSources\CheckInDataSource.cs" />
+    <Compile Include="Custom Controls\PlaceholderTextView.cs" />
+    <Compile Include="RateBeerViewController.cs" />
+    <Compile Include="RateBeerViewController.designer.cs">
+      <DependentUpon>RateBeerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\SearchHistory.cs" />
+    <Compile Include="SearchHistoryViewCell.cs" />
+    <Compile Include="SearchHistoryViewCell.designer.cs">
+      <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\PreviewingDelegates\SearchPreviewingDelegate.cs" />
+    <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.cs" />
+    <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.designer.cs">
+      <DependentUpon>InAppPurchaseSearchTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InAppPurchaseViewController.cs" />
+    <Compile Include="InAppPurchaseViewController.designer.cs">
+      <DependentUpon>InAppPurchaseViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Settings.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <ItemGroup>
+    <BundleResource Include="Resources\BeerDrinkin.png" />
+    <BundleResource Include="Resources\957-beer-mug.png" />
+    <BundleResource Include="Resources\957-beer-mug%402x.png" />
+    <BundleResource Include="Resources\957-beer-mug%403x.png" />
+    <BundleResource Include="Resources\708-search.png" />
+    <BundleResource Include="Resources\708-search%402x.png" />
+    <BundleResource Include="Resources\708-search%403x.png" />
+    <BundleResource Include="Resources\769-male.png" />
+    <BundleResource Include="Resources\769-male%402x.png" />
+    <BundleResource Include="Resources\769-male%403x.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\740-gear.png" />
+    <BundleResource Include="Resources\740-gear%402x.png" />
+    <BundleResource Include="Resources\740-gear%403x.png" />
+    <BundleResource Include="Resources\emptyStar.png" />
+    <BundleResource Include="Resources\filledStar.png" />
+    <BundleResource Include="Resources\713-refresh-1.png" />
+    <BundleResource Include="Resources\713-refresh-1%402x.png" />
+    <BundleResource Include="Resources\713-refresh-1%403x.png" />
+    <BundleResource Include="Resources\748-heart.png" />
+    <BundleResource Include="Resources\748-heart%402x.png" />
+    <BundleResource Include="Resources\748-heart%403x.png" />
+    <BundleResource Include="Resources\facebook_button.png" />
+    <BundleResource Include="Resources\711-trash.png" />
+    <BundleResource Include="Resources\711-trash%402x.png" />
+    <BundleResource Include="Resources\711-trash%403x.png" />
+    <BundleResource Include="Resources\ReleaseNotes.html" />
+    <BundleResource Include="Resources\702-share.png" />
+    <BundleResource Include="Resources\702-share%402x.png" />
+    <BundleResource Include="Resources\702-share%403x.png" />
+    <BundleResource Include="Resources\856-lightning-bolt.png" />
+    <BundleResource Include="Resources\856-lightning-bolt%402x.png" />
+    <BundleResource Include="Resources\856-lightning-bolt%403x.png" />
+    <BundleResource Include="Resources\BeerLight.png" />
+    <BundleResource Include="Resources\locationPin.png" />
+    <BundleResource Include="Resources\Map.png" />
+    <BundleResource Include="Resources\Entitlements.plist" />
+    <BundleResource Include="Resources\camera-flash.png" />
+    <BundleResource Include="Resources\camera-flash%402x.png" />
+    <BundleResource Include="Resources\Tick.png" />
+    <BundleResource Include="Resources\Barcode.png" />
+    <BundleResource Include="Resources\Arrows-Left-icon.png" />
+    <BundleResource Include="Resources\BlueTick.png" />
+    <BundleResource Include="Resources\goolgeButton.png" />
+    <BundleResource Include="Resources\BeerBottle_Selected.png" />
+    <BundleResource Include="Resources\BeerBottle.png" />
+    <BundleResource Include="Resources\BeerTap_Selected.png" />
+    <BundleResource Include="Resources\BeerTap.png" />
+    <BundleResource Include="Resources\BarcodeDark.png" />
+    <BundleResource Include="Resources\backArrow.png" />
+    <BundleResource Include="Resources\close.png" />
+    <BundleResource Include="Resources\Patterned Image.png" />
+    <BundleResource Include="Resources\tabbar_profile.png" />
+    <BundleResource Include="Resources\tabbar_profile%402x.png" />
+    <BundleResource Include="Resources\tabbar_profile%403x.png" />
+    <BundleResource Include="Resources\tabbar_search.png" />
+    <BundleResource Include="Resources\tabbar_search%402x.png" />
+    <BundleResource Include="Resources\tabbar_search%403x.png" />
+    <BundleResource Include="Resources\tabbar_mybeers.png" />
+    <BundleResource Include="Resources\tabbar_mybeers%402x.png" />
+    <BundleResource Include="Resources\tabbar_mybeers%403x.png" />
+    <BundleResource Include="Resources\tabbar_wishlist.png" />
+    <BundleResource Include="Resources\tabbar_wishlist%402x.png" />
+    <BundleResource Include="Resources\tabbar_wishlist%403x.png" />
+    <BundleResource Include="Resources\Analytics.png" />
+    <BundleResource Include="Resources\search_barcode.png" />
+    <BundleResource Include="Resources\search_placeholder_beer.png" />
+    <BundleResource Include="Resources\analytics_bug_blue.png" />
+    <BundleResource Include="Resources\analytics_bug_white.png" />
+    <BundleResource Include="Resources\analytics_time_blue.png" />
+    <BundleResource Include="Resources\analytics_time_white.png" />
+    <BundleResource Include="Resources\search_filter.png" />
+    <BundleResource Include="Resources\search_filter%402x.png" />
+    <BundleResource Include="Resources\search_filter%403x.png" />
+    <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%402x.png" />
+    <BundleResource Include="Resources\ApplePayBTN_32pt__black_logo_%403x.png" />
+    <BundleResource Include="Resources\profile_headerBackground.png" />
+    <BundleResource Include="Resources\settings_about.png" />
+    <BundleResource Include="Resources\settings_analytics.png" />
+    <BundleResource Include="Resources\settings_feedback.png" />
+    <BundleResource Include="Resources\settings_notifications.png" />
+    <BundleResource Include="Resources\settings_signIn.png" />
+    <BundleResource Include="Resources\settings_twitter.png" />
+    <BundleResource Include="Resources\settings_xamarin.png" />
+    <BundleResource Include="Resources\starEmpty.png" />
+    <BundleResource Include="Resources\starFilled.png" />
+    <BundleResource Include="Resources\about_credits.png" />
+    <BundleResource Include="Resources\about_facebook.png" />
+    <BundleResource Include="Resources\about_heart.png" />
+    <BundleResource Include="Resources\about_releaseNotes.png" />
+    <BundleResource Include="Resources\about_support.png" />
+    <BundleResource Include="Resources\about_twitter.png" />
+    <BundleResource Include="Resources\account_settings.png" />
+    <BundleResource Include="Resources\account_starBlueEmpty.png" />
+    <BundleResource Include="Resources\account_starBlueFull.png" />
+    <BundleResource Include="Resources\checkin_addLocation.png" />
+    <BundleResource Include="Resources\checkin_camera.png" />
+    <BundleResource Include="Resources\checkin_starEmpty.png" />
+    <BundleResource Include="Resources\checkin_starFilled.png" />
+    <BundleResource Include="Resources\ReleaseNotes.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\quickAction_myBeers.png" />
+    <BundleResource Include="Resources\quickAction_profile.png" />
+    <BundleResource Include="Resources\quickAction_search.png" />
+    <BundleResource Include="Resources\quickAction_wishlist.png" />
+    <BundleResource Include="Resources\inAppPurhcase_beer.png" />
+    <BundleResource Include="Resources\inAppPurhcase_close.png" />
+    <BundleResource Include="Resources\inAppPurhcase_heart.png" />
+    <BundleResource Include="Resources\inAppPurhcase_tick.png" />
+    <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
+    <BundleResource Include="Resources\search_ocr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\_SettingsStarted.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="sdwebimage">
+      <Version>3.7.1.4</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="swtableviewcell">
+      <Version>0.3.6.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="pdreview">
+      <Version>2.0.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="sqlcipher-for-xamarin-ios">
+      <Version>3.3.1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.auth">
+      <Version>1.2.3.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="XCardView">
+      <Version>1.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="calabash">
+      <Version>16.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="Facebook.Pop">
+      <Version>1.0.7</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="zxing.net.mobile">
+      <Version>1.5.1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="RZTransitions">
+      <Version>1.2.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="AMViralSwitch">
+      <Version>1.0.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="judopay-xamarin-sdk">
+      <Version>2.3.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.inapppurchase">
+      <Version>2.8</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <ItemGroup />
+  <ItemGroup>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\LaunchImages.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-60%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-Small.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-Small%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-Small%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-Spotlight-40%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\Icon-Spotlight-40%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\58.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\40.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\80.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\50.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\100.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\72.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\144.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\76.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\152.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\120.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\AppIcons.appiconset\180.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UITableViewCells\" />
+    <Folder Include="Storyboards\" />
+    <Folder Include="Models\" />
+    <Folder Include="View Controllers\PreviewingDelegates\" />
+  </ItemGroup>
+</Project>
