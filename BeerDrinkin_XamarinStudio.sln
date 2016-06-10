@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Utils", "Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.DataStore.Abstractions", "ClientSDKs\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj", "{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Services.Azure", "ClientSDKs\BeerDrinkin.Services.Azure\BeerDrinkin.Services.Azure.csproj", "{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -131,6 +133,18 @@ Global
 		{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
 		{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}.UITest|iPhone.ActiveCfg = Release|Any CPU
 		{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}.UITest|iPhone.Build.0 = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Release|iPhone.Build.0 = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITestiPhone|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITest|iPhone.ActiveCfg = Release|Any CPU
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITest|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F884B965-371D-4273-BED8-C970D307E04A} = {188215A9-41D2-4422-8F02-0DFA601BFFFE}
@@ -143,5 +157,6 @@ Global
 		{80A6B8E1-60E7-43A6-AB86-DD60A5C77FCE} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 		{22AD198D-8B6D-40B1-BA0C-05379EED9766} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 		{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0} = {A188E524-A18C-4E70-9344-0A656AE324E7}
+		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 	EndGlobalSection
 EndGlobal

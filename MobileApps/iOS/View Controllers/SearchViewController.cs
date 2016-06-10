@@ -10,14 +10,12 @@ using BeerDrinkin.Core.ViewModels;
 
 using Acr.UserDialogs;
 using MikeCodesDotNET.iOS;
-using Xamarin;
 
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.Helpers;
-using BeerDrinkin.iOS.PreviewingDelegates;
 
 namespace BeerDrinkin.iOS
 {
@@ -94,123 +92,25 @@ namespace BeerDrinkin.iOS
 
         #endregion
 
-        private void SetupUI() 
+        void SetupUI() 
         {
-            Title = "Discover"
+            Title = "Discover";
             searchBar.Layer.BorderWidth = 1;
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
 
-            serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials(Core.Helpers.Keys.AzureSearchKey));
-            indexClient = serviceClient.Indexes.GetClient("beers");
-
-            View.AddSubview(suggestionsTableView);
-
-            var dataSource = new SearchPlaceholderDataSource(this);
-            dataSource.SnapPhotoButtonTapped += OpticalCharacterRecognition;
-            placeHolderTableView.Source = dataSource;
-            placeHolderTableView.ReloadData();
-            placeHolderTableView.BackgroundColor = "F7F7F7".ToUIColor();
-			placeHolderTableView.ContentInset = new UIEdgeInsets(10, 0, 0, 0);
-            placeHolderTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-            placeHolderTableView.ScrollsToTop = true;
-
-            searchResultsTableView.ScrollsToTop = true;
-
-            View.BringSubviewToFront(placeHolderTableView);
-
-            searchBar.TextChanged += async delegate
+            searchBar.TextChanged += delegate
             {                 
-                var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com", 1000);
-                if(!connected)
-                    return;
 
-                if(searchBar.Text != "")
-                {
-                    View.BringSubviewToFront(suggestionsTableView);
-
-                    var suggestParameters = new SuggestParameters();
-                    suggestParameters.UseFuzzyMatching = true;
-                    suggestParameters.Top = 25;
-                    suggestParameters.HighlightPreTag = "[";
-                    suggestParameters.HighlightPostTag = "]";
-                    suggestParameters.MinimumCoverage = 100;
-
-					try
-					{
-						var response = await indexClient.Documents.SuggestAsync<Models.IndexedBeer>(searchBar.Text, "nameSuggester", suggestParameters);
-						var results = new List<string>();
-						foreach (var r in response.Results)
-						{
-							results.Add(r.Text);
-						}
-
-						var suggestionSource = new SearchSuggestionDataSource(results);
-						suggestionSource.SelectedRow += (int index) =>
-						{
-							searchBar.Text = response.Results[index].Document.Name;
-							SearchForBeers(this, null);
-							ResignFirstResponder();
-						};
-						suggestionsTableView.Source = suggestionSource;
-						suggestionsTableView.ReloadData();
-					}
-					catch (Exception ex)
-					{
-						Xamarin.Insights.Report(ex);
-						Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
-					}
-                }
-                else
-                {
-                    View.BringSubviewToFront(placeHolderTableView);
-                }
             };
 
         }
 
-        private void SetupEvents()
+        void SetupEvents()
         {
-            searchBar.SearchButtonClicked += SearchForBeers;
-
-            viewModel.Beers.CollectionChanged += delegate
-            {
-                UserDialogs.Instance.HideLoading();
-                searchBar.ResignFirstResponder();
-            };
-            
+            searchBar.SearchButtonClicked += SearchForBeers;  
         }
 
-        void OpticalCharacterRecognition()
-        {
-            //TODO Implement OCR 
-        }
-            
-        private async Task ScanBarcode()
-        {
-           try
-            {
-                var barcodeScanner = new ZXing.Mobile.MobileBarcodeScanner(this);
-                var barcodeResult =  await barcodeScanner.Scan();
-
-                if(string.IsNullOrEmpty(barcodeResult.Text))
-                    return;
-
-                var Beers = await barcodeLookupService.SearchForBeer(barcodeResult.Text);
-                if(Beers != null)
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex);
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
-        }
-
-        private void DisplayBeers(List<Beer> beers)
+        void DisplayBeers(List<Beer> beers)
         {
             DataSource = new SearchDataSource(beers);
             DataSource.DidSelectBeer += delegate

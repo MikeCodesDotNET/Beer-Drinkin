@@ -3,6 +3,7 @@ using BeerDrinkin.Utils;
 using BeerDrinkin.DataStore.Abstractions;
 
 using BeerDrinkin.AzureClient;
+using BeerDrinkin.Services.Azure;
 
 using BeerDrinkin.DataStore.Azure;
 
@@ -13,7 +14,14 @@ namespace BeerDrinkin.Core.ViewModels
 
         public static void Init()
         {
+            //Azure Client
             ServiceLocator.Instance.Add<IAzureClient, AzureClient.AzureClient>();
+
+            //Services
+            ServiceLocator.Instance.Add<ISearchService, SearchService>();
+            ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>()
+
+            //DataStores
             ServiceLocator.Instance.Add<ICheckInStore, CheckInStore>();
             ServiceLocator.Instance.Add<IUserStore, UserStore>();
             ServiceLocator.Instance.Add<IWishStore, WishStore>();

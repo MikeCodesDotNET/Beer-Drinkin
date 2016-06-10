@@ -44,6 +44,8 @@
     <Compile Include="IStoreManager.cs" />
     <Compile Include="IWishListStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IBarcodeService.cs" />
+    <Compile Include="ISearchService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BreweryDB">

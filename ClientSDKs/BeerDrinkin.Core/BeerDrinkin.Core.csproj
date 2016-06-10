@@ -151,13 +151,13 @@
       <Project>{459b00bf-1cf7-44aa-950b-27483c032c2d}</Project>
       <Name>BeerDrinkin.DataStore.Azure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BeerDrinkin.DataStore.Mock\BeerDrinkin.DataStore.Mock.csproj">
-      <Project>{80a6b8e1-60e7-43a6-ab86-dd60a5c77fce}</Project>
-      <Name>BeerDrinkin.DataStore.Mock</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BeerDrinkin.Utils\BeerDrinkin.Utils.csproj">
       <Project>{22ad198d-8b6d-40b1-ba0c-05379eed9766}</Project>
       <Name>BeerDrinkin.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkin.Services.Azure\BeerDrinkin.Services.Azure.csproj">
+      <Project>{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}</Project>
+      <Name>BeerDrinkin.Services.Azure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -27,8 +27,13 @@ namespace BeerDrinkin.iOS
 		#endregion
 
 		async Task SetupUI()
-		{
-            	
+        {
+            if (string.IsNullOrEmpty(Utils.Helpers.Settings.UserId))
+            {
+                //The user needs to login
+                var vc = Storyboard.InstantiateViewController("SOCIAL_AUTH");
+                await PresentViewControllerAsync(vc, false);
+            }           
 		}
 
 		void SetupTabChangeAnimation()

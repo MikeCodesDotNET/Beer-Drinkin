@@ -7,31 +7,24 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using BeerDrinkin.DataStore.Abstractions;
 
 namespace BeerDrinkin.Core.ViewModels
 {
     public class SearchViewModel : ViewModelBase
     {
         IAzureClient azure;
+        ISearchService searchService;
 
         public SearchViewModel()
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
+            searchService = ServiceLocator.Instance.Resolve<ISearchService>();
         }
 
         public async Task<List<Beer>> Search(string searchTerm)
         {
-            if(azure != null)
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters.Add("searchTerm", searchTerm);
-
-                return await azure.Client.InvokeApiAsync<List<Beer>>("Search", HttpMethod.Get, parameters);
-            }
-            else
-            {
-                throw new NullReferenceException("Azure Client is null");
-            }
+            return await searchService.Search(searchTerm);
         }
 
         public async Task<List<Beer>> TrendingBeers(int takeCount = 10)
