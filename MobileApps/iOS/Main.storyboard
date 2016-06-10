@@ -444,7 +444,7 @@
         <!--Search-->
         <scene sceneID="nqi-P1-hS0">
             <objects>
-                <viewController restorationIdentifier="DISCOVER" storyboardIdentifier="DISCOVER" automaticallyAdjustsScrollViewInsets="NO" id="TyU-Ng-M9x" customClass="SearchViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DISCOVER" storyboardIdentifier="DISCOVER" automaticallyAdjustsScrollViewInsets="NO" id="TyU-Ng-M9x" customClass="DiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6pf-rn-BWv"/>
                         <viewControllerLayoutGuide type="bottom" id="df1-Xj-rs3"/>
@@ -564,7 +564,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="708-search.png" id="33t-rj-vtG"/>
-                    <navigationItem key="navigationItem" title="Search" id="M3j-Lt-7Nh"/>
+                    <navigationItem key="navigationItem" title="Discover" id="M3j-Lt-7Nh"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="M3Z-dm-aHd" id="name-outlet-M3Z-dm-aHd"/>
