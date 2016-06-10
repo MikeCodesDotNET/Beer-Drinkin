@@ -453,20 +453,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Z-dm-aHd">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.08235294118" green="0.66274509800000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="IaC-lE-2gp"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.08235294118" green="0.66274509800000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qaw-V0-Rtu" fixedFrame="YES">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qaw-V0-Rtu">
+                                <rect key="frame" x="0.0" y="127" width="600" height="473"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="beercell" rowHeight="96" id="CYJ-Bl-Nvs" customClass="SearchBeerTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SEARCH_RESULT_CELL" rowHeight="96" id="CYJ-Bl-Nvs" customClass="SearchBeerTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="600" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CYJ-Bl-Nvs" id="ahd-Me-wYV">
@@ -523,6 +514,9 @@
                                                     <color key="textColor" red="0.36113083959999998" green="0.36113083959999998" blue="0.36113083959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" id="1482" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                                    <rect key="frame" x="3" y="-101" width="598" height="71"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DmB-D0-bEh" firstAttribute="bottom" secondItem="GTx-cF-l0b" secondAttribute="bottom" id="0IM-cU-bbN"/>
@@ -555,20 +549,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" id="1483" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="61" width="600" height="68"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <constraints>
+                                    <constraint id="1484" firstItem="1483" firstAttribute="height" constant="68"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97149226639999997" green="0.97149226639999997" blue="0.97149226639999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="M3Z-dm-aHd" firstAttribute="leading" secondItem="vDe-33-W3r" secondAttribute="leading" id="Ji7-Pq-RX2"/>
-                            <constraint firstItem="M3Z-dm-aHd" firstAttribute="top" secondItem="6pf-rn-BWv" secondAttribute="bottom" id="fIC-aJ-0Hf"/>
-                            <constraint firstAttribute="trailing" secondItem="M3Z-dm-aHd" secondAttribute="trailing" id="icg-w8-4ZZ"/>
+                            <constraint id="1485" firstItem="1483" firstAttribute="trailing" secondItem="vDe-33-W3r" secondAttribute="trailing"/>
+                            <constraint id="1486" firstItem="1483" firstAttribute="leading" secondItem="vDe-33-W3r" secondAttribute="leading"/>
+                            <constraint id="1487" firstItem="6pf-rn-BWv" firstAttribute="bottom" secondItem="1483" secondAttribute="top" constant="3"/>
+                            <constraint id="1488" firstItem="1483" firstAttribute="bottom" secondItem="qaw-V0-Rtu" secondAttribute="top" constant="2"/>
+                            <constraint id="1489" firstItem="qaw-V0-Rtu" firstAttribute="trailing" secondItem="vDe-33-W3r" secondAttribute="trailing"/>
+                            <constraint id="1490" firstItem="qaw-V0-Rtu" firstAttribute="bottom" secondItem="vDe-33-W3r" secondAttribute="bottom"/>
+                            <constraint id="1491" firstItem="qaw-V0-Rtu" firstAttribute="leading" secondItem="vDe-33-W3r" secondAttribute="leading"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="708-search.png" id="33t-rj-vtG"/>
-                    <navigationItem key="navigationItem" title="Discover" id="M3j-Lt-7Nh"/>
+                    <navigationItem key="navigationItem" title="Discover" id="M3j-Lt-7Nh">
+                        <searchBar key="titleView" contentMode="redraw" id="1481" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Search">
+                            <rect key="frame" x="0.0" y="-20" width="0.0" height="44"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="searchBar" destination="M3Z-dm-aHd" id="name-outlet-M3Z-dm-aHd"/>
                         <outlet property="SearchResultsTable" destination="qaw-V0-Rtu" id="name-outlet-qaw-V0-Rtu"/>
+                        <outlet property="searchBar" destination="1481" id="name-outlet-1481"/>
+                        <outlet property="searchTypeView" destination="1483" id="name-outlet-1483"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5G2-bQ-xvt" userLabel="First Responder" sceneMemberID="firstResponder"/>

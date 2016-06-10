@@ -8,11 +8,23 @@ using BeerDrinkin.DataObjects;
 using BeerDrinkin.Utils;
 using BeerDrinkin.Utils.Interfaces;
 
+using UIKit;
+using Foundation;
+using System.Collections.Generic;
+using SDWebImage;
+
 namespace BeerDrinkin.iOS
 {
     public partial class DiscoverViewController : BaseViewController
     {
+        const string segueIdentifier = "BEER_DESCRIPTION_SEGUE";
+        const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
+        const string cellIdentifier = "SEARCH_RESULT_CELL";
+
         readonly SearchViewModel viewModel = new SearchViewModel();
+        List<Beer> searchResults;
+        List<Beer> trendingBeers;
+
         ILogger logger;
 
         public Beer SelectedBeer { get; private set;}
@@ -27,8 +39,29 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
 
             await ValidateUserAuth();
+
             ConfigureUserInterface();
             ConfigureEvents();
+        }
+
+        public async override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            await PopulateTrendingSearches();
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier != segueIdentifier)
+                return;
+
+            var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
+            if (beerDescriptoinViewController == null)
+                return;
+
+            beerDescriptoinViewController.EnableCheckIn = true;
+            beerDescriptoinViewController.SetBeer(SelectedBeer);
+            SelectedBeer = null;
         }
 
         async Task ValidateUserAuth()
@@ -59,14 +92,19 @@ namespace BeerDrinkin.iOS
                 if (string.IsNullOrEmpty(searchBar.Text) || searchBar.Text.Length < 2)
                     return;
 
-                var beers = await viewModel.Search(searchTerm);
-                SearchResultsTable.Source = new SearchDataSource(beers);
+                searchResults = await viewModel.Search(searchTerm);
                 SearchResultsTable.ReloadData();
             }
             catch (Exception ex)
-            {
+            { 
                 logger.Report(ex);
             }
+        }
+
+        async Task PopulateTrendingSearches()
+        {
+            var trends = await viewModel.TrendingBeers(10);
+
         }
     }
 }

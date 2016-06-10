@@ -22,6 +22,10 @@ namespace BeerDrinkin.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView SearchResultsTable { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView searchTypeView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (searchBar != null) {
@@ -32,6 +36,11 @@ namespace BeerDrinkin.iOS
             if (SearchResultsTable != null) {
                 SearchResultsTable.Dispose ();
                 SearchResultsTable = null;
+            }
+
+            if (searchTypeView != null) {
+                searchTypeView.Dispose ();
+                searchTypeView = null;
             }
         }
     }
