@@ -19,7 +19,7 @@ namespace BeerDrinkin.Core.ViewModels
 
             //Services
             ServiceLocator.Instance.Add<ISearchService, SearchService>();
-            ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>()
+            ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>(); 
 
             //DataStores
             ServiceLocator.Instance.Add<ICheckInStore, CheckInStore>();
