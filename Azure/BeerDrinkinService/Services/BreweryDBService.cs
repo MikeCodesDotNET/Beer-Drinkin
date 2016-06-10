@@ -22,6 +22,21 @@ namespace BeerDrinkin.Services
             return ToBeerDrinkin(dbBeer);
         }
 
+        public async Task<List<Beer>> SearchBeers(string searchTerm)
+        {
+            var response = await client.Beers.Search(searchTerm);
+            var breweryDbBeers = response.Data;
+            var beers = new List<Beer>();
+
+            foreach(var beer in breweryDbBeers)
+            {
+                var b = ToBeerDrinkin(beer);
+                beers.Add(b);
+            }
+
+            return beers;
+        }
+
         public async Task<List<Beer>> GetFeatured(int takeCount = 10)
         {
             var response = await client.Features.GetAll();
