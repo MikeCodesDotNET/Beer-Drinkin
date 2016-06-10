@@ -1,4 +1,5 @@
 ﻿using BeerDrinkin.DataObjects;
+using Microsoft.ApplicationInsights;
 using Microsoft.Azure.Mobile.Server.Config;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,34 @@ namespace BeerDrinkin.Service.Controllers
     [MobileAppController]
     public class BarcodeController : ApiController
     {
+        TelemetryClient telemetryClient;
+        public BarcodeController()
+        {
+            telemetryClient = new TelemetryClient();
+        }
+
         // GET api/barcode
         public async Task<List<Beer>> Get(string upc)
         {
-            var rateBeerClient = new RateBeer.Client();
-            var results = await rateBeerClient.SearchForBeer(upc);
-            if (results == null)
-                return null;
+            var properties = new Dictionary<string, string>();
+            properties.Add("UPC", upc);
+            telemetryClient.TrackEvent("LookupBarcode", properties);
 
-            var breweryDbService = new Services.BreweryDBService();
-            return await breweryDbService.SearchBeers(results.BeerName);  
+            try
+            {
+                var rateBeerClient = new RateBeer.Client();
+                var results = await rateBeerClient.SearchForBeer(upc);
+                if (results == null)
+                    return null;
+
+                var breweryDbService = new Services.BreweryDBService();
+                return await breweryDbService.SearchBeers(results.BeerName);
+            }
+            catch(Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+                return null;
+            }
         }
     }
 }
