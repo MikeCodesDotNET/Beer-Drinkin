@@ -36,10 +36,7 @@ namespace BeerDrinkin.Core.ViewModels
 
                 return await azure.Client.InvokeApiAsync<List<Beer>>("TrendingBeers", HttpMethod.Get, parameters);
             }
-            else
-            {
-                throw new NullReferenceException("Azure Client is null");
-            }
+            throw new NullReferenceException("Azure Client is null");
         }
     }
 }
