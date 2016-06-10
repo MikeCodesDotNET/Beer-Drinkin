@@ -1,19 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Foundation;
-using UIKit;
-using CoreGraphics;
-
-using BeerDrinkin.Core.ViewModels;
-
-using Acr.UserDialogs;
 using MikeCodesDotNET.iOS;
 
-using Microsoft.Azure.Search;
+using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.DataObjects;
-using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.Utils;
 using BeerDrinkin.Utils.Interfaces;
 
