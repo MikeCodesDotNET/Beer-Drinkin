@@ -8,7 +8,7 @@
         public static readonly string XamarinInsightsKeyWindowsPhone = "";
         public static readonly string XamarinInsightsKeyWindowsManagementApp = "ec512f7ea70efa8fd240ce0780b7666682a10bbb";
 
-        public static readonly string RaygunKey = "";
+        public static readonly string CrashReportingKey = "ctkyRdZsHeCPuh6ST9oHZA==";
 
         //BreweryDB Key
         public static readonly string BreweryDbKey = "b7da1c5827026053a276f0dbe2234962";

@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 using MikeCodesDotNET.iOS;
 using BeerDrinkin.Utils;
 using BeerDrinkin.AzureClient;
+using BeerDrinkin.Utils.Interfaces;
 
 namespace BeerDrinkin.iOS
 {
-    partial class WelcomeViewController : UIViewController
+    partial class SocialAuthViewController : UIViewController
     {
         IAzureClient azure;
-        public WelcomeViewController(IntPtr handle): base(handle)
+        ILogger logger;
+
+        public SocialAuthViewController(IntPtr handle): base(handle)
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
+            logger = ServiceLocator.Instance.Resolve<ILogger>();
         }
 
         public override void ViewDidLoad()
@@ -50,12 +54,16 @@ namespace BeerDrinkin.iOS
             {   
                 btnConnectWithFacebook.PulseToSize(0.9f, 0.2, false);
 
-                await azure.Client.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+                var user = await azure.Client.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+                Utils.Helpers.Settings.UserId = user.UserId;
+                logger.Identify(user.UserId);
+
                 UserAuthenticiated();
             }
-            catch
+            catch(Exception ex)
             {
-                Acr.UserDialogs.UserDialogs.Instance.ShowError("Cock it, couldn't log in");
+                logger.Report(ex);
+                Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
             }
         }     
 

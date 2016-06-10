@@ -11,8 +11,8 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-    [Register ("WelcomeViewController")]
-    partial class WelcomeViewController
+    [Register ("SocialAuthViewController")]
+    partial class SocialAuthViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

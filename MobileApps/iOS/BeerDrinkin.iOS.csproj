@@ -270,6 +270,9 @@
     <Reference Include="MvvmHelpers">
       <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
     </Reference>
+    <Reference Include="Mindscape.Raygun4Net.Xamarin.iOS.Unified">
+      <HintPath>..\..\packages\Mindscape.Raygun4Net.5.3.0\lib\Xamarin.iOS10\Mindscape.Raygun4Net.Xamarin.iOS.Unified.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
@@ -325,64 +328,36 @@
       <DependentUpon>MyBeersViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\BaseViewController.cs" />
-    <Compile Include="View Controllers\AccountViewController.cs" />
-    <Compile Include="View Controllers\AccountViewController.designer.cs">
-      <DependentUpon>AccountViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\SearchViewController.cs" />
     <Compile Include="View Controllers\SearchViewController.designer.cs">
       <DependentUpon>SearchViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\SearchDataSource.cs" />
-    <Compile Include="View Controllers\AboutViewController.cs" />
-    <Compile Include="View Controllers\AboutViewController.designer.cs">
-      <DependentUpon>AboutViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\SettingsViewController.cs" />
-    <Compile Include="View Controllers\SettingsViewController.designer.cs">
-      <DependentUpon>SettingsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\MyBeersDataSource.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.designer.cs">
       <DependentUpon>BeerDescriptionTableView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\SuggestionsTableViewController.cs" />
-    <Compile Include="View Controllers\SuggestionsTableViewController.designer.cs">
-      <DependentUpon>SuggestionsTableViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\TabBarController.cs" />
-    <Compile Include="View Controllers\TabBarController.designer.cs">
-      <DependentUpon>TabBarController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="View Controllers\FullScreenMapView.cs" />
     <Compile Include="View Controllers\FullScreenMapView.designer.cs">
       <DependentUpon>FullScreenMapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\CameraViewController.cs" />
-    <Compile Include="View Controllers\CameraViewController.designer.cs">
-      <DependentUpon>CameraViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\BeerLoadingView.cs" />
     <Compile Include="Helpers\Animator.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\navigationController.designer.cs">
+    <Compile Include="View Controllers\Welcome\navigationController.cs" />
+    <Compile Include="View Controllers\Welcome\navigationController.designer.cs">
       <DependentUpon>navigationController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\WelcomeViewController.designer.cs">
-      <DependentUpon>WelcomeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\InitialViewController.designer.cs">
+    <Compile Include="View Controllers\Welcome\InitialViewController.cs" />
+    <Compile Include="View Controllers\Welcome\InitialViewController.designer.cs">
       <DependentUpon>InitialViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.cs" />
-    <Compile Include="View Controllers\Welcome ViewControllers\InitialLoadingViewController.designer.cs">
+    <Compile Include="View Controllers\Welcome\InitialLoadingViewController.cs" />
+    <Compile Include="View Controllers\Welcome\InitialLoadingViewController.designer.cs">
       <DependentUpon>InitialLoadingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="UITableViewCells\AboutThisBeerCell.cs" />
@@ -425,10 +400,6 @@
     <Compile Include="UITableViewCells\AddBeerSourceTypeCell.designer.cs">
       <DependentUpon>AddBeerSourceTypeCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\NewUserViewController.cs" />
-    <Compile Include="View Controllers\NewUserViewController.designer.cs">
-      <DependentUpon>NewUserViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="UITableViewCells\BeerDescriptionCheckInCell.cs" />
     <Compile Include="UITableViewCells\BeerDescriptionCheckInCell.designer.cs">
       <DependentUpon>BeerDescriptionCheckInCell.cs</DependentUpon>
@@ -446,10 +417,6 @@
     <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
     <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
-    <Compile Include="View Controllers\AnalyticsViewController.cs" />
-    <Compile Include="View Controllers\AnalyticsViewController.designer.cs">
-      <DependentUpon>AnalyticsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\IndexedBeer.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
@@ -471,10 +438,6 @@
     <Compile Include="UITableViewCells\SearchHeaderViewCell.designer.cs">
       <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\SearchSuggestionsViewController.cs" />
-    <Compile Include="View Controllers\SearchSuggestionsViewController.designer.cs">
-      <DependentUpon>SearchSuggestionsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\SearchBar.cs" />
     <Compile Include="Custom Controls\SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
@@ -492,7 +455,6 @@
     <Compile Include="DataSources\CheckInDataSource.cs" />
     <Compile Include="Custom Controls\PlaceholderTextView.cs" />
     <Compile Include="Helpers\SearchHistory.cs" />
-    <Compile Include="View Controllers\PreviewingDelegates\SearchPreviewingDelegate.cs" />
     <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\InAppPurchaseSearchTableViewCell.designer.cs">
       <DependentUpon>InAppPurchaseSearchTableViewCell.cs</DependentUpon>
@@ -502,10 +464,35 @@
     <Compile Include="View Controllers\RateBeerViewController.designer.cs">
       <DependentUpon>RateBeerViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\SearchHistoryViewCell.cs" />
-    <Compile Include="View Controllers\SearchHistoryViewCell.designer.cs">
+    <Compile Include="View Controllers\SocialAuthViewController.cs" />
+    <Compile Include="View Controllers\SocialAuthViewController.designer.cs">
+      <DependentUpon>SocialAuthViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Misc\TabBarController.cs" />
+    <Compile Include="View Controllers\Misc\TabBarController.designer.cs">
+      <DependentUpon>TabBarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\UserProfile\AccountViewController.cs" />
+    <Compile Include="View Controllers\UserProfile\AccountViewController.designer.cs">
+      <DependentUpon>AccountViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Settings\AnalyticsViewController.cs" />
+    <Compile Include="View Controllers\Settings\AnalyticsViewController.designer.cs">
+      <DependentUpon>AnalyticsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Settings\AboutViewController.cs" />
+    <Compile Include="View Controllers\Settings\AboutViewController.designer.cs">
+      <DependentUpon>AboutViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\SearchHistoryViewCell.cs" />
+    <Compile Include="UITableViewCells\SearchHistoryViewCell.designer.cs">
       <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Controllers\Settings\SettingsViewController.cs" />
+    <Compile Include="View Controllers\Settings\SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Logger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -764,6 +751,9 @@
     <Folder Include="UITableViewCells\" />
     <Folder Include="Storyboards\" />
     <Folder Include="Models\" />
-    <Folder Include="View Controllers\PreviewingDelegates\" />
+    <Folder Include="View Controllers\Settings\" />
+    <Folder Include="View Controllers\Discover\" />
+    <Folder Include="View Controllers\Misc\" />
+    <Folder Include="View Controllers\UserProfile\" />
   </ItemGroup>
 </Project>

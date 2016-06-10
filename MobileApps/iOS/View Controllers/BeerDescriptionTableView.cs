@@ -17,7 +17,6 @@ using Foundation;
 
 using Splat;
 using Plugin.Share;
-using BeerDrinkin.iOS.PreviewingDelegates;
 
 namespace BeerDrinkin.iOS
 {

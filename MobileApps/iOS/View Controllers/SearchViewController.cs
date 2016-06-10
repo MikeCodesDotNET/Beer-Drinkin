@@ -43,10 +43,16 @@ namespace BeerDrinkin.iOS
         #endregion
 
         #region Overrides
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
             DismissKeyboardOnBackgroundTap();
+
+            if (string.IsNullOrEmpty(Utils.Helpers.Settings.UserId))
+            {
+                var vc = Storyboard.InstantiateViewController("SOCIAL_AUTH");
+                await PresentViewControllerAsync(vc, false);
+            }
 
             SetupUI();
             SetupEvents();
@@ -66,30 +72,7 @@ namespace BeerDrinkin.iOS
 
             selectedBeer = null;
 		}
-
-		public UIViewController GetViewControllerForPreview (IUIViewControllerPreviewing previewingContext, CGPoint location)
-		{
-			// Obtain the index path and the cell that was pressed.
-			var indexPath = searchResultsTableView.IndexPathForRowAtPoint (location);
-
-			if (indexPath == null)
-				return null;
-
-			var cell = searchResultsTableView.CellAt (indexPath);
-
-			if (cell == null)
-				return null;
-
-			// Create a detail view controller and set its properties.
-			var detailViewController = (BeerDescriptionTableView)Storyboard.InstantiateViewController ("beerDescriptionTableView");
-			if (detailViewController == null)
-				return null;
-
-			detailViewController.PreferredContentSize = new CGSize (0, 200);
-			previewingContext.SourceRect = cell.Frame;
-			return detailViewController;
-		}
-
+        		
         #endregion
 
         void SetupUI() 
@@ -98,11 +81,7 @@ namespace BeerDrinkin.iOS
             searchBar.Layer.BorderWidth = 1;
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
 
-            searchBar.TextChanged += delegate
-            {                 
-
-            };
-
+            searchBar.TextChanged += SearchBarTextChanged;    
         }
 
         void SetupEvents()
@@ -110,35 +89,16 @@ namespace BeerDrinkin.iOS
             searchBar.SearchButtonClicked += SearchForBeers;  
         }
 
-        void DisplayBeers(List<Beer> beers)
-        {
-            DataSource = new SearchDataSource(beers);
-            DataSource.DidSelectBeer += delegate
-            {
-                PerformSegue("beerDescriptionSegue", this);
-                    placeHolderTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
-            };
-
-            placeHolderTableView.Source = DataSource;
-            placeHolderTableView.ReloadData();
-
-            View.BringSubviewToFront(placeHolderTableView);
-            UserDialogs.Instance.HideLoading();
-        }
-
+      
         #region UI Control Event Handlers
         void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
-            /*
             if (!string.IsNullOrEmpty(searchBar.Text))
                 return;
 
             //Send table view to back and clear it.
-            View.SendSubviewToBack(tableView);
-            tableView.Source = new SearchDataSource(new List<BeerItem>());
-            tableView.ReloadData();
-
-            */
+            SearchResultsTable.Source = new SearchDataSource(new List<Beer>());
+            SearchResultsTable.ReloadData();
         }
 
         async void SearchForBeers (object sender, EventArgs e)
@@ -149,9 +109,9 @@ namespace BeerDrinkin.iOS
             var source = new SearchDataSource(beers);
             source.DidSelectBeer += BeerSelected;
             
-            searchResultsTableView.Source = source;
-            searchResultsTableView.ReloadData();
-            View.BringSubviewToFront(searchResultsTableView);
+            SearchResultsTable.Source = source;
+            SearchResultsTable.ReloadData();
+            View.BringSubviewToFront(SearchResultsTable);
 
             UserDialogs.Instance.HideLoading();
         }
@@ -166,7 +126,7 @@ namespace BeerDrinkin.iOS
                 searchHistory.Dequeue();
 
             PerformSegue("beerDescriptionSegue", this);
-            searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
+            SearchResultsTable.DeselectRow(SearchResultsTable.IndexPathForSelectedRow, true);
         }
 
         #endregion
@@ -174,14 +134,6 @@ namespace BeerDrinkin.iOS
 
         #region Properties
         public SearchDataSource DataSource {get; private set;}
-
-        public UITableView SearchResultsTableView
-        {
-            get
-            {
-                return placeHolderTableView;
-            }
-        }
 
        #endregion
     }

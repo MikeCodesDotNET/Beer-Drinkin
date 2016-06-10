@@ -25,20 +25,9 @@ namespace BeerDrinkin.Utils.Interfaces
 
     public interface ILogger
     {
-        void Identify(string userId, string fullName, string email, bool isAnonymous);
+        void Identify(string userId);
         
-        void Report(Exception exception, IDictionary<string, object> extraData);
         void Report(Exception exception);
         void Report(Exception exception, IList<string> tags);
-
-        Task Save();
-        Task PurgePendingCrashReports();
-    }
-
-    public interface ITrackHandle
-    {
-        void Start();
-        void Stop();
-        IDictionary<string, string> Data { get; }
     }
 }
