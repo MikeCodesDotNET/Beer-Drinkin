@@ -391,12 +391,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Core\BeerDrinkin.Core.csproj">
-      <Project>{e68d035d-d4c0-48e5-b6a9-c2a2c833b167}</Project>
-      <Name>BeerDrinkin.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
