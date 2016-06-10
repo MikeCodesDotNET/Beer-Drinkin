@@ -205,10 +205,6 @@ namespace BeerDrinkin.iOS
         partial void btnTakePhoto_TouchUpInside(UIButton sender)
         {
             CapturePhoto();
-
-            Insights.Track("Photo Taken", new Dictionary<string, string> {
-                {"Flash On", flashOn.ToString()}               
-            });
         }
 
         partial void btnToggleFlash_TouchUpInside(UIButton sender)

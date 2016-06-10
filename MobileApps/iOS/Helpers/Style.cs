@@ -18,8 +18,10 @@ namespace BeerDrinkin.iOS.Helpers
 
         public static class Colors
         {
+            public static UIColor Blue = "0D93FF".ToUIColor();
             public static UIColor NavigationBar = "0D93FF".ToUIColor();
             public static UIColor NavigationTint = UIColor.White;
+
         }
 
     }

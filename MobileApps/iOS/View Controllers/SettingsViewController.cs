@@ -16,7 +16,7 @@ namespace BeerDrinkin.iOS
             btnClose.SetTitleTextAttributes(new UITextAttributes
             {
                 Font = UIFont.FromName("Avenir-Book", 14f),
-                TextColor = Colour.White.ToNative()
+                TextColor = UIColor.White
             }, UIControlState.Normal);
 
             TableView.WeakDelegate = this;

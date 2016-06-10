@@ -56,7 +56,7 @@ namespace BeerDrinkin.iOS
             sideColor.Alpha = 0f;   
 
             imgLabel.Layer.CornerRadius = 5;
-            imgLabel.Layer.BorderColor = Color.OffWhite.ToNative().CGColor;
+            imgLabel.Layer.BorderColor = UIColor.White.CGColor;
             imgLabel.Layer.BorderWidth = 0.8f;
             imgLabel.Layer.MasksToBounds = true;
 

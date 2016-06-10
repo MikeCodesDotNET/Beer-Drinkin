@@ -61,7 +61,6 @@ namespace BeerDrinkin.iOS.DataSources
             }
             catch(Exception ex)
             {
-                Xamarin.Insights.Report(ex);
                 var cell = new UITableViewCell();
                 cell.TextLabel.Text = results[indexPath.Row];
                 cell.TextLabel.Font = UIFont.FromName("Avenir-Book", 14);

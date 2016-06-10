@@ -506,10 +506,6 @@
     <Compile Include="View Controllers\SearchHistoryViewCell.designer.cs">
       <DependentUpon>SearchHistoryViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\InAppPurchaseViewController.cs" />
-    <Compile Include="View Controllers\InAppPurchaseViewController.designer.cs">
-      <DependentUpon>InAppPurchaseViewController.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />

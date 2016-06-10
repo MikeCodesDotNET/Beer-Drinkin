@@ -31,47 +31,13 @@ namespace BeerDrinkin.iOS
 
         async void DeleteItem(string beerId)
         {
-            //await Client.Instance.BeerDrinkinClient.DeleteBeerCheckinsAsync(beerId);
         }
 
         #region Implemented abstract members of UITableViewSourceSink
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var beerCheckedIn = beers[indexPath.Row];
-            var beer = beerCheckedIn.CheckIns.FirstOrDefault().Beer;
-
-            var cell = tableView.DequeueReusableCell(cellIdentifier) as MyBeersTableViewCell ?? new MyBeersTableViewCell(cellIdentifier);
-            cell.Name = beerCheckedIn.Name;
-            cell.Brewery = beer?.Brewery;
-           
-            if (beer.ImageMedium != null)
-            {
-                cell.Image.SetImage(new NSUrl(beer?.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));
-            }
-            else
-            {
-                cell.Image.Image = UIImage.FromBundle("BeerDrinkin.png");
-            }
-
-            var cellDelegate = new MyBeerCellDelegate();
-            cellDelegate.DeleteBeer += () =>
-            {
-                var beerId = beers[indexPath.Row].BreweryDbId;
-                DeleteItem(beerId.ToString());
-                beers.RemoveAt(indexPath.Row);                
-            };
-
-            cell.Delegate = cellDelegate;
-            var deleteButton = new UIButton(UIButtonType.RoundedRect)
-            {
-                BackgroundColor = Colour.Red.ToNative(),
-                TintColor = Colour.White.ToNative()
-            };
-            deleteButton.SetImage(UIImage.FromFile("711-trash@3x.png"), UIControlState.Normal);
-            cell.SetRightUtilityButtons(new[] { deleteButton }, 90);
-
-
+            var cell = new UITableViewCell();
             return cell;
         }
 

@@ -38,7 +38,7 @@ namespace BeerDrinkin.iOS
             swtCriticalBugs.OffCompleted += delegate
             {
                 imgCriticalBugIcon.Image = imgCriticalBugIcon.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
-                imgCriticalBugIcon.TintColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
+                imgCriticalBugIcon.TintColor = Helpers.Style.Colors.Blue;
             };
         }
 	}

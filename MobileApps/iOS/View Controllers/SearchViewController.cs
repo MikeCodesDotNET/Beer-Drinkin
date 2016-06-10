@@ -127,7 +127,7 @@ namespace BeerDrinkin.iOS
         }
 
         #region UI Control Event Handlers
-        private void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
+        void SearchBarTextChanged(object sender, UISearchBarTextChangedEventArgs uiSearchBarTextChangedEventArgs)
         {
             /*
             if (!string.IsNullOrEmpty(searchBar.Text))
@@ -141,63 +141,36 @@ namespace BeerDrinkin.iOS
             */
         }
 
-        private async void SearchForBeers (object sender, EventArgs e)
+        async void SearchForBeers (object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading("Searching");
-            var response = await indexClient.Documents.SearchAsync<Models.IndexedBeer>(searchBar.Text);             
-            var beers = new List<BeerItem>();
-            foreach(var result in response.Results)
-            {
-                var beerResult = result.Document; 
-                if (beerResult != null)
-                {
-                    var beer = new BeerItem
-                    {
-                        ABV = beerResult.Abv,
-                        Name = beerResult.Name,
-                        Brewery = beerResult.BreweryName,
-                        Description = beerResult.Description,
-                        BreweryDbId = beerResult.Id,
-                        BreweryId = beerResult.BreweryId,
-                        Upc = beerResult.Upc
-                    };
-                    try
-                    {
-                        if(beerResult.Images != null || beerResult.Images[0] != null)
-                        {
-                            beer.ImageLarge = beerResult.Images[0];
-                            beer.ImageMedium = beerResult.Images[1];
-                            beer.ImageSmall = beerResult.Images[2];
-                        }
-                    }
-                    catch(Exception ex)
-                    {
-                        Insights.Report(ex);
-                    }
-                    beers.Add(beer);
-                }
-            }
+            var beers = await viewModel.Search(searchBar.Text);
+
             var source = new SearchDataSource(beers);
-            source.DidSelectBeer += (beer) => 
-            {
-                selectedBeer = beer;
-
-				var searchHistory = SearchHistory.History;
-				searchHistory.Enqueue(beer.Name);
-				if (searchHistory.Count > 3)
-					searchHistory.Dequeue();
-
-                PerformSegue("beerDescriptionSegue", this);
-                searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
-            };
+            source.DidSelectBeer += BeerSelected;
             
             searchResultsTableView.Source = source;
             searchResultsTableView.ReloadData();
             View.BringSubviewToFront(searchResultsTableView);
+
             UserDialogs.Instance.HideLoading();
-        }       
-           
+        }
+
+        void BeerSelected(Beer beer)
+        {
+            selectedBeer = beer;
+
+            var searchHistory = SearchHistory.History;
+            searchHistory.Enqueue(beer.Name);
+            if (searchHistory.Count > 3)
+                searchHistory.Dequeue();
+
+            PerformSegue("beerDescriptionSegue", this);
+            searchResultsTableView.DeselectRow(placeHolderTableView.IndexPathForSelectedRow, true);
+        }
+
         #endregion
+
 
         #region Properties
         public SearchDataSource DataSource {get; private set;}

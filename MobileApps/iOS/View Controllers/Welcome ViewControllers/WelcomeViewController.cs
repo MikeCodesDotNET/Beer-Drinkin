@@ -6,24 +6,22 @@ using Xamarin;
 using BeerDrinkin.iOS.Helpers;
 using System.Threading.Tasks;
 using MikeCodesDotNET.iOS;
+using BeerDrinkin.Utils;
+using BeerDrinkin.AzureClient;
 
 namespace BeerDrinkin.iOS
 {
     partial class WelcomeViewController : UIViewController
     {
+        IAzureClient azure;
         public WelcomeViewController(IntPtr handle): base(handle)
         {
+            azure = ServiceLocator.Instance.Resolve<IAzureClient>();
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-                       
-            lblTitle.Text = Strings.Welcome_Title;
-            lblPromise.Text = Strings.Welcome_Promise;
-            btnConnectWithFacebook.SetTitle(Strings.Welcome_Facebook, UIControlState.Normal);
-            btnConnectWithGoogle.SetTitle(Strings.Welcome_Google, UIControlState.Normal);
-
             btnConnectWithFacebook.Alpha = 0;
         }
 
@@ -32,45 +30,18 @@ namespace BeerDrinkin.iOS
             base.ViewWillAppear(animated);
 
             btnConnectWithFacebook.Alpha = 0;
-            btnConnectWithGoogle.Alpha = 0;
             lblTitle.Alpha = 0;
             lblPromise.Alpha = 0;
             lblAmazingFeatures.Alpha = 0;
 
-            if (Core.Helpers.Settings.FirstRun == true)
-            {
-                Core.Helpers.Settings.FirstRun = false;
-
-                var tinderBeer = Storyboard.InstantiateViewController("welcomeMapView");
-                PresentViewControllerAsync(tinderBeer, false);
-            }
-
             const double duration = 0.4;
             const float delay = 0.3f;
 
-            //btnClose.FadeIn(duration, delay);
             lblTitle.FadeIn(duration, delay);
             lblAmazingFeatures.FadeIn(duration, delay);
 
             btnConnectWithFacebook.FadeIn(duration, delay + 0.5f);
-            btnConnectWithGoogle.FadeIn(duration, delay + 0.7f);
             lblPromise.FadeIn(duration, delay + 0.7f);
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-
-        }
-
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
-            if (trackerHandle != null)
-            {
-                trackerHandle.Stop();
-                trackerHandle = null;
-            }
         }
 
         async partial void BtnConnectWithFacebook_TouchUpInside(UIButton sender)
@@ -79,40 +50,20 @@ namespace BeerDrinkin.iOS
             {   
                 btnConnectWithFacebook.PulseToSize(0.9f, 0.2, false);
 
-                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
+                await azure.Client.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
                 UserAuthenticiated();
             }
             catch
             {
-                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
+                Acr.UserDialogs.UserDialogs.Instance.ShowError("Cock it, couldn't log in");
             }
-        }
-
-        async partial void BtnConnectWithGoogle_TouchUpInside(UIButton sender)
-        {
-            try
-            {   
-                btnConnectWithGoogle.PulseToSize(0.9f, 0.2, false);
-
-                await Client.Instance.BeerDrinkinClient.ServiceClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
-                UserAuthenticiated();
-            }
-            catch
-            {
-                Acr.UserDialogs.UserDialogs.Instance.ShowError(Strings.Welcome_AuthError);
-            }
-        }
+        }     
 
         async void UserAuthenticiated()
         {
 			Acr.UserDialogs.UserDialogs.Instance.ShowSuccess("Signed In", 1500);
 			await DismissViewControllerAsync(true);
-            await Client.Instance.BeerDrinkinClient.RefreshAll();           
         }
-
-        partial void BtnCancel_TouchUpInside(UIButton sender)
-        {
-            this.DismissViewController(true, null);
-        }
+       
     }
 }

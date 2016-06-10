@@ -19,11 +19,6 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
-            if(BeerDrinkin.Core.Helpers.Settings.UserTrackingEnabled)
-            {
-                Insights.Track("Loaded AboutView", "ViewController", "AboutViewController");
-            }
-
 			btnClose.SetTitleTextAttributes(new UITextAttributes
 			{
 				Font = UIFont.FromName("Avenir-Book", 14f),
@@ -74,8 +69,8 @@ namespace BeerDrinkin.iOS
         void OpenUrl(string url)
         {
             var sfViewController = new SFSafariViewController(new NSUrl(url), true);
-            sfViewController.View.TintColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
-            sfViewController.View.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();  
+            sfViewController.View.TintColor = Helpers.Style.Colors.NavigationBar;
+            sfViewController.View.BackgroundColor = Helpers.Style.Colors.NavigationBar;  
             PresentViewControllerAsync(sfViewController, true);
         }
     }

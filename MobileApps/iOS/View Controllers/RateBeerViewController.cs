@@ -36,11 +36,7 @@ namespace BeerDrinkin.iOS
 			base.ViewDidLoad();
 
 			btnCheckIn.TouchUpInside += async delegate
-			{
-				Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Checking in");
-				var checkIn = new CheckInItem();
-	
-				await Client.Instance.BeerDrinkinClient.CheckInBeerAsync(checkIn);
+			{				
 				Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 			};
 		}

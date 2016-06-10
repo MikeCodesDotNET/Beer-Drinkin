@@ -50,8 +50,8 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad ();
             SetUpUI ();
 
-			NavigationController.NavigationBar.BackgroundColor = BeerDrinkin.Helpers.Colours.Blue.ToNative();
-			NavigationController.NavigationBar.TintColor = UIColor.White;
+            NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
+            NavigationController.NavigationBar.TintColor = UIColor.White;
         }
 
 		public override void ViewDidAppear (bool animated)
@@ -67,24 +67,7 @@ namespace BeerDrinkin.iOS
 			btnShare.Image = UIImage.FromFile("702-share.png");
 			NavigationItem.RightBarButtonItem = btnShare;
 
-
-            Core.Services.UserTrackingService.ReportViewLoaded("BeerDescriptionTableView", $"{beer.Name} Loaded");
-            tableView.ReloadData ();
-
-			if (Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser != null)
-			{
-				if (justSignedIn)
-				{
-					//If the user just signed in then it means we didn't check the beer in. Lets go ahead and do this.
-					var vc = Storyboard.InstantiateViewController("rateBeerViewController") as RateBeerViewController;
-					vc.SelectedBeer = beer;
-					this.NavigationController.PushViewController(vc, false);
-
-					justSignedIn = false;
-				}
-			}
-		
-
+            tableView.ReloadData ();	
             SetupSearch ();
         }
 
@@ -99,16 +82,7 @@ namespace BeerDrinkin.iOS
             headerView.Frame = new CGRect (headerView.Frame.Location, new CGSize (tableView.Frame.Width, headerView.Frame.Height));
             UpdateHeaderView();
             View.SetNeedsDisplay ();
-        }
-
-        public override void ViewWillDisappear (bool animated)
-        {
-            base.ViewWillDisappear (animated);
-            if (trackerHandle != null) {
-                trackerHandle.Stop ();
-                trackerHandle = null;
-            }
-        }
+        }       
 
         public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
         {
@@ -136,19 +110,7 @@ namespace BeerDrinkin.iOS
 
         partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-			var user = Client.Instance.BeerDrinkinClient.CurrentMobileServicetUser;
-			if (user != null) 
-			{
-				var vc = Storyboard.InstantiateViewController("rateBeerViewController") as RateBeerViewController;
-				vc.SelectedBeer = beer;
-				NavigationController.PushViewController(vc, true);
-            } 
-			else 
-			{
-                var welcomeViewController = Storyboard.InstantiateViewController ("welcomeView");
-                PresentModalViewController (welcomeViewController, true);
-				justSignedIn = true;
-            }
+			
         }
 
 
@@ -171,7 +133,7 @@ namespace BeerDrinkin.iOS
 				info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
 				info.Add(new NSString("name"), new NSString(beer.Name));
 				info.Add(new NSString("description"), new NSString(beer.Description));
-				info.Add(new NSString("abv"), new NSString(beer?.ABV.ToString()));
+				info.Add(new NSString("abv"), new NSString(beer?.Abv.ToString()));
 				info.Add(new NSString("breweryDbId"), new NSString(beer.BreweryDbId));
 			
 				if (string.IsNullOrEmpty(beer.ImageMedium) == false) 
@@ -237,7 +199,6 @@ namespace BeerDrinkin.iOS
             //Add Cells
             AddHeaderInfo ();
             AddDescription ();
-            AddPurchase();
 
             //Update Tableview
             tableView.Source = new BeerDescriptionDataSource(ref cells);
@@ -258,40 +219,19 @@ namespace BeerDrinkin.iOS
                              new BeerHeaderCell (headerCellIdentifier);
             headerCell.Name = beer?.Name;
             headerCell.Brewery = beer?.Brewery;
-            headerCell.Abv = beer.ABV.ToString ();
+            headerCell.Abv = beer.Abv.ToString();
 
             headerCell.ConsumedAlpha = 0.3f;
             headerCell.RatingAlpha = 0.3f;
 
-			headerCell.EditingAbv += delegate {
-				this.NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Done,delegate {
+			headerCell.EditingAbv += delegate 
+            {
+				NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate 
+                {
 					headerCell.EndEditingAbv();
-					this.NavigationItem.RightBarButtonItem = null;
+					NavigationItem.RightBarButtonItem = null;
 				}), true);
 			};
-
-            //Lets fire up another thread so we can continue loading our UI and makes the app seem faster.
-            Task.Run (() => {
-                var response = Client.Instance.BeerDrinkinClient.GetBeerInfoAsync (beer.Id.ToString()).Result;
-                if (response.Result != null)
-                    beerInfo = response.Result;
-
-                InvokeOnMainThread (() => {
-                    if (beerInfo == null)
-                        return;
-
-                    headerCell.Consumed = beerInfo?.CheckIns.ToList ().Count.ToString ();
-                    headerCell.Rating = beerInfo?.AverageRating != 0 ? beerInfo.AverageRating.ToString (CultureInfo.InvariantCulture) : "NA";
-
-                    UIView.Animate (0.3, 0, UIViewAnimationOptions.TransitionCurlUp, () => {
-                        headerCell.ConsumedAlpha = 1f;
-                        headerCell.RatingAlpha = 1f;
-
-                    }, () => {
-                    });
-                });
-            });
-
 
             cells.Add (headerCell);
         }
