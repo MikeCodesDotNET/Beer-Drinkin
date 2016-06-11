@@ -14,6 +14,8 @@ namespace BeerDrinkin.iOS.Helpers
             public static UIFont Paragraph = UIFont.FromName("Avenir-Book", 15f);
             public static UIFont NavigationButton = UIFont.FromName("Avenir-Medium", 14f);
             public static UIFont TabBar = UIFont.FromName("Avenir-Book", 10f);
+            public static UIFont ScrollTabbarTitle = UIFont.FromName("Avenir-Medium", 18f);
+
         }
 
         public static class Colors

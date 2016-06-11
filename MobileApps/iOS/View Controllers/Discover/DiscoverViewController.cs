@@ -81,13 +81,23 @@ namespace BeerDrinkin.iOS
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
 
             var discoverBeers = Storyboard.InstantiateViewController("DiscoverBeers");
-            var discoverBreweries = Storyboard.InstantiateViewController("DiscoverBreweries");
-            var discoverUsers = Storyboard.InstantiateViewController("DiscoverUsers");
+            discoverBeers.Title = "Beers";
 
-            discoverBeers.View.Frame = View.Bounds;
-            scrollView.AddSubview(discoverBeers.View);
-            scrollView.AddSubview(discoverBreweries.View);
-            scrollView.AddSubview(discoverUsers.View);
+            var discoverBreweries = Storyboard.InstantiateViewController("DiscoverBreweries");
+            discoverBreweries.Title = "Breweries";
+
+            var discoverUsers = Storyboard.InstantiateViewController("DiscoverUsers");
+            discoverUsers.Title = "Users";
+
+            var list = new List<UIViewController>();
+            list.Add(discoverBeers);
+            list.Add(discoverBreweries);
+            list.Add(discoverUsers);
+
+            var tabView = new CustomControls.ScrollingTabView(list);
+            tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
+            View.AddSubview(tabView);
+
         }
 
         void ConfigureEvents()
