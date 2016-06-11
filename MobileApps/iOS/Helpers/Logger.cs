@@ -22,8 +22,6 @@ namespace BeerDrinkin.iOS.Helpers
 
         public void Identify(string userId)
         {
-            RaygunClient.Current.UserInfo.Identifier = userId;
-            RaygunClient.Current.UserInfo.UUID = userId;
             RaygunClient.Current.User = userId;
         }
 
