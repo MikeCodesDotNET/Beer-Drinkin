@@ -22,7 +22,7 @@ namespace BeerDrinkin.iOS
 	public partial class SearchViewController : BaseViewController
     {
         #region Fields
-        readonly SearchViewModel viewModel = new SearchViewModel();
+        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
 
         SearchIndexClient indexClient;
         Beer selectedBeer;

@@ -10,7 +10,7 @@ using JudoPayDotNet.Enums;
 using BeerDrinkin.DataObjects;
 using MikeCodesDotNET.iOS;
 using BeerDrinkin.Utils;
-using BeerDrinkin.Utils.Interfaces;
+using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.AzureClient;
 
@@ -26,7 +26,7 @@ namespace BeerDrinkin.iOS
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             Core.ViewModels.ViewModelBase.Init();
-            ServiceLocator.Instance.Add<ILogger, Logger>();
+            ServiceLocator.Instance.Add<ILogService, Logger>();
 
 #if DEBUG
             Utils.Helpers.Settings.UserId = string.Empty;

@@ -3,9 +3,8 @@ using BeerDrinkin.Utils;
 using BeerDrinkin.DataStore.Abstractions;
 
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.Services.Azure;
-
 using BeerDrinkin.DataStore.Azure;
+using BeerDrinkin.Services.Abstractions;
 
 namespace BeerDrinkin.Core.ViewModels
 {

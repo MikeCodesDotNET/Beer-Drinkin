@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BeerDrinkin.Utils.Interfaces;
+using BeerDrinkin.Services.Abstractions;
 using Mindscape.Raygun4Net;
 using Foundation;
 
 namespace BeerDrinkin.iOS.Helpers
 {
-    public class Logger : ILogger
+    public class Logger : ILogService
     {
         public Logger()
         {

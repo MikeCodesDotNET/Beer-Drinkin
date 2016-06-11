@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}</ProjectGuid>
+    <ProjectGuid>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</ProjectGuid>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UseMSBuildEngine>true</UseMSBuildEngine>
     <OutputType>Library</OutputType>
-    <RootNamespace>BeerDrinkin.Services.Azure</RootNamespace>
-    <AssemblyName>BeerDrinkin.Services.Azure</AssemblyName>
+    <RootNamespace>BeerDrinkin.Services.Abstractions</RootNamespace>
+    <AssemblyName>BeerDrinkin.Services.Abstractions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
   </PropertyGroup>
@@ -33,29 +33,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BarcodeService.cs" />
-    <Compile Include="SearchService.cs" />
-    <Compile Include="TrendsService.cs" />
+    <Compile Include="ISearchService.cs" />
+    <Compile Include="ITrendsService.cs" />
+    <Compile Include="IBarcodeService.cs" />
+    <Compile Include="ILogService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj">
-      <Project>{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0}</Project>
-      <Name>BeerDrinkin.DataStore.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeerDrinkin.Utils\BeerDrinkin.Utils.csproj">
-      <Project>{22AD198D-8B6D-40B1-BA0C-05379EED9766}</Project>
-      <Name>BeerDrinkin.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeerDrinkin.AzureClient\BeerDrinkin.AzureClient.csproj">
-      <Project>{0D1E84BC-8253-46EF-B55B-E00BBD774B52}</Project>
-      <Name>BeerDrinkin.AzureClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">
-      <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
-      <Name>BeerDrinkin.Services.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="MvvmHelpers">
+      <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -71,13 +57,11 @@
     <Reference Include="Microsoft.WindowsAzure.Mobile">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmHelpers">
-      <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\BeerDrinkin.DataObjects\BeerDrinkin.DataObjects.projitems" Label="Shared" Condition="Exists('..\BeerDrinkin.DataObjects\BeerDrinkin.DataObjects.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

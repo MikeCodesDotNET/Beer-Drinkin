@@ -3,17 +3,18 @@ using BeerDrinkin.DataObjects;
 using BeerDrinkin.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BeerDrinkin.DataStore.Abstractions;
+using BeerDrinkin.Services.Abstractions;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class SearchViewModel : ViewModelBase
+    public class DiscoverViewModel : ViewModelBase
     {
         IAzureClient azure;
         ISearchService searchService;
         ITrendsService trendsService;
+        IBarcodeService barcodeService;
 
-        public SearchViewModel()
+        public DiscoverViewModel()
         {
             Initialize();
         }
@@ -25,6 +26,7 @@ namespace BeerDrinkin.Core.ViewModels
                 azure = ServiceLocator.Instance.Resolve<IAzureClient>();
                 searchService = ServiceLocator.Instance.Resolve<ISearchService>();
                 trendsService = ServiceLocator.Instance.Resolve<ITrendsService>();
+                barcodeService = ServiceLocator.Instance.Resolve<IBarcodeService>();
             }
         }
 
@@ -38,6 +40,12 @@ namespace BeerDrinkin.Core.ViewModels
         {
             Initialize();
             return await trendsService.TrendingBeers(takeCount);
+        }
+
+        public async Task<List<Beer>> LookupBarcode(string upc)
+        {
+            Initialize();
+            return await barcodeService.LookupBarcode(upc);
         }
     }
 }

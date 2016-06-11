@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BeerDrinkin.DataObjects;
 
-namespace BeerDrinkin.DataStore.Abstractions
+namespace BeerDrinkin.Services.Abstractions
 {
     public interface ITrendsService
     {

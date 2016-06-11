@@ -6,12 +6,12 @@ using MikeCodesDotNET.iOS;
 using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.Utils;
-using BeerDrinkin.Utils.Interfaces;
 
 using UIKit;
 using Foundation;
 using System.Collections.Generic;
 using SDWebImage;
+using BeerDrinkin.Services.Abstractions;
 
 namespace BeerDrinkin.iOS
 {
@@ -21,17 +21,17 @@ namespace BeerDrinkin.iOS
         const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
         const string cellIdentifier = "SEARCH_RESULT_CELL";
 
-        readonly SearchViewModel viewModel = new SearchViewModel();
+        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
         List<Beer> searchResults;
         List<Beer> trendingBeers;
 
-        ILogger logger;
+        ILogService logger;
 
         public Beer SelectedBeer { get; private set;}
 
         public DiscoverViewController (IntPtr handle) : base (handle)
         {
-            logger = ServiceLocator.Instance.Resolve<ILogger>();
+            logger = ServiceLocator.Instance.Resolve<ILogService>();
         }
 
         public async override void ViewDidLoad()

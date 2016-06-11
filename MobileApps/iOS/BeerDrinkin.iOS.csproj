@@ -301,6 +301,14 @@
       <Project>{22AD198D-8B6D-40B1-BA0C-05379EED9766}</Project>
       <Name>BeerDrinkin.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">
+      <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
+      <Name>BeerDrinkin.Services.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Services.Azure\BeerDrinkin.Services.Azure.csproj">
+      <Project>{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}</Project>
+      <Name>BeerDrinkin.Services.Azure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\ITunesArtwork" />

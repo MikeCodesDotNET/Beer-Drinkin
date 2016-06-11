@@ -112,6 +112,10 @@
       <Project>{22ad198d-8b6d-40b1-ba0c-05379eed9766}</Project>
       <Name>BeerDrinkin.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">
+      <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
+      <Name>BeerDrinkin.Services.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

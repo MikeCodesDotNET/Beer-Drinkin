@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerDrinkin.Utils.Interfaces
+namespace BeerDrinkin.Services.Abstractions
 {
     public enum Severity
     {
@@ -23,7 +23,7 @@ namespace BeerDrinkin.Utils.Interfaces
         Critical
     }
 
-    public interface ILogger
+    public interface ILogService
     {
         void Identify(string userId);
         
