@@ -7,9 +7,10 @@ Beer Drinkin is a .NET beer tracking app for iOS using Xamarin. It's powered by 
 
 BeerDrinkin is a cloud-enabled, C# powered Beer tracking app built using Xamarin and Windows Azure. It is designed to showcase both Xamarin's cross-platform capability and the magic of using Azure to build scalable, feature rich applications. The project is still actively developed with a comprehensive set of features. 
 
-###### Documentation 
+### Documentation 
+<img src="https://s3-us-west-1.amazonaws.com/codeforamerica-cms1/supporter-logos/readme-logo.png" width=125>
 
-Extensive documentation for the project can be found at [Readme.io](https://beerdrinkin.readme.io/docs)
+Extensive documentation for the project can be found [here](https://beerdrinkin.readme.io/docs), hosted by ReadMe.IO
 
 ### Get Involved
 Want to contribute? Great!
