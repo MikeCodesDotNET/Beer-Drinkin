@@ -1,0 +1,188 @@
+/* lg */ 
+@media (min-width: 1400px) {
+	
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+	.navbar-nav > li > a {
+		font-size: 12px;
+		padding: 10px;
+	}
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+	.special-content {
+		margin-top: 50px;
+	}
+	#whats-special{
+		padding-bottom:90px;
+	}
+	.prices .col-sm-3 {
+		margin-bottom:25px;
+		float:left;
+		width:50%;
+	}
+}
+
+
+/* xs */
+@media (max-width: 767px) {
+	
+	h1 {
+		font-size:28px;
+	}
+	h2{
+		font-size:20px;
+	}
+	h3{
+		font-size:16px;
+	}
+	.padding {
+		padding: 50px 0px;
+	}
+	.section-title {
+		margin-bottom:30px;
+	}
+	.section-title h1{
+		font-size:32px;
+	}
+	.navbar-nav>li>a {
+		line-height: 20px;
+	}
+	.home-content img {
+		width:60%;
+	}
+	.btn-primary.btn-animated {
+		padding:10px 25px;
+	}
+	.home-content .btn-primary {
+		margin-right: 5px;
+		margin-bottom: 30px;
+	}
+	.app-icons li a {
+		padding: 10px;
+		font-size: 22px;
+		height: 55px;
+		width: 55px;
+	}
+	#home-section{
+		height:650px;
+	}
+	.whatsit {
+		padding: 15px;
+		text-align: left;
+	}
+	.whatsit h1 {
+		font-size:40px;
+	}
+	.whatsit h2{
+		font-size:24px;
+	}
+	.special-content {
+		margin-top: 35px;
+		margin-bottom: 50px;
+	}
+	.special-image {
+		margin-bottom:45px;
+	}
+	.compatibility {
+		padding: 25px 0px;
+	}
+	.left-side {
+		border-right:0;
+	}
+	.left-side .compatibility .os {
+		padding-right: 120px;
+	}
+	.left-side .compatibility .os-image {
+		right: 15px;
+	}
+	.compatibility .os-image {
+		top: 30px;
+	}
+	.right-side .compatibility .os {
+		padding-left: 120px;
+	}
+	.right-side .compatibility .os-image{
+		left:15px;
+	}
+	.video .video-link {
+		font-size: 60px;
+		line-height: 120px;
+		margin-top: -65px;
+		margin-left: -32px;
+	}
+	.feature {
+		margin-bottom: 30px;
+	}
+	.action-content {
+		margin-top: 40px;
+	}
+	.action-content h1, 
+	.twitter-feed h1, 
+	#download-apps h1 {
+		font-size: 38px;
+	}
+	
+	#screenshot-slider .item .col-sm-3, 
+	.prices .col-sm-3 {
+		margin-bottom:15px;
+		float:left;
+		width:50%;
+	}
+	#screenshot-slider .item img {
+		width:100%;
+	}
+	.price h1 {
+		font-size:45px;
+	}
+	.price {
+		padding-top: 15px;
+		padding-bottom: 45px;
+	}
+	.team img {
+		display:inline-block;
+		margin-bottom:10px;
+	}
+	.team-slider-left, .team-slider-right {
+		width:40px;
+	}
+	#team-slider {
+		padding: 0px 20px;
+	}
+	.apps ul li a {
+		font-size: 30px;
+	}
+	#footer, 
+	#footer .text-right {
+		text-align:center;
+	}
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+	#home-section{
+		height:550px;
+	}
+	.compatibility .os-image {
+		top: 75px;
+	}
+	#screenshot-slider .item .col-sm-3, 
+	.prices .col-sm-3 {
+		float:none;
+		width:100%;
+	}
+	.team-slider-left, .team-slider-right {
+		height:160px;
+		width:50px;
+	}
+	#team-slider {
+		padding: 0px 65px;
+	}
+	.team img {
+		margin-bottom:5px;
+	}
+}
+

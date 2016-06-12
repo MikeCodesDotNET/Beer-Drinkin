@@ -1,0 +1,54 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	color: #fff;
+	background-color: #43575d;
+    padding-top: 75px; 
+}
+
+.whatsit h1, 
+.whatsit h2, 
+.section-title h1, 
+.feature h2, 
+#testimonial-slider .item h2, 
+.twitter-feed h1, 
+#main-contact-form .btn-primary, 
+.compatibility a {
+	color:#fff;
+}
+
+#navigation{
+    background-color:#3e4f54;
+}
+
+.navbar-
+
+
+-top {
+    background-color: rgba(67, 87, 93, 0.80);
+}
+
+.feature img, .feature:hover img {
+    -webkit-filter:inherit;
+    -moz-filter:inherit;
+    -o-filter: inherit;
+    -ms-filter: inherit;
+    filter: inherit;
+}
+
+.feature h2{
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.feature:hover h2 {
+	color:#a0d48c;
+}
+
+.owl-theme .owl-controls .owl-page.active span, 
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+    background-color: #fff;
+}
