@@ -10,7 +10,6 @@ using BeerDrinkin.Utils;
 using UIKit;
 using Foundation;
 using System.Collections.Generic;
-using SDWebImage;
 using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.iOS.CustomControls;
 
@@ -25,7 +24,7 @@ namespace BeerDrinkin.iOS
         ScrollingTabView tabView;
         readonly DiscoverViewModel viewModel = new DiscoverViewModel();
         List<Beer> searchResults;
-        List<Beer> trendingBeers;
+        DiscoverBeerSearchResultsSource source;
 
         ILogService logger;
         public Beer SelectedBeer { get; private set;}
@@ -43,12 +42,6 @@ namespace BeerDrinkin.iOS
 
             ConfigureUserInterface();
             ConfigureEvents();
-        }
-
-        public async override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-            await PopulateTrendingSearches();
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -76,6 +69,7 @@ namespace BeerDrinkin.iOS
 
         void ConfigureUserInterface()
         {
+            searchBar.ShowsCancelButton = false;
             searchBar.Layer.BorderWidth = 0;
             searchBar.Layer.CornerRadius = 2;
             searchBar.Layer.MasksToBounds = true;
@@ -95,7 +89,7 @@ namespace BeerDrinkin.iOS
             list.Add(discoverBreweries);
             list.Add(discoverUsers);
 
-            tabView = new CustomControls.ScrollingTabView(list);
+            tabView = new ScrollingTabView(list);
             tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
             tabView.SelectionChanged += (index, title) =>
             {
@@ -103,11 +97,15 @@ namespace BeerDrinkin.iOS
             };
 
             View.AddSubview(tabView);
-
         }
 
         void ConfigureEvents()
         {
+            searchBar.OnEditingStarted += StartEditing;
+            searchBar.CancelButtonClicked += EndEditing;
+            searchBar.OnEditingStopped += HideKeyboard;
+
+            searchBar.SearchButtonClicked += HideKeyboard;;
             searchBar.TextChanged += async (sender, e) => await Search(searchBar.Text);
             searchBar.SearchButtonClicked += async (sender, e) => await Search(searchBar.Text);
         }
@@ -120,7 +118,10 @@ namespace BeerDrinkin.iOS
                     return;
 
                 searchResults = await viewModel.Search(searchTerm);
-                //SearchResultsTable.ReloadData();
+                source = new DiscoverBeerSearchResultsSource(searchResults);
+                beerResultsTable.Source = source;
+                beerResultsTable.ReloadData();
+                View.BringSubviewToFront(beerResultsTable);
             }
             catch (Exception ex)
             { 
@@ -128,10 +129,29 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        async Task PopulateTrendingSearches()
+        UIView placeholderBackgroundView;
+        void StartEditing(object sender, EventArgs e)
         {
-            var trends = await viewModel.TrendingBeers(10);
+            if(placeholderBackgroundView == null)
+                placeholderBackgroundView = new UIView(View.Bounds);
 
-        }      
+            searchBar.ShowsCancelButton = true;
+            placeholderBackgroundView.BackgroundColor = UIColor.FromRGB(247, 247, 247);
+            View.AddSubview(placeholderBackgroundView);
+        }
+
+        void EndEditing(object sender, EventArgs e)
+        {
+            searchBar.ShowsCancelButton = false;
+            placeholderBackgroundView.RemoveFromSuperview();
+            searchBar.Text = "";
+            searchBar.ResignFirstResponder();
+            View.SendSubviewToBack(beerResultsTable);
+        }
+
+        void HideKeyboard(object sender, EventArgs e)
+        {
+            searchBar.ResignFirstResponder();
+        }
     }
 }

@@ -25,9 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.DataStore.Abstr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Services.Azure", "ClientSDKs\BeerDrinkin.Services.Azure\BeerDrinkin.Services.Azure.csproj", "{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "BeerDrinkin.DataStore.Mock", "ClientSDKs\BeerDrinkin.DataStore.Mock\BeerDrinkin.DataStore.Mock.csproj", "{A62A24F1-7F75-44F9-897A-5E32C7234A76}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Services.Abstractions", "ClientSDKs\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj", "{4FECE5FF-399C-4814-9830-E4D69D3AE83A}"
+EndProject
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "BeerDrinkin.DataStore.Mock", "ClientSDKs\BeerDrinkin.DataStore.Mock\BeerDrinkin.DataStore.Mock.csproj", "{283845BD-84E3-4B03-926B-E2CEF8449FB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,18 +135,6 @@ Global
 		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
 		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITest|iPhone.ActiveCfg = Release|Any CPU
 		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}.UITest|iPhone.Build.0 = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Release|iPhone.Build.0 = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.UITestiPhone|Any CPU.ActiveCfg = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.UITest|iPhone.ActiveCfg = Release|Any CPU
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76}.UITest|iPhone.Build.0 = Release|Any CPU
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.Release|iPhone.ActiveCfg = Release|Any CPU
@@ -159,6 +147,18 @@ Global
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.UITest|iPhone.ActiveCfg = Release|Any CPU
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A}.UITest|iPhone.Build.0 = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Release|iPhone.Build.0 = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.UITestiPhone|Any CPU.ActiveCfg = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.UITestiPhone|Any CPU.Build.0 = Debug|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.UITest|iPhone.ActiveCfg = Release|Any CPU
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5}.UITest|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F884B965-371D-4273-BED8-C970D307E04A} = {188215A9-41D2-4422-8F02-0DFA601BFFFE}
@@ -171,7 +171,7 @@ Global
 		{22AD198D-8B6D-40B1-BA0C-05379EED9766} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 		{55F4CF78-F192-4A7E-9DCE-66944D3ABBC0} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 		{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6} = {A188E524-A18C-4E70-9344-0A656AE324E7}
-		{A62A24F1-7F75-44F9-897A-5E32C7234A76} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 		{4FECE5FF-399C-4814-9830-E4D69D3AE83A} = {A188E524-A18C-4E70-9344-0A656AE324E7}
+		{283845BD-84E3-4B03-926B-E2CEF8449FB5} = {A188E524-A18C-4E70-9344-0A656AE324E7}
 	EndGlobalSection
 EndGlobal

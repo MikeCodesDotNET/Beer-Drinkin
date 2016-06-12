@@ -337,7 +337,7 @@
     <Compile Include="View Controllers\SearchViewController.designer.cs">
       <DependentUpon>SearchViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSources\SearchDataSource.cs" />
+    <Compile Include="DataSources\DiscoverBeerSearchResultsSource.cs" />
     <Compile Include="DataSources\MyBeersDataSource.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.designer.cs">
@@ -422,7 +422,6 @@
     <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
     <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
-    <Compile Include="Models\IndexedBeer.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
       <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
@@ -530,6 +529,14 @@
     <Compile Include="Custom Controls\DiscoverCameraButton.cs" />
     <Compile Include="Custom Controls\DiscoverCameraControl.cs" />
     <Compile Include="Custom Controls\TrendingBeerBackground.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverUsersTableViewCell.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverUsersTableViewCell.designer.cs">
+      <DependentUpon>DiscoverUsersTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\Discover\DiscoverBeerResultCell.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverBeerResultCell.designer.cs">
+      <DependentUpon>DiscoverBeerResultCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -787,10 +794,10 @@
   <ItemGroup>
     <Folder Include="UITableViewCells\" />
     <Folder Include="Storyboards\" />
-    <Folder Include="Models\" />
     <Folder Include="View Controllers\Settings\" />
     <Folder Include="View Controllers\Discover\" />
     <Folder Include="View Controllers\Misc\" />
     <Folder Include="View Controllers\UserProfile\" />
+    <Folder Include="UITableViewCells\Discover\" />
   </ItemGroup>
 </Project>

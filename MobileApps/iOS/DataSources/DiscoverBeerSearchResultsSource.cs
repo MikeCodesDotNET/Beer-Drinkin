@@ -9,15 +9,15 @@ using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS
 {
-    public class SearchDataSource : UITableViewSource
+    public class DiscoverBeerSearchResultsSource : UITableViewSource
     {
         #region Fields
-        private readonly NSString cellIdentifier = new NSString("beercell");
+        private readonly NSString cellIdentifier = new NSString("DISCOVER_BEER_RESULT");
 
         #endregion
 
         #region Constructor
-        public SearchDataSource(List<Beer> beers)
+        public DiscoverBeerSearchResultsSource(List<Beer> beers)
         {
             Beers = beers;
         }
@@ -35,7 +35,7 @@ namespace BeerDrinkin.iOS
         {
             var Beer = Beers[indexPath.Row];
 
-            var cell = tableView.DequeueReusableCell(cellIdentifier) as SearchBeerTableViewCell ?? new SearchBeerTableViewCell(cellIdentifier);
+            var cell = tableView.DequeueReusableCell(cellIdentifier) as DiscoverBeerResultCell ?? new DiscoverBeerResultCell(cellIdentifier);
 
             cell.Name = Beer.Name;
             cell.Brewery = Beer.Brewery;
