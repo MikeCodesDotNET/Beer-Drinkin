@@ -267,7 +267,7 @@ namespace BeerDrinkin.iOS.CustomControls
             //// Text Drawing
             CGRect textRect = new CGRect(frame.GetMinX() + 7.0f, frame.GetMinY() + NMath.Floor((frame.Height - 8.0f) * 0.67568f + 0.5f), frame.Width - 14.0f, frame.Height - 8.0f - NMath.Floor((frame.Height - 8.0f) * 0.67568f + 0.5f));
             {
-                var textContent = "Photo Import";
+                var textContent = "Picture Search";
                 color5.SetFill();
                 var textStyle = new NSMutableParagraphStyle();
                 textStyle.Alignment = UITextAlignment.Center;
