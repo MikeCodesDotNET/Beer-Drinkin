@@ -43,9 +43,10 @@ namespace BeerDrinkin.iOS
             {
                 cell = new TrendingBeerCell(new NSString(TrendingBeerCellIndeitifier));
             }
-            /*
+
             cell.Name = beer.Name;
             cell.Brewery = beer.Brewery;
+            /*
             if (beer.ImageMedium != null)
             {
                 cell.Image.SetImage(new NSUrl(beer.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));

@@ -13,7 +13,7 @@ namespace BeerDrinkin.iOS
         public TrendingBeerCell(NSString cellId) : base(UITableViewCellStyle.Default, cellId) { }
 
 
-        public string Namee
+        public string Name
         {
             get
             {
@@ -26,7 +26,7 @@ namespace BeerDrinkin.iOS
         }
 
 
-        public string Breweryy
+        public string Brewery
         {
             get
             {
