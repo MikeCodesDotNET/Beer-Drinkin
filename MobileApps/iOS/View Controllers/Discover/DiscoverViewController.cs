@@ -90,7 +90,7 @@ namespace BeerDrinkin.iOS
             var list = new List<UIViewController>();
             list.Add(discoverBeers);
             list.Add(discoverBreweries);
-            list.Add(discoverUsers);
+           // list.Add(discoverUsers);
 
             tabView = new ScrollingTabView(list);
             tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
