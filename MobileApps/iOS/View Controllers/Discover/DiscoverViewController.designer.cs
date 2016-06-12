@@ -20,6 +20,10 @@ namespace BeerDrinkin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView placeholderBackgroundView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         BeerDrinkin.iOS.SearchBar searchBar { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -27,6 +31,11 @@ namespace BeerDrinkin.iOS
             if (beerResultsTable != null) {
                 beerResultsTable.Dispose ();
                 beerResultsTable = null;
+            }
+
+            if (placeholderBackgroundView != null) {
+                placeholderBackgroundView.Dispose ();
+                placeholderBackgroundView = null;
             }
 
             if (searchBar != null) {

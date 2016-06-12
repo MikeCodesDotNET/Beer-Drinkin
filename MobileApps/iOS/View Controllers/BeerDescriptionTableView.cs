@@ -49,8 +49,8 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad ();
             SetUpUI ();
 
-            NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
-            NavigationController.NavigationBar.TintColor = UIColor.White;
+            //NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
+           // NavigationController.NavigationBar.TintColor = UIColor.White;
         }
 
 		public override void ViewDidAppear (bool animated)
@@ -294,5 +294,9 @@ namespace BeerDrinkin.iOS
 
         #endregion
 
-	}
+        async partial void BtnClose_TouchUpInside(UIButton sender)
+        {
+            await DismissViewControllerAsync(true);
+        }
+    }
 }

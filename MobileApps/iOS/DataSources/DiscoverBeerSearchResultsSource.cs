@@ -29,6 +29,8 @@ namespace BeerDrinkin.iOS
 
         #endregion
 
+
+
         #region Implemented abstract members of UITableViewSource
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)

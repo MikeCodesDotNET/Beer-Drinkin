@@ -21,10 +21,12 @@ namespace BeerDrinkin.iOS
         const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
         const string cellIdentifier = "SEARCH_RESULT_CELL";
 
-        ScrollingTabView tabView;
         readonly DiscoverViewModel viewModel = new DiscoverViewModel();
+
         List<Beer> searchResults;
         DiscoverBeerSearchResultsSource source;
+
+        ScrollingTabView tabView;
 
         ILogService logger;
         public Beer SelectedBeer { get; private set;}
@@ -54,6 +56,7 @@ namespace BeerDrinkin.iOS
                 return;
 
             beerDescriptoinViewController.EnableCheckIn = true;
+
             beerDescriptoinViewController.SetBeer(SelectedBeer);
             SelectedBeer = null;
         }
@@ -119,6 +122,8 @@ namespace BeerDrinkin.iOS
 
                 searchResults = await viewModel.Search(searchTerm);
                 source = new DiscoverBeerSearchResultsSource(searchResults);
+                source.DidSelectBeer += BeerSelected;
+
                 beerResultsTable.Source = source;
                 beerResultsTable.ReloadData();
                 View.BringSubviewToFront(beerResultsTable);
@@ -129,29 +134,32 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        UIView placeholderBackgroundView;
         void StartEditing(object sender, EventArgs e)
         {
-            if(placeholderBackgroundView == null)
-                placeholderBackgroundView = new UIView(View.Bounds);
-
             searchBar.ShowsCancelButton = true;
-            placeholderBackgroundView.BackgroundColor = UIColor.FromRGB(247, 247, 247);
-            View.AddSubview(placeholderBackgroundView);
+            placeholderBackgroundView.BackgroundColor = UIColor.White;
+            View.BringSubviewToFront(placeholderBackgroundView);
         }
 
         void EndEditing(object sender, EventArgs e)
         {
             searchBar.ShowsCancelButton = false;
-            placeholderBackgroundView.RemoveFromSuperview();
             searchBar.Text = "";
             searchBar.ResignFirstResponder();
             View.SendSubviewToBack(beerResultsTable);
+            View.SendSubviewToBack(placeholderBackgroundView);
         }
 
         void HideKeyboard(object sender, EventArgs e)
         {
             searchBar.ResignFirstResponder();
+        }
+
+        async void BeerSelected(Beer beer)
+        {
+            var vc = Storyboard.InstantiateViewController("BEER_DESCRIPTION") as BeerDescriptionTableView;
+            vc.SetBeer(beer);
+            await PresentViewControllerAsync(vc, true);
         }
     }
 }
