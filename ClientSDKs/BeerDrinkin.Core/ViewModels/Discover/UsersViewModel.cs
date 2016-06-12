@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
@@ -30,7 +31,9 @@ namespace BeerDrinkin.Core.ViewModels
         public async Task<List<User>> GetUsers()
         {
             Initialize();
-            return (List<User>)await userStore.GetItemsAsync();
+
+            var users = await userStore.GetItemsAsync();
+            return users.ToList();
         }
     }
 }
