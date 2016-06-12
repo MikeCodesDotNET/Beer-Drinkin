@@ -37,7 +37,17 @@ namespace BeerDrinkin.iOS
                 brewery.Text = value;
             }
         }
-        public UIImageView Image { get; set;}
+        public UIImageView Image
+        {
+            get
+            {
+                return image;
+            }
+            set
+            {
+                image = value;
+            }
+        }
         
     }
 }

@@ -20,6 +20,10 @@ namespace BeerDrinkin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView image { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel name { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -27,6 +31,11 @@ namespace BeerDrinkin.iOS
             if (brewery != null) {
                 brewery.Dispose ();
                 brewery = null;
+            }
+
+            if (image != null) {
+                image.Dispose ();
+                image = null;
             }
 
             if (name != null) {

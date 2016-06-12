@@ -46,7 +46,7 @@ namespace BeerDrinkin.iOS
 
             cell.Name = beer.Name;
             cell.Brewery = beer.Brewery;
-            /*
+
             if (beer.ImageMedium != null)
             {
                 cell.Image.SetImage(new NSUrl(beer.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));
@@ -54,7 +54,7 @@ namespace BeerDrinkin.iOS
             else
             {
                 cell.Image.Image = UIImage.FromBundle("BeerDrinkin.png");
-            }*/
+            }
 
             return cell;
         }

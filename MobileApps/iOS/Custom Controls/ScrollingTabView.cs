@@ -67,6 +67,7 @@ namespace BeerDrinkin.iOS.CustomControls
                 {
                     CurrentIndex = index;
                     TabItemSelected(index);
+                    ResignFirstResponder();
                 };
 
                 tabbarBackground.AddSubview(button);
@@ -131,10 +132,10 @@ namespace BeerDrinkin.iOS.CustomControls
             
             var newSelectedButton = tabbarBackground.Subviews[index] as UIButton;
             newSelectedButton.SetTitleColor(SelectedTabTextColor, UIControlState.Normal);
+            SelectionChanged(index, newSelectedButton.Title(UIControlState.Normal));
 
             var oldSelectedButton = tabbarBackground.Subviews[CurrentIndex] as UIButton;
             oldSelectedButton.SetTitleColor(TabTextColor, UIControlState.Normal);
-
             CurrentIndex = index;
         }
 
@@ -150,6 +151,9 @@ namespace BeerDrinkin.iOS.CustomControls
 
         public delegate void TabItemSelectedHandler(int index);
         public event TabItemSelectedHandler TabItemSelected;
+
+        public delegate void SelectionChangedHandler(int index, string title);
+        public event SelectionChangedHandler SelectionChanged;
 
         UIView tabbarBackground;
         UIView selectedTabUnderlineView; 

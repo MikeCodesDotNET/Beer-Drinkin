@@ -12,6 +12,7 @@ using Foundation;
 using System.Collections.Generic;
 using SDWebImage;
 using BeerDrinkin.Services.Abstractions;
+using BeerDrinkin.iOS.CustomControls;
 
 namespace BeerDrinkin.iOS
 {
@@ -21,12 +22,12 @@ namespace BeerDrinkin.iOS
         const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
         const string cellIdentifier = "SEARCH_RESULT_CELL";
 
+        ScrollingTabView tabView;
         readonly DiscoverViewModel viewModel = new DiscoverViewModel();
         List<Beer> searchResults;
         List<Beer> trendingBeers;
 
         ILogService logger;
-
         public Beer SelectedBeer { get; private set;}
 
         public DiscoverViewController (IntPtr handle) : base (handle)
@@ -94,8 +95,13 @@ namespace BeerDrinkin.iOS
             list.Add(discoverBreweries);
             list.Add(discoverUsers);
 
-            var tabView = new CustomControls.ScrollingTabView(list);
+            tabView = new CustomControls.ScrollingTabView(list);
             tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
+            tabView.SelectionChanged += (index, title) =>
+            {
+                searchBar.Placeholder = $"Search {title}";
+            };
+
             View.AddSubview(tabView);
 
         }
@@ -126,30 +132,6 @@ namespace BeerDrinkin.iOS
         {
             var trends = await viewModel.TrendingBeers(10);
 
-        }
-
-        partial void BtnBeer_TouchUpInside(UIButton sender)
-        {
-            searchBar.Placeholder = "Search for beers";
-            btnBeer.SetTitleColor(UIColor.White, UIControlState.Normal);
-            btnBreweries.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-            btnUsers.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-        }
-
-        partial void BtnBreweries_TouchUpInside(UIButton sender)
-        {
-            searchBar.Placeholder = "Search for breweries";
-            btnBeer.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-            btnBreweries.SetTitleColor(UIColor.White, UIControlState.Normal);
-            btnUsers.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-        }
-
-        partial void BtnUsers_TouchUpInside(UIButton sender)
-        {
-            searchBar.Placeholder = "Search for users";
-            btnBeer.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-            btnBreweries.SetTitleColor("0868B6".ToUIColor(), UIControlState.Normal);
-            btnUsers.SetTitleColor(UIColor.White, UIControlState.Normal);
-        }
+        }      
     }
 }
