@@ -448,7 +448,7 @@
         <scene sceneID="Mt5-Bk-mSY">
             <objects>
                 <tableViewController storyboardIdentifier="DiscoverBeers" title="Discover Beers" id="Y1T-Jq-JE8" customClass="DiscoverBeersViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="86" sectionHeaderHeight="1" sectionFooterHeight="1" id="pcc-xb-iQa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="86" sectionHeaderHeight="1" sectionFooterHeight="1" id="pcc-xb-iQa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>

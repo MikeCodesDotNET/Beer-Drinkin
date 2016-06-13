@@ -78,19 +78,17 @@ namespace BeerDrinkin.iOS
             searchBar.Layer.MasksToBounds = true;
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
 
-            var discoverBeers = Storyboard.InstantiateViewController("DiscoverBeers");
+            var discoverBeers = Storyboard.InstantiateViewController("DiscoverBeers") as DiscoverBeersViewController;
             discoverBeers.Title = "Beers";
+            discoverBeers.DidSelectBeer += BeerSelected;
+            discoverBeers.PictureImport += PictureImport;
 
             var discoverBreweries = Storyboard.InstantiateViewController("DiscoverBreweries");
             discoverBreweries.Title = "Breweries";
 
-            var discoverUsers = Storyboard.InstantiateViewController("DiscoverUsers");
-            discoverUsers.Title = "Users";
-
             var list = new List<UIViewController>();
             list.Add(discoverBeers);
             list.Add(discoverBreweries);
-           // list.Add(discoverUsers);
 
             tabView = new ScrollingTabView(list);
             tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
@@ -161,5 +159,45 @@ namespace BeerDrinkin.iOS
             vc.SetBeer(beer);
             await PresentViewControllerAsync(vc, true);
         }
+
+        void PictureImport()
+        {
+            var imagePicker = new UIImagePickerController();
+            imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+            PresentViewController(imagePicker, true, null);
+            imagePicker.Canceled += async delegate
+            {
+                await imagePicker.DismissViewControllerAsync(true);
+            };
+
+            imagePicker.FinishedPickingMedia += async (object s, UIImagePickerMediaPickedEventArgs e) =>
+            {
+                try
+                {
+                    await imagePicker.DismissViewControllerAsync(true);
+
+                    var image = e.OriginalImage;
+                    Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Uploading photo");
+
+                    var stream = ScaledImage(image, 500, 500).AsPNG().AsStream();
+                    await viewModel.ImageLookup(stream);
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                }
+                catch (Exception ex)
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
+                }
+            };
+        }
+
+        UIImage ScaledImage(UIImage image, nfloat maxWidth, nfloat maxHeight)
+        {
+            var maxResizeFactor = Math.Min(maxWidth / image.Size.Width, maxHeight / image.Size.Height);
+            var width = maxResizeFactor * image.Size.Width;
+            var height = maxResizeFactor * image.Size.Height;
+            return image.Scale(new CoreGraphics.CGSize(width, height));
+        }
+
     }
 }
