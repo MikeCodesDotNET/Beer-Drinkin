@@ -37,6 +37,7 @@
     <Compile Include="ITrendsService.cs" />
     <Compile Include="IBarcodeService.cs" />
     <Compile Include="ILogService.cs" />
+    <Compile Include="IImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmHelpers">

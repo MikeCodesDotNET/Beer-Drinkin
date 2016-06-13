@@ -73,7 +73,44 @@ namespace BeerDrinkin.iOS
 
         partial void PhotoImportButton_TouchUpInside(DiscoverCameraButton sender)
         {
-            throw new NotImplementedException();
+            var imagePicker = new UIImagePickerController();
+            imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+            PresentViewController(imagePicker, true, null);
+            imagePicker.Canceled += async delegate
+            {
+                await imagePicker.DismissViewControllerAsync(true);
+            };
+
+            imagePicker.FinishedPickingMedia += async (object s, UIImagePickerMediaPickedEventArgs e) =>
+            {
+                try
+                {
+                    await imagePicker.DismissViewControllerAsync(true);
+
+                    var image = e.OriginalImage;
+                    Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Uploading photo");
+
+                    var stream = ScaledImage(image, 500, 500).AsPNG().AsStream();
+                    await viewModel.ImageLookup(stream);
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                }
+                catch (Exception ex)
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
+                }
+            };
+
+
         }
+
+        UIImage ScaledImage(UIImage image, nfloat maxWidth, nfloat maxHeight)
+        {
+            var maxResizeFactor = Math.Min(maxWidth / image.Size.Width, maxHeight / image.Size.Height);
+            var width = maxResizeFactor * image.Size.Width;
+            var height = maxResizeFactor * image.Size.Height;
+            return image.Scale(new CoreGraphics.CGSize(width, height));
+        }
+
     }
 }

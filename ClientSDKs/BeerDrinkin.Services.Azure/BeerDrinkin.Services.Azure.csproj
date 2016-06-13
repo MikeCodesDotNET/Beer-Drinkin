@@ -36,6 +36,7 @@
     <Compile Include="BarcodeService.cs" />
     <Compile Include="SearchService.cs" />
     <Compile Include="TrendsService.cs" />
+    <Compile Include="ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj">

@@ -419,9 +419,7 @@
     </Compile>
     <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
     <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs" />
-    <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
-    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
       <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>

@@ -4,6 +4,7 @@ using BeerDrinkin.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.Services.Abstractions;
+using System.IO;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -13,7 +14,7 @@ namespace BeerDrinkin.Core.ViewModels
         ISearchService searchService;
         ITrendsService trendsService;
         IBarcodeService barcodeService;
-
+        IImageService imageService;
         public DiscoverViewModel()
         {
             Initialize();
@@ -46,6 +47,12 @@ namespace BeerDrinkin.Core.ViewModels
         {
             Initialize();
             return await barcodeService.LookupBarcode(upc);
+        }
+
+        public async Task<List<Beer>> ImageLookup(Stream stream)
+        {
+            Initialize();
+            return await imageService.LookupBeer(stream);
         }
     }
 }
