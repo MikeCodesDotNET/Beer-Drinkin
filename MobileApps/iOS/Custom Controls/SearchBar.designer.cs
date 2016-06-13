@@ -11,11 +11,11 @@ using UIKit;
 
 namespace BeerDrinkin.iOS
 {
-	[Register ("SearchBar")]
-	partial class SearchBar
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("SearchBar")]
+    partial class SearchBar
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

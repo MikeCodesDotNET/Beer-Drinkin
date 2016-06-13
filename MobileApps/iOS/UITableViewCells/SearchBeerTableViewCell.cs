@@ -10,15 +10,8 @@ namespace BeerDrinkin.iOS
     {
         private bool checkedIn;
 
-        public SearchBeerTableViewCell(IntPtr handle)
-            : base(handle)
-        {
-        }
-
-        public SearchBeerTableViewCell(NSString cellId)
-            : base(UITableViewCellStyle.Default, cellId)
-        {
-        }
+        public SearchBeerTableViewCell(IntPtr handle) : base(handle) { }
+        public SearchBeerTableViewCell(NSString cellId) : base(UITableViewCellStyle.Default, cellId) { }
 
         public string Name
         {

@@ -31,5 +31,21 @@ namespace BeerDrinkin.Controllers
                 return new List<Beer>();
             }
         }
+
+        public async Task<List<Beer>> Get(int takeCount, string longitude, string latitude)
+        {
+            telemetryClient.TrackEvent("GetTrendingBeersForLocation");
+            try
+            {
+                var breweryDb = new Services.BreweryDBService();
+                var featuredBeers = await breweryDb.GetFeatured();
+                return featuredBeers.Take(takeCount).ToList();
+            }
+            catch (Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+                return new List<Beer>();
+            }
+        }
     }
 }

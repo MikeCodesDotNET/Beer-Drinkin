@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BeerDrinkin.Utils.Interfaces;
+using BeerDrinkin.Services.Abstractions;
 using Mindscape.Raygun4Net;
 using Foundation;
 
 namespace BeerDrinkin.iOS.Helpers
 {
-    public class Logger : ILogger
+    public class Logger : ILogService
     {
         public Logger()
         {
@@ -22,8 +22,6 @@ namespace BeerDrinkin.iOS.Helpers
 
         public void Identify(string userId)
         {
-            RaygunClient.Current.UserInfo.Identifier = userId;
-            RaygunClient.Current.UserInfo.UUID = userId;
             RaygunClient.Current.User = userId;
         }
 

@@ -3,9 +3,8 @@ using BeerDrinkin.Utils;
 using BeerDrinkin.DataStore.Abstractions;
 
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.Services.Azure;
-
 using BeerDrinkin.DataStore.Azure;
+using BeerDrinkin.Services.Abstractions;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -19,6 +18,7 @@ namespace BeerDrinkin.Core.ViewModels
 
             //Services
             ServiceLocator.Instance.Add<ISearchService, SearchService>();
+            ServiceLocator.Instance.Add<ITrendsService, TrendsService>();
             ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>(); 
 
             //DataStores

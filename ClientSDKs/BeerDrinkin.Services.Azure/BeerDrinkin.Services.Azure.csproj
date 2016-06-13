@@ -35,6 +35,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BarcodeService.cs" />
     <Compile Include="SearchService.cs" />
+    <Compile Include="TrendsService.cs" />
+    <Compile Include="ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeerDrinkin.DataStore.Abstractions\BeerDrinkin.DataStore.Abstractions.csproj">
@@ -48,6 +50,10 @@
     <ProjectReference Include="..\BeerDrinkin.AzureClient\BeerDrinkin.AzureClient.csproj">
       <Project>{0D1E84BC-8253-46EF-B55B-E00BBD774B52}</Project>
       <Name>BeerDrinkin.AzureClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">
+      <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
+      <Name>BeerDrinkin.Services.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

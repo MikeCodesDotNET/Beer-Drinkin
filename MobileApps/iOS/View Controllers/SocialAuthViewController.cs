@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 using MikeCodesDotNET.iOS;
 using BeerDrinkin.Utils;
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.Utils.Interfaces;
+using BeerDrinkin.Services.Abstractions;
 
 namespace BeerDrinkin.iOS
 {
     partial class SocialAuthViewController : UIViewController
     {
         IAzureClient azure;
-        ILogger logger;
+        ILogService logger;
 
         public SocialAuthViewController(IntPtr handle): base(handle)
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-            logger = ServiceLocator.Instance.Resolve<ILogger>();
+            logger = ServiceLocator.Instance.Resolve<ILogService>();
         }
 
         public override void ViewDidLoad()

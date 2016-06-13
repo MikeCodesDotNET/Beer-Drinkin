@@ -16,22 +16,31 @@ namespace BeerDrinkin.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UISearchBar searchBar { get; set; }
+        UIKit.UITableView beerResultsTable { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView SearchResultsTable { get; set; }
+        UIKit.UIView placeholderBackgroundView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        BeerDrinkin.iOS.SearchBar searchBar { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (beerResultsTable != null) {
+                beerResultsTable.Dispose ();
+                beerResultsTable = null;
+            }
+
+            if (placeholderBackgroundView != null) {
+                placeholderBackgroundView.Dispose ();
+                placeholderBackgroundView = null;
+            }
+
             if (searchBar != null) {
                 searchBar.Dispose ();
                 searchBar = null;
-            }
-
-            if (SearchResultsTable != null) {
-                SearchResultsTable.Dispose ();
-                SearchResultsTable = null;
             }
         }
     }

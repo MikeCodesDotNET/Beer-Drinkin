@@ -1,34 +1,39 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Foundation;
-using UIKit;
-using CoreGraphics;
-
-using BeerDrinkin.Core.ViewModels;
-
-using Acr.UserDialogs;
 using MikeCodesDotNET.iOS;
 
-using Microsoft.Azure.Search;
+using BeerDrinkin.Core.ViewModels;
 using BeerDrinkin.DataObjects;
-using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.Utils;
-using BeerDrinkin.Utils.Interfaces;
+
+using UIKit;
+using Foundation;
+using System.Collections.Generic;
+using BeerDrinkin.Services.Abstractions;
+using BeerDrinkin.iOS.CustomControls;
 
 namespace BeerDrinkin.iOS
 {
     public partial class DiscoverViewController : BaseViewController
     {
-        readonly SearchViewModel viewModel = new SearchViewModel();
-        ILogger logger;
+        const string segueIdentifier = "BEER_DESCRIPTION_SEGUE";
+        const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
+        const string cellIdentifier = "SEARCH_RESULT_CELL";
 
+        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
+
+        List<Beer> searchResults;
+        DiscoverBeerSearchResultsSource source;
+
+        ScrollingTabView tabView;
+
+        ILogService logger;
         public Beer SelectedBeer { get; private set;}
 
         public DiscoverViewController (IntPtr handle) : base (handle)
         {
-            logger = ServiceLocator.Instance.Resolve<ILogger>();
+            logger = ServiceLocator.Instance.Resolve<ILogService>();
         }
 
         public async override void ViewDidLoad()
@@ -36,8 +41,24 @@ namespace BeerDrinkin.iOS
             base.ViewDidLoad();
 
             await ValidateUserAuth();
+
             ConfigureUserInterface();
             ConfigureEvents();
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier != segueIdentifier)
+                return;
+
+            var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
+            if (beerDescriptoinViewController == null)
+                return;
+
+            beerDescriptoinViewController.EnableCheckIn = true;
+
+            beerDescriptoinViewController.SetBeer(SelectedBeer);
+            SelectedBeer = null;
         }
 
         async Task ValidateUserAuth()
@@ -51,12 +72,41 @@ namespace BeerDrinkin.iOS
 
         void ConfigureUserInterface()
         {
-            searchBar.Layer.BorderWidth = 1;
+            searchBar.ShowsCancelButton = false;
+            searchBar.Layer.BorderWidth = 0;
+            searchBar.Layer.CornerRadius = 2;
+            searchBar.Layer.MasksToBounds = true;
             searchBar.Layer.BorderColor = "15A9FE".ToUIColor().CGColor;
+
+            var discoverBeers = Storyboard.InstantiateViewController("DiscoverBeers") as DiscoverBeersViewController;
+            discoverBeers.Title = "Beers";
+            discoverBeers.DidSelectBeer += BeerSelected;
+            discoverBeers.PictureImport += PictureImport;
+
+            var discoverBreweries = Storyboard.InstantiateViewController("DiscoverBreweries");
+            discoverBreweries.Title = "Breweries";
+
+            var list = new List<UIViewController>();
+            list.Add(discoverBeers);
+            list.Add(discoverBreweries);
+
+            tabView = new ScrollingTabView(list);
+            tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
+            tabView.SelectionChanged += (index, title) =>
+            {
+                searchBar.Placeholder = $"Search {title}";
+            };
+
+            View.AddSubview(tabView);
         }
 
         void ConfigureEvents()
         {
+            searchBar.OnEditingStarted += StartEditing;
+            searchBar.CancelButtonClicked += EndEditing;
+            searchBar.OnEditingStopped += HideKeyboard;
+
+            searchBar.SearchButtonClicked += HideKeyboard;;
             searchBar.TextChanged += async (sender, e) => await Search(searchBar.Text);
             searchBar.SearchButtonClicked += async (sender, e) => await Search(searchBar.Text);
         }
@@ -68,14 +118,86 @@ namespace BeerDrinkin.iOS
                 if (string.IsNullOrEmpty(searchBar.Text) || searchBar.Text.Length < 2)
                     return;
 
-                var beers = await viewModel.Search(searchTerm);
-                SearchResultsTable.Source = new SearchDataSource(beers);
-                SearchResultsTable.ReloadData();
+                searchResults = await viewModel.Search(searchTerm);
+                source = new DiscoverBeerSearchResultsSource(searchResults);
+                source.DidSelectBeer += BeerSelected;
+
+                beerResultsTable.Source = source;
+                beerResultsTable.ReloadData();
+                View.BringSubviewToFront(beerResultsTable);
             }
             catch (Exception ex)
-            {
+            { 
                 logger.Report(ex);
             }
         }
+
+        void StartEditing(object sender, EventArgs e)
+        {
+            searchBar.ShowsCancelButton = true;
+            placeholderBackgroundView.BackgroundColor = UIColor.White;
+            View.BringSubviewToFront(placeholderBackgroundView);
+        }
+
+        void EndEditing(object sender, EventArgs e)
+        {
+            searchBar.ShowsCancelButton = false;
+            searchBar.Text = "";
+            searchBar.ResignFirstResponder();
+            View.SendSubviewToBack(beerResultsTable);
+            View.SendSubviewToBack(placeholderBackgroundView);
+        }
+
+        void HideKeyboard(object sender, EventArgs e)
+        {
+            searchBar.ResignFirstResponder();
+        }
+
+        async void BeerSelected(Beer beer)
+        {
+            var vc = Storyboard.InstantiateViewController("BEER_DESCRIPTION") as BeerDescriptionTableView;
+            vc.SetBeer(beer);
+            await PresentViewControllerAsync(vc, true);
+        }
+
+        void PictureImport()
+        {
+            var imagePicker = new UIImagePickerController();
+            imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+            PresentViewController(imagePicker, true, null);
+            imagePicker.Canceled += async delegate
+            {
+                await imagePicker.DismissViewControllerAsync(true);
+            };
+
+            imagePicker.FinishedPickingMedia += async (object s, UIImagePickerMediaPickedEventArgs e) =>
+            {
+                try
+                {
+                    await imagePicker.DismissViewControllerAsync(true);
+
+                    var image = e.OriginalImage;
+                    Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Uploading photo");
+
+                    var stream = ScaledImage(image, 500, 500).AsPNG().AsStream();
+                    await viewModel.ImageLookup(stream);
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                }
+                catch (Exception ex)
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.ShowError(ex.Message);
+                }
+            };
+        }
+
+        UIImage ScaledImage(UIImage image, nfloat maxWidth, nfloat maxHeight)
+        {
+            var maxResizeFactor = Math.Min(maxWidth / image.Size.Width, maxHeight / image.Size.Height);
+            var width = maxResizeFactor * image.Size.Width;
+            var height = maxResizeFactor * image.Size.Height;
+            return image.Scale(new CoreGraphics.CGSize(width, height));
+        }
+
     }
 }

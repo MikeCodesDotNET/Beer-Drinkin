@@ -4,6 +4,7 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using System.Drawing;
+using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS.CustomControls
 {
@@ -59,6 +60,24 @@ namespace BeerDrinkin.iOS.CustomControls
             }
         }
 
+
+        [Export("Single"), Browsable(true)]
+        public bool Single
+        {
+            get
+            {
+                if (backgroundType == SearchCellBackgroundType.Single)
+                    return true;
+
+                return false;
+            }
+            set
+            {
+                backgroundType = SearchCellBackgroundType.Single;
+                SetNeedsDisplay();
+            }
+        }
+
         [Export("Footer"), Browsable(true)]
         public bool Footer
         {
@@ -80,7 +99,7 @@ namespace BeerDrinkin.iOS.CustomControls
 
 		public override void Draw(CGRect frame)
 		{
-            this.BackgroundColor = UIColor.Clear;
+            this.BackgroundColor = "F5F5F5".ToUIColor();
 
 			var borderColor = UIColor.FromRGBA(0.808f, 0.808f, 0.808f, 1.000f);
 			if (backgroundType == SearchCellBackgroundType.Header)
@@ -129,6 +148,16 @@ namespace BeerDrinkin.iOS.CustomControls
                 rectanglePath.LineWidth = 1.0f;
                 rectanglePath.Stroke();
 			}
+
+            if (backgroundType == SearchCellBackgroundType.Single)
+            {//// Rectangle Drawing
+                var rectanglePath = UIBezierPath.FromRoundedRect(new CGRect(frame.GetMinX() + 0.5f, frame.GetMinY() + 0.5f, frame.Width - 1.0f, frame.Height - 1.0f), 4.0f);
+                UIColor.White.SetFill();
+                rectanglePath.Fill();
+                borderColor.SetStroke();
+                rectanglePath.LineWidth = 1.0f;
+                rectanglePath.Stroke();
+            }
 		}
     }
 
@@ -136,7 +165,8 @@ namespace BeerDrinkin.iOS.CustomControls
 	{
 		Header,
 		Default,
-		Footer
+		Footer,
+        Single
 	}
 }
 

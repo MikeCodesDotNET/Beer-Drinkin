@@ -4,10 +4,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.DataObjects;
-using BeerDrinkin.DataStore.Abstractions;
+using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.Utils;
 
-namespace BeerDrinkin.Services.Azure
+namespace BeerDrinkin.DataStore.Azure
 {
     public class SearchService : ISearchService
     {

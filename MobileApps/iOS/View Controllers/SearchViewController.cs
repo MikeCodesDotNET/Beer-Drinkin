@@ -22,7 +22,7 @@ namespace BeerDrinkin.iOS
 	public partial class SearchViewController : BaseViewController
     {
         #region Fields
-        readonly SearchViewModel viewModel = new SearchViewModel();
+        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
 
         SearchIndexClient indexClient;
         Beer selectedBeer;
@@ -97,7 +97,7 @@ namespace BeerDrinkin.iOS
                 return;
 
             //Send table view to back and clear it.
-            SearchResultsTable.Source = new SearchDataSource(new List<Beer>());
+            SearchResultsTable.Source = new DiscoverBeerSearchResultsSource(new List<Beer>());
             SearchResultsTable.ReloadData();
         }
 
@@ -106,7 +106,7 @@ namespace BeerDrinkin.iOS
             UserDialogs.Instance.ShowLoading("Searching");
             var beers = await viewModel.Search(searchBar.Text);
 
-            var source = new SearchDataSource(beers);
+            var source = new DiscoverBeerSearchResultsSource(beers);
             source.DidSelectBeer += BeerSelected;
             
             SearchResultsTable.Source = source;
@@ -133,7 +133,7 @@ namespace BeerDrinkin.iOS
 
 
         #region Properties
-        public SearchDataSource DataSource {get; private set;}
+        public DiscoverBeerSearchResultsSource DataSource {get; private set;}
 
        #endregion
     }

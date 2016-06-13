@@ -41,6 +41,7 @@ namespace BeerDrinkin.DataStore.Azure
 
             store.DefineTable<Beer>();
             store.DefineTable<CheckIn>();
+            store.DefineTable<Brewery>();
 
             await client.SyncContext.InitializeAsync((IMobileServiceLocalStore) store, new MobileServiceSyncHandler()).ConfigureAwait(false);
 
@@ -57,6 +58,7 @@ namespace BeerDrinkin.DataStore.Azure
             taskList.Add(checkInStore.SyncAsync());
             taskList.Add(wishListStore.SyncAsync());
             taskList.Add(beerStore.SyncAsync());
+            taskList.Add(breweryStore.SyncAsync());
 
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
             return successes.Any(x => !x);//if any were a failure.
@@ -67,6 +69,8 @@ namespace BeerDrinkin.DataStore.Azure
             checkInStore.DropTable();
             wishListStore.DropTable();
             beerStore.DropTable();
+            breweryStore.DropTable();
+
             IsInitialized = false;
             return Task.FromResult(true);
         }
@@ -85,7 +89,10 @@ namespace BeerDrinkin.DataStore.Azure
 
         IBeerStore beerStore;
         public IBeerStore BeerStore => beerStore ?? (beerStore = ServiceLocator.Instance.Resolve<IBeerStore>());
-        
+
+        IBreweryStore breweryStore;
+        public IBreweryStore BreweryStore => breweryStore ?? (breweryStore = ServiceLocator.Instance.Resolve<IBreweryStore>());
+
         #endregion
     }
 }

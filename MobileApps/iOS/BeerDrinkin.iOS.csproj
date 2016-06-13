@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -9,8 +8,7 @@
     <RootNamespace>BeerDrinkin.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>BeerDrinkiniOS</AssemblyName>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,8 +30,7 @@
     <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>
-    </DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -43,8 +40,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution: M James (BCTYCQPYCZ)</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
-    <IpaPackageName>
-    </IpaPackageName>
+    <IpaPackageName></IpaPackageName>
     <CodesignProvision>31aba3cc-2220-4150-abf2-a555e7d4e9e7</CodesignProvision>
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
   </PropertyGroup>
@@ -73,11 +69,12 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <IpaPackageName>
-    </IpaPackageName>
+    <IpaPackageName></IpaPackageName>
     <MtouchFastDev>false</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <CodesignProvision>44fdd764-305f-44ca-a399-4d216fdfcdfd</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+    <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
     <Optimize>true</Optimize>
@@ -299,6 +296,14 @@
       <Project>{22AD198D-8B6D-40B1-BA0C-05379EED9766}</Project>
       <Name>BeerDrinkin.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">
+      <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
+      <Name>BeerDrinkin.Services.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.Services.Azure\BeerDrinkin.Services.Azure.csproj">
+      <Project>{89C1C0D0-874B-406B-B7AE-6EF49A8ED4D6}</Project>
+      <Name>BeerDrinkin.Services.Azure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\ITunesArtwork" />
@@ -332,7 +337,7 @@
     <Compile Include="View Controllers\SearchViewController.designer.cs">
       <DependentUpon>SearchViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSources\SearchDataSource.cs" />
+    <Compile Include="DataSources\DiscoverBeerSearchResultsSource.cs" />
     <Compile Include="DataSources\MyBeersDataSource.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.designer.cs">
@@ -414,10 +419,7 @@
     </Compile>
     <Compile Include="Custom Controls\PhotoCollectionViewCell.cs" />
     <Compile Include="Custom Controls\PhotoCollectionViewCell.designer.cs" />
-    <Compile Include="DataSources\SearchSuggestionDataSource.cs" />
     <Compile Include="Custom Controls\SearchTableViewCellBackground.cs" />
-    <Compile Include="DataSources\SearchPlaceholderDataSource.cs" />
-    <Compile Include="Models\IndexedBeer.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.cs" />
     <Compile Include="UITableViewCells\BarcodeSearchTableViewCell.designer.cs">
       <DependentUpon>BarcodeSearchTableViewCell.cs</DependentUpon>
@@ -438,6 +440,7 @@
     <Compile Include="UITableViewCells\SearchHeaderViewCell.designer.cs">
       <DependentUpon>SearchHeaderViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Controls\ScrollingTabView.cs" />
     <Compile Include="Custom Controls\SearchBar.cs" />
     <Compile Include="Custom Controls\SearchBar.designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
@@ -496,6 +499,41 @@
     <Compile Include="View Controllers\Discover\DiscoverViewController.cs" />
     <Compile Include="View Controllers\Discover\DiscoverViewController.designer.cs">
       <DependentUpon>DiscoverViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraViewController.cs" />
+    <Compile Include="CameraViewController.designer.cs">
+      <DependentUpon>CameraViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverBeersViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverBeersViewController.designer.cs">
+      <DependentUpon>DiscoverBeersViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverBreweriesViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverBreweriesViewController.designer.cs">
+      <DependentUpon>DiscoverBreweriesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controllers\Discover\DiscoverUsersViewController.cs" />
+    <Compile Include="View Controllers\Discover\DiscoverUsersViewController.designer.cs">
+      <DependentUpon>DiscoverUsersViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TinderBeerViewController.cs" />
+    <Compile Include="TinderBeerViewController.designer.cs">
+      <DependentUpon>TinderBeerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\TrendingBeerCell.cs" />
+    <Compile Include="UITableViewCells\TrendingBeerCell.designer.cs">
+      <DependentUpon>TrendingBeerCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\DiscoverCameraButton.cs" />
+    <Compile Include="Custom Controls\DiscoverCameraControl.cs" />
+    <Compile Include="Custom Controls\TrendingBeerBackground.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverUsersTableViewCell.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverUsersTableViewCell.designer.cs">
+      <DependentUpon>DiscoverUsersTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\Discover\DiscoverBeerResultCell.cs" />
+    <Compile Include="UITableViewCells\Discover\DiscoverBeerResultCell.designer.cs">
+      <DependentUpon>DiscoverBeerResultCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -754,10 +792,10 @@
   <ItemGroup>
     <Folder Include="UITableViewCells\" />
     <Folder Include="Storyboards\" />
-    <Folder Include="Models\" />
     <Folder Include="View Controllers\Settings\" />
     <Folder Include="View Controllers\Discover\" />
     <Folder Include="View Controllers\Misc\" />
     <Folder Include="View Controllers\UserProfile\" />
+    <Folder Include="UITableViewCells\Discover\" />
   </ItemGroup>
 </Project>
