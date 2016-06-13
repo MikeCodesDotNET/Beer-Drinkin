@@ -44,6 +44,7 @@
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
+    <DocumentationFile>bin\BeerDrinkinService.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,6 +64,7 @@
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
+    <DocumentationFile>bin\BeerDrinkinService.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
