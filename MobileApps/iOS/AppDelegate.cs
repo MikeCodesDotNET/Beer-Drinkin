@@ -138,9 +138,9 @@ namespace BeerDrinkin.iOS
 
 		// Minimum number of seconds between a background refresh
 		// 15 minutes = 15 * 60 = 900 seconds
-		private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 900;
+		const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 900;
 
-		private void SetMinimumBackgroundFetchInterval ()
+		void SetMinimumBackgroundFetchInterval ()
 		{
 			UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval (MINIMUM_BACKGROUND_FETCH_INTERVAL);
 		}

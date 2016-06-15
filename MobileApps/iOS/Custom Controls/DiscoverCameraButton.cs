@@ -17,10 +17,10 @@ namespace BeerDrinkin.iOS.CustomControls
 
         public override void Draw(CGRect rect)
         {
-            DrawCanvas2(rect);
+            DrawCanvas(rect);
         }
 
-       private void DrawCanvas2(CGRect frame)
+        void DrawCanvas(CGRect frame)
         {
             //// General Declarations
             var context = UIGraphics.GetCurrentContext();
