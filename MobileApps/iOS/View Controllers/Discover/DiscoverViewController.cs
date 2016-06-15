@@ -162,6 +162,9 @@ namespace BeerDrinkin.iOS
 
         void PictureImport()
         {
+            if (!UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
+                return;
+
             var imagePicker = new UIImagePickerController();
             imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
             PresentViewController(imagePicker, true, null);
