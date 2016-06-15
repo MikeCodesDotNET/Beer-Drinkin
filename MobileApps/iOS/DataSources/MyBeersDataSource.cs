@@ -29,7 +29,7 @@ namespace BeerDrinkin.iOS
 
         #endregion
 
-        async void DeleteItem(string beerId)
+        void DeleteItem(string beerId)
         {
         }
 

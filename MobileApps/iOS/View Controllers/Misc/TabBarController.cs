@@ -17,7 +17,7 @@ namespace BeerDrinkin.iOS
 		#endregion
 
 		#region Overrides
-		public async override void ViewDidAppear(bool animated)
+		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
 			SetupTabChangeAnimation();

@@ -12,10 +12,6 @@ namespace BeerDrinkin.iOS
 {
     partial class MyBeersViewController : BaseViewController
     {
-        readonly CheckInsViewModel viewModel = new CheckInsViewModel();
-        MyBeersDataSource dataSource;
-        List<Beer> beers;
-
         public MyBeersViewController(IntPtr handle) : base(handle)
         {
         }

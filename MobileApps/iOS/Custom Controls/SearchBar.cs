@@ -32,8 +32,5 @@ namespace BeerDrinkin.iOS
             };
 
         }
-
-        public delegate void ClickedHandler();
-        public event ClickedHandler BarcodeButtonClicked;
 	}
 }

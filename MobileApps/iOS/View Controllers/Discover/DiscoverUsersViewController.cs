@@ -9,7 +9,6 @@ namespace BeerDrinkin.iOS
 {
     public partial class DiscoverUsersViewController : UITableViewController
     {
-        Core.ViewModels.DiscoverViewModel viewModel;
         string DiscoverUserCellIndeitifier = "DISCOVER_USER_CELL";
         List<User> trendingBeers = new List<User>();
 

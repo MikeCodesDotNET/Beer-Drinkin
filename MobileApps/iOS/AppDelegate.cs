@@ -146,7 +146,7 @@ namespace BeerDrinkin.iOS
 		}
 
 		// Called whenever your app performs a background fetch
-		public override async void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+		public override void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
 		{
 			
 		}
