@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using BeerDrinkin.DataObjects;
 using SDWebImage;
 using BeerDrinkin.iOS.CustomControls;
+using BeerDrinkin.iOS.PreviewingDelegate;
 
 namespace BeerDrinkin.iOS
 {
@@ -12,7 +13,7 @@ namespace BeerDrinkin.iOS
     {
         Core.ViewModels.DiscoverViewModel viewModel;
         string TrendingBeerCellIndeitifier = "TRENDING_BEER_CELL";
-        List<Beer> trendingBeers = new List<Beer>();
+        public List<Beer> Beers = new List<Beer>();
 
         public DiscoverBeersViewController (IntPtr handle) : base (handle)
         {
@@ -22,8 +23,14 @@ namespace BeerDrinkin.iOS
         {
             base.ViewDidLoad();
 
+           Console.WriteLine(TraitCollection.ForceTouchCapability);
+            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
+            {
+                RegisterForPreviewingWithDelegate(new DiscoverBeerPreviewingDelegate(this), View);
+            }
+
             viewModel = new Core.ViewModels.DiscoverViewModel();
-            trendingBeers = await viewModel.TrendingBeers(10);
+            Beers = await viewModel.TrendingBeers(10);
             TableView.ReloadData();
         }
 
@@ -31,12 +38,12 @@ namespace BeerDrinkin.iOS
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return trendingBeers.Count;
+            return Beers.Count;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var beer = trendingBeers[indexPath.Row];        
+            var beer = Beers[indexPath.Row];        
             var cell = tableView.DequeueReusableCell(TrendingBeerCellIndeitifier) as TrendingBeerCell;
 
             if (cell == null)
@@ -71,7 +78,7 @@ namespace BeerDrinkin.iOS
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            var beer = trendingBeers[indexPath.Row];
+            var beer = Beers[indexPath.Row];
             DidSelectBeer(beer);
         }
         #endregion
