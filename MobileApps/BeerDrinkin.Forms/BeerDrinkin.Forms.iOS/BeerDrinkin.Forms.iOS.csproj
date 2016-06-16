@@ -89,7 +89,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\CellAccessoryRenderer.cs" />
-    <Compile Include="CustomRenderers\DiscoverPageRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="app.config" />

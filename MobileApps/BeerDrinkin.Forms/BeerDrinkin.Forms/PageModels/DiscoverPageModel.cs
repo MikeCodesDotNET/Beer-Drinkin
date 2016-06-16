@@ -56,7 +56,7 @@ namespace BeerDrinkin.Forms.PageModels
 
                 if (_selectedBeer != null)
                 {
-                    CoreMethods.PushPageModel<BeerDetailsPageModel>(_selectedBeer);
+                    CoreMethods.PushPageModel<BeerDetailsPageModel>(_selectedBeer, true);
                 }
 
                 _selectedBeer = null;

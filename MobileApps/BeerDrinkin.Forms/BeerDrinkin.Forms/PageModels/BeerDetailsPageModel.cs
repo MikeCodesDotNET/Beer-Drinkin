@@ -2,46 +2,36 @@
 using BeerDrinkin.Forms.Interfaces;
 using FreshMvvm;
 using PropertyChanged;
+using Xamarin.Forms;
 
 namespace BeerDrinkin.Forms.PageModels
 {
     [ImplementPropertyChanged]
     internal class BeerDetailsPageModel : FreshBasePageModel
     {
-        private readonly IBeerDrinkinClient _breweryDbClient;
+        private readonly IBeerDrinkinClient _beerDrinkinClient;
+        private Command _closeCommand;
 
         public Beer SelectedBeer { get; set; }
 
-        public BeerDetailsPageModel(IBeerDrinkinClient breweryDbClient)
+        public Command CloseCommand
         {
-            _breweryDbClient = breweryDbClient;
+            get { return _closeCommand ?? (_closeCommand = new Command(async () => await CoreMethods.PopPageModel(true))); }
         }
 
-        public async override void Init(object initData)
+        public BeerDetailsPageModel(IBeerDrinkinClient breweryDbClient)
         {
-            //var selectedBeer = initData as Beer;
+            _beerDrinkinClient = breweryDbClient;
+        }
 
-            //if (selectedBeer == null)
-            //    return; // TODO Come on, you're nicer than this...
+        public override void Init(object initData)
+        {
+            var selectedBeer = initData as Beer;
 
-            //if (string.IsNullOrWhiteSpace(selectedBeer.BreweryDbId))
-            //    return; // TODO No really, you can't do this!
+            if (selectedBeer == null)
+                return; // TODO Come on, you're nicer than this...
 
-            //var resultBeer = await _breweryDbClient.GetBeerAsync(selectedBeer.BreweryDbId);
-
-            //// TODO probably do this in service to return our own type of Beer
-            //SelectedBeer = new Beer
-            //{
-            //    Abv = resultBeer.Abv.ToString(),
-            //    Brewery = resultBeer.Brewery,
-            //    BreweryDbId = resultBeer.Id,
-            //    BreweryId = resultBeer.Breweries.FirstOrDefault()?.Id,
-            //    Description = resultBeer.Description,
-            //    ImageLarge = resultBeer.Labels?.Large,
-            //    ImageMedium = resultBeer.Labels?.Medium,
-            //    ImageSmall = resultBeer.Labels?.Icon,
-            //    Name = resultBeer.Name
-            //};
+            SelectedBeer = selectedBeer;
         }
     }
 }

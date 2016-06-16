@@ -59,7 +59,7 @@ namespace BeerDrinkin.Forms.iOS
             //NavigationBar Buttons
             UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes
             {
-                Font = UIFont.FromName("Avenir-Medium", 17f),
+                Font = UIFont.FromName("Avenir-Medium", 14f),
                 TextColor = Color.White.ToUIColor()
             }, UIControlState.Normal);
 
