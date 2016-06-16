@@ -41,7 +41,7 @@
     <CodesignKey>iPhone Distribution: M James (BCTYCQPYCZ)</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName></IpaPackageName>
-    <CodesignProvision>31aba3cc-2220-4150-abf2-a555e7d4e9e7</CodesignProvision>
+    <CodesignProvision>341d9ae4-40c2-445d-8973-d9867c93c245</CodesignProvision>
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -52,8 +52,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>i386</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
