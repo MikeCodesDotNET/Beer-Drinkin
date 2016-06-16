@@ -15,10 +15,13 @@ Extensive documentation for the project can be found [here](https://beerdrinkin.
 ### Get Involved
 Want to contribute? Great!
 
-Grab a copy of the project and start tweaking, fixing bugs and adding new features. First merged PR will recieve a crate of beer (location allowing) as a thank you. 
+Grab a copy of the project and start tweaking, fixing bugs and adding new features. First merged PR will receive a crate of beer (location allowing) as a thank you. 
+
+## Community built version
+I am focused entirely on the backend infrastructure and traditional version of the apps. If you want to see how to build this type of app with Xamarin.Forms, then please check out the community build version (within the Forms folder). 
 
 ####Design
-If you're a Mac user, then please get in touch directly with me to request a copy of the Sketch.app file which contains all the current designs. If you're looking to port Beer Drinkin to Android or UWP then you'll find the following colour palette useful. 
+I've created the designs using Sketch.app which is a Mac only application. As part of my workflow, these are shared with [Zeplin](http://zeplin.io) which I'm happy to grant access to. 
 
 <img src="https://github.com/MikeCodesDotNet/BeerDrinkin/blob/master/Design/Color%20Palette.png" width=250">
 
