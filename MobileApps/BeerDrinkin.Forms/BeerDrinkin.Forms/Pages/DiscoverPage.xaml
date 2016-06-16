@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:BeerDrinkin.Forms.Views;assembly=BeerDrinkin.Forms"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="BeerDrinkin.Forms.Pages.DiscoverPage" BackgroundColor="{StaticResource PrimaryBarColor}" Title="Discover">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+  </ContentPage.Padding>
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid RowSpacing="0" x:Name="layout">
+    <Grid RowSpacing="0" Padding="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <SearchBar Grid.Row="0" Placeholder="Search Beers" SearchCommand="{Binding SearchBeersCommand}" Text="{Binding SearchTerm}"
+                 FontSize="Small" CancelButtonColor="White" BackgroundColor="{StaticResource PrimaryBarColor}" />
+      <ListView Grid.Row="1" IsVisible="{Binding IsSearched}" BackgroundColor="#F7F7F7" RowHeight="80" CachingStrategy="RecycleElement" ItemsSource="{Binding Beers}"
+                SelectedItem="{Binding SelectedBeer, Mode=TwoWay}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell Text="{Binding Name}" Detail="{Binding Abv}" ImageSource="{Binding ImageSmall}" StyleId="disclosure" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <ListView Grid.Row="1" IsVisible="{Binding IsSearched, Converter={StaticResource InvertedBooleanConverter}" BackgroundColor="#F7F7F7" RowHeight="136"
+                CachingStrategy="RecycleElement" ItemsSource="{Binding DiscoverBeers}" SelectedItem="{Binding SelectedBeer, Mode=TwoWay}" SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="5,0,5,2">
+                <Frame HasShadow="False" BackgroundColor="White" OutlineColor="Silver" Padding="7,5,5,5">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*" />
+                      <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ffimageloading:CachedImage Grid.Row="0" Source="{Binding ImageMedium}" HeightRequest="150" LoadingPlaceholder="BeerDrinkin.png" ErrorPlaceholder="BeerDrinkin.png"
+                                                Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" />
+
+                    <StackLayout Grid.Row="1" Spacing="0">
+                      <Label Text="{Binding Name}" FontFamily="Avenir-Medium" FontSize="16" TextColor="#636265" />
+                      <Label Text="{Binding Brewery}" FontFamily="Avenir-Light" FontSize="16" TextColor="#636265" />
+                    </StackLayout>
+                  </Grid>
+                </Frame>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </Grid>
+  </Grid>
+</ContentPage>

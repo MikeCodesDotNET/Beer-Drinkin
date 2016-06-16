@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BeerDrinkin.Forms.App">
+  <Application.Resources>
+    <ResourceDictionary>
+      <Color x:Key="MainBackgroundColor">#EEF0F2</Color>
+      <Color x:Key="PrimaryBarColor">#15A9FE</Color>
+      <Color x:Key="PrimaryBarTextColor">#FFFFFF</Color>
+      <Color x:Key="PrimaryDarkTextColor">#454545</Color>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

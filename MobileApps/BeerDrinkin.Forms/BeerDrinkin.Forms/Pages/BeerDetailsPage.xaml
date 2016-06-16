@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="BeerDrinkin.Forms.Pages.BeerDetailsPage" Title="{Binding SelectedBeer.Name}" BackgroundColor="{StaticResource MainBackgroundColor}">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Close" Command="{Binding CloseCommand}" />
+  </ContentPage.ToolbarItems>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="250" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0" BackgroundColor="White">
+      <ffimageloading:CachedImage  Source="{Binding SelectedBeer.ImageLarge}" Aspect="AspectFill" HorizontalOptions="Center" WidthRequest="200" HeightRequest="200">
+        <ffimageloading:CachedImage.Transformations>
+          <transformations:CircleTransformation />
+        </ffimageloading:CachedImage.Transformations>
+      </ffimageloading:CachedImage>
+    </Grid>
+
+    <StackLayout Grid.Row="1" BackgroundColor="{StaticResource MainBackgroundColor}" Spacing="0">
+      <Label Text="{Binding SelectedBeer.Name}" HorizontalTextAlignment="Center" FontFamily="Avenir-Medium" FontSize="20" TextColor="#636265" />
+      <Label Text="{Binding SelectedBeer.Brewery}" HorizontalTextAlignment="Center" FontFamily="Avenir-Book" FontSize="14" TextColor="#888888" />
+    </StackLayout>
+
+    <Grid Grid.Row="2" BackgroundColor="{StaticResource MainBackgroundColor}" Padding="10,5,10,5">
+      <Label Text="{Binding SelectedBeer.Description}" HorizontalTextAlignment="Center" FontFamily="Avenir-Book" FontSize="14" TextColor="#636265" />
+    </Grid>
+
+    <Grid Grid.Row="3">
+      <Button BackgroundColor="#00d5cc" Text="Check in" FontFamily="Avenir-Book" FontSize="16" TextColor="White" BorderRadius="0" />
+    </Grid>
+  </Grid>
+</ContentPage>
