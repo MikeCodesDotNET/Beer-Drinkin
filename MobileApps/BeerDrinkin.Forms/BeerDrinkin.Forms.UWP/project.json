@@ -1,0 +1,23 @@
+﻿{
+  "dependencies": {
+    "Acr.XamForms.UserDialogs": "5.0.0",
+    "FormsToolkit": "1.1.14",
+    "FreshMvvm": "2.1.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Xamarin.FFImageLoading.Forms": "2.1.3",
+    "Xamarin.FFImageLoading.Transformations": "2.1.3",
+    "Xamarin.Forms": "2.2.0.45",
+    "Xamarin.Insights": "1.12.3"
+  },
+  "frameworks": {
+    "uap10.0": {}
+  },
+  "runtimes": {
+    "win10-arm": {},
+    "win10-arm-aot": {},
+    "win10-x86": {},
+    "win10-x86-aot": {},
+    "win10-x64": {},
+    "win10-x64-aot": {}
+  }
+}
