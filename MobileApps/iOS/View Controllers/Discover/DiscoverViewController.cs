@@ -12,6 +12,7 @@ using Foundation;
 using System.Collections.Generic;
 using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.iOS.CustomControls;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.iOS
 {
@@ -21,7 +22,7 @@ namespace BeerDrinkin.iOS
         const string beerDescriptionIdentifier = "BEER_DESCRIPTION_IDENTIFIER";
         const string cellIdentifier = "SEARCH_RESULT_CELL";
 
-        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
+        readonly IDiscoverViewModel viewModel;
 
         List<Beer> searchResults;
         DiscoverBeerSearchResultsSource source;
@@ -33,6 +34,7 @@ namespace BeerDrinkin.iOS
 
         public DiscoverViewController (IntPtr handle) : base (handle)
         {
+            viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
             logger = ServiceLocator.Instance.Resolve<ILogService>();
         }
 

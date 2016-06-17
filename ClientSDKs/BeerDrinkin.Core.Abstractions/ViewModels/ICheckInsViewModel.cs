@@ -7,7 +7,7 @@ namespace BeerDrinkin.Core.Abstractions.ViewModels
 {
     public interface ICheckInsViewModel
     {
-        Task<List<CheckIn>> Checkins(string userI);
+        Task<List<CheckIn>> CheckIns(string userI);
     }
 }
 
