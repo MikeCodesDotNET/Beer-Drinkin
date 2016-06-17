@@ -1,20 +1,18 @@
 ﻿using BeerDrinkin.DataObjects;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class UserProfileViewModel : ViewModelBase
+    public class UserProfileViewModel : ViewModelBase, IUserProfileViewModel
     {
         IUserStore userStore;
         IRatingStore ratingStore;
         IWishStore wishStore;
-
 
         User user;
 

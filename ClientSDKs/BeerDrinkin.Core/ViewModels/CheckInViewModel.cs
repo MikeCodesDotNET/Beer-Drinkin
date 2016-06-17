@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Services.Abstractions;
@@ -11,20 +12,17 @@ using Plugin.Geolocator;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class CheckInViewModel : ViewModelBase
+    public class CheckInViewModel : ViewModelBase, ICheckInViewModel
     {
         ICheckInStore checkInStore;
         IAzureClient azure;
         ILogService log;
 
-        public CheckInViewModel(Beer beer)
+        public CheckInViewModel()
         {
             checkInStore = ServiceLocator.Instance.Resolve<ICheckInStore>();
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-            log = ServiceLocator.Instance.Resolve<ILogService>();
-
-            BeerName = beer.Name;
-            ABV = beer.Abv;
+            log = ServiceLocator.Instance.Resolve<ILogService>();          
         }
 
         public async Task CheckInBeer(Beer beer, Rating rating, bool isBottled)

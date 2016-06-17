@@ -6,12 +6,14 @@ using SDWebImage;
 using MikeCodesDotNET.iOS;
 using Plugin.Connectivity;
 using System.Threading.Tasks;
+using BeerDrinkin.Core.Abstractions.ViewModels;
+using BeerDrinkin.Utils;
 
 namespace BeerDrinkin.iOS
 {
     partial class AccountViewController : UIViewController
     {
-        readonly UserProfileViewModel viewModel = new UserProfileViewModel();
+        IUserProfileViewModel viewModel;
 
         public AccountViewController(IntPtr handle) : base(handle)
         {
@@ -20,6 +22,7 @@ namespace BeerDrinkin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            viewModel = ServiceLocator.Instance.Resolve<IUserProfileViewModel>();
         }
     }
 }

@@ -16,13 +16,15 @@ using Microsoft.Azure.Search.Models;
 using BeerDrinkin.iOS.DataSources;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.Helpers;
+using BeerDrinkin.Core.Abstractions.ViewModels;
+using BeerDrinkin.Utils;
 
 namespace BeerDrinkin.iOS
 {
 	public partial class SearchViewController : BaseViewController
     {
         #region Fields
-        readonly DiscoverViewModel viewModel = new DiscoverViewModel();
+        IDiscoverViewModel viewModel;
 
         SearchIndexClient indexClient;
         Beer selectedBeer;
@@ -46,6 +48,8 @@ namespace BeerDrinkin.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
+
             DismissKeyboardOnBackgroundTap();
 
             if (string.IsNullOrEmpty(Utils.Helpers.Settings.UserId))

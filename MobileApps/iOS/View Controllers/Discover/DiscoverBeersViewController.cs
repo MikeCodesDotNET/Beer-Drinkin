@@ -6,12 +6,14 @@ using BeerDrinkin.DataObjects;
 using SDWebImage;
 using BeerDrinkin.iOS.CustomControls;
 using BeerDrinkin.iOS.PreviewingDelegate;
+using BeerDrinkin.Core.Abstractions.ViewModels;
+using BeerDrinkin.Utils;
 
 namespace BeerDrinkin.iOS
 {
     public partial class DiscoverBeersViewController : UITableViewController
     {
-        Core.ViewModels.DiscoverViewModel viewModel;
+        IDiscoverViewModel viewModel;
         string TrendingBeerCellIndeitifier = "TRENDING_BEER_CELL";
         public List<Beer> Beers = new List<Beer>();
 
@@ -22,14 +24,14 @@ namespace BeerDrinkin.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
 
-           Console.WriteLine(TraitCollection.ForceTouchCapability);
+            Console.WriteLine(TraitCollection.ForceTouchCapability);
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
             {
                 RegisterForPreviewingWithDelegate(new DiscoverBeerPreviewingDelegate(this), View);
             }
 
-            viewModel = new Core.ViewModels.DiscoverViewModel();
             Beers = await viewModel.FetchTrendingBeers(10);
             TableView.ReloadData();
         }

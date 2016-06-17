@@ -37,6 +37,9 @@
     <Compile Include="ViewModels\IDiscoverViewModel.cs" />
     <Compile Include="ViewModels\IAppFeedbackViewModel.cs" />
     <Compile Include="ViewModels\IBeersViewModel.cs" />
+    <Compile Include="ViewModels\IUserProfileViewModel.cs" />
+    <Compile Include="ViewModels\IWishListViewModel.cs" />
+    <Compile Include="ViewModels\ICheckInViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

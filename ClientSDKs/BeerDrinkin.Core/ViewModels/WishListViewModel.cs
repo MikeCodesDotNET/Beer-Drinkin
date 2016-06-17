@@ -4,10 +4,11 @@ using BeerDrinkin.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class WishListViewModel : ViewModelBase
+    public class WishListViewModel : ViewModelBase, IWishListViewModel
     {
         IWishStore wishStore; 
         public WishListViewModel()

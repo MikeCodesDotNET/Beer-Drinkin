@@ -34,6 +34,12 @@ namespace BeerDrinkin.Core.ViewModels
             //ViewModles
             ServiceLocator.Instance.Add<ICheckInsViewModel, CheckInsViewModel>();
             ServiceLocator.Instance.Add<IDiscoverViewModel, DiscoverViewModel>();
+            ServiceLocator.Instance.Add<IAppFeedbackViewModel, AppFeedbackViewModel>();
+            ServiceLocator.Instance.Add<IBeersViewModel, BeersViewModel>();
+            ServiceLocator.Instance.Add<ICheckInViewModel, CheckInViewModel>();
+            ServiceLocator.Instance.Add<IUserProfileViewModel, UserProfileViewModel>();
+            ServiceLocator.Instance.Add<IWishListViewModel, WishListViewModel>();
+
 
             //TODO: Put this somewhere....
             ServiceLocator.Instance.Resolve<IStoreManager>().InitializeAsync();
