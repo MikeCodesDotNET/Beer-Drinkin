@@ -14,7 +14,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Brewery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Favourite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Style.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />

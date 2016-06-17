@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Search.Models;
 using BeerDrinkin.Models;
 using Microsoft.ApplicationInsights;
+using BeerDrinkin.Service.Helpers;
 
 namespace BeerDrinkin.Controllers
 {
@@ -19,9 +20,10 @@ namespace BeerDrinkin.Controllers
         BeerDrinkinContext context = new BeerDrinkinContext();
             
         ISearchServiceClient serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials("08D2D12B51E07BFDDE17F6092F4C1575"));
+
         SearchIndexClient indexClient;
 
-        // GET api/search
+        [QueryableExpand("Brewery, Style, Image")]
         public async Task<List<DataObjects.Beer>> Get(string searchTerm)
         {
             try
@@ -53,19 +55,19 @@ namespace BeerDrinkin.Controllers
                     var beer = new DataObjects.Beer
                     {
                         Id = indexedBeer.Id,
-                        Brewery = indexedBeer.BreweryName,
                         Abv = indexedBeer.Abv,
                         Description = indexedBeer.Description,
                         BreweryDbId = indexedBeer.Id,
-                        BreweryId = indexedBeer.BreweryId,
                         Name = indexedBeer.Name
                     };
 
+                    //Fetch Brewery information 
+
                     if(indexedBeer.Images.Count() > 0)
                     {
-                        beer.ImageSmall = indexedBeer?.Images[0];
-                        beer.ImageMedium = indexedBeer?.Images[1];
-                        beer.ImageLarge = indexedBeer?.Images[2];
+                        beer.Image.SmallUrl = indexedBeer?.Images[0];
+                        beer.Image.MediumUrl = indexedBeer?.Images[1];
+                        beer.Image.LargeUrl = indexedBeer?.Images[2];
                     }
                     results.Add(beer);
                 }

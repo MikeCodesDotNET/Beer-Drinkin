@@ -44,7 +44,8 @@
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
-    <DocumentationFile>bin\BeerDrinkinService.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -367,14 +368,18 @@
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="Controllers\BarcodeController.cs" />
     <Compile Include="Controllers\BeerController.cs" />
-    <Compile Include="Controllers\BreweryDbManagerController.cs" />
     <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TrendingBeersController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WishController.cs" />
     <Compile Include="DataObjects\AzureSearchBeerResponse.cs" />
-    <Compile Include="Helpers\BreweryDbTypeConverter.cs" />
+    <Compile Include="DataObjects\Brewery.cs" />
+    <Compile Include="DataObjects\Image.cs" />
+    <Compile Include="DataObjects\Style.cs" />
+    <Compile Include="DataObjects\Wish.cs" />
+    <Compile Include="Helpers\QueryableExpandAttribute.cs" />
     <Compile Include="Indentify\AdministratorAuthorizeAttribute.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BeerDrinkinContext.cs" />

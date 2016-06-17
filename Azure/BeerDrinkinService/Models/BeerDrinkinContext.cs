@@ -14,7 +14,7 @@ namespace BeerDrinkin.Models
         static BeerDrinkinContext()
         {
             // Automatic migration
-            Database.SetInitializer<BeerDrinkinContext>(new MigrateDatabaseToLatestVersion<BeerDrinkinContext, Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BeerDrinkinContext, Migrations.Configuration>());
 
             //Database.SetInitializer<BeerDrinkinContext>(new DropCreateDatabaseAlways<BeerDrinkinContext>());
 
@@ -38,5 +38,9 @@ namespace BeerDrinkin.Models
         public DbSet<Beer> Beers { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
+        public DbSet<Brewery> Breweries { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Wish> Wishes { get; set; }
+        
     }
 }

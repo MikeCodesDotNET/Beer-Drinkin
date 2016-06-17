@@ -28,7 +28,6 @@ namespace BeerDrinkin.Controllers
         public IQueryable<Rating> GetAllRating()
         {
             telemetryClient.TrackEvent("GetAllRatings");
-
             return Query(); 
         }
 

@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using BeerDrinkin.DataObjects;
+using Microsoft.ApplicationInsights;
 
 namespace BeerDrinkin.Services
 {
     public class BreweryDBService
     {
         BreweryDB.BreweryDbClient client;
+        TelemetryClient telemetryClient;
+
         public BreweryDBService()
         {
             client = new BreweryDB.BreweryDbClient("a956af587b434c4c89ef18c7bbd2fac9");
@@ -50,23 +53,81 @@ namespace BeerDrinkin.Services
             return featured.ToList();
         }
 
+        public async Task<Brewery> GetBrewery(string id)
+        {
+            var response = await client.Breweries.Get(id);
+            var brewery = ToBeerDrinkin(response.Data);
+            return brewery;
+        }
+
+        //Beer Converter 
         Beer ToBeerDrinkin(BreweryDB.Interfaces.IBeer dbBeer)
         {
-            var beer = new Beer()
+            try
             {
-                Id = dbBeer.Id,
-                Name = dbBeer.Name,
-                BreweryDbId = dbBeer.Id,
-                Description = dbBeer.Description,
-                Brewery = dbBeer.Brewery,
-                BreweryId = dbBeer?.Breweries?.FirstOrDefault().Id,
-                StyleId = dbBeer.StyleId.ToString(),
-                Abv = dbBeer.Abv,
-                ImageSmall = dbBeer?.Labels?.Icon,
-                ImageMedium = dbBeer?.Labels?.Medium,
-                ImageLarge = dbBeer?.Labels?.Large
-            };
-            return beer;
+                var beer = new Beer()
+                {
+                    Id = dbBeer.Id,
+                    Name = dbBeer.Name,
+                    BreweryDbId = dbBeer.Id,
+                    Description = dbBeer.Description,
+                    Abv = dbBeer.Abv
+                };
+
+                if (dbBeer.Labels != null)
+                {
+                    var image = new Image
+                    {
+                        SmallUrl = dbBeer?.Labels?.Icon,
+                        MediumUrl = dbBeer?.Labels?.Medium,
+                        LargeUrl = dbBeer?.Labels?.Large
+                    };
+                    beer.Image = image;
+                }
+
+                if (dbBeer.Breweries.Count != 0)
+                {
+                    var dbBrewery = dbBeer.Breweries.FirstOrDefault();
+                    beer.Brewery = ToBeerDrinkin(dbBrewery);
+                }
+
+                return beer;
+            }
+            catch (Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+                return null;
+            }
+        }
+
+        //Brewery Converter
+        Brewery ToBeerDrinkin(BreweryDB.Interfaces.IBrewery dbBrewery)
+        {
+            try
+            {
+                var brewery = new Brewery();
+                brewery.Name = dbBrewery.Name;
+                brewery.Description = dbBrewery.Description;
+                brewery.Id = dbBrewery.Id;
+                brewery.Website = dbBrewery.Website;
+                if (dbBrewery.Image != null)
+                {
+                    var image = new Image
+                    {
+                        LargeUrl = dbBrewery.Image.Large,
+                        MediumUrl = dbBrewery.Image.Medium,
+                        SmallUrl = dbBrewery.Image.Icon
+                    };
+                    brewery.Image = image;
+                }
+
+                return brewery;
+            }
+            catch (Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+                return null;
+            }
         }
     }
 }
