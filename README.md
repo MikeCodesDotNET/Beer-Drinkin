@@ -1,4 +1,4 @@
-# BeerDrinkin 
+# Beer Drinkin 
 [![Build Status](https://www.bitrise.io/app/7f04749bb7349e62.svg?token=rtX98mobBuH6nkxy1k8l2w&branch=master)](https://www.bitrise.io/app/7f04749bb7349e62)
 
 <img src="http://beerdrink.in/images/slider-logo.png" width=125">
