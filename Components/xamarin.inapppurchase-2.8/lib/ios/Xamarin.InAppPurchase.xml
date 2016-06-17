@@ -1,0 +1,1899 @@
+<doc>
+    <assembly>
+        <name>Xamarin.InAppPurchase</name>
+    </assembly>
+    <members>
+        <member name="T:MonoTouch.StoreKit.SKTransactionReceipt">
+            <summary>
+            SK transaction receipt is a helper class used to decode a <c>transactionReceipt</c> returned from the iTunes App Store.
+            It has routines to read the encoded data and break it back out into human readable properties.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppBinaryIdentifier">
+            <summary>
+            Gets the app binary identifier.
+            </summary>
+            <value>The app binary identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppBinaryVersion">
+            <summary>
+            Gets the app binary version.
+            </summary>
+            <value>The app binary version.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppItemID">
+            <summary>
+            Gets the app item ID.
+            </summary>
+            <value>The app item ID.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.CancellationDate">
+            <summary>
+            Gets the cancellation date.
+            </summary>
+            <value>The cancellation date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.ExpirationDate">
+            <summary>
+            Gets the exipration date.
+            </summary>
+            <value>The exipration date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.OriginalPurchaseDate">
+            <summary>
+            Gets the original purchase date.
+            </summary>
+            <value>The original purchase date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.OriginalTransactionIdentifier">
+            <summary>
+            Gets original transaction identifier.
+            </summary>
+            <value>The original transaction identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.ProductIdentifier">
+            <summary>
+            Gets the product identifier.
+            </summary>
+            <value>The product identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.PurchaseDate">
+            <summary>
+            Gets the purchase date.
+            </summary>
+            <value>The purchase date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.Quantity">
+            <summary>
+            Gets the quantity.
+            </summary>
+            <value>The quantity.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.SigningStatus">
+            <summary>
+            Gets the signing status as returned from the iTunes App Store. Use the <c>SKTransactionReceiptStatusCode</c> class
+            to help decode the status.
+            </summary>
+            <value>The signing status.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" />.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.TransactionIdentifier">
+            <summary>
+            Gets the transaction identifier.
+            </summary>
+            <value>The transaction identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.UniqueIdentifier">
+            <summary>
+            Gets the unique identifier.
+            </summary>
+            <value>The unique identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.UniqueVendorIdentifier">
+            <summary>
+            Gets the unique vendor identifier.
+            </summary>
+            <value>The unique vendor identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:MonoTouch.StoreKit.SKTransactionReceiptStatusCode">
+            <summary>
+            For iOS 6 style transaction receipts, the status code reflects the status of the specific transaction’s receipt. For iOS 7 style app
+            receipts, the status code is reflects the status of the app receipt as a whole. For example, if you send a valid app receipt that
+            contains an expired subscription, the response is 0 because the receipt as a whole is valid.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.InvalidJson">
+            <summary>
+            The App Store could not read the JSON object you provided.
+            </summary>
+            <value>The invalid json.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.InvalidSharedSecret">
+            <summary>To be added.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ReceiptAuthenticationFailed">
+            <summary>
+            The receipt could not be authenticated.
+            </summary>
+            <value>The receipt authentication failed.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ReceiptDataMalformed">
+            <summary>
+            The data in the receipt-data property was malformed or missing.
+            </summary>
+            <value>The receipt data malformed.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SendToProductionEnvironment">
+            <summary>
+            This receipt is from the production environment, but it was sent to the test environment for verification. Send it to
+            the production environment instead.
+            </summary>
+            <value>The send to production environment.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SendToTestEnvironment">
+            <summary>
+            This receipt is from the test environment, but it was sent to the production environment for verification. Send it to the
+            test environment instead.
+            </summary>
+            <value>The send to test environment.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ServerUnavailable">
+            <summary>
+            The receipt server is not currently available.
+            </summary>
+            <value>The server unavailable.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SubscriptionExpired">
+            <summary>
+            This receipt is valid but the subscription has expired. When this status code is returned to your server, the receipt data
+            is also decoded and returned as part of the response. Only returned for iOS 6 style transaction receipts for auto-renewable
+            subscriptions.
+            </summary>
+            <value>The subscription expired.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ValidReceipt">
+            <summary>
+            The receipt is valid.
+            </summary>
+            <value>The valid receipt.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.IAPExtensions">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.IAPExtensions.LocalizedPrice(MonoTouch.StoreKit.SKProduct)">
+            <param name="product">To be added.</param>
+            <summary>To be added.</summary>
+            <returns>To be added.</returns>
+            <remarks>
+            Use Apple's sample code for formatting a SKProduct price
+            https://developer.apple.com/library/ios/#DOCUMENTATION/StoreKit/Reference/SKProduct_Reference/Reference/Reference.html#//apple_ref/occ/instp/SKProduct/priceLocale
+            Objective-C version:
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+            [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+            [numberFormatter setLocale:product.priceLocale];
+            NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+            </remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.IAPExtensions.Shuffle``1(System.Collections.Generic.IList{``0})">
+            <typeparam name="T">The 1st type parameter.</typeparam>
+            <param name="list">List.</param>
+            <summary>
+            Shuffle the specified list.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppProduct">
+            <summary>
+            Holds all of the information about an In App Product available for sale or purchased from your
+            iOS application.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.InAppProduct(System.String,System.String,System.Boolean,System.Boolean)">
+            <param name="publicKey">The public key used to sign this data before encryption.</param>
+            <param name="data">Data.</param>
+            <param name="defaultToUnknown">If <c>true</c>, defaults type to Unknown else defaults to NonConsumable.</param>
+            <param name="defaultTitleAndDescription">To be added.</param>
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> class.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.AvailableQuantity">
+            <summary>
+            For <c>Consumable</c><see cref="T:Xamarin.InAppPurchase.InAppProduct" />s, gets or sets the available quantity.
+            </summary>
+            <value>The available quantity.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.ContentDownloaded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" />'s content has already been downloaded.
+            </summary>
+            <value>
+                <c>true</c> if content downloaded; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.ContentPath">
+            <summary>
+            Gets or sets the content path for products that have hosted content
+            </summary>
+            <value>The content path.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Description">
+            <summary>
+            Gets the localized description of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /></summary>
+            <value>The description.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.DeveloperPayload">
+            <summary>
+            Gets or sets an optional developer payload that can be attached to this <see cref="T:Xamarin.InAppPurchase.InAppProduct" />. The payload will be persisted and restored
+            along with the product.
+            </summary>
+            <value>The developer payload.</value>
+            <remarks>The <c>developerPayload</c> cannot contain the pipe '|' or tilda '~' character. If included, they will be removed from the content.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Downloadable">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is downloadable.
+            </summary>
+            <value>
+                <c>true</c> if downloadable; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.DownloadableContentVersion">
+            <summary>
+            Gets the downloadable content version.
+            </summary>
+            <value>The downloadable content version.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.FormattedPrice">
+            <summary>
+            Gets the localized formatted price of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /></summary>
+            <value>The formatted price.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppProduct.InvalidateProductPurchase">
+            <summary>
+            For any <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> that has been successfully purchased by has failed
+            an external transaction and receipt validation, use this routine to invalidate that purchase.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.NewContentAvailable">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> has a newer version of it's downloadable content available.
+            </summary>
+            <value>
+                <c>true</c> if new content available; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Price">
+            <summary>
+            Gets the localized price of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /></summary>
+            <value>The price.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.ProductIdentifier">
+            <summary>
+            Gets the product identifier for the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /></summary>
+            <value>The product identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.ProductType">
+            <summary>
+            Gets or sets the <see cref="T:Xamarin.InAppPurchase.InAppProductType" />  of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> .
+            </summary>
+            <value>The type of the product.</value>
+            <remarks>&gt;When reading a product from the iTunes App Store the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> will attempt to
+            automatically be set from the product identifier.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Purchased">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is purchased.
+            </summary>
+            <value>
+                <c>true</c> if purchased; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.QuantityMultiplier">
+            <summary>
+            For <c>Consumable</c><see cref="T:Xamarin.InAppPurchase.InAppProduct" />s, gets or sets the multiplier used when
+            automatically updating <c>availableQuantity</c> for a successful purchase.
+            </summary>
+            <value>The quantity multiplier.</value>
+            <remarks>Use this value to adjust for purchasing a package or bundle of items. For example if the product was 50 Gold Coins, set the <c>quantityMultiplier</c> to 50. The
+            default value is 1.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Receipt">
+            <summary>
+            Gets the <see cref="T:Xamarin.InAppPurchase.InAppProductReceipt" /> for this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> if it has been
+            purchased by the user.
+            </summary>
+            <value>The receipt.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Simulated">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is simulated.
+            </summary>
+            <value>
+                <c>true</c> if simulated; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.SubscriptionDuration">
+            <summary>
+            Gets or sets the <see cref="T:Xamarin.InAppPurchase.InAppSubscriptionDuration" /> of the subscription and automatically sets the
+            <c>subscriptionExpirationDate</c>.
+            </summary>
+            <value>The duration of the subscription.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.SubscriptionExpirationDate">
+            <summary>
+            Gets the subscription expiration date as calculated from the <see cref="T:Xamarin.InAppPurchase.InAppSubscriptionDuration" /></summary>
+            <value>The subscription expiration date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.SubscriptionExpired">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> subscription expired.
+            </summary>
+            <value>
+                <c>true</c> if subscription expired; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Title">
+            <summary>
+            Gets the localized title of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /></summary>
+            <value>The title.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppProduct.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppProduct.ToString(System.String,System.Boolean)">
+            <param name="publicKey">The public key used to sign this data before encryption.</param>
+            <param name="fullPersistence">If <c>true</c>, the full details of the product will be saved to the persistence file.</param>
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> encrypted with the given public key that represents the current
+            <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.UseCalculatedExpirationDate">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> use calculated
+            expiration date. If this value is <c>true</c> and the product is an automatically renewing subscription, the
+            expiration date will be calculated off of the initial purchase date of the product based on the receipt.
+            </summary>
+            <value>
+                <c>true</c> if use calculated expiration date; otherwise, <c>false</c>.</value>
+            <remarks>This is added as a last resort method of determining the expiration date for a subscription
+            when the iTunes App Store is not returning a valid expiration date in the receipt.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProduct.Valid">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is valid for displaying in your In App Store.
+            </summary>
+            <value>
+                <c>true</c> if valid; otherwise, <c>false</c>.</value>
+            <remarks>In App Products are valid for sale if they have been verified against the iTunes App Store.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppProductReceipt">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProductReceipt" /> class holds all information about the purchase of a product
+            from the iTunes App Store plus some information to verify the receipt locally.
+            </summary>
+            <remarks>This class is a simplification of the SKPaymentTransaction class provided by Apple.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.ApplicationUsername">
+            <summary>
+            Gets the application username, this will be the encrypted version sent to the iTunes App Store when
+            the product was purchased
+            </summary>
+            <value>The application username.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.DownloadableContentVersion">
+            <summary>
+            Gets the downloadable content version that has been installed for the app
+            </summary>
+            <value>The downloadable content version.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.ExpirationDate">
+            <summary>
+            For Auto Renewing Subscriptions, gets the subscription's exipration date.
+            </summary>
+            <value>The expiration date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.Invalidate">
+            <summary>
+            Invalidate this instance.
+            </summary>
+            <remarks>Use this method to invalidate purchases that fail deeper inspection or that have been validated against your own sever and the Apple iTunes App Store.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.Model">
+            <summary>
+            Gets the iOS device model that this receipt was create for.
+            </summary>
+            <value>The model.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.ProductIdentifier">
+            <summary>
+            Gets the product identifier.
+            </summary>
+            <value>The product identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.Quantity">
+            <summary>
+            Gets the quantity.
+            </summary>
+            <value>The quantity.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.ReceiptIdentifier">
+            <summary>
+            Gets the receipt identifier.
+            </summary>
+            <value>The receipt identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProductReceipt" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProductReceipt" />.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.TransactionDate">
+            <summary>
+            Gets the transaction date.
+            </summary>
+            <value>The transaction date.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.TransactionIdentifier">
+            <summary>
+            Gets the transaction identifier.
+            </summary>
+            <value>The transaction identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppProductReceipt.VendorIdentifier">
+            <summary>
+            Gets the vendor identifier that this receipt was created for.
+            </summary>
+            <value>The vendor identifier.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppProductType">
+            <summary>
+            Defines the type of a <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.
+            </summary>
+            <remarks>&gt;When reading a product from the iTunes App Store the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> will attempt to
+            automatically be set from the product identifier.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.AutoRenewableSubscription">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is an automatically renewing subscription.
+            </summary>
+            <remarks>Auto selected if the product identifier constains ".subscription".</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.Consumable">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is consumable.
+            </summary>
+            <remarks>Auto selected if the product identifier constains ".consumable".</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.FreeSubscription">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is a free subscription.
+            </summary>
+            <remarks>Auto selected if the product identifier constains ".freesubscription".</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.NonConsumable">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is non-consumable.
+            </summary>
+            <remarks>Auto selected if the product identifier constains ".nonconsumable".</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.NonRenewingSubscription">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> is a non automatically renewing subscription.
+            </summary>
+            <remarks>Auto selected if the product identifier constains ".nonrenewingsubscription".</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppProductType.Unknown">
+            <summary>
+            The type of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> has not been specified.
+            </summary>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> handles all transactions between your iOS mobile application and the
+            Apple iTunes App Store to provide In App Purchases to you application.
+            </summary>
+            <remarks>While the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> has built-in Persistence for both consumable and
+            non-consumable products, for maximum security it is suggested that you set the Persistence type to <c>Custom</c> and
+            provide your own save and restore routines.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.InAppPurchaseManager">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> class.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.InAppPurchaseManager(Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver)">
+            <param name="transactionObserver">A custom payment transaction observer</param>
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> class.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.ActiveDownload">
+            <summary>
+            Gets the active download or <c>null</c> if no download is active.
+            </summary>
+            <value>The active download.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.ActiveDownloadPercent">
+            <summary>
+            Gets the percent completed (0 to 1) for the active download or 0 if no download is in progress
+            </summary>
+            <value>The active simulated download.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.ApplicationUserName">
+            <summary>
+            Gets or sets the name of the application user. If you set this value, it will be hashed and sent to the iTunes App Store when making purchasing
+            In App Products. Setting this property helps protect against fraud.
+            </summary>
+            <value>The name of the application user.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.AutomaticPersistenceType">
+            <summary>
+            Gets or sets the type of the automatic Persistence used by this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> to
+            save and restore <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s it is managing.
+            </summary>
+            <value>The type of the automatic Persistence.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.AutoPersistAfterPurchase">
+            <summary>To be added.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.BuyProduct(System.String)">
+            <param name="appStoreProductId">App store product identifier.</param>
+            <summary>
+            Purchases the given product ID.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.BuyProduct(Xamarin.InAppPurchase.InAppProduct)">
+            <param name="product">Product.</param>
+            <summary>
+            Purchases the given <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.BuyProduct(System.String,System.Int32)">
+            <param name="appStoreProductId">App store product identifier.</param>
+            <param name="quantity">Quantity.</param>
+            <summary>
+            Purchases the given quantity of the given product ID.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.BuyProduct(Xamarin.InAppPurchase.InAppProduct,System.Int32)">
+            <param name="product">Product.</param>
+            <param name="quantity">Quantity.</param>
+            <summary>
+            Purchases the given quantity of the given <see cref="T:Xamarin.InAppPurchase.InAppProduct" />.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.CanMakePayments">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> can make payments.
+            </summary>
+            <value>
+                <c>true</c> if can make payments; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.CheckForNewContent">
+            <summary>
+            For products that have downloadable content hosted on the Apple iTunes App Store, this method
+            checks to see if a new version of the content is available and loads it into the app.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.CheckInternetConnection">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> checks for an open
+            internet connection (either cellular or Wi-Fi) and raises the <c>NoInternetConnectionAvailable</c> event.
+            </summary>
+            <value>
+                <c>true</c> if check internet connection; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.ConsumeProductQuantity(System.String,System.Int32)">
+            <param name="identifier">Identifier.</param>
+            <param name="amountToConsume">Amount to consume.</param>
+            <summary>
+            Given a part of a product identifier, like ".GoldCoin", this function finds all <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s
+            who's product identifier contains the given identifier and subtracts the given amount from the available quantity of that product. For example,
+            if your app defined the following products: com.company.app.consumable.GoldCoinPack_x25, com.company.app.consumable.GoldCoinPack_x50
+            com.company.app.consumable.GoldCoinPack_x100, a user had purchased all three packages and you asked this function to consume 50 "GoldCoin", the
+            available quantity in com.company.app.consumable.GoldCoinPack_x25 = 0, com.company.app.consumable.GoldCoinPack_x50 = 25 and
+            com.company.app.consumable.GoldCoinPack_x100 = 100 after this call.
+            </summary>
+            <remarks>Using this function helps obfuscate your consumable items by keeping the total amount scattered between multiple entries.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.Count">
+            <summary>
+            Gets the count of <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> contained by this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /></summary>
+            <value>The count.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.CreateFolderForProduct">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> creates
+            separate folder for hosted product content downloaded from the Apple iTunes App Store.
+            </summary>
+            <value>
+                <c>true</c> if create folder for hosted product content; otherwise, <c>false</c>.</value>
+            <remarks>If <c>true</c>, hosted content will be downloaded to a folder named after the product's identifier in the directory
+            specified in the <c>downloadDirectory</c> property. The default is <c>true</c>.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.Current">
+            <summary>To be added.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.DefaultToUnknown">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> defaults the
+            <see cref="T:Xamarin.InAppPurchase.InAppProductType" /> to <c>Unknown</c> for <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s read
+            from the iTune App Store not decorated with type specifiers in their product identifiers.
+            </summary>
+            <value>
+                <c>true</c> if default to unknown; otherwise, <c>false</c>.</value>
+            <remarks>If <c>false</c>, the default type will be <c>NonConsumable</c>.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.DownloadDirectory">
+            <summary>
+            Gets or sets the directory that content host on the Apple iTune App Store get downloaded to when a Hosted In App Product
+            is purchased.
+            </summary>
+            <value>The download directory.</value>
+            <remarks>The default is the app's document directory (<c>Environment.SpecialFolder.Personal</c>)</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.DownloadInProgress">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is downloading hosted content in the background.
+            </summary>
+            <value>
+                <c>true</c> if download in progress; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.FailOnDuplicateFile">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> fails on
+            duplicate file when downloading hosted product content from the Apple iTunes App Store. This property is only valid
+            if <c>overwriteExistingContent</c> is <c>false</c>.
+            </summary>
+            <value>
+                <c>true</c> if fail on duplicate file; otherwise, <c>false</c>.</value>
+            <remarks>The default value is <c>false</c>.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.FindProduct(System.String)">
+            <param name="productIdentifier">Product identifier.</param>
+            <summary>
+            Finds the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> for the given product identifier.
+            </summary>
+            <returns>The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> or <c>null</c> if not found.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.FindProductByDownload(MonoTouch.StoreKit.SKDownload)">
+            <param name="download">Download.</param>
+            <summary>
+            Finds the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> for the given product identifier that
+            the given content is being downloaded for.
+            </summary>
+            <returns>The product by download.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.FullPersistence">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> fully persists the
+            value of every field of the contained <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s.
+            </summary>
+            <value>
+                <c>true</c> if full persistence; otherwise, <c>false</c>.</value>
+            <remarks>Saving every field of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> (Price, Description, etc.) not only makes your
+            persistence file larger but opens up a greater target for hacking. It is suggested that you keep this property set to
+            <c>false</c> and instead requery the store of the product details after a restore from persistence.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.GetEnumerator">
+            <summary>To be added.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductPersistenceError">
+            <summary>
+            Occurs when there is an error persisting an In App Product.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductPurchased">
+            <summary>
+            Occurs when in app product is successfully purchased.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductPurchaseFailed">
+            <summary>
+            Occurs when in app product purchase failed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductPurchaseUserCanceled">
+            <summary>
+            Occurs when in app product purchase user canceled.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductRestored">
+            <summary>
+            Occurs when in app product restored.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductsRestoredFromPersistence">
+            <summary>
+            Occurs when in app products are restored from Persistence.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppProductWaitingOnContentDownload">
+            <summary>
+            Occurs when in app product waiting on content download.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppPurchaseDeferred">
+            <summary>
+            This event is raised if the user tries to make a purchase and the parental lock is enabled.
+            You need to inform the user that this purchase is awaiting parental approval before it will be
+            processed. Your app will be notified of the parents decision later by calling the normal purchase events.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppPurchaseProcessingError">
+            <summary>
+            Occurs when there is an in app purchase processing error.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppPurchaseProductQuantityConsumed">
+            <summary>
+            Occurs when in app purchase product quantity is consumed from a group of consumable products.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppPurchasesRestored">
+            <summary>
+            Occurs when in app purchases restored.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.InAppPurchaseUserCanceledRestore">
+            <summary>
+            Occurs when in app purchase user canceled restore of previously purchased products
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.Item(System.Int32)">
+            <param name="index">Index.</param>
+            <summary>
+            Gets or sets the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> at the specified index.
+            </summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedButtonBuy">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedButtonCancel">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedEncryptionKeyError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedFindProductError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedHostedContentFileExistsError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedPersistProductsError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedProductIDError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedRequestFailedError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedRestoreProductsError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedSaveHostedContentError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedSimulatedStoreAlertDescription">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchaseManager.LocalizedSimulatedStoreAlertTitle">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.MoveNext">
+            <summary>To be added.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.NetworkReachable">
+            <summary>
+            Gets a value indicating whether the iOS device can reach the internet either via Wi-Fi or Cellular.
+            </summary>
+            <value>
+                <c>true</c> if network reachable; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.NoInternetConnectionAvailable">
+            <summary>
+            Occurs when no internet connection available.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.OverwriteExistingContent">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> overwrites
+            existing files when downloading hosted product content from the Apple iTunes App Store.
+            </summary>
+            <value>
+                <c>true</c> if overwrite existing content; otherwise, <c>false</c>.</value>
+            <remarks>The default value is <c>true</c>.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.PersistenceFileDirectory">
+            <summary>
+            Gets or sets the Persistence file directory used for a <c>automaticPersistenceType</c> value of <c>LocalFile</c>.
+            </summary>
+            <value>The Persistence file directory.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.PersistenceFilename">
+            <summary>
+            Gets or sets the Persistence filename used for a <c>automaticPersistenceType</c> value of <c>LocalFile</c>. NOTE: This should
+            be set to a unqiue file name that has nothing to do with products or In App Purchases to help hide it in you app and make it
+            less likely to be hacked.
+            </summary>
+            <value>The Persistence filename.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.PersistProducts">
+            <summary>
+            Based on the value of the <c>automaticPersistenceType</c>, ask the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> to
+            persist all values for the <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s it is controlling.
+            </summary>
+            <remarks>This function is ignored if the <c>automaticPersistenceType</c> is set to <c>None</c>.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.ProductDownloadingContent">
+            <summary>
+            Gets the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> that is currently downloading hosted content from the iTunes App Store or <c>null</c>
+            if no product is currently being downloaded.
+            </summary>
+            <value>The product downloading product.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.ProductPurchased(System.String)">
+            <param name="productIdentifier">Product identifier.</param>
+            <summary>
+            Checks to see if a given product was purchased based on it's product identifier.
+            </summary>
+            <returns>
+                <c>true</c>, if product was purchased, <c>false</c> otherwise.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.ProductQuantityAvailable(System.String)">
+            <param name="identifier">Identifier.</param>
+            <summary>
+            Given a part of a product identifier, like ".GoldCoin", this function finds all <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s
+            who's product identifier contains the given identifier and returns a sum of all available quantity of that product. For example,
+            if your app defined the following products: com.company.app.consumable.GoldCoinPack_x25, com.company.app.consumable.GoldCoinPack_x50
+            com.company.app.consumable.GoldCoinPack_x100, a user had purchased all three packages and you asked this function for "GoldCoin" the
+            result would be 175.
+            </summary>
+            <returns>The total quantity available.</returns>
+            <remarks>Using this function helps obfuscate your consumable items by keeping the total amount scattered between multiple entries.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.PromptToDownloadOverCellular">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> prompts the user before
+            downloading hosted content over a celluar connection.
+            </summary>
+            <value>
+                <c>true</c> if prompt to download over celluar; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.PromptToRestoreHostedContent">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> promtps the user before
+            restoring iTunes App Store hosted content when restoring content.
+            </summary>
+            <value>
+                <c>true</c> if promtp to restore hosted content; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.PublicKey">
+            <summary>
+            Gets or sets the public key used to cryptographically sign transaction receipts from the Apple iTunes App Store. This
+            value is used when persisting product information.
+            </summary>
+            <value>The public key.</value>
+            <remarks>This value is stored encrypted in memory to further obscure the value.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.PurgeProducts">
+            <summary>
+            Erases all <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s from this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" />. This command
+            should ONLY be called when testing the component and you need to do a full reset.
+            </summary>
+            <remarks>WARNING! There is no undo for this command and it is provided for test environments only.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.QueryInventory(System.Collections.Generic.List{System.String})">
+            <param name="productIDs">Product identifiers.</param>
+            <summary>
+            Queries the Apple iTunes App Store with the list of given product IDs and returns full information for any
+            valid ID in the list.
+            </summary>
+            <remarks>Raises the <c>ReceivedValidProducts</c> event for any valid products returned from the iTunes App Store and
+            the <c>ReceivedInvalidProducts</c> event for any invalid ones.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.QueryInventory(System.String)">
+            <param name="productIDs">Product I ds.</param>
+            <summary>
+            Queries the Apple iTunes App Store with the list of given, comma seperated product IDs and returns full information for any
+            valid ID in the list.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.QueryInventory(System.String[])">
+            <param name="productIDs">Product I ds.</param>
+            <summary>
+            Queries the Apple iTunes App Store with the list of given, comma seperated product IDs and returns full information for any
+            valid ID in the list.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.ReceivedInvalidProducts">
+            <summary>
+            Occurs when the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> recieves a list of invalid product
+            IDs from the iTunes App Store.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.ReceivedValidProducts">
+            <summary>
+            Occurs when the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> recieves a list of valid products
+            from the iTunes App Store.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.RequeryInventory">
+            <summary>
+            For any <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s stored in this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" />, requery
+            the iTunes App Store, ensure the product is still valid for sale and get the latest product details.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.RequestInAppProductPersistence">
+            <summary>
+            Occurs when the <c>automaticPersistenceType</c> is set to <c>Custom</c> and the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is
+            requesting that the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values get persisted.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.RequestRestoreInAppProducts">
+            <summary>
+            Occurs when the <c>automaticPersistenceType</c> is set to <c>Custom</c> and the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is
+            requesting that the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values get restored from persisted data.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.Reset">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.RestorePreviousPurchases">
+            <summary>
+            Restores any previous purchases that the user has made in your application.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.RestoreProducts">
+            <summary>
+            Based on the value of the <c>automaticPersistenceType</c>, ask the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> to
+            retrieve all values for the <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s it is controlling from persistant storage.
+            </summary>
+            <remarks>This function is ignored if the <c>automaticPersistenceType</c> is set to <c>None</c>.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.SetDefaultTitleAndDescriptionOnRestore">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> set default
+            title and description on restore from persistence file
+            </summary>
+            <value>
+                <c>true</c> if set default title and description on restore; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.ShuffleProductsOnPersistence">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> shuffles
+            the order of the <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s it controls before Persistence.
+            </summary>
+            <value>
+                <c>true</c> if shuffle products on Persistence; otherwise, <c>false</c>.</value>
+            <remarks>This property is used to help obfuscate the persisted product data by scrambling the order they get stored in.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.SimulatedRestoredPurchaseProducts">
+            <summary>
+            If this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is running in the simulated iTunes App Store mode, this string provides
+            a comma separated list of productIdentifiers that will be "restored" to the current users account when asking the manager to restore
+            previous In App Product purchases.
+            </summary>
+            <value>The simulated restored purchase products.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.SimulateiTunesAppStore">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> will simulate talking to the
+            iTunes App Store. Running is simulation mode allows the you to test against a set of <c>Reserved Test Product Identifiers</c> so
+            you can test your App Store UI for every situation without having to setup products in the Apple Developer Console. With this flag
+            set to <c>true</c>, you can even run simulated In App Purchases inside the iOS simulator.
+            </summary>
+            <value>
+                <c>true</c> if simulatei tunes app store; otherwise, <c>false</c>.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchaseManager.TransactionFailed(MonoTouch.StoreKit.SKPaymentTransaction)">
+            <param name="transaction">Transaction.</param>
+            <summary>
+            Transaction has failed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchaseManager.TransactionObserver">
+            <summary>
+            Gets the <see cref="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver" /> used to handle transactions for this
+            <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> .
+            </summary>
+            <value>The transaction observer.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchaseManager.TransactionsRemovedFromQueue">
+            <summary>
+            Occurs when transactions are removed from queue.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductPersistenceErrorDelegate">
+            <param name="message">Message.</param>
+            <summary>
+            Occurs when there is an error persisting an In App Product.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductPurchasedDelegate">
+            <param name="transaction">Transaction.</param>
+            <param name="product">Product.</param>
+            <summary>
+            Occurs when in app product is successfully purchased.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductPurchaseFailedDelegate">
+            <param name="transaction">Transaction.</param>
+            <param name="product">Product.</param>
+            <summary>
+            Occurs when in app product purchase failed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductPurchaseUserCanceledDelegate">
+            <param name="transaction">Transaction.</param>
+            <param name="product">Product.</param>
+            <summary>
+            Occurs when in app product purchase user canceled.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductRestoredDelegate">
+            <param name="transaction">Transaction.</param>
+            <param name="product">Product.</param>
+            <summary>
+            Occurs when in app product restored.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductsRestoredFromPersistenceDelegate">
+            <summary>
+            Occurs when in app products are restored from Persistence.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppProductWaitingOnContentDownloadDelegate">
+            <param name="transaction">Transaction.</param>
+            <param name="product">Product.</param>
+            <summary>
+            Occurs when in app product waiting on content download.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppPurchaseDeferredDelegate">
+            <param name="transaction">To be added.</param>
+            <summary>
+            This event is raised if the user tries to make a purchase and the parental lock is enabled.
+            You need to inform the user that this purchase is awaiting parental approval before it will be
+            processed. Your app will be notified of the parents decision later by calling the normal purchase events.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppPurchaseProcessingErrorDelegate">
+            <param name="message">Message.</param>
+            <summary>
+            Occurs when there is an in app purchase processing error.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppPurchaseProductQuantityConsumedDelegate">
+            <param name="identifier">Identifier.</param>
+            <summary>
+            Occurs when in app purchase product quantity is consumed from a group of consumable products.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppPurchasesRestoredDelegate">
+            <param name="count">The number of products restored.</param>
+            <summary>
+            Occurs when in app purchases restored.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+InAppPurchaseUserCanceledRestoreDelegate">
+            <summary>
+            Occurs when in app purchase user canceled restore of previously purchased products
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+NoInternetConnectionAvailableDelegate">
+            <summary>
+            Occurs when no internet connection available.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+ReceivedInvalidProductsDelegate">
+            <param name="productIDs">Product Ids.</param>
+            <summary>
+            Occurs when the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> recieves a list of invalid product
+            IDs from the iTunes App Store.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+ReceivedValidProductsDelegate">
+            <param name="products">Products.</param>
+            <summary>
+            Occurs when the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> recieves a list of valid products
+            from the iTunes App Store.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+RequestInAppProductPersistenceDelegate">
+            <summary>
+            Occurs when the <c>automaticPersistenceType</c> is set to <c>Custom</c> and the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is
+            requesting that the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values get persisted.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+RequestRestoreInAppProductsDelegate">
+            <summary>
+            Occurs when the <c>automaticPersistenceType</c> is set to <c>Custom</c> and the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> is
+            requesting that the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values get restored from persisted data.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchaseManager+TransactionsRemovedFromQueueDelegate">
+            <param name="transactions">Transactions.</param>
+            <summary>
+            Occurs when transactions are removed from queue.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver" /> watches for changes in the In-App Purchase transaction queue
+            and reports them to the attached <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" />.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver" /> class.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver(Xamarin.InAppPurchase.InAppPurchaseManager)">
+            <param name="manager">Manager.</param>
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver" /> class.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.InAppPurchaseContentDownloadCanceled">
+            <summary>
+            Occurs when in app purchase content download canceled.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.InAppPurchaseContentDownloadCompleted">
+            <summary>
+            Occurs when in app purchase content download completed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.InAppPurchaseContentDownloadFailed">
+            <summary>
+            Occurs when in app purchase content download failed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.InAppPurchaseContentDownloadInProgress">
+            <summary>
+            Occurs when in app purchase content download in progress.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="E:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.InAppPurchaseContentDownloadWaiting">
+            <summary>
+            Occurs when in app purchase content download waiting.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedButtonCancel">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedButtonOK">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedDownloadAlertTitle">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedDownloadOverCellularMessage">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedFindProductError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedNetworkUnavaiableError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedRestoreDownloadMessage">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.LocalizedRestoreError">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.Manager">
+            <summary>
+            Gets the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> attached to this
+            <see cref="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver" />.
+            </summary>
+            <value>The manager.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.PaymentQueueRestoreCompletedTransactionsFinished(MonoTouch.StoreKit.SKPaymentQueue)">
+            <param name="queue">Queue.</param>
+            <summary>
+            This method is invoked when the payment queue has finished sending restored transactions.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.RemovedTransactions(MonoTouch.StoreKit.SKPaymentQueue,MonoTouch.StoreKit.SKPaymentTransaction[])">
+            <param name="queue">Queue.</param>
+            <param name="transactions">Transactions.</param>
+            <summary>
+            This method is invoked when one or more transactions have been removed from the queue.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.RestoreCompletedTransactionsFailedWithError(MonoTouch.StoreKit.SKPaymentQueue,MonoTouch.Foundation.NSError)">
+            <param name="queue">Queue.</param>
+            <param name="error">Error.</param>
+            <summary>
+            This method is invoked when an error occurred while restoring transactions.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.UpdatedDownloads(MonoTouch.StoreKit.SKPaymentQueue,MonoTouch.StoreKit.SKDownload[])">
+            <param name="queue">Queue.</param>
+            <param name="downloads">Downloads.</param>
+            <summary>
+            This method is invoked when one or more downloads have been updated.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver.UpdatedTransactions(MonoTouch.StoreKit.SKPaymentQueue,MonoTouch.StoreKit.SKPaymentTransaction[])">
+            <param name="queue">Queue.</param>
+            <param name="transactions">Transactions.</param>
+            <summary>
+            This method is invoked when one or more transactions have been updated.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver+InAppPurchaseContentDownloadCanceledDelegate">
+            <param name="download">Download.</param>
+            <summary>
+            Occurs when in app purchase content download canceled.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver+InAppPurchaseContentDownloadCompletedDelegate">
+            <param name="download">Download.</param>
+            <summary>
+            Occurs when in app purchase content download completed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver+InAppPurchaseContentDownloadFailedDelegate">
+            <param name="download">Download.</param>
+            <summary>
+            Occurs when in app purchase content download failed.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver+InAppPurchaseContentDownloadInProgressDelegate">
+            <param name="download">Download.</param>
+            <summary>
+            Occurs when in app purchase content download in progress.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePaymentTransactionObserver+InAppPurchaseContentDownloadWaitingDelegate">
+            <param name="download">Download.</param>
+            <summary>
+            Occurs when in app purchase content download waiting.
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePersistenceType">
+            <summary>
+            Defines the type of automatic product Persistence that the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> uses to
+            persist <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s that it is controlling.
+            </summary>
+            <remarks>While the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> has built-in Persistence for both consumable and
+            non-consumable products, for maximum security it is suggested that you set the Persistence type to <c>Custom</c> and
+            provide your own save and restore routines.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.Custom">
+            <summary>
+            Allows the developer to specify the routines used to persist and restore <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values.
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.iCloud">
+            <summary>
+            Persists the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values as encrypted data in the user's iCloud account. Note that your
+            application MUST be configured to use iCloud storage (see http://docs.xamarin.com/guides/ios/platform_features/introduction_to_icloud/)
+            and the user must be signed in to their iCloud account.
+            </summary>
+            <remarks>This type of product Persistence is limited to 64K of data and should not be used for a large number of In App Products.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.LocalFile">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values will be persisted to a local file on the user's
+            device as encrypted data.
+            </summary>
+            <remarks>This type of Persistence is not suggested for consumable products as they stay local to the machine, are easier to hack
+            and could be lost between user device backups.</remarks>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.None">
+            <summary>
+            No automatic Persistence of <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values.
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.UserDefaults">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values will be persisted to the applications User Defaulf collection
+            as encrypted data.
+            </summary>
+            <remarks>WARNING! This type of Persistence is very easy to hack and it not suggested for production applications. It is provided
+            more for testing purposes only.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.InAppSubscriptionDuration">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+            <see cref="T:Xamarin.InAppPurchase.InAppProduct" />
+            <see cref="T:Xamarin.InAppPurchase.InAppProductType" />
+            <c>AutoRenewableSubscription</c>
+            <c>NonRenewingSubscription</c>
+            <c>InAppSubscriptionDuration</c>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.OneMonth">
+            <summary>
+            Limited to one month
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.OneYear">
+            <summary>
+            Limited to one year
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.SevenDays">
+            <summary>
+            Limited to seven days (one week)
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.SixMonths">
+            <summary>
+            Limited to six months (half a year)
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.ThreeMonths">
+            <summary>
+            Limited to three months
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.TwoMonths">
+            <summary>
+            Limited to two months
+            </summary>
+        </member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.Unlimited">
+            <summary>
+            No limit to the subscription's duration
+            </summary>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.IPurchaseViewController">
+            <summary>
+            Defines an interface that all <c>UIViewController</c>s should implement to handle In App Purchases with a
+            <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /></summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.IPurchaseViewController.AttachToPurchaseManager(MonoTouch.UIKit.UIStoryboard,Xamarin.InAppPurchase.InAppPurchaseManager)">
+            <param name="Storyboard">Storyboard.</param>
+            <param name="purchaseManager">Purchase manager.</param>
+            <summary>
+            Attaches a <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> to the <c>UIViewController</c> and passes
+            an instance of the parent <c>UIStoryboard</c> that houses the view. Use this method to monitor any of the <c>InAppPurchaseManager</c>'s
+            event and display or update information on the view.
+            </summary>
+            <remarks>The <c>UIViewController</c> should store both the <c>Storyboard</c> and the <c>purchaseManager</c> for future use.</remarks>
+        </member>
+        <member name="T:Xamarin.InAppPurchase.Utilities.Security">
+            <summary>
+            Utility class to support secure transactions for Apple's In-App Purchase
+            </summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.InAppPurchase.Utilities.Security">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.Utilities.Security.Unify(System.String[],System.Int32[])">
+            <param name="element">List of elements used to reconstruct the string.</param>
+            <param name="segment">List of segments speciying the order of the elements.</param>
+            <summary>
+            Recombines the given elements and segments to reconstruct an obfuscated string.
+            </summary>
+            <returns>To be added.</returns>
+            <remarks>Given a list of elements {"A","B","C","D"} and segments {1,0,3,2} this function returns "BADC". This function is used to
+            hide a string inside of a Xamarin.Android app.</remarks>
+        </member>
+        <member name="M:Xamarin.InAppPurchase.Utilities.Security.Unify(System.String[],System.Int32[],System.String[])">
+            <param name="element">List of elements used to reconstruct the string.</param>
+            <param name="segment">List of segments speciying the order of the elements.</param>
+            <param name="hash">Given a list of elements {"A","B","C123","D"}, segments {1,0,3,2} and hashes {"123","007"} this function returns "BADC007". This function is used to
+            hide a string inside of a Xamarin.Android app.</param>
+            <summary>
+            Recombines the given elements, segments and hashes to reconstruct an obfuscated string.
+            </summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+    </members>
+</doc>
+e cref="T:Xamarin.InAppPurchase.InAppProductReceipt" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:Xamarin.InAppPurchase.InAppProductReceipt" />.</returns></member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.Invalidate">
+            <summary>
+            Invalidate this instance.
+            </summary>
+            <remarks>Use this method to invalidate purchases that fail deeper inspection or that have been validated against your own sever and the Apple iTunes App Store.</remarks></member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.ParseDateTime(System.String)">
+            <summary>
+            Parses the date time from a string and attempt to adjust for mixed cultural formats
+            </summary>
+            <returns>The date time.</returns>
+            <param name="value">Value.</param></member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.UpdateReceipt(MonoTouch.StoreKit.SKPaymentTransaction,System.Boolean)">
+            <summary>
+            Updates the receipt.
+            </summary>
+            <param name="transaction">Transaction.</param></member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.DebugTransaction(MonoTouch.StoreKit.SKPaymentTransaction)">
+            <summary>
+            Debugs the transaction and dumps information about the transaction receipt
+            </summary>
+            <param name="transaction">Transaction.</param></member>
+        <member name="M:Xamarin.InAppPurchase.InAppProductReceipt.Available(System.String)">
+            <summary>
+            Checks to see if the given product receipt is available
+            </summary>
+            <param name="productIdentifier">Product identifier.</param></member>
+        <member name="T:Xamarin.InAppPurchase.InAppPurchasePersistenceType">
+            <summary>
+            Defines the type of automatic product Persistence that the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> uses to
+            persist <see cref="T:Xamarin.InAppPurchase.InAppProduct" />s that it is controlling.
+            </summary>
+            <remarks>While the <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> has built-in Persistence for both consumable and
+            non-consumable products, for maximum security it is suggested that you set the Persistence type to <c>Custom</c> and
+            provide your own save and restore routines.</remarks></member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.None">
+            <summary>
+            No automatic Persistence of <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values.
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.UserDefaults">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values will be persisted to the applications User Defaulf collection
+            as encrypted data.
+            </summary>
+            <remarks>WARNING! This type of Persistence is very easy to hack and it not suggested for production applications. It is provided
+            more for testing purposes only.</remarks></member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.LocalFile">
+            <summary>
+            The <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values will be persisted to a local file on the user's
+            device as encrypted data.
+            </summary>
+            <remarks>This type of Persistence is not suggested for consumable products as they stay local to the machine, are easier to hack
+            and could be lost between user device backups.</remarks></member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.iCloud">
+            <summary>
+            Persists the <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values as encrypted data in the user's iCloud account. Note that your
+            application MUST be configured to use iCloud storage (see http://docs.xamarin.com/guides/ios/platform_features/introduction_to_icloud/)
+            and the user must be signed in to their iCloud account.
+            </summary>
+            <remarks>This type of product Persistence is limited to 64K of data and should not be used for a large number of In App Products.</remarks></member>
+        <member name="F:Xamarin.InAppPurchase.InAppPurchasePersistenceType.Custom">
+            <summary>
+            Allows the developer to specify the routines used to persist and restore <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> values.
+            </summary></member>
+        <member name="T:Xamarin.InAppPurchase.InAppSubscriptionDuration">
+            For <see cref="T:Xamarin.InAppPurchase.InAppProduct" /> who's <see cref="T:Xamarin.InAppPurchase.InAppProductType" /> is <c>AutoRenewableSubscription</c> or
+            <c>NonRenewingSubscription</c>, <c>InAppSubscriptionDuration</c> controls the length of the given subscription.</member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.Unlimited">
+            <summary>
+            No limit to the subscription's duration
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.SevenDays">
+            <summary>
+            Limited to seven days (one week)
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.OneMonth">
+            <summary>
+            Limited to one month
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.TwoMonths">
+            <summary>
+            Limited to two months
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.ThreeMonths">
+            <summary>
+            Limited to three months
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.SixMonths">
+            <summary>
+            Limited to six months (half a year)
+            </summary></member>
+        <member name="F:Xamarin.InAppPurchase.InAppSubscriptionDuration.OneYear">
+            <summary>
+            Limited to one year
+            </summary></member>
+        <member name="T:MonoTouch.StoreKit.SKTransactionReceipt">
+            <summary>
+            SK transaction receipt is a helper class used to decode a <c>transactionReceipt</c> returned from the iTunes App Store.
+            It has routines to read the encoded data and break it back out into human readable properties.
+            </summary></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.Quantity">
+            <summary>
+            Gets the quantity.
+            </summary>
+            <value>The quantity.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.ProductIdentifier">
+            <summary>
+            Gets the product identifier.
+            </summary>
+            <value>The product identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.TransactionIdentifier">
+            <summary>
+            Gets the transaction identifier.
+            </summary>
+            <value>The transaction identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.OriginalTransactionIdentifier">
+            <summary>
+            Gets original transaction identifier.
+            </summary>
+            <value>The original transaction identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.PurchaseDate">
+            <summary>
+            Gets the purchase date.
+            </summary>
+            <value>The purchase date.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.OriginalPurchaseDate">
+            <summary>
+            Gets the original purchase date.
+            </summary>
+            <value>The original purchase date.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.ExpirationDate">
+            <summary>
+            Gets the exipration date.
+            </summary>
+            <value>The exipration date.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.CancellationDate">
+            <summary>
+            Gets the cancellation date.
+            </summary>
+            <value>The cancellation date.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppItemID">
+            <summary>
+            Gets the app item ID.
+            </summary>
+            <value>The app item ID.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.UniqueIdentifier">
+            <summary>
+            Gets the unique identifier.
+            </summary>
+            <value>The unique identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppBinaryVersion">
+            <summary>
+            Gets the app binary version.
+            </summary>
+            <value>The app binary version.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.AppBinaryIdentifier">
+            <summary>
+            Gets the app binary identifier.
+            </summary>
+            <value>The app binary identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.UniqueVendorIdentifier">
+            <summary>
+            Gets the unique vendor identifier.
+            </summary>
+            <value>The unique vendor identifier.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceipt.SigningStatus">
+            <summary>
+            Gets the signing status as returned from the iTunes App Store. Use the <c>SKTransactionReceiptStatusCode</c> class
+            to help decode the status.
+            </summary>
+            <value>The signing status.</value></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.#ctor(MonoTouch.Foundation.NSData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" /> class.
+            </summary>
+            <param name="transactionReceipt">Transaction receipt.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" /> class.
+            </summary>
+            <param name="productIdentifier">Product identifier.</param>
+            <param name="transactionIdentifier">Transaction identifier.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" /> class.
+            </summary>
+            <param name="data">Data.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.EncodeBase64(System.String)">
+            <summary>
+            Encodes the base64 to obscure it
+            </summary>
+            <returns>The base64.</returns>
+            <param name="toEncode">To encode.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.DecodeBase64(System.String)">
+            <summary>
+            Decodes the base64 string making it readable
+            </summary>
+            <returns>The base64.</returns>
+            <param name="encodedData">Encoded data.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.GetIntValue(System.Json.JsonValue,System.String)">
+            <summary>
+            Gets the int value.
+            </summary>
+            <returns>The int value.</returns>
+            <param name="dict">Dict.</param>
+            <param name="key">Key.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.GetStringValue(System.Json.JsonValue,System.String)">
+            <summary>
+            Gets the string value.
+            </summary>
+            <returns>The string value.</returns>
+            <param name="dict">Dict.</param>
+            <param name="key">Key.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.GetDateTimeValue(System.Json.JsonValue,System.String)">
+            <summary>
+            Gets the date time value.
+            </summary>
+            <returns>The date time value.</returns>
+            <param name="dict">Dict.</param>
+            <param name="key">Key.</param></member>
+        <member name="M:MonoTouch.StoreKit.SKTransactionReceipt.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" />.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:MonoTouch.StoreKit.SKTransactionReceipt" />.</returns></member>
+        <member name="T:MonoTouch.StoreKit.SKTransactionReceiptStatusCode">
+            <summary>
+            For iOS 6 style transaction receipts, the status code reflects the status of the specific transaction’s receipt. For iOS 7 style app
+            receipts, the status code is reflects the status of the app receipt as a whole. For example, if you send a valid app receipt that
+            contains an expired subscription, the response is 0 because the receipt as a whole is valid.
+            </summary></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ValidReceipt">
+            <summary>
+            The receipt is valid.
+            </summary>
+            <value>The valid receipt.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.InvalidJson">
+            <summary>
+            The App Store could not read the JSON object you provided.
+            </summary>
+            <value>The invalid json.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ReceiptDataMalformed">
+            <summary>
+            The data in the receipt-data property was malformed or missing.
+            </summary>
+            <value>The receipt data malformed.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ReceiptAuthenticationFailed">
+            <summary>
+            The receipt could not be authenticated.
+            </summary>
+            <value>The receipt authentication failed.</value></member>
+        <!--FIXME: Invalid documentation markup was found for member P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.InvalidSharedSecret-->
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.ServerUnavailable">
+            <summary>
+            The receipt server is not currently available.
+            </summary>
+            <value>The server unavailable.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SubscriptionExpired">
+            <summary>
+            This receipt is valid but the subscription has expired. When this status code is returned to your server, the receipt data
+            is also decoded and returned as part of the response. Only returned for iOS 6 style transaction receipts for auto-renewable
+            subscriptions.
+            </summary>
+            <value>The subscription expired.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SendToTestEnvironment">
+            <summary>
+            This receipt is from the test environment, but it was sent to the production environment for verification. Send it to the
+            test environment instead.
+            </summary>
+            <value>The send to test environment.</value></member>
+        <member name="P:MonoTouch.StoreKit.SKTransactionReceiptStatusCode.SendToProductionEnvironment">
+            <summary>
+            This receipt is from the production environment, but it was sent to the test environment for verification. Send it to
+            the production environment instead.
+            </summary>
+            <value>The send to production environment.</value></member>
+        <member name="T:MonoTouch.Network.NetworkStatus">
+            <summary>
+            Network status.
+            </summary></member>
+        <member name="T:MonoTouch.Network.Reachability">
+            <summary>
+            Reachability.
+            </summary></member>
+        <member name="T:Xamarin.InAppPurchase.IPurchaseViewController">
+            <summary>
+            Defines an interface that all <c>UIViewController</c>s should implement to handle In App Purchases with a
+            <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" />
+            </summary></member>
+        <member name="M:Xamarin.InAppPurchase.IPurchaseViewController.AttachToPurchaseManager(MonoTouch.UIKit.UIStoryboard,Xamarin.InAppPurchase.InAppPurchaseManager)">
+            <summary>
+            Attaches a <see cref="T:Xamarin.InAppPurchase.InAppPurchaseManager" /> to the <c>UIViewController</c> and passes
+            an instance of the parent <c>UIStoryboard</c> that houses the view. Use this method to monitor any of the <c>InAppPurchaseManager</c>'s
+            event and display or update information on the view.
+            </summary>
+            <param name="Storyboard">Storyboard.</param>
+            <param name="purchaseManager">Purchase manager.</param>
+            <remarks>The <c>UIViewController</c> should store both the <c>Storyboard</c> and the <c>purchaseManager</c> for future use.</remarks></member>
+        <member name="T:MonoTouch.StoreKit.InAppProductsRequest">
+            <summary>
+            This class is used as a temporary hack to fix an issue with the weak delegate on the <c>SKProductsRequest</c> object
+            being garbage collected before events can be fired.
+            </summary></member>
+        <member name="P:MonoTouch.StoreKit.InAppProductsRequest.WeakDelegate">
+            <summary>
+            Gets or sets the weak delegate.
+            </summary>
+            <value>The weak delegate.</value></member>
+        <member name="M:MonoTouch.StoreKit.InAppProductsRequest.#ctor(MonoTouch.Foundation.NSSet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoTouch.StoreKit.InAppProductsRequest" /> class.
+            </summary>
+            <param name="pis">Pis.</param></member>
+    </members>
+</doc>

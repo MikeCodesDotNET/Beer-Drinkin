@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="ApplicationName">Android.Xamarin.SampleApp</string>
+  
+    <string name="app_name">JudoPay-Xamarin Sample</string>
+    <string name="app_name_ui">JudoPay-Xamarin Sample With UI</string>
+
+
+    <!-- messages -->
+    <string name="msg_payment_ok">Payment successful: %1$s</string>
+    <string name="msg_preauth_ok">PreAuth successful: %1$s</string>
+    <string name="msg_payment_cancel">Payment cancelled</string>
+    <string name="msg_payment_error">Payment error: %1$s</string>
+    <string name="msg_transactions_error">Get transactions error : %1$s</string>
+    <string name="msg_reg_card_cancel">Register card cancelled</string>
+    <string name="msg_reg_card_ok">Registered card successful %1$s</string>
+    <string name="msg_reg_card_error">Register card error: %1$s</string>
+    <string name="msg_preauth_error">Preauth error:  %1$s</string>
+    <string name="sdk_version">SDK v%1$s</string>
+
+</resources>

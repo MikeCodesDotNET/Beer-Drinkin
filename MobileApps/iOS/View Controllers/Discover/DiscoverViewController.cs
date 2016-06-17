@@ -185,7 +185,7 @@ namespace BeerDrinkin.iOS
                     Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Uploading photo");
 
                     var stream = ScaledImage(image, 500, 500).AsPNG().AsStream();
-                    await viewModel.ImageLookup(stream);
+                    await viewModel.LookupImage(stream);
                     Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 
                 }

@@ -38,7 +38,7 @@ namespace BeerDrinkin.Core.ViewModels
             return await searchService.Search(searchTerm);
         }
 
-        public async Task<List<Beer>> TrendingBeers(int takeCount = 10)
+        public async Task<List<Beer>> FetchTrendingBeers(int takeCount = 10)
         {
             Initialize();
             return await trendsService.TrendingBeers(takeCount);
@@ -50,7 +50,7 @@ namespace BeerDrinkin.Core.ViewModels
             return await barcodeService.LookupBarcode(upc);
         }
 
-        public async Task<List<Beer>> ImageLookup(Stream stream)
+        public async Task<List<Beer>> LookupImage(Stream stream)
         {
             Initialize();
             return await imageService.LookupBeer(stream);

@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class CheckInsViewModel : ViewModelBase
+    public class CheckInsViewModel : ViewModelBase, ICheckInsViewModel
     {
         ICheckInStore checkInStore;
 
@@ -18,7 +19,7 @@ namespace BeerDrinkin.Core.ViewModels
             ServiceLocator.Instance.Resolve<ICheckInStore>();
         }
 
-        public async Task<List<CheckIn>> CheckIns(string userId = "")
+        public async Task<List<CheckIn>> FetchCheckIns(string userId = "")
         {
             var checkins = await checkInStore.GetItemsAsync();
 

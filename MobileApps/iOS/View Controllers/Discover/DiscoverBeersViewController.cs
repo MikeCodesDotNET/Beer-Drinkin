@@ -30,7 +30,7 @@ namespace BeerDrinkin.iOS
             }
 
             viewModel = new Core.ViewModels.DiscoverViewModel();
-            Beers = await viewModel.TrendingBeers(10);
+            Beers = await viewModel.FetchTrendingBeers(10);
             TableView.ReloadData();
         }
 

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="xamarin.inapppurchase">
+  <name>Xamarin.InAppPurchase</name>
+  <publisher>Xamarin, Inc.</publisher>
+  <publisher-url>http://components.xamarin.com</publisher-url>
+  <version>2.8</version>
+  <summary>Provides a way to easily and quickly add Apple iTunes In App Purchase of products, features or subscriptions to your iOS mobile applications.</summary>
+  <samples>
+    <sample id="InAppPurchaseTest">
+      <name>iOS Sample.</name>
+      <summary>Demonstrates Xamarin.InAppPurchase on iOS.</summary>
+    </sample>
+    <sample id="InAppPurchaseTest-Unified">
+      <name>iOS Unified Sample.</name>
+      <summary>Demonstrates Xamarin.InAppPurchase on iOS.</summary>
+    </sample>
+  </samples>
+</component>
