@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.Services.Abstractions;
 using System.IO;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.Core.ViewModels
 {
-    public class DiscoverViewModel : ViewModelBase
+    public class DiscoverViewModel : ViewModelBase, IDiscoverViewModel
     {
         IAzureClient azure;
         ISearchService searchService;

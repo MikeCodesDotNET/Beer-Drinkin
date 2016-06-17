@@ -178,6 +178,10 @@
       <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
       <Name>BeerDrinkin.Services.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkin.Core.Abstractions\BeerDrinkin.Core.Abstractions.csproj">
+      <Project>{C31319EA-8A83-4724-BA9A-DFB224016FB5}</Project>
+      <Name>BeerDrinkin.Core.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

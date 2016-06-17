@@ -5,6 +5,7 @@ using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.DataStore.Azure;
 using BeerDrinkin.Services.Abstractions;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 
 namespace BeerDrinkin.Core.ViewModels
 {
@@ -29,6 +30,10 @@ namespace BeerDrinkin.Core.ViewModels
             ServiceLocator.Instance.Add<IRatingStore, RatingStore>();
 
             ServiceLocator.Instance.Add<IStoreManager, StoreManager>();
+
+            //ViewModles
+            ServiceLocator.Instance.Add<ICheckInsViewModel, CheckInsViewModel>();
+            ServiceLocator.Instance.Add<IDiscoverViewModel, DiscoverViewModel>();
 
             //TODO: Put this somewhere....
             ServiceLocator.Instance.Resolve<IStoreManager>().InitializeAsync();
