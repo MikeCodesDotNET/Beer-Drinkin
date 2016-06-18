@@ -124,7 +124,7 @@ namespace BeerDrinkin.iOS
 						if (!string.IsNullOrEmpty(beerItem.BreweryDbId))
 						{
 							var storyboard = UIStoryboard.FromName("Main", null);
-							var vc = storyboard.InstantiateViewController ("beerDescriptionTableView") as BeerDescriptionTableView;
+							var vc = storyboard.InstantiateViewController ("BEER_DESCRIPTION") as BeerDescriptionTableView;
 							vc.SetBeer (beerItem);
 							var navigationControler = tabController.SelectedViewController as UINavigationController;
 							navigationControler.PushViewController (vc, true);
