@@ -29,8 +29,7 @@ namespace BeerDrinkin.Utils
         /// <typeparam name="TService">Service type</typeparam>
         public void Add<TContract, TService>() where TService : new()
         {
-            this.registeredServices[typeof(TContract)] =
-                new Lazy<object>(() => Activator.CreateInstance(typeof(TService)));
+            this.registeredServices[typeof(TContract)] = new Lazy<object>(() => Activator.CreateInstance(typeof(TService)));
         }
 
         /// <summary>
@@ -42,6 +41,11 @@ namespace BeerDrinkin.Utils
         /// <returns>Implementation</returns>
         public T Resolve<T>() where T : class
         {
+            foreach (var s in registeredServices)
+            {
+                System.Diagnostics.Debug.WriteLine($"Key: {s.Key.ToString()} | Value: {s.Value.ToString()}");
+            }
+
             Lazy<object> service;
             if (registeredServices.TryGetValue(typeof(T), out service))
             {

@@ -34,6 +34,8 @@ namespace BeerDrinkin.iOS
 
         public DiscoverViewController (IntPtr handle) : base (handle)
         {
+            Initialize();
+
             viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
             logger = ServiceLocator.Instance.Resolve<ILogService>();
         }
@@ -114,7 +116,7 @@ namespace BeerDrinkin.iOS
         }
 
         async Task Search(string searchTerm)
-        { 
+        {
             try
             {
                 if (string.IsNullOrEmpty(searchBar.Text) || searchBar.Text.Length < 2)

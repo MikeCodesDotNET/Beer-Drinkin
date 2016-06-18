@@ -16,22 +16,32 @@ namespace BeerDrinkin.Core.ViewModels
         {
             //Azure Client
             ServiceLocator.Instance.Add<IAzureClient, AzureClient.AzureClient>();
+            InitServices();
+            InitDataStores();
+            InitViewModels();
 
-            //Services
-            ServiceLocator.Instance.Add<ISearchService, SearchService>();
-            ServiceLocator.Instance.Add<ITrendsService, TrendsService>();
-            ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>(); 
+            ServiceLocator.Instance.Add<IStoreManager, StoreManager>();
+            ServiceLocator.Instance.Resolve<IStoreManager>().InitializeAsync();
+        }
 
-            //DataStores
+        static void InitDataStores()
+        {
             ServiceLocator.Instance.Add<ICheckInStore, CheckInStore>();
             ServiceLocator.Instance.Add<IUserStore, UserStore>();
             ServiceLocator.Instance.Add<IWishStore, WishStore>();
             ServiceLocator.Instance.Add<IBeerStore, BeerStore>();
             ServiceLocator.Instance.Add<IRatingStore, RatingStore>();
+        }
 
-            ServiceLocator.Instance.Add<IStoreManager, StoreManager>();
+        static void InitServices()
+        {
+            ServiceLocator.Instance.Add<ISearchService, SearchService>();
+            ServiceLocator.Instance.Add<ITrendsService, TrendsService>();
+            ServiceLocator.Instance.Add<IBarcodeService, BarcodeService>();
+        }
 
-            //ViewModles
+        static void InitViewModels()
+        {
             ServiceLocator.Instance.Add<ICheckInsViewModel, CheckInsViewModel>();
             ServiceLocator.Instance.Add<IDiscoverViewModel, DiscoverViewModel>();
             ServiceLocator.Instance.Add<IAppFeedbackViewModel, AppFeedbackViewModel>();
@@ -39,10 +49,6 @@ namespace BeerDrinkin.Core.ViewModels
             ServiceLocator.Instance.Add<ICheckInViewModel, CheckInViewModel>();
             ServiceLocator.Instance.Add<IUserProfileViewModel, UserProfileViewModel>();
             ServiceLocator.Instance.Add<IWishListViewModel, WishListViewModel>();
-
-
-            //TODO: Put this somewhere....
-            ServiceLocator.Instance.Resolve<IStoreManager>().InitializeAsync();
         }
 
         IStoreManager storeManager;

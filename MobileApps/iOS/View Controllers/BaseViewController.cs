@@ -1,5 +1,7 @@
 ﻿using System;
+using BeerDrinkin.Core.Abstractions.ViewModels;
 using BeerDrinkin.iOS.Helpers;
+using BeerDrinkin.Utils;
 using CoreGraphics;
 using Foundation;
 using UIKit;
@@ -17,6 +19,13 @@ namespace BeerDrinkin.iOS
 
         private NSObject _keyboardShowObserver;
         private NSObject _keyboardHideObserver;
+
+        public void Initialize()
+        {
+            var discover = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
+            if (discover == null)
+                Core.ViewModels.ViewModelBase.Init();
+        }
 
         protected virtual void RegisterForKeyboardNotifications()
         {

@@ -74,8 +74,8 @@
     <MtouchFastDev>false</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <CodesignProvision></CodesignProvision>
-    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
-    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
+    <MtouchProfiling>false</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
     <Optimize>true</Optimize>
