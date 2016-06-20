@@ -93,6 +93,8 @@ namespace BeerDrinkin.DataStore.Azure
         IBreweryStore breweryStore;
         public IBreweryStore BreweryStore => breweryStore ?? (breweryStore = ServiceLocator.Instance.Resolve<IBreweryStore>());
 
+        IPerformanceEventStore performanceEventStore;
+        public IPerformanceEventStore PerformanceEventStore => performanceEventStore ?? (performanceEventStore = ServiceLocator.Instance.Resolve<IPerformanceEventStore>());
         #endregion
     }
 }

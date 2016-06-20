@@ -38,6 +38,7 @@
     <Compile Include="IBarcodeService.cs" />
     <Compile Include="ILogService.cs" />
     <Compile Include="IImageService.cs" />
+    <Compile Include="IPerformanceMonitorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

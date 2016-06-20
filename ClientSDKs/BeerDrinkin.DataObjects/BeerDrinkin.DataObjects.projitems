@@ -22,5 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PerformanceEvent.cs" />
   </ItemGroup>
 </Project>

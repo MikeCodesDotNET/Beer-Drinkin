@@ -4,11 +4,18 @@ using System.Threading.Tasks;
 using BeerDrinkin.Services.Abstractions;
 using Mindscape.Raygun4Net;
 using Foundation;
+using System.Collections;
+using BeerDrinkin.DataStore.Abstractions;
+using BeerDrinkin.Utils;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.iOS.Helpers
 {
     public class Logger : ILogService
     {
+
+        IPerformanceEventStore performanceStore;
+
         public Logger()
         {
             RaygunClient.Attach(Utils.Keys.CrashReportingKey);
@@ -18,6 +25,8 @@ namespace BeerDrinkin.iOS.Helpers
             var applicationVersion = $"{appVersion}.{buildNumber}";
 
             RaygunClient.Current.ApplicationVersion = applicationVersion;
+
+            performanceStore = ServiceLocator.Instance.Resolve<IPerformanceEventStore>();
         }
 
         public void Identify(string userId)
@@ -51,6 +60,16 @@ namespace BeerDrinkin.iOS.Helpers
             Report(exception, viewController, method, "");
         }
 
+        public void Track(string eventName, TimeSpan time)
+        {
+            var e = new PerformanceEvent
+            {
+                UserId = Utils.Helpers.Settings.UserId,
+                EventName = eventName,
+                Elapsed = time.TotalMilliseconds
+            };
+            performanceStore.InsertAsync(e);
+        }
     }
 }
 
