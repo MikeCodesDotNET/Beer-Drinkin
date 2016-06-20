@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace BeerDrinkin.Services.Abstractions
 {
-    public interface IPerformanceMonitorService
+    public interface IPerformanceMonitorStore
     {
         void Track(string eventName);
 
