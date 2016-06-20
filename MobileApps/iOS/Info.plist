@@ -79,8 +79,6 @@
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>0.3</string>
-	<key>CFBundleVersion</key>
-	<string>0</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -107,5 +105,7 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>

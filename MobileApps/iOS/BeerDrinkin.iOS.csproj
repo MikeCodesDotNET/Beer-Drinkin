@@ -660,6 +660,7 @@
     <BundleResource Include="Resources\inAppPurhcase_tick.png" />
     <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
     <BundleResource Include="Resources\search_ocr.png" />
+    <BundleResource Include="Resources\intro_location_map.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

@@ -132,7 +132,7 @@ namespace BeerDrinkin.iOS
             }
             catch (Exception ex)
             { 
-                logger.Report(ex);
+                logger.Report(ex, "DiscoverViewController", "Search");
             }
         }
 
