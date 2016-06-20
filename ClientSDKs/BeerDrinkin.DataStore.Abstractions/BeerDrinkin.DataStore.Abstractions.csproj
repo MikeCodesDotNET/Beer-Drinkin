@@ -45,6 +45,7 @@
     <Compile Include="IStoreManager.cs" />
     <Compile Include="IWishListStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IPerformanceEventStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BreweryDB">

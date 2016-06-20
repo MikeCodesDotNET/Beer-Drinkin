@@ -16,6 +16,7 @@ namespace BeerDrinkin.Core.ViewModels
         {
             //Azure Client
             ServiceLocator.Instance.Add<IAzureClient, AzureClient.AzureClient>();
+
             InitServices();
             InitDataStores();
             InitViewModels();
@@ -31,6 +32,9 @@ namespace BeerDrinkin.Core.ViewModels
             ServiceLocator.Instance.Add<IWishStore, WishStore>();
             ServiceLocator.Instance.Add<IBeerStore, BeerStore>();
             ServiceLocator.Instance.Add<IRatingStore, RatingStore>();
+
+            //Used to log performance information. Not essential for users but useful to development (finding bottle necks)
+            ServiceLocator.Instance.Add<IPerformanceEventStore, PerformanceEventStore>();
         }
 
         static void InitServices()

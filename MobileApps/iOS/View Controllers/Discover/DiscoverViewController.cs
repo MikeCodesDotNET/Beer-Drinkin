@@ -117,6 +117,9 @@ namespace BeerDrinkin.iOS
 
         async Task Search(string searchTerm)
         {
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+
             try
             {
                 if (string.IsNullOrEmpty(searchBar.Text) || searchBar.Text.Length < 2)
@@ -131,8 +134,13 @@ namespace BeerDrinkin.iOS
                 View.BringSubviewToFront(beerResultsTable);
             }
             catch (Exception ex)
-            { 
+            {
                 logger.Report(ex, "DiscoverViewController", "Search");
+            }
+            finally
+            {
+                stopWatch.Stop();
+
             }
         }
 
