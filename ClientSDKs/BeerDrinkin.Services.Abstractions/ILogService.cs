@@ -29,5 +29,10 @@ namespace BeerDrinkin.Services.Abstractions
         
         void Report(Exception exception);
         void Report(Exception exception, IList<string> tags);
+
+        void Report(Exception exception, string viewController, string method, string comment);
+
+        void Report(Exception exception, string viewController, string method);
+
     }
 }

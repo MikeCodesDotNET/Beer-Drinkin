@@ -32,8 +32,25 @@ namespace BeerDrinkin.iOS.Helpers
 
         public void Report(Exception exception, IList<string> tags)
         {
-            RaygunClient.Current.Send(exception, tags);
+            RaygunClient.Current.SendInBackground(exception, tags);
         }
+
+        public void Report(Exception exception, string viewController, string method, string comment = "")
+        {
+            var dict = new Dictionary<string, object>();
+            dict.Add("View Controller", viewController);
+            dict.Add("Method", method);
+            if(!string.IsNullOrEmpty(comment))
+                dict.Add("Comment", comment);
+
+            RaygunClient.Current.SendInBackground(exception, null, dict);
+        }
+
+        public void Report(Exception exception, string viewController, string method)
+        {
+            Report(exception, viewController, method, "");
+        }
+
     }
 }
 
