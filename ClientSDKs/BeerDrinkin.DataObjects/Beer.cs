@@ -33,5 +33,7 @@
         /// </summary>
         public Image Image { get; set; }
 
+        public bool HasImages { get; set; }
+
     }
 }

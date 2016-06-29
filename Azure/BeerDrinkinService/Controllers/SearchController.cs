@@ -68,6 +68,7 @@ namespace BeerDrinkin.Controllers
 
                     if(indexedBeer.Images.Count() > 0)
                     {
+                        beer.HasImages = true;
                         beer.Image.SmallUrl = indexedBeer?.Images[0];
                         beer.Image.MediumUrl = indexedBeer?.Images[1];
                         beer.Image.LargeUrl = indexedBeer?.Images[2];
