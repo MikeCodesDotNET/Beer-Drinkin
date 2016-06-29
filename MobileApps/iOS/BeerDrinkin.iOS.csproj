@@ -152,9 +152,6 @@
     <Reference Include="Acr.Support.iOS">
       <HintPath>..\..\packages\Acr.Support.1.1.1\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Pop">
-      <HintPath>..\..\Components\Facebook.Pop-1.0.7\lib\ios-unified\Facebook.Pop.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
     </Reference>
@@ -253,9 +250,6 @@
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
       <HintPath>..\..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.InAppPurchase-Unified">
-      <HintPath>..\..\Components\xamarin.inapppurchase-2.8\lib\ios-unified\Xamarin.InAppPurchase-Unified.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -715,10 +709,6 @@
       <Version>16.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="Facebook.Pop">
-      <Version>1.0.7</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="zxing.net.mobile">
       <Version>1.5.1.0</Version>
       <Visible>False</Visible>
@@ -733,10 +723,6 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="judopay-xamarin-sdk">
       <Version>2.3.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamarin.inapppurchase">
-      <Version>2.8</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
