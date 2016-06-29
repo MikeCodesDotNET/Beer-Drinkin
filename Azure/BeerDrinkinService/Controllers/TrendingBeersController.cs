@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Threading.Tasks;
 using BeerDrinkin.DataObjects;
 using Microsoft.ApplicationInsights;
+using BeerDrinkin.Service.Helpers;
 
 namespace BeerDrinkin.Controllers
 {
@@ -15,8 +16,8 @@ namespace BeerDrinkin.Controllers
     {
         TelemetryClient telemetryClient = new TelemetryClient();
 
-        // GET api/UserInfo
-        public async Task<List<Beer>> Get(int takeCount)
+        [QueryableExpand("Brewery, Style, Image")]
+        public async Task<List<Beer>> Get(int takeCount, double longitude = 0, double latitude = 0)
         {
             telemetryClient.TrackEvent("GetTrendingBeers");
             try
@@ -32,20 +33,5 @@ namespace BeerDrinkin.Controllers
             }
         }
 
-        public async Task<List<Beer>> Get(int takeCount, string longitude, string latitude)
-        {
-            telemetryClient.TrackEvent("GetTrendingBeersForLocation");
-            try
-            {
-                var breweryDb = new Services.BreweryDBService();
-                var featuredBeers = await breweryDb.GetFeatured();
-                return featuredBeers.Take(takeCount).ToList();
-            }
-            catch (Exception ex)
-            {
-                telemetryClient.TrackException(ex);
-                return new List<Beer>();
-            }
-        }
     }
 }

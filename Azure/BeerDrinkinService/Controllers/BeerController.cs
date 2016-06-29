@@ -8,6 +8,7 @@ using BeerDrinkin.DataObjects;
 using BeerDrinkin.Models;
 using Microsoft.ApplicationInsights;
 using System.Collections.Generic;
+using BeerDrinkin.Service.Helpers;
 
 namespace BeerDrinkin.Controllers
 {
@@ -21,17 +22,17 @@ namespace BeerDrinkin.Controllers
             base.Initialize(controllerContext);
             context = new BeerDrinkinContext();
             DomainManager = new EntityDomainManager<Beer>(context, Request);
-            telemetryClient = new TelemetryClient(); 
+            telemetryClient = new TelemetryClient();
         }
 
-        // GET tables/Beer
+        [QueryableExpand("Brewery, Image")]
         public IQueryable<Beer> GetAllBeerItem()
         {
             telemetryClient.TrackEvent("GetAllBeers");
             return Query();
         }
 
-        // GET tables/Beer/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        [QueryableExpand("Brewery, Image")]
         public SingleResult<Beer> GetBeerItem(string id)
         {            
             var properties = new Dictionary<string, string>();
@@ -41,13 +42,13 @@ namespace BeerDrinkin.Controllers
             return Lookup(id); 
         }
 
-        // PATCH tables/Beer/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        [Authorize]
         public Task<Beer> PatchBeerItem(string id, Delta<Beer> patch)
         {
             return UpdateAsync(id, patch);
         }
 
-        // POST tables/Beer
+        [Authorize]
         public async Task<IHttpActionResult> PostBeerItem(Beer item)
         {
             var properties = new Dictionary<string, string>();
@@ -59,7 +60,7 @@ namespace BeerDrinkin.Controllers
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-        // DELETE tables/Beer/48D68C86-6EA6-4C25-AA33-223FC9A27959
+        [Authorize]
         public Task DeleteBeerItem(string id)
         {
             var properties = new Dictionary<string, string>();

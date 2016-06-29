@@ -92,7 +92,7 @@ namespace BeerDrinkin.DataStore.Azure
 
         IBreweryStore breweryStore;
         public IBreweryStore BreweryStore => breweryStore ?? (breweryStore = ServiceLocator.Instance.Resolve<IBreweryStore>());
-
+      
         #endregion
     }
 }

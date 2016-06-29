@@ -118,7 +118,7 @@ namespace BeerDrinkin.iOS
 
 						beerItem.Name = name.ToString();
 						beerItem.Description = description.ToString();
-						beerItem.ImageMedium = imageUrl.ToString();
+						beerItem.Image.MediumUrl = imageUrl.ToString();
 						beerItem.BreweryDbId = breweryDbId.ToString();
 
 						if (!string.IsNullOrEmpty(beerItem.BreweryDbId))

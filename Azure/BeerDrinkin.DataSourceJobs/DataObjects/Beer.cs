@@ -1,4 +1,4 @@
-﻿    namespace BeerDrinkin.DataObjects
+﻿namespace BeerDrinkin.DataObjects
 {
     public class Beer : BaseDataObject
     {
@@ -7,10 +7,20 @@
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public Brewery Brewery { get; set; }
-        public string BreweryId { get; set; }
-        public string StyleId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the brewerys
+        /// </summary>
+        public Brewery Brewery { get; set; }
+
+        /// <summary>
+        /// Gets or sets the beer style
+        /// </summary>
+        public Style StyleId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the beers ABV
+        /// </summary>
         public double? Abv { get; set; }
 
         /// <summary>

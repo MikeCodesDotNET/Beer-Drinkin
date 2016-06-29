@@ -9,12 +9,16 @@
     <Import_RootNamespace>BeerDrinkin.DataObjects</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseDataObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Beer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Brewery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckIn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CheckInEnvironmentalCondition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Favourite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Style.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />

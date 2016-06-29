@@ -9,9 +9,7 @@ namespace BeerDrinkin.DataObjects
         public string Description { get; set; }
         public string Name { get; set; }
         public string MailListUrl { get; set; }
-
         public Image Image { get; set; }
-
         public string Website { get; set; }
     }
 }
