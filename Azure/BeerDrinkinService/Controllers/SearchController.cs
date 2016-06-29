@@ -24,7 +24,7 @@ namespace BeerDrinkin.Controllers
 
         SearchIndexClient indexClient;
 
-        [QueryableExpand("Brewery, Style, Image")]
+        [QueryableExpand("Brewery, Image")]
         public async Task<List<Beer>> Get(string searchTerm)
         {
             try
@@ -63,10 +63,12 @@ namespace BeerDrinkin.Controllers
                         Name = indexedBeer.Name
                     };
 
+                    beer.Image = new Image();
                     //Fetch Brewery information 
 
                     if(indexedBeer.Images.Count() > 0)
                     {
+                        beer.HasImages = true;
                         beer.Image.SmallUrl = indexedBeer?.Images[0];
                         beer.Image.MediumUrl = indexedBeer?.Images[1];
                         beer.Image.LargeUrl = indexedBeer?.Images[2];
