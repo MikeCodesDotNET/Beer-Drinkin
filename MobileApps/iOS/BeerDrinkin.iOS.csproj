@@ -272,12 +272,11 @@
     <Reference Include="Plugin.Permissions.Abstractions">
       <HintPath>..\..\packages\Plugin.Permissions.1.1.7\lib\Xamarin.iOS10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\..\packages\BTProgressHUD.1.2.0.3\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BTProgressHUD\BTProgressHUD\BTProgressHUD.csproj">
-      <Project>{8ECDFDC5-42D0-4540-9691-830EEB2ED874}</Project>
-      <Name>BTProgressHUD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.AzureClient\BeerDrinkin.AzureClient.csproj">
       <Project>{0D1E84BC-8253-46EF-B55B-E00BBD774B52}</Project>
       <Name>BeerDrinkin.AzureClient</Name>
