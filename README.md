@@ -1,7 +1,7 @@
 # Beer Drinkin 
 [![Build Status](https://www.bitrise.io/app/7f04749bb7349e62.svg?token=rtX98mobBuH6nkxy1k8l2w&branch=master)](https://www.bitrise.io/app/7f04749bb7349e62)
 
-<img src="http://beerdrink.in/images/slider-logo.png" width=125">
+<img src="https://github.com/MikeCodesDotNet/Beer-Drinkin/blob/master/Design/Icon.png" width=125">
 
 Beer Drinkin is a .NET beer tracking app for iOS using Xamarin and Azure. Powered by several Microsoft services such as Microsoft's Azure App Services, Cognitive Services, and Azure Search as well as HockeyApp and Xamarin Test Cloud.
 
