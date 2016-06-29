@@ -13,9 +13,9 @@ namespace BeerDrinkin.Core.ViewModels
     {
         IAzureClient azure;
         ISearchService searchService;
-        ITrendsService trendsService;
         IBarcodeService barcodeService;
         IImageService imageService;
+
         public DiscoverViewModel()
         {
             Initialize();
@@ -23,11 +23,10 @@ namespace BeerDrinkin.Core.ViewModels
 
         void Initialize()
         {
-            if (azure == null || searchService == null || trendsService == null)
+            if (azure == null || searchService == null)
             {
                 azure = ServiceLocator.Instance.Resolve<IAzureClient>();
                 searchService = ServiceLocator.Instance.Resolve<ISearchService>();
-                trendsService = ServiceLocator.Instance.Resolve<ITrendsService>();
                 barcodeService = ServiceLocator.Instance.Resolve<IBarcodeService>();
             }
         }
@@ -38,11 +37,7 @@ namespace BeerDrinkin.Core.ViewModels
             return await searchService.Search(searchTerm);
         }
 
-        public async Task<List<Beer>> FetchTrendingBeers(int takeCount = 10)
-        {
-            Initialize();
-            return await trendsService.TrendingBeers(takeCount);
-        }
+
 
         public async Task<List<Beer>> LookupBarcode(string upc)
         {

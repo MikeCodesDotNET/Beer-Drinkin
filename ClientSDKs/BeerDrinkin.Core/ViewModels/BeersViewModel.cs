@@ -13,7 +13,5 @@ namespace BeerDrinkin.Core.ViewModels
     public class BeersViewModel : ViewModelBase
     {
         public ObservableCollection<Beer> Beers { get; } = new ObservableCollection<Beer>();
-
-        
     }
 }

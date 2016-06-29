@@ -135,9 +135,9 @@ namespace BeerDrinkin.iOS
 				info.Add(new NSString("abv"), new NSString(beer?.Abv.ToString()));
 				info.Add(new NSString("breweryDbId"), new NSString(beer.BreweryDbId));
 			
-				if (string.IsNullOrEmpty(beer.ImageMedium) == false) 
+                if (beer.Image != null)
 				{
-					info.Add(new NSString("imageUrl"), new NSString(beer?.ImageMedium));
+					info.Add(new NSString("imageUrl"), new NSString(beer?.Image.MediumUrl));
 				}
 
 				var attributes = new CSSearchableItemAttributeSet();
@@ -189,8 +189,8 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-			if (string.IsNullOrEmpty(beer.ImageMedium) == false) {
-                imgHeaderView.SetImage (new NSUrl (beer?.ImageMedium), UIImage.FromBundle ("BeerDrinkin.png"));
+			if (string.IsNullOrEmpty(beer.Image.MediumUrl) == false) {
+                imgHeaderView.SetImage (new NSUrl (beer?.Image.MediumUrl), UIImage.FromBundle ("BeerDrinkin.png"));
             } else {
                 imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
             }
@@ -217,7 +217,7 @@ namespace BeerDrinkin.iOS
             var headerCell = tableView.DequeueReusableCell (headerCellIdentifier) as BeerHeaderCell ??
                              new BeerHeaderCell (headerCellIdentifier);
             headerCell.Name = beer?.Name;
-            headerCell.Brewery = beer?.Brewery;
+            headerCell.Brewery = beer?.Brewery.Name;
             headerCell.Abv = beer.Abv.ToString();
 
             headerCell.ConsumedAlpha = 0.3f;

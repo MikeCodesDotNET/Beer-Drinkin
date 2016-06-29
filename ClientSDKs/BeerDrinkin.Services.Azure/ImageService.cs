@@ -12,11 +12,11 @@ namespace BeerDrinkin.Services.Azure
     public class ImageService : IImageService
     {
         IAzureClient azure;
-        ILogService logger;
+        IAppInsights logger;
         public ImageService()
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-            logger = ServiceLocator.Instance.Resolve<ILogService>();
+            logger = ServiceLocator.Instance.Resolve<IAppInsights>();
         }
 
         public Task<string> GetImageUrl(string id)

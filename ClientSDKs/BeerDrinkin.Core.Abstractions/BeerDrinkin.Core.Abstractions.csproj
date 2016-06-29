@@ -40,6 +40,8 @@
     <Compile Include="ViewModels\IUserProfileViewModel.cs" />
     <Compile Include="ViewModels\IWishListViewModel.cs" />
     <Compile Include="ViewModels\ICheckInViewModel.cs" />
+    <Compile Include="ViewModels\ITrendingBeersViewModel.cs" />
+    <Compile Include="ViewModels\IEnableUserLocationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

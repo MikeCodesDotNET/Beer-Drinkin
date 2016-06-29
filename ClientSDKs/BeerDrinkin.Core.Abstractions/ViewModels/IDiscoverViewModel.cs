@@ -10,8 +10,6 @@ namespace BeerDrinkin.Core.Abstractions.ViewModels
     {
         Task<List<Beer>> Search(string searchTerm);
 
-        Task<List<Beer>> FetchTrendingBeers(int takecount);
-
         Task<List<Beer>> LookupBarcode(string upc);
 
         Task<List<Beer>> LookupImage(Stream stream);

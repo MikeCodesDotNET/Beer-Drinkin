@@ -16,13 +16,13 @@ namespace BeerDrinkin.Core.ViewModels
     {
         ICheckInStore checkInStore;
         IAzureClient azure;
-        ILogService log;
+        IAppInsights log;
 
         public CheckInViewModel()
         {
             checkInStore = ServiceLocator.Instance.Resolve<ICheckInStore>();
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-            log = ServiceLocator.Instance.Resolve<ILogService>();          
+            log = ServiceLocator.Instance.Resolve<IAppInsights>();          
         }
 
         public async Task CheckInBeer(Beer beer, Rating rating, bool isBottled)

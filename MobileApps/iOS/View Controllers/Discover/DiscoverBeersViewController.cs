@@ -13,7 +13,7 @@ namespace BeerDrinkin.iOS
 {
     public partial class DiscoverBeersViewController : UITableViewController
     {
-        IDiscoverViewModel viewModel;
+        ITrendingBeersViewModel viewModel;
         string TrendingBeerCellIndeitifier = "TRENDING_BEER_CELL";
         public List<Beer> Beers = new List<Beer>();
 
@@ -24,7 +24,7 @@ namespace BeerDrinkin.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
+            viewModel = ServiceLocator.Instance.Resolve<ITrendingBeersViewModel>();
 
             Console.WriteLine(TraitCollection.ForceTouchCapability);
             if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
@@ -54,11 +54,11 @@ namespace BeerDrinkin.iOS
             }
 
             cell.Name = beer.Name;
-            cell.Brewery = beer.Brewery;
+            cell.Brewery = beer?.Brewery.Name;
 
-            if (beer.ImageMedium != null)
+            if (beer.Image.MediumUrl != null)
             {
-                cell.Image.SetImage(new NSUrl(beer.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));
+                cell.Image.SetImage(new NSUrl(beer.Image.MediumUrl), UIImage.FromBundle("BeerDrinkin.png"));
             }
             else
             {
