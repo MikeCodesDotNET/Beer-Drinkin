@@ -29,7 +29,7 @@ namespace BeerDrinkin.iOS
 
         ScrollingTabView tabView;
 
-        ILogService logger;
+        IAppInsights logger;
         public Beer SelectedBeer { get; private set;}
 
         public DiscoverViewController (IntPtr handle) : base (handle)
@@ -37,14 +37,14 @@ namespace BeerDrinkin.iOS
             Initialize();
 
             viewModel = ServiceLocator.Instance.Resolve<IDiscoverViewModel>();
-            logger = ServiceLocator.Instance.Resolve<ILogService>();
+            logger = ServiceLocator.Instance.Resolve<IAppInsights>();
         }
 
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            await ValidateUserAuth();
+            await ValidateInitalLaunch();
 
             ConfigureUserInterface();
             ConfigureEvents();
@@ -65,7 +65,7 @@ namespace BeerDrinkin.iOS
             SelectedBeer = null;
         }
 
-        async Task ValidateUserAuth()
+        async Task ValidateInitalLaunch()
         {
             if (string.IsNullOrEmpty(Utils.Helpers.Settings.UserId))
             {

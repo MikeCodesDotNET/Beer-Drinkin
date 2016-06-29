@@ -32,9 +32,6 @@ namespace BeerDrinkin.Core.ViewModels
             ServiceLocator.Instance.Add<IWishStore, WishStore>();
             ServiceLocator.Instance.Add<IBeerStore, BeerStore>();
             ServiceLocator.Instance.Add<IRatingStore, RatingStore>();
-
-            //Used to log performance information. Not essential for users but useful to development (finding bottle necks)
-            ServiceLocator.Instance.Add<IPerformanceEventStore, PerformanceEventStore>();
         }
 
         static void InitServices()
@@ -46,6 +43,8 @@ namespace BeerDrinkin.Core.ViewModels
 
         static void InitViewModels()
         {
+            ServiceLocator.Instance.Add<IEnableUserLocationViewModel, EnableUserLocationViewModel>();
+            ServiceLocator.Instance.Add<ITrendingBeersViewModel, TrendingBeersViewModel>();
             ServiceLocator.Instance.Add<ICheckInsViewModel, CheckInsViewModel>();
             ServiceLocator.Instance.Add<IDiscoverViewModel, DiscoverViewModel>();
             ServiceLocator.Instance.Add<IAppFeedbackViewModel, AppFeedbackViewModel>();

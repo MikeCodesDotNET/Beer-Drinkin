@@ -269,7 +269,13 @@
       <HintPath>..\..\packages\Refractored.MvvmHelpers.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\MvvmHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Mindscape.Raygun4Net.Xamarin.iOS.Unified">
-      <HintPath>..\..\packages\Mindscape.Raygun4Net.5.3.0\lib\Xamarin.iOS10\Mindscape.Raygun4Net.Xamarin.iOS.Unified.dll</HintPath>
+      <HintPath>Dependencies\Mindscape.Raygun4Net.Xamarin.iOS.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\..\packages\Plugin.Permissions.1.1.7\lib\Xamarin.iOS10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\..\packages\Plugin.Permissions.1.1.7\lib\Xamarin.iOS10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -500,7 +506,7 @@
     <Compile Include="View Controllers\Settings\SettingsViewController.designer.cs">
       <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\AppInsights.cs" />
     <Compile Include="View Controllers\Discover\DiscoverViewController.cs" />
     <Compile Include="View Controllers\Discover\DiscoverViewController.designer.cs">
       <DependentUpon>DiscoverViewController.cs</DependentUpon>
@@ -541,6 +547,11 @@
       <DependentUpon>DiscoverBeerResultCell.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\Discover\DiscoverBeerPreviewingDelegate.cs" />
+    <Compile Include="View Controllers\Welcome\EnableLocationTrackingViewController.cs" />
+    <Compile Include="View Controllers\Welcome\EnableLocationTrackingViewController.designer.cs">
+      <DependentUpon>EnableLocationTrackingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\IntroductionScrollingView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -661,6 +672,15 @@
     <BundleResource Include="Resources\search_inAppPurcahsePadlock.png" />
     <BundleResource Include="Resources\search_ocr.png" />
     <BundleResource Include="Resources\intro_location_map.png" />
+    <BundleResource Include="Resources\intro_location_map_success.png" />
+    <BundleResource Include="Resources\Introduction_Facebook.png" />
+    <BundleResource Include="Resources\Introduction_Map.png" />
+    <BundleResource Include="Resources\Introduction_Photos.png" />
+    <BundleResource Include="Resources\ScrollView_BlueLarge.png" />
+    <BundleResource Include="Resources\ScrollView_BlueSmall.png" />
+    <BundleResource Include="Resources\ScrollView_Green.png" />
+    <BundleResource Include="Resources\ScrollView_Purple.png" />
+    <BundleResource Include="Resources\Tick_White.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

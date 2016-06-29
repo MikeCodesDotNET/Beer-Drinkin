@@ -32,8 +32,8 @@ namespace BeerDrinkin.AzureClient
                 // Log them in, this time hardcoded with Microsoft but you would
                 // trigger the login presentation in your application
                 try
-                {                   
-                                       
+                {
+
                 }
                 catch (InvalidOperationException)
                 {

@@ -18,6 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PerformanceEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppInsightsEvent.cs" />
   </ItemGroup>
 </Project>

@@ -15,12 +15,12 @@ namespace BeerDrinkin.iOS
     partial class SocialAuthViewController : UIViewController
     {
         IAzureClient azure;
-        ILogService logger;
+        IAppInsights logger;
 
         public SocialAuthViewController(IntPtr handle): base(handle)
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-            logger = ServiceLocator.Instance.Resolve<ILogService>();
+            logger = ServiceLocator.Instance.Resolve<IAppInsights>();
         }
 
         public override void ViewDidLoad()

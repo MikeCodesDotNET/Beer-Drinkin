@@ -40,7 +40,7 @@ namespace BeerDrinkin.iOS
             var cell = tableView.DequeueReusableCell(cellIdentifier) as DiscoverBeerResultCell ?? new DiscoverBeerResultCell(cellIdentifier);
 
             cell.Name = Beer.Name;
-            cell.Brewery = Beer.Brewery;
+            cell.Brewery = Beer?.Brewery?.Name;
             if (Beer.ImageMedium != null)
             {
                 cell.Image.SetImage(new NSUrl(Beer.ImageMedium), UIImage.FromBundle("BeerDrinkin.png"));

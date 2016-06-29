@@ -217,7 +217,7 @@ namespace BeerDrinkin.iOS
             var headerCell = tableView.DequeueReusableCell (headerCellIdentifier) as BeerHeaderCell ??
                              new BeerHeaderCell (headerCellIdentifier);
             headerCell.Name = beer?.Name;
-            headerCell.Brewery = beer?.Brewery;
+            headerCell.Brewery = beer?.Brewery.Name;
             headerCell.Abv = beer.Abv.ToString();
 
             headerCell.ConsumedAlpha = 0.3f;

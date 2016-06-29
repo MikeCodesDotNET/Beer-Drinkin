@@ -27,6 +27,9 @@ namespace BeerDrinkin.Utils.Helpers
         private const string UserIdKey = "userId_key";
         private static readonly string UserIdDefault = string.Empty;
 
+        private const string LocationEnabledKey = "locaiton_enabled_key";
+        private static readonly bool LocationEnabledDefault = false;
+
         #endregion
 
 
@@ -51,6 +54,18 @@ namespace BeerDrinkin.Utils.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue<string>(UserIdKey, value);
+            }
+        }
+
+        public static bool LocationEnabled
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault<bool>(LocationEnabledKey, LocationEnabledDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<bool>(LocationEnabledKey, value);
             }
         }
 

@@ -26,7 +26,7 @@ namespace BeerDrinkin.iOS
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             Core.ViewModels.ViewModelBase.Init();
-            ServiceLocator.Instance.Add<ILogService, Logger>();
+            ServiceLocator.Instance.Add<IAppInsights, AppInsights>();
 
 #if DEBUG
             Utils.Helpers.Settings.UserId = string.Empty;
