@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.iOS", "MobileAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Core.Abstractions", "ClientSDKs\BeerDrinkin.Core.Abstractions\BeerDrinkin.Core.Abstractions.csproj", "{C31319EA-8A83-4724-BA9A-DFB224016FB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.iOS.TestCloud", "Tests\BeerDrinkin.iOS.TestCloud\BeerDrinkin.iOS.TestCloud.csproj", "{F296CCFF-C0AF-4C12-A83B-5760B3805C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -120,5 +122,15 @@ Global
 		{C31319EA-8A83-4724-BA9A-DFB224016FB5}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{C31319EA-8A83-4724-BA9A-DFB224016FB5}.UITest|iPhone.ActiveCfg = Release|Any CPU
 		{C31319EA-8A83-4724-BA9A-DFB224016FB5}.UITest|iPhone.Build.0 = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Release|iPhone.Build.0 = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.UITest|iPhone.ActiveCfg = Release|Any CPU
+		{F296CCFF-C0AF-4C12-A83B-5760B3805C97}.UITest|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

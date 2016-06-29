@@ -30,6 +30,8 @@ namespace BeerDrinkin.iOS
 
 #if DEBUG
             Utils.Helpers.Settings.UserId = string.Empty;
+
+            Xamarin.Calabash.Start();
             #endif
 
             //Windows Azure
