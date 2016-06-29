@@ -1,4 +1,5 @@
 ﻿using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.Azure.Mobile.Server.Config;
 using System;
@@ -14,20 +15,30 @@ namespace BeerDrinkin.Service.Controllers
     public class BarcodeController : ApiController
     {
         TelemetryClient telemetryClient;
+        BeerDrinkinContext context;
+
         public BarcodeController()
         {
             telemetryClient = new TelemetryClient();
+            context = new BeerDrinkinContext();
         }
 
         // GET api/barcode
         public async Task<List<Beer>> Get(string upc)
         {
-            var properties = new Dictionary<string, string>();
-            properties.Add("UPC", upc);
-            telemetryClient.TrackEvent("LookupBarcode", properties);
 
             try
             {
+                var beer = context.Beers.FirstOrDefault(x => x.Upc == upc);
+                if (beer != null)
+                {
+                    return new List<Beer>() { beer };
+                }
+
+                var properties = new Dictionary<string, string>();
+                properties.Add("UPC", upc);
+                telemetryClient.TrackEvent("LookupBarcode", properties);
+
                 var rateBeerClient = new RateBeer.Client();
                 var results = await rateBeerClient.SearchForBeer(upc);
                 if (results == null)
@@ -42,5 +53,31 @@ namespace BeerDrinkin.Service.Controllers
                 return null;
             }
         }
+
+        public async Task<bool> Post(string beerId, string upc)
+        {
+            var properties = new Dictionary<string, string>();
+            properties.Add("BeerId", beerId);
+            properties.Add("UPC", upc);
+            telemetryClient.TrackEvent("SaveBarcode", properties);
+
+            var beer = context.Beers.FirstOrDefault(x => x.Id == beerId);
+            if (beer == null)
+                return false;
+
+            try
+            {
+                beer.Upc = upc;
+                context.Beers.Add(beer);
+                context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+                return false;
+            }
+        }
+
     }
 }

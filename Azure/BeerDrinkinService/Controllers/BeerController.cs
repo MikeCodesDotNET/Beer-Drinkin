@@ -25,14 +25,14 @@ namespace BeerDrinkin.Controllers
             telemetryClient = new TelemetryClient();
         }
 
-        [QueryableExpand("Brewery, Style, Image")]
+        [QueryableExpand("Brewery, Image")]
         public IQueryable<Beer> GetAllBeerItem()
         {
             telemetryClient.TrackEvent("GetAllBeers");
             return Query();
         }
 
-        [QueryableExpand("Brewery, Style, Image")]
+        [QueryableExpand("Brewery, Image")]
         public SingleResult<Beer> GetBeerItem(string id)
         {            
             var properties = new Dictionary<string, string>();

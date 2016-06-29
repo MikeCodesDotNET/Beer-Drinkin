@@ -14,9 +14,9 @@ namespace BeerDrinkin.Models
         static BeerDrinkinContext()
         {
             // Automatic migration
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BeerDrinkinContext, Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BeerDrinkinContext, Migrations.Configuration>());
 
-            //Database.SetInitializer<BeerDrinkinContext>(new DropCreateDatabaseAlways<BeerDrinkinContext>());
+            Database.SetInitializer<BeerDrinkinContext>(new CreateDatabaseIfNotExists<BeerDrinkinContext>());
 
             // No migration
             //Database.SetInitializer<BeerDrinkinContext>(null);
@@ -41,6 +41,7 @@ namespace BeerDrinkin.Models
         public DbSet<Brewery> Breweries { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Wish> Wishes { get; set; }
-        
+        public DbSet<AppEvent> AppEvents { get; set; }
+        public DbSet<CheckInEnvironmentalCondition> CheckInEnvironmentalConditions { get; set; }
     }
 }

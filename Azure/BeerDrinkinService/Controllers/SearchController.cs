@@ -10,6 +10,7 @@ using Microsoft.Azure.Search.Models;
 using BeerDrinkin.Models;
 using Microsoft.ApplicationInsights;
 using BeerDrinkin.Service.Helpers;
+using BeerDrinkin.DataObjects;
 
 namespace BeerDrinkin.Controllers
 {
@@ -24,13 +25,14 @@ namespace BeerDrinkin.Controllers
         SearchIndexClient indexClient;
 
         [QueryableExpand("Brewery, Style, Image")]
-        public async Task<List<DataObjects.Beer>> Get(string searchTerm)
+        public async Task<List<Beer>> Get(string searchTerm)
         {
             try
             {
+
                 //Setup tracking how long the HTTP request takes.
                 telemtryClient.Context.Operation.Id = Guid.NewGuid().ToString();
-                telemtryClient.Context.Operation.Name = "BeerSearch";
+                telemtryClient.Context.Operation.Name = "Search";
                 var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
                 //Log the fact we've search some beers
@@ -45,14 +47,14 @@ namespace BeerDrinkin.Controllers
                 suggestParameters.HighlightPostTag = "]";
                 suggestParameters.MinimumCoverage = 100;
 
-                var suggestions = await indexClient.Documents.SuggestAsync<DataObjects.AzureSearchBeerResponse>(searchTerm, "nameSuggester", suggestParameters);
+                var suggestions = await indexClient.Documents.SuggestAsync<AzureSearchBeerResponse>(searchTerm, "nameSuggester", suggestParameters);
 
                 //Convert to Beer Drinkin Beer Type & save to our DB.
                 var results = new List<DataObjects.Beer>();
                 foreach (var result in suggestions.Results)
                 {
                     var indexedBeer = result.Document;
-                    var beer = new DataObjects.Beer
+                    var beer = new Beer
                     {
                         Id = indexedBeer.Id,
                         Abv = indexedBeer.Abv,
