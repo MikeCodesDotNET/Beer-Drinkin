@@ -122,7 +122,7 @@ namespace BeerDrinkin.iOS
 
             try
             {
-                if (string.IsNullOrEmpty(searchBar.Text) || searchBar.Text.Length < 2)
+                if (string.IsNullOrEmpty(searchBar.Text))
                     return;
 
                 searchResults = await viewModel.Search(searchTerm);
