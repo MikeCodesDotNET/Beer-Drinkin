@@ -58,6 +58,25 @@ namespace BeerDrinkin.Controllers
             properties.Add("BeerId", item.BeerId);
             telemetryClient.TrackEvent("SaveCheckIn", properties);
 
+            if(item.Longitude > 0 && item.Latitude > 0)
+            {
+                var weatherResult = WeatherNet.Clients.CurrentWeather.GetByCoordinates(item.Latitude, item.Longitude).Item;
+                var weatherCondition = new WeatherCondition
+                {
+                    CheckInId = item.Id,
+                    City = weatherResult.City,
+                    Country = weatherResult.Country,
+                    Title = weatherResult.Title,
+                    Description = weatherResult.Description,
+                    Temperature = weatherResult.Temp,
+                    Humidity = weatherResult.Humidity,
+                    WindSpeed = weatherResult.WindSpeed
+                };
+
+                context.WeatherConditions.Add(weatherCondition);
+                context.SaveChanges();
+            }
+
             CheckIn current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }

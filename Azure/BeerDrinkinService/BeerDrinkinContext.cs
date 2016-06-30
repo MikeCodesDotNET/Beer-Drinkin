@@ -42,6 +42,7 @@ namespace BeerDrinkin.Models
         public DbSet<Image> Images { get; set; }
         public DbSet<Wish> Wishes { get; set; }
         public DbSet<AppEvent> AppEvents { get; set; }
-        public DbSet<CheckInEnvironmentalCondition> CheckInEnvironmentalConditions { get; set; }
+        public DbSet<WeatherCondition> WeatherConditions { get; set; }
+
     }
 }
