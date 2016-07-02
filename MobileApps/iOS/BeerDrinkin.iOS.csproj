@@ -101,9 +101,6 @@
     <Reference Include="SDWebImage">
       <HintPath>..\Components\sdwebimage-3.7.1.4\lib\ios-unified\SDWebImage.dll</HintPath>
     </Reference>
-    <Reference Include="PDRating">
-      <HintPath>..\Components\pdreview-2.0.2\lib\ios-unified\PDRating.dll</HintPath>
-    </Reference>
     <Reference Include="SWTableViewCell">
       <HintPath>..\Components\swtableviewcell-0.3.6.1\lib\ios-unified\SWTableViewCell.dll</HintPath>
     </Reference>
@@ -277,6 +274,9 @@
     </Reference>
     <Reference Include="Calabash">
       <HintPath>..\..\packages\Xamarin.TestCloud.Agent.0.19.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="PDRating">
+      <HintPath>..\..\Components\pdreview-2.0.2\lib\ios-unified\PDRating.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -549,6 +549,11 @@
       <DependentUpon>EnableLocationTrackingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\IntroductionScrollingView.cs" />
+    <Compile Include="Custom Controls\CheckInBackground.cs" />
+    <Compile Include="View Controllers\CheckInViewController.cs" />
+    <Compile Include="View Controllers\CheckInViewController.designer.cs">
+      <DependentUpon>CheckInViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -653,8 +658,6 @@
     <BundleResource Include="Resources\account_starBlueFull.png" />
     <BundleResource Include="Resources\checkin_addLocation.png" />
     <BundleResource Include="Resources\checkin_camera.png" />
-    <BundleResource Include="Resources\checkin_starEmpty.png" />
-    <BundleResource Include="Resources\checkin_starFilled.png" />
     <BundleResource Include="Resources\ReleaseNotes.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
@@ -678,6 +681,14 @@
     <BundleResource Include="Resources\ScrollView_Green.png" />
     <BundleResource Include="Resources\ScrollView_Purple.png" />
     <BundleResource Include="Resources\Tick_White.png" />
+    <BundleResource Include="Resources\checkin_barcode.png" />
+    <BundleResource Include="Resources\checkin_close.png" />
+    <BundleResource Include="Resources\star_blue_empty%402x.png" />
+    <BundleResource Include="Resources\star_blue_empty%403x.png" />
+    <BundleResource Include="Resources\star_blue_filled%402x.png" />
+    <BundleResource Include="Resources\star_blue_filled%403x.png" />
+    <BundleResource Include="Resources\star_blue_empty.png" />
+    <BundleResource Include="Resources\star_blue_filled.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
@@ -689,10 +700,6 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="swtableviewcell">
       <Version>0.3.6.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="pdreview">
-      <Version>2.0.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="sqlcipher-for-xamarin-ios">
@@ -725,6 +732,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="judopay-xamarin-sdk">
       <Version>2.3.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="pdreview">
+      <Version>2.0.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -107,9 +107,14 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync (activityController, true);
         }
 
-        partial void BtnCheckIn_TouchUpInside (UIButton sender)
+        async partial void BtnCheckIn_TouchUpInside (UIButton sender)
         {
-			
+            var vc = Storyboard.InstantiateViewController("BEER_CHECKIN") as CheckInViewController;
+            if (vc == null)
+                return;
+
+            vc.Beer = beer;
+            await PresentViewControllerAsync(vc, true);
         }
 
 

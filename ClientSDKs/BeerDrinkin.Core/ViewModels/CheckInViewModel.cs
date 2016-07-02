@@ -15,6 +15,8 @@ namespace BeerDrinkin.Core.ViewModels
     public class CheckInViewModel : ViewModelBase, ICheckInViewModel
     {
         ICheckInStore checkInStore;
+        IRatingStore ratingStore;
+
         IAzureClient azure;
         IAppInsights log;
 
@@ -25,22 +27,33 @@ namespace BeerDrinkin.Core.ViewModels
             log = ServiceLocator.Instance.Resolve<IAppInsights>();          
         }
 
-        public async Task CheckInBeer(Beer beer, Rating rating, bool isBottled)
+        public async Task CheckInBeer(Beer beer, int score)
         {
             try
             {
+                Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Saving checkin");
                 var location = await CrossGeolocator.Current.GetPositionAsync();
                 var checkIn = new CheckIn
                 {
                     BeerId = beer.Id,
                     UserId = azure.Client.CurrentUser.UserId,
-                    Rating = rating,
-                    IsBottled = isBottled,
                     Longitude = location.Longitude,
                     Latitude = location.Latitude
                 };
 
+                var rating = new Rating
+                {
+                    UserId = azure.Client.CurrentUser.UserId,
+                    Score = score,
+                    CheckIn = checkIn
+                };
+
+                checkIn.Rating = rating;
+
                 await checkInStore.InsertAsync(checkIn);
+                await ratingStore.InsertAsync(rating);
+
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {

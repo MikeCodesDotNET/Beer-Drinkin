@@ -6,7 +6,7 @@ namespace BeerDrinkin.Core.Abstractions.ViewModels
 {
     public interface ICheckInViewModel
     {
-        Task CheckInBeer(Beer beer, Rating rating, bool isBottled);
+        Task CheckInBeer(Beer beer, int rating);
 
         string BeerName { get; set;}
         double? ABV { get; set;}
