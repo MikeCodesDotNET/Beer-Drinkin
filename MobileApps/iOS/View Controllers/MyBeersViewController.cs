@@ -12,6 +12,7 @@ namespace BeerDrinkin.iOS
 {
     partial class MyBeersViewController : BaseViewController
     {
+        
         public MyBeersViewController(IntPtr handle) : base(handle)
         {
         }

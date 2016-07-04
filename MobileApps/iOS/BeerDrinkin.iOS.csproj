@@ -341,10 +341,6 @@
       <DependentUpon>MyBeersViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="View Controllers\BaseViewController.cs" />
-    <Compile Include="View Controllers\SearchViewController.cs" />
-    <Compile Include="View Controllers\SearchViewController.designer.cs">
-      <DependentUpon>SearchViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\DiscoverBeerSearchResultsSource.cs" />
     <Compile Include="DataSources\MyBeersDataSource.cs" />
     <Compile Include="View Controllers\BeerDescriptionTableView.cs" />

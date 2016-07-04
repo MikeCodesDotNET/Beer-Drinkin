@@ -38,6 +38,7 @@ namespace BeerDrinkin.iOS
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
+            beer = new Beer();
         }
 
         #endregion
@@ -47,24 +48,15 @@ namespace BeerDrinkin.iOS
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            SetUpUI ();
-
-            //NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
-           // NavigationController.NavigationBar.TintColor = UIColor.White;
+            NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
+            NavigationController.NavigationBar.TintColor = UIColor.White;
+            SetUpUI();
         }
 
 		public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
-
-			UIBarButtonItem btnShare = new UIBarButtonItem ();
-			btnShare.Clicked += delegate 
-			{
-				Share();
-			};
-			btnShare.Title = "Share";
-			btnShare.Image = UIImage.FromFile("702-share.png");
-			NavigationItem.RightBarButtonItem = btnShare;
+            TabBarController.TabBar.Hidden = true;
 
             tableView.ReloadData ();	
             SetupSearch ();
@@ -117,7 +109,12 @@ namespace BeerDrinkin.iOS
             await PresentViewControllerAsync(vc, true);
         }
 
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
 
+            TabBarController.TabBar.Hidden = false;
+        }
 
         #endregion
 
@@ -165,7 +162,7 @@ namespace BeerDrinkin.iOS
 
         public void SetBeer (Beer item)
         {
-            beer = item;    
+            beer = item;
         }
 
         void UpdateHeaderView ()
@@ -187,6 +184,14 @@ namespace BeerDrinkin.iOS
                     NavigationController.PopViewController (true);
                 }), true);
 
+            UIBarButtonItem btnShare = new UIBarButtonItem();
+            btnShare.Clicked += delegate
+            {
+                Share();
+            };
+            btnShare.Title = "Share";
+            btnShare.Image = UIImage.FromFile("702-share.png");
+            NavigationItem.RightBarButtonItem = btnShare;
 
             headerView = tableView.TableHeaderView;
             tableView.TableHeaderView = null;

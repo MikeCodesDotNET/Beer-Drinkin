@@ -52,7 +52,7 @@ namespace BeerDrinkin.iOS
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            if (segue.Identifier != segueIdentifier)
+            if (segue.Identifier != segueIdentifier || SelectedBeer == null)
                 return;
 
             var beerDescriptoinViewController = segue.DestinationViewController as BeerDescriptionTableView;
@@ -144,6 +144,12 @@ namespace BeerDrinkin.iOS
             }
         }
 
+        void BeerSelected(Beer beer)
+        {
+            SelectedBeer = beer;
+            PerformSegue(segueIdentifier, this);
+        }
+
         void StartEditing(object sender, EventArgs e)
         {
             searchBar.ShowsCancelButton = true;
@@ -163,13 +169,6 @@ namespace BeerDrinkin.iOS
         void HideKeyboard(object sender, EventArgs e)
         {
             searchBar.ResignFirstResponder();
-        }
-
-        async void BeerSelected(Beer beer)
-        {
-            var vc = Storyboard.InstantiateViewController("BEER_DESCRIPTION") as BeerDescriptionTableView;
-            vc.SetBeer(beer);
-            await PresentViewControllerAsync(vc, true);
         }
 
         void PictureImport()
