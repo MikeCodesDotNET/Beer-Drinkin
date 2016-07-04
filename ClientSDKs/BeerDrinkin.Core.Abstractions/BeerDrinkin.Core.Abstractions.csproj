@@ -42,9 +42,11 @@
     <Compile Include="ViewModels\ICheckInViewModel.cs" />
     <Compile Include="ViewModels\ITrendingBeersViewModel.cs" />
     <Compile Include="ViewModels\IEnableUserLocationViewModel.cs" />
+    <Compile Include="Services\IDeviceSearchProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeerDrinkin.Services.Abstractions\BeerDrinkin.Services.Abstractions.csproj">

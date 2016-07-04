@@ -55,6 +55,7 @@
     <Compile Include="ViewModels\Discover\UsersViewModel.cs" />
     <Compile Include="ViewModels\CheckInViewModel.cs" />
     <Compile Include="ViewModels\Welcome\EnableUserLocationViewModel.cs" />
+    <Compile Include="ViewModels\BeerDescriptionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BreweryDB">

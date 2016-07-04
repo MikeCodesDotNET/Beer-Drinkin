@@ -9,10 +9,5 @@
         public double Latitude { get; set; }
         public bool IsBottled { get; set; }
         public string RatingId { get; set; }
-        
-
-#if !BACKEND
-        public Rating Rating { get; set; }
-#endif  
     }
 }

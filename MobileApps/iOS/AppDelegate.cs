@@ -13,6 +13,8 @@ using BeerDrinkin.Utils;
 using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.iOS.Helpers;
 using BeerDrinkin.AzureClient;
+using BeerDrinkin.Core.Abstractions.Services;
+using BeerDrinkin.iOS.Services;
 
 namespace BeerDrinkin.iOS
 {
@@ -27,6 +29,7 @@ namespace BeerDrinkin.iOS
         {
             Core.ViewModels.ViewModelBase.Init();
             ServiceLocator.Instance.Add<IAppInsights, AppInsights>();
+            ServiceLocator.Instance.Add<IDeviceSearchProvider, SpotlightService>();
 
 #if DEBUG
             Utils.Helpers.Settings.UserId = string.Empty;

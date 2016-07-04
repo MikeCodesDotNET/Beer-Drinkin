@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 using CoreGraphics;
 using UIKit;
@@ -10,61 +8,45 @@ using UIKit;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.DataSources;
 
-using Xamarin;
 using SDWebImage;
-using CoreSpotlight;
 using Foundation;
 
-using Splat;
 using Plugin.Share;
+using BeerDrinkin.Core.ViewModels;
 
 namespace BeerDrinkin.iOS
 {
     partial class BeerDescriptionTableView : UIViewController
     {
-        #region Fields
-
+        BeerDescriptionViewModel viewModel;
         List<UITableViewCell> cells = new List<UITableViewCell> ();
-		bool justSignedIn;
-        Beer beer;
 
-        const string activityName = "com.beerdrinkin.beer";
         UIView headerView;
         nfloat headerViewHeight = 200;
 
-        #endregion
-
-        #region Constructor
-
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
-            beer = new Beer();
         }
-
-        #endregion
-
-        #region Overrides
 
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+
             NavigationController.NavigationBar.BackgroundColor = Helpers.Style.Colors.Blue;
             NavigationController.NavigationBar.TintColor = UIColor.White;
+
             SetUpUI();
         }
 
 		public override void ViewDidAppear (bool animated)
         {
             base.ViewDidAppear (animated);
-            TabBarController.TabBar.Hidden = true;
-
             tableView.ReloadData ();	
-            SetupSearch ();
         }
 
 		public void Share()
 		{
-			CrossShare.Current.Share(beer.Name, beer.Description);
+			CrossShare.Current.Share(viewModel.Name, viewModel.Description);
 		}
 
         public override void ViewDidLayoutSubviews ()
@@ -84,16 +66,13 @@ namespace BeerDrinkin.iOS
             var navctlr = segue.DestinationViewController as AddBeerTableViewController;
             if (navctlr == null)
                 return;
-            navctlr.SetBeer (beer);
+            navctlr.SetBeer (viewModel.Beer);
         }
 
-        #endregion
-
-        #region UI Control Events
 
         async partial void btnShare_Activated (UIBarButtonItem sender)
         {
-            var text = string.Format ("Grab yourself a {0}, its a great beer!", beer.Name);
+            var text = viewModel.SharingMessage;
             var items = new NSObject[] { new NSString (text) };
             var activityController = new UIActivityViewController (items, null);
             await PresentViewControllerAsync (activityController, true);
@@ -105,70 +84,23 @@ namespace BeerDrinkin.iOS
             if (vc == null)
                 return;
 
-            vc.Beer = beer;
+            vc.Beer = viewModel.Beer;
             await PresentViewControllerAsync(vc, true);
         }
 
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-
-            TabBarController.TabBar.Hidden = false;
-        }
-
-        #endregion
-
-        #region Properties
-
         public bool EnableCheckIn = false;
 
-		#endregion
-
-		void SetupSearch()
-		{
-			var activity = new NSUserActivity("com.micjames.beerdrinkin.beerdetails");
-
-			if (!string.IsNullOrEmpty(beer.Description))
-			{
-				var info = new NSMutableDictionary();
-				info.Add(new NSString("id"), new NSString(beer.BreweryDbId));
-				info.Add(new NSString("name"), new NSString(beer.Name));
-				info.Add(new NSString("description"), new NSString(beer.Description));
-				info.Add(new NSString("abv"), new NSString(beer?.Abv.ToString()));
-				info.Add(new NSString("breweryDbId"), new NSString(beer.BreweryDbId));
-			
-                if (beer.Image != null)
-				{
-					info.Add(new NSString("imageUrl"), new NSString(beer?.Image.MediumUrl));
-				}
-
-				var attributes = new CSSearchableItemAttributeSet();
-				attributes.DisplayName = beer.Name;
-				attributes.ContentDescription = beer.Description;
-
-				var keywords = new NSString[] { new NSString(beer.Name), new NSString("beerName") };
-				activity.Keywords = new NSSet<NSString>(keywords);
-				activity.ContentAttributeSet = attributes;
-
-				activity.Title = beer.Name;
-				activity.UserInfo = info;
-
-				activity.EligibleForSearch = true;
-				activity.EligibleForPublicIndexing = true;
-				activity.BecomeCurrent();
-			}
-
-        }
-
-        public void SetBeer (Beer item)
+        public void SetBeer (Beer beer)
         {
-            beer = item;
+            viewModel = new BeerDescriptionViewModel(beer);
+            viewModel.SearchProvider.AddBeerToIndex(beer);
         }
 
         void UpdateHeaderView ()
         {
             var headerRect = new CGRect (0, -headerViewHeight, tableView.Frame.Width, headerViewHeight);
-            if (tableView.ContentOffset.Y < -headerViewHeight) {
+            if (tableView.ContentOffset.Y < -headerViewHeight) 
+            {
                 headerRect.Location = new CGPoint (headerRect.Location.X, tableView.ContentOffset.Y);
                 headerRect.Size = new CGSize (headerRect.Size.Width, -tableView.ContentOffset.Y);
             }
@@ -177,12 +109,8 @@ namespace BeerDrinkin.iOS
 
         void SetUpUI ()
         {
-            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (beer.Name);
-
-            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (
-                UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {
-                    NavigationController.PopViewController (true);
-                }), true);
+            Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (viewModel.Name);
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {NavigationController.PopViewController (true);}), true);
 
             UIBarButtonItem btnShare = new UIBarButtonItem();
             btnShare.Clicked += delegate
@@ -199,11 +127,10 @@ namespace BeerDrinkin.iOS
             tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
 
-			if (string.IsNullOrEmpty(beer.Image.MediumUrl) == false) {
-                imgHeaderView.SetImage (new NSUrl (beer?.Image.MediumUrl), UIImage.FromBundle ("BeerDrinkin.png"));
-            } else {
-                imgHeaderView.Image = UIImage.FromBundle ("BeerDrinkin.png");
-            }
+            if (!string.IsNullOrEmpty(viewModel.ImageUrl))
+                imgHeaderView.SetImage(new NSUrl(viewModel.ImageUrl), UIImage.FromBundle("BeerDrinkin.png"));
+            else
+                imgHeaderView.Image = UIImage.FromBundle("BeerDrinkin.png");
 
             //Add Cells
             AddHeaderInfo ();
@@ -226,9 +153,9 @@ namespace BeerDrinkin.iOS
             var headerCellIdentifier = new NSString ("headerCell");
             var headerCell = tableView.DequeueReusableCell (headerCellIdentifier) as BeerHeaderCell ??
                              new BeerHeaderCell (headerCellIdentifier);
-            headerCell.Name = beer?.Name;
-            headerCell.Brewery = beer?.Brewery?.Name;
-            headerCell.Abv = beer.Abv.ToString();
+            headerCell.Name = viewModel.Name;
+            headerCell.Brewery = viewModel.BreweryName;
+            headerCell.Abv = viewModel.ABV.ToString();
 
             headerCell.ConsumedAlpha = 0.3f;
             headerCell.RatingAlpha = 0.3f;
@@ -247,11 +174,11 @@ namespace BeerDrinkin.iOS
 
         void AddDescription ()
         {
-            if (!string.IsNullOrEmpty (beer.Description)) {
+            if (!string.IsNullOrEmpty (viewModel.Description)) {
                 var cellIdentifier = new NSString ("descriptionCell");
                 var cell = tableView.DequeueReusableCell (cellIdentifier) as BeerDescriptionCell ??
                            new BeerDescriptionCell (cellIdentifier);
-                cell.Text = beer.Description;
+                cell.Text = viewModel.Description;
                 cells.Add (cell);
             }
         }
@@ -302,7 +229,7 @@ namespace BeerDrinkin.iOS
             public event DidScrollEventHandler DidScroll;
         }
 
-                          #endregion
+      #endregion
       
     }
 }

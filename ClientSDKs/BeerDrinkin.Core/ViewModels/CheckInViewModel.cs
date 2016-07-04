@@ -48,7 +48,7 @@ namespace BeerDrinkin.Core.ViewModels
                     CheckIn = checkIn
                 };
 
-                checkIn.Rating = rating;
+                checkIn.RatingId = rating.Id;
 
                 await checkInStore.InsertAsync(checkIn);
                 await ratingStore.InsertAsync(rating);

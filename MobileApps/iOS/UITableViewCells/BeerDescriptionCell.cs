@@ -61,6 +61,8 @@ namespace BeerDrinkin.iOS
             base.AwakeFromNib();
 
             Helpers.Animator.GrowDivider(divider, this);
+
+            BackgroundColor = UIColor.Red;
         }
     }
 }
