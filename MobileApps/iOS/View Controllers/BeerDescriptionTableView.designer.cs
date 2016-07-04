@@ -38,30 +38,17 @@ namespace BeerDrinkin.iOS
         [Outlet]
         UIKit.UITableView tableView { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnClose { get; set; }
-
         [Action ("BtnCheckIn_TouchUpInside:")]
         partial void BtnCheckIn_TouchUpInside (UIKit.UIButton sender);
 
         [Action ("btnShare_Activated:")]
         partial void btnShare_Activated (UIKit.UIBarButtonItem sender);
 
-        [Action ("BtnClose_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void BtnClose_TouchUpInside (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (btnCheckIn != null) {
                 btnCheckIn.Dispose ();
                 btnCheckIn = null;
-            }
-
-            if (btnClose != null) {
-                btnClose.Dispose ();
-                btnClose = null;
             }
 
             if (imgHeaderView != null) {

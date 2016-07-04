@@ -2140,53 +2140,10 @@
                                     <action selector="BtnCheckIn_TouchUpInside:" destination="ZxU-bt-Ttk" eventType="touchUpInside" id="1214"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2023">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2028">
-                                        <rect key="frame" x="548" y="35" width="46" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="2098"/>
-                                            <constraint firstAttribute="width" constant="46" id="2099"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                        <state key="normal" title="Close">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="BtnClose_TouchUpInside:" destination="ZxU-bt-Ttk" eventType="touchUpInside" id="2033"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maredsous 8* Brune" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2100">
-                                        <rect key="frame" x="47" y="31" width="506" height="28"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="2102"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.098039215686274508" green="0.58431372549019611" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="2025"/>
-                                    <constraint firstAttribute="trailing" secondItem="2028" secondAttribute="trailing" constant="6" id="2096"/>
-                                    <constraint firstAttribute="bottom" secondItem="2028" secondAttribute="bottom" constant="9" id="2097"/>
-                                    <constraint firstItem="2100" firstAttribute="centerX" secondItem="2023" secondAttribute="centerX" id="2101"/>
-                                    <constraint firstItem="2100" firstAttribute="trailing" secondItem="2028" secondAttribute="leading" constant="5" id="2103"/>
-                                    <constraint firstItem="2100" firstAttribute="leading" secondItem="2023" secondAttribute="leading" constant="47" id="2104"/>
-                                    <constraint firstItem="2100" firstAttribute="top" secondItem="2023" secondAttribute="top" constant="31" id="2105"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2023" firstAttribute="trailing" secondItem="atV-GE-F4D" secondAttribute="trailing" id="2024"/>
-                            <constraint firstItem="2023" firstAttribute="top" secondItem="atV-GE-F4D" secondAttribute="top" id="2026"/>
-                            <constraint firstItem="2023" firstAttribute="leading" secondItem="atV-GE-F4D" secondAttribute="leading" id="2027"/>
                             <constraint firstItem="nkO-lj-UE2" firstAttribute="top" secondItem="atV-GE-F4D" secondAttribute="top" constant="62" id="8cm-j7-Xdm"/>
                             <constraint firstItem="nkO-lj-UE2" firstAttribute="leading" secondItem="atV-GE-F4D" secondAttribute="leading" id="Ieh-cK-8YA"/>
                             <constraint firstAttribute="trailing" secondItem="kpp-Zr-AAJ" secondAttribute="trailing" id="Kit-ic-TdL"/>
@@ -2202,7 +2159,6 @@
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
                         <outlet property="btnCheckIn" destination="kpp-Zr-AAJ" id="name-outlet-kpp-Zr-AAJ"/>
-                        <outlet property="btnClose" destination="2028" id="name-outlet-2028"/>
                         <outlet property="imgHeaderView" destination="1335" id="name-outlet-1335"/>
                         <outlet property="tableView" destination="nkO-lj-UE2" id="name-outlet-nkO-lj-UE2"/>
                     </connections>

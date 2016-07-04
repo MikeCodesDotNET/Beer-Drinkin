@@ -302,11 +302,7 @@ namespace BeerDrinkin.iOS
             public event DidScrollEventHandler DidScroll;
         }
 
-        #endregion
-
-        async partial void BtnClose_TouchUpInside(UIButton sender)
-        {
-            await DismissViewControllerAsync(true);
-        }
+                          #endregion
+      
     }
 }
