@@ -19,8 +19,8 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="542" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-GJ-KRj">
                             <rect key="frame" x="508" y="12" width="84" height="21"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="0.27450981736183167" green="0.27450981736183167" blue="0.27450981736183167" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
                             <nil key="highlightedColor"/>
                             <constraints>
                                 <constraint id="10" firstItem="kYp-GJ-KRj" firstAttribute="height" constant="21"/>
@@ -31,17 +31,17 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike James" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-nR-SkU">
                             <rect key="frame" x="8" y="69" width="584" height="21"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="0.27450981740000002" green="0.27450981740000002" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
+                            <nil key="highlightedColor" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
                             <constraints>
                                 <constraint id="62" firstItem="7JQ-nR-SkU" firstAttribute="height" constant="21"/>
                             </constraints>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlJ-DW-f42" misplaced="YES">
                             <rect key="frame" x="8" y="13" width="84" height="21"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="0.27450981740000002" green="0.27450981740000002" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1"/>
                             <nil key="highlightedColor"/>
                             <constraints>
                                 <constraint id="18" firstItem="UlJ-DW-f42" firstAttribute="width" constant="84"/>
@@ -50,8 +50,8 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tD-ik-plt" misplaced="YES">
                             <rect key="frame" x="8" y="35" width="84" height="25"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="0.67058825492858887" green="0.67058825492858887" blue="0.67058825492858887" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.77254901960784317" green="0.81568627450980391" blue="0.87058823529411766" alpha="1"/>
                             <nil key="highlightedColor"/>
                             <constraints>
                                 <constraint id="22" firstItem="2tD-ik-plt" firstAttribute="height" constant="25"/>
@@ -60,8 +60,8 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPd-nE-L25">
                             <rect key="frame" x="508" y="36" width="84" height="25"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="0.67058825489999996" green="0.67058825489999996" blue="0.67058825489999996" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.77254901960784317" green="0.81568627450980391" blue="0.87058823529411766" alpha="1"/>
                             <nil key="highlightedColor"/>
                             <constraints>
                                 <constraint id="57" firstItem="RPd-nE-L25" firstAttribute="height" constant="25"/>
@@ -70,8 +70,8 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guildford" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwA-mS-b2g">
                             <rect key="frame" x="8" y="89" width="584" height="21"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                            <color key="textColor" red="0.67058825492858887" green="0.67058825492858887" blue="0.67058825492858887" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                            <color key="textColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.77254901960784317" green="0.81568627450980391" blue="0.87058823529411766" alpha="1"/>
                             <nil key="highlightedColor"/>
                             <constraints>
                                 <constraint id="66" firstItem="vwA-mS-b2g" firstAttribute="height" constant="21"/>
@@ -85,7 +85,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.9686274528503418" green="0.9686274528503418" blue="0.9686274528503418" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" customColorSpace="calibratedRGB" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.14901960784313725" blue="0.18823529411764706" alpha="1"/>
                     <constraints>
                         <constraint id="40" firstItem="5" firstAttribute="height" constant="124"/>
                         <constraint id="41" firstItem="5" firstAttribute="centerY" secondItem="rCr-s7-rzl" secondAttribute="centerY" constant="65"/>
@@ -102,8 +102,36 @@
                         <constraint id="65" firstItem="5" firstAttribute="trailing" secondItem="vwA-mS-b2g" secondAttribute="trailing" constant="8"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="91" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20" y="28" width="26" height="26"/>
+                    <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                    <state key="normal" title="Button" image="icon_settings.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <constraints>
+                        <constraint id="92" firstItem="91" firstAttribute="height" constant="26"/>
+                        <constraint id="93" firstItem="91" firstAttribute="width" constant="26"/>
+                    </constraints>
+                    <connections>
+                        <action selector="BtnSettings_TouchUpInside:" destination="1" id="107" eventType="touchUpInside"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="96" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="536" y="28" width="44" height="16"/>
+                    <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                    <state key="normal" title="Button" image="icon_more.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <constraints>
+                        <constraint id="103" firstItem="96" firstAttribute="height" constant="16"/>
+                        <constraint id="104" firstItem="96" firstAttribute="width" constant="44"/>
+                    </constraints>
+                    <connections>
+                        <action selector="BtnMore_TouchUpInside:" destination="1" id="108" eventType="touchUpInside"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.14901960784313725" blue="0.18823529411764706" alpha="1"/>
             <constraints>
                 <constraint id="37" firstItem="5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom"/>
                 <constraint id="38" firstItem="5" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
@@ -112,6 +140,10 @@
                 <constraint id="86" firstItem="5" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="16"/>
                 <constraint id="87" firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
                 <constraint id="88" firstItem="4" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+                <constraint id="94" firstItem="91" firstAttribute="top" secondItem="4" secondAttribute="top" constant="28"/>
+                <constraint id="95" firstItem="91" firstAttribute="leading" secondItem="4" secondAttribute="leading" constant="20"/>
+                <constraint id="105" firstItem="96" firstAttribute="top" secondItem="4" secondAttribute="top" constant="28"/>
+                <constraint id="106" firstItem="4" firstAttribute="trailing" secondItem="96" secondAttribute="trailing" constant="20"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="273" y="364.5"/>
@@ -123,6 +155,8 @@
                 <outlet property="locationLabel" destination="vwA-mS-b2g" id="name-outlet-vwA-mS-b2g"/>
                 <outlet property="whiteView" destination="5" id="name-outlet-5"/>
                 <outlet property="profileImage" destination="rCr-s7-rzl" id="name-outlet-rCr-s7-rzl"/>
+                <outlet property="btnMore" destination="96" id="name-outlet-96"/>
+                <outlet property="btnSettings" destination="91" id="name-outlet-91"/>
             </connections>
         </view>
     </objects>
@@ -218,5 +252,8 @@
         <image name="star_blue_empty.png" width="25" height="25"/>
         <image name="star_blue_filled.png" width="25" height="25"/>
         <image name="back_arrow.png" width="18" height="32"/>
+        <image name="mike_james_avatar.png" width="206" height="206"/>
+        <image name="icon_more.png" width="70" height="24"/>
+        <image name="icon_settings.png" width="52" height="52"/>
     </resources>
 </document>

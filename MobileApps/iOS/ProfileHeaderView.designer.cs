@@ -21,6 +21,14 @@ namespace BeerDrinkin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnMore { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnSettings { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel followingLabel { get; set; }
 
         [Outlet]
@@ -43,11 +51,29 @@ namespace BeerDrinkin.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView whiteView { get; set; }
 
+        [Action ("BtnSettings_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnSettings_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("BtnMore_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnMore_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (backgroundImage != null) {
                 backgroundImage.Dispose ();
                 backgroundImage = null;
+            }
+
+            if (btnMore != null) {
+                btnMore.Dispose ();
+                btnMore = null;
+            }
+
+            if (btnSettings != null) {
+                btnSettings.Dispose ();
+                btnSettings = null;
             }
 
             if (followingLabel != null) {

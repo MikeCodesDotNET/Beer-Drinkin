@@ -554,8 +554,8 @@
     <Compile Include="ProfileHeaderView.designer.cs">
       <DependentUpon>ProfileHeaderView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AccountViewController.cs" />
-    <Compile Include="Resources\AccountViewController.designer.cs">
+    <Compile Include="View Controllers\UserProfile\AccountViewController.cs" />
+    <Compile Include="View Controllers\UserProfile\AccountViewController.designer.cs">
       <DependentUpon>AccountViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -698,6 +698,12 @@
     <BundleResource Include="Resources\back_arrow%402x.png" />
     <BundleResource Include="Resources\back_arrow%403x.png" />
     <BundleResource Include="Resources\mike_james_avatar.png" />
+    <BundleResource Include="Resources\icon_more.png" />
+    <BundleResource Include="Resources\icon_more%402x.png" />
+    <BundleResource Include="Resources\icon_more%403x.png" />
+    <BundleResource Include="Resources\icon_settings.png" />
+    <BundleResource Include="Resources\icon_settings%402x.png" />
+    <BundleResource Include="Resources\icon_settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

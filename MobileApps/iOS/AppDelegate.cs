@@ -261,6 +261,7 @@ namespace BeerDrinkin.iOS
 
             //TabBar
             UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes{ Font = Helpers.Style.Fonts.TabBar }, UIControlState.Normal);
+            UITabBar.Appearance.BarTintColor = "222630".ToUIColor();
         }
     }
 }

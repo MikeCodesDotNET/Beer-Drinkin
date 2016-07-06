@@ -91,7 +91,7 @@ namespace BeerDrinkin.iOS
 
             public override nint RowsInSection(UITableView tableview, nint section)
             {
-                return 10;
+                return 0;
             }
         }
         #endregion

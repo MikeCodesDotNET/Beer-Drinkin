@@ -54,5 +54,15 @@ namespace BeerDrinkin.iOS
             profileImage.Image = UIImage.FromFile("mike_james_avatar.png");
             #endif
         }
+
+        partial void BtnSettings_TouchUpInside(UIButton sender)
+        {
+            throw new NotImplementedException();
+        }
+
+        partial void BtnMore_TouchUpInside(UIButton sender)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
