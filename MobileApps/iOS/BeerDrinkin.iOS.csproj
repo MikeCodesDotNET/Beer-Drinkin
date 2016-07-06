@@ -326,6 +326,8 @@
     </InterfaceDefinition>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Custom Controls\ProfileHeaderView.xib" />
+    <InterfaceDefinition Include="UITableViewCells\Beer Description\StarRatingTableViewCell.xib" />
+    <InterfaceDefinition Include="Custom Controls\BeerDescriptionHeaderView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -550,13 +552,22 @@
       <DependentUpon>CheckInViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\SpotlightService.cs" />
-    <Compile Include="ProfileHeaderView.cs" />
-    <Compile Include="ProfileHeaderView.designer.cs">
-      <DependentUpon>ProfileHeaderView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\UserProfile\AccountViewController.cs" />
     <Compile Include="View Controllers\UserProfile\AccountViewController.designer.cs">
       <DependentUpon>AccountViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewCells\StarRatingTableViewCell.cs" />
+    <Compile Include="UITableViewCells\StarRatingTableViewCell.designer.cs">
+      <DependentUpon>StarRatingTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\BeerStatsView.cs" />
+    <Compile Include="Custom Controls\ProfileHeaderView.cs" />
+    <Compile Include="Custom Controls\ProfileHeaderView.designer.cs">
+      <DependentUpon>ProfileHeaderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\BeerDescriptionHeaderView.cs" />
+    <Compile Include="Custom Controls\BeerDescriptionHeaderView.designer.cs">
+      <DependentUpon>BeerDescriptionHeaderView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -840,5 +851,6 @@
     <Folder Include="View Controllers\UserProfile\" />
     <Folder Include="UITableViewCells\Discover\" />
     <Folder Include="Services\" />
+    <Folder Include="UITableViewCells\Beer Description\" />
   </ItemGroup>
 </Project>

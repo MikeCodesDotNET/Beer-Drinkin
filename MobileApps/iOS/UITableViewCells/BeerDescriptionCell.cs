@@ -56,13 +56,5 @@ namespace BeerDrinkin.iOS
             get { return tbxDescription.SizeThatFits(new CGSize(tbxDescription.Frame.Width, float.MaxValue)).Height; }
         }
 
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
-
-            Helpers.Animator.GrowDivider(divider, this);
-
-            BackgroundColor = UIColor.Red;
-        }
     }
 }

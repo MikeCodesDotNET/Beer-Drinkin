@@ -245,6 +245,7 @@ namespace BeerDrinkin.iOS
             //NavigationBar
             UINavigationBar.Appearance.BarTintColor = Helpers.Style.Colors.NavigationBar;
             UINavigationBar.Appearance.TintColor = Helpers.Style.Colors.NavigationTint;
+            UINavigationBar.Appearance.Translucent = false;
 
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
             {

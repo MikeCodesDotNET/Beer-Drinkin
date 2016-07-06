@@ -9,20 +9,20 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace BeerDrinkin.iOS
+namespace BeerDrinkin.iOS.BeerDescription
 {
-    [Register ("BeerDescriptionCell")]
-    partial class BeerDescriptionCell
+    [Register ("StarRatingTableViewCell")]
+    partial class StarRatingTableViewCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView tbxDescription { get; set; }
+        UIKit.UILabel titleLabel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (tbxDescription != null) {
-                tbxDescription.Dispose ();
-                tbxDescription = null;
+            if (titleLabel != null) {
+                titleLabel.Dispose ();
+                titleLabel = null;
             }
         }
     }

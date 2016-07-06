@@ -21,8 +21,8 @@ namespace BeerDrinkin.iOS
         BeerDescriptionViewModel viewModel;
         List<UITableViewCell> cells = new List<UITableViewCell> ();
 
-        UIView headerView;
-        nfloat headerViewHeight = 200;
+        BeerDescriptionHeaderView headerView;
+        nfloat headerViewHeight = 394;
 
         public BeerDescriptionTableView (IntPtr handle) : base (handle)
         {
@@ -112,25 +112,12 @@ namespace BeerDrinkin.iOS
             Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (viewModel.Name);
             NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {NavigationController.PopViewController (true);}), true);
 
-            UIBarButtonItem btnShare = new UIBarButtonItem();
-            btnShare.Clicked += delegate
-            {
-                Share();
-            };
-            btnShare.Title = "Share";
-            btnShare.Image = UIImage.FromFile("702-share.png");
-            NavigationItem.RightBarButtonItem = btnShare;
-
-            headerView = tableView.TableHeaderView;
+            headerView = BeerDescriptionHeaderView.Create();
+            headerView.SetBeer(viewModel.Beer);
             tableView.TableHeaderView = null;
             tableView.AddSubview (headerView);
             tableView.ContentInset = new UIEdgeInsets (headerViewHeight, 0, 0, 0);
             tableView.BackgroundColor = UIColor.Clear;
-
-            if (!string.IsNullOrEmpty(viewModel.ImageUrl))
-                imgHeaderView.SetImage(new NSUrl(viewModel.ImageUrl), UIImage.FromBundle("BeerDrinkin.png"));
-            else
-                imgHeaderView.Image = UIImage.FromBundle("BeerDrinkin.png");
 
             //Add Cells
             AddHeaderInfo ();

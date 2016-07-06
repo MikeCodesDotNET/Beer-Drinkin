@@ -5,12 +5,14 @@
         public string BreweryDbId { get; set; }
         public string RateBeerId { get; set; }
 
+        public string CoverPhoto { get; set;}
+
         public string Name { get; set; }
         public string Description { get; set; }
         public Brewery Brewery { get; set; }
         public string BreweryId { get; set; }
         public string StyleId { get; set; }
-
+        public string OriginCountry { get; set;}
         public double? Abv { get; set; }
 
         /// <summary>
