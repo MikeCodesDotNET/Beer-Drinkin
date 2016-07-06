@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BeerDrinkin.DataObjects
 {
@@ -12,5 +13,11 @@ namespace BeerDrinkin.DataObjects
         public DateTime DateOfBirth { get; set; }
         public string ProfilePictureUri { get; set; }
         public byte[] ProfilePicture { get; set; }
+        public string CoverPhoto { get; set;}
+
+        public List<User> Followers { get; set;}
+        public List<User> Following { get; set;}
+        public List<CheckIn> CheckIns { get; set;}
+        public List<Image> Photos { get; set;}
     }
 }

@@ -29,6 +29,7 @@
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignProvision>341d9ae4-40c2-445d-8973-d9867c93c245</CodesignProvision>
+    <MtouchExtraArgs>-gcc_flags "-force_load /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework/Reveal"</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType></DebugType>
@@ -77,6 +78,7 @@
     <CodesignProvision></CodesignProvision>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
+    <MtouchExtraArgs>-gcc_flags "-force_load /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework/Versions/A/Reveal -ObjC -framework QuartzCore -framework CFNetwork"</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
     <Optimize>true</Optimize>
@@ -323,6 +325,7 @@
       <DeployService-Deploy>True</DeployService-Deploy>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Custom Controls\ProfileHeaderView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -479,10 +482,6 @@
     <Compile Include="View Controllers\Misc\TabBarController.designer.cs">
       <DependentUpon>TabBarController.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Controllers\UserProfile\AccountViewController.cs" />
-    <Compile Include="View Controllers\UserProfile\AccountViewController.designer.cs">
-      <DependentUpon>AccountViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="View Controllers\Settings\AnalyticsViewController.cs" />
     <Compile Include="View Controllers\Settings\AnalyticsViewController.designer.cs">
       <DependentUpon>AnalyticsViewController.cs</DependentUpon>
@@ -551,6 +550,14 @@
       <DependentUpon>CheckInViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\SpotlightService.cs" />
+    <Compile Include="ProfileHeaderView.cs" />
+    <Compile Include="ProfileHeaderView.designer.cs">
+      <DependentUpon>ProfileHeaderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AccountViewController.cs" />
+    <Compile Include="Resources\AccountViewController.designer.cs">
+      <DependentUpon>AccountViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -686,6 +693,11 @@
     <BundleResource Include="Resources\star_blue_filled%403x.png" />
     <BundleResource Include="Resources\star_blue_empty.png" />
     <BundleResource Include="Resources\star_blue_filled.png" />
+    <BundleResource Include="Resources\default_profile_header.jpeg" />
+    <BundleResource Include="Resources\back_arrow.png" />
+    <BundleResource Include="Resources\back_arrow%402x.png" />
+    <BundleResource Include="Resources\back_arrow%403x.png" />
+    <BundleResource Include="Resources\mike_james_avatar.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />

@@ -17,27 +17,35 @@ namespace BeerDrinkin.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView divider { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblAbv { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblBrewery { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblConsumed { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblConsumedTitle { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblName { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblRating { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblRatingTitle { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField tbxAbv { get; set; }

@@ -17,9 +17,11 @@ namespace BeerDrinkin.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblDistributorName { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblPrice { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblTagLine { get; set; }

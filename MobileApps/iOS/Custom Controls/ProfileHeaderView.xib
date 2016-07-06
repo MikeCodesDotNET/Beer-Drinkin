@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="ProfileHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="default_profile_header.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="260"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                    <rect key="frame" x="0.0" y="276" width="600" height="124"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="542" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-GJ-KRj">
+                            <rect key="frame" x="508" y="12" width="84" height="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.27450981736183167" green="0.27450981736183167" blue="0.27450981736183167" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="10" firstItem="kYp-GJ-KRj" firstAttribute="height" constant="21"/>
+                                <constraint id="11" firstItem="kYp-GJ-KRj" firstAttribute="width" constant="84"/>
+                                <constraint id="53" firstItem="kYp-GJ-KRj" firstAttribute="height" constant="21"/>
+                                <constraint id="54" firstItem="kYp-GJ-KRj" firstAttribute="width" constant="84"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike James" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-nR-SkU">
+                            <rect key="frame" x="8" y="69" width="584" height="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.27450981740000002" green="0.27450981740000002" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="62" firstItem="7JQ-nR-SkU" firstAttribute="height" constant="21"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlJ-DW-f42" misplaced="YES">
+                            <rect key="frame" x="8" y="13" width="84" height="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.27450981740000002" green="0.27450981740000002" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="18" firstItem="UlJ-DW-f42" firstAttribute="width" constant="84"/>
+                                <constraint id="19" firstItem="UlJ-DW-f42" firstAttribute="height" constant="21"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tD-ik-plt" misplaced="YES">
+                            <rect key="frame" x="8" y="35" width="84" height="25"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.67058825492858887" green="0.67058825492858887" blue="0.67058825492858887" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="22" firstItem="2tD-ik-plt" firstAttribute="height" constant="25"/>
+                                <constraint id="23" firstItem="2tD-ik-plt" firstAttribute="width" constant="84"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPd-nE-L25">
+                            <rect key="frame" x="508" y="36" width="84" height="25"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.67058825489999996" green="0.67058825489999996" blue="0.67058825489999996" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="57" firstItem="RPd-nE-L25" firstAttribute="height" constant="25"/>
+                                <constraint id="58" firstItem="RPd-nE-L25" firstAttribute="width" constant="84"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guildford" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwA-mS-b2g">
+                            <rect key="frame" x="8" y="89" width="584" height="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                            <color key="textColor" red="0.67058825492858887" green="0.67058825492858887" blue="0.67058825492858887" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <constraints>
+                                <constraint id="66" firstItem="vwA-mS-b2g" firstAttribute="height" constant="21"/>
+                            </constraints>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rCr-s7-rzl">
+                            <rect key="frame" x="236" y="-67" width="128" height="128"/>
+                            <constraints>
+                                <constraint id="43" firstItem="rCr-s7-rzl" firstAttribute="height" constant="128"/>
+                                <constraint id="44" firstItem="rCr-s7-rzl" firstAttribute="width" constant="128"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.9686274528503418" green="0.9686274528503418" blue="0.9686274528503418" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint id="40" firstItem="5" firstAttribute="height" constant="124"/>
+                        <constraint id="41" firstItem="5" firstAttribute="centerY" secondItem="rCr-s7-rzl" secondAttribute="centerY" constant="65"/>
+                        <constraint id="42" firstItem="rCr-s7-rzl" firstAttribute="centerX" secondItem="5" secondAttribute="centerX"/>
+                        <constraint id="51" firstItem="5" firstAttribute="trailing" secondItem="kYp-GJ-KRj" secondAttribute="trailing" constant="8"/>
+                        <constraint id="52" firstItem="kYp-GJ-KRj" firstAttribute="top" secondItem="5" secondAttribute="top" constant="12"/>
+                        <constraint id="55" firstItem="RPd-nE-L25" firstAttribute="top" secondItem="kYp-GJ-KRj" secondAttribute="bottom" constant="3"/>
+                        <constraint id="56" firstItem="5" firstAttribute="trailing" secondItem="RPd-nE-L25" secondAttribute="trailing" constant="8"/>
+                        <constraint id="59" firstItem="5" firstAttribute="trailing" secondItem="7JQ-nR-SkU" secondAttribute="trailing" constant="8"/>
+                        <constraint id="60" firstItem="7JQ-nR-SkU" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="8"/>
+                        <constraint id="61" firstItem="7JQ-nR-SkU" firstAttribute="top" secondItem="rCr-s7-rzl" secondAttribute="bottom" constant="8"/>
+                        <constraint id="63" firstItem="7JQ-nR-SkU" firstAttribute="bottom" secondItem="vwA-mS-b2g" secondAttribute="top" constant="1"/>
+                        <constraint id="64" firstItem="vwA-mS-b2g" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="8"/>
+                        <constraint id="65" firstItem="5" firstAttribute="trailing" secondItem="vwA-mS-b2g" secondAttribute="trailing" constant="8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint id="37" firstItem="5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom"/>
+                <constraint id="38" firstItem="5" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="39" firstItem="5" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+                <constraint id="85" firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top"/>
+                <constraint id="86" firstItem="5" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="16"/>
+                <constraint id="87" firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="88" firstItem="4" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="273" y="364.5"/>
+            <connections>
+                <outlet property="backgroundImage" destination="4" id="name-outlet-4"/>
+                <outlet property="followingLabel" destination="kYp-GJ-KRj" id="name-outlet-kYp-GJ-KRj"/>
+                <outlet property="follwersLabel" destination="UlJ-DW-f42" id="name-outlet-UlJ-DW-f42"/>
+                <outlet property="nameLabel" destination="7JQ-nR-SkU" id="name-outlet-7JQ-nR-SkU"/>
+                <outlet property="locationLabel" destination="vwA-mS-b2g" id="name-outlet-vwA-mS-b2g"/>
+                <outlet property="whiteView" destination="5" id="name-outlet-5"/>
+                <outlet property="profileImage" destination="rCr-s7-rzl" id="name-outlet-rCr-s7-rzl"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="default_profile_header.jpeg" width="1080" height="964"/>
+        <image name="BeerDrinkin.png" width="526" height="526"/>
+        <image name="957-beer-mug.png" width="22" height="28"/>
+        <image name="708-search.png" width="28" height="28"/>
+        <image name="769-male.png" width="28" height="28"/>
+        <image name="back.png" width="21" height="21"/>
+        <image name="740-gear.png" width="28" height="28"/>
+        <image name="emptyStar.png" width="56" height="52"/>
+        <image name="filledStar.png" width="56" height="52"/>
+        <image name="713-refresh-1.png" width="24" height="28"/>
+        <image name="748-heart.png" width="28" height="25"/>
+        <image name="facebook_button.png" width="558" height="89"/>
+        <image name="711-trash.png" width="21" height="28"/>
+        <image name="702-share.png" width="21" height="28"/>
+        <image name="856-lightning-bolt.png" width="14" height="28"/>
+        <image name="BeerLight.png" width="33" height="42"/>
+        <image name="locationPin.png" width="42" height="66"/>
+        <image name="Map.png" width="750" height="785"/>
+        <image name="camera-flash.png" width="16" height="24"/>
+        <image name="Tick.png" width="56" height="52"/>
+        <image name="Barcode.png" width="28" height="22"/>
+        <image name="Arrows-Left-icon.png" width="128" height="128"/>
+        <image name="BlueTick.png" width="56" height="52"/>
+        <image name="goolgeButton.png" width="558" height="89"/>
+        <image name="BeerBottle_Selected.png" width="44" height="117"/>
+        <image name="BeerBottle.png" width="44" height="117"/>
+        <image name="BeerTap_Selected.png" width="113" height="110"/>
+        <image name="BeerTap.png" width="113" height="110"/>
+        <image name="BarcodeDark.png" width="291" height="132"/>
+        <image name="backArrow.png" width="22" height="22"/>
+        <image name="close.png" width="41" height="41"/>
+        <image name="Patterned Image.png" width="7103" height="2025"/>
+        <image name="tabbar_profile.png" width="30" height="30"/>
+        <image name="tabbar_search.png" width="30" height="30"/>
+        <image name="tabbar_mybeers.png" width="18" height="30"/>
+        <image name="tabbar_wishlist.png" width="18" height="30"/>
+        <image name="Analytics.png" width="256" height="256"/>
+        <image name="search_barcode.png" width="686" height="287"/>
+        <image name="search_placeholder_beer.png" width="113" height="203"/>
+        <image name="analytics_bug_blue.png" width="80" height="81"/>
+        <image name="analytics_bug_white.png" width="80" height="81"/>
+        <image name="analytics_time_blue.png" width="80" height="80"/>
+        <image name="analytics_time_white.png" width="80" height="80"/>
+        <image name="search_filter.png" width="25" height="21"/>
+        <image name="ApplePayBTN_32pt__black_logo_.png" width="140" height="32"/>
+        <image name="profile_headerBackground.png" width="749" height="500"/>
+        <image name="settings_about.png" width="50" height="50"/>
+        <image name="settings_analytics.png" width="54" height="54"/>
+        <image name="settings_feedback.png" width="50" height="50"/>
+        <image name="settings_notifications.png" width="50" height="42"/>
+        <image name="settings_signIn.png" width="54" height="58"/>
+        <image name="settings_twitter.png" width="64" height="46"/>
+        <image name="settings_xamarin.png" width="63" height="67"/>
+        <image name="starEmpty.png" width="52" height="51"/>
+        <image name="starFilled.png" width="52" height="51"/>
+        <image name="about_credits.png" width="32" height="20"/>
+        <image name="about_facebook.png" width="18" height="34"/>
+        <image name="about_heart.png" width="23" height="20"/>
+        <image name="about_releaseNotes.png" width="23" height="28"/>
+        <image name="about_support.png" width="28" height="28"/>
+        <image name="about_twitter.png" width="39" height="32"/>
+        <image name="account_settings.png" width="55" height="55"/>
+        <image name="account_starBlueEmpty.png" width="32" height="32"/>
+        <image name="account_starBlueFull.png" width="32" height="32"/>
+        <image name="checkin_addLocation.png" width="53" height="51"/>
+        <image name="checkin_camera.png" width="56" height="43"/>
+        <image name="quickAction_myBeers.png" width="157" height="256"/>
+        <image name="quickAction_profile.png" width="249" height="248"/>
+        <image name="quickAction_search.png" width="248" height="248"/>
+        <image name="quickAction_wishlist.png" width="152" height="254"/>
+        <image name="inAppPurhcase_beer.png" width="117" height="155"/>
+        <image name="inAppPurhcase_close.png" width="32" height="32"/>
+        <image name="inAppPurhcase_heart.png" width="23" height="20"/>
+        <image name="inAppPurhcase_tick.png" width="32" height="32"/>
+        <image name="search_inAppPurcahsePadlock.png" width="42" height="53"/>
+        <image name="search_ocr.png" width="149" height="148"/>
+        <image name="intro_location_map.png" width="512" height="478"/>
+        <image name="intro_location_map_success.png" width="512" height="478"/>
+        <image name="Introduction_Facebook.png" width="465" height="140"/>
+        <image name="Introduction_Map.png" width="512" height="421"/>
+        <image name="Introduction_Photos.png" width="517" height="430"/>
+        <image name="ScrollView_BlueLarge.png" width="30" height="30"/>
+        <image name="ScrollView_BlueSmall.png" width="24" height="24"/>
+        <image name="ScrollView_Green.png" width="30" height="30"/>
+        <image name="ScrollView_Purple.png" width="31" height="30"/>
+        <image name="Tick_White.png" width="118" height="89"/>
+        <image name="checkin_barcode.png" width="328" height="63"/>
+        <image name="checkin_close.png" width="32" height="33"/>
+        <image name="star_blue_empty.png" width="25" height="25"/>
+        <image name="star_blue_filled.png" width="25" height="25"/>
+        <image name="back_arrow.png" width="18" height="32"/>
+    </resources>
+</document>

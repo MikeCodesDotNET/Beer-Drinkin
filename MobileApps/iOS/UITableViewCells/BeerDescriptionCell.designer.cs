@@ -17,6 +17,7 @@ namespace BeerDrinkin.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView divider { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextView tbxDescription { get; set; }
