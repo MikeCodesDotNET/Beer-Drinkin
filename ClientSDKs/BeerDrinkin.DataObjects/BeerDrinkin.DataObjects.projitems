@@ -19,8 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Style.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WeatherCondition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wish.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppFeedback.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AppInsightsEvent.cs" />
   </ItemGroup>
 </Project>
