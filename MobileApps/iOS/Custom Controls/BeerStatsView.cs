@@ -57,7 +57,7 @@ namespace BeerDrinkin.iOS.CustomControls
             }
             set
             {
-                _abv = value;
+                _abv = $"{value}%"; ;
                 SetNeedsDisplay();
             }
         }
@@ -72,7 +72,7 @@ namespace BeerDrinkin.iOS.CustomControls
             }
             set
             {
-                _ibu = value;
+                _ibu = $"{value}%"; ;
                 SetNeedsDisplay();
             }
         }
@@ -87,7 +87,7 @@ namespace BeerDrinkin.iOS.CustomControls
             }
             set
             {
-                _srm = value;
+                _srm = $"{value}%";
                 SetNeedsDisplay();
             }
         }

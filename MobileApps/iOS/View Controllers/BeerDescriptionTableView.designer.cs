@@ -51,11 +51,6 @@ namespace BeerDrinkin.iOS
                 btnCheckIn = null;
             }
 
-            if (imgHeaderView != null) {
-                imgHeaderView.Dispose ();
-                imgHeaderView = null;
-            }
-
             if (tableView != null) {
                 tableView.Dispose ();
                 tableView = null;

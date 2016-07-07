@@ -15,6 +15,12 @@ namespace BeerDrinkin.iOS
         {
         }
 
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+        }
+
 
         public static BeerDescriptionHeaderView Create()
         {
@@ -35,8 +41,7 @@ namespace BeerDrinkin.iOS
             if (beer.HasImages)
             {
                 image.SetImage(new NSUrl(beer.Image.LargeUrl));
-                DarkenImage();
-          }
+            }
         }
 
         void DarkenImage()

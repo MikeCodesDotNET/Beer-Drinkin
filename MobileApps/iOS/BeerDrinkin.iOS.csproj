@@ -73,7 +73,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <IpaPackageName></IpaPackageName>
-    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchFastDev>true</MtouchFastDev>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <CodesignProvision></CodesignProvision>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
@@ -326,7 +326,6 @@
     </InterfaceDefinition>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Custom Controls\ProfileHeaderView.xib" />
-    <InterfaceDefinition Include="UITableViewCells\Beer Description\StarRatingTableViewCell.xib" />
     <InterfaceDefinition Include="Custom Controls\BeerDescriptionHeaderView.xib" />
   </ItemGroup>
   <ItemGroup>
@@ -556,10 +555,6 @@
     <Compile Include="View Controllers\UserProfile\AccountViewController.designer.cs">
       <DependentUpon>AccountViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITableViewCells\StarRatingTableViewCell.cs" />
-    <Compile Include="UITableViewCells\StarRatingTableViewCell.designer.cs">
-      <DependentUpon>StarRatingTableViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom Controls\BeerStatsView.cs" />
     <Compile Include="Custom Controls\ProfileHeaderView.cs" />
     <Compile Include="Custom Controls\ProfileHeaderView.designer.cs">
@@ -568,6 +563,10 @@
     <Compile Include="Custom Controls\BeerDescriptionHeaderView.cs" />
     <Compile Include="Custom Controls\BeerDescriptionHeaderView.designer.cs">
       <DependentUpon>BeerDescriptionHeaderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StarRatingTableViewCell.cs" />
+    <Compile Include="StarRatingTableViewCell.designer.cs">
+      <DependentUpon>StarRatingTableViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -628,18 +627,6 @@
     <BundleResource Include="Resources\backArrow.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\Patterned Image.png" />
-    <BundleResource Include="Resources\tabbar_profile.png" />
-    <BundleResource Include="Resources\tabbar_profile%402x.png" />
-    <BundleResource Include="Resources\tabbar_profile%403x.png" />
-    <BundleResource Include="Resources\tabbar_search.png" />
-    <BundleResource Include="Resources\tabbar_search%402x.png" />
-    <BundleResource Include="Resources\tabbar_search%403x.png" />
-    <BundleResource Include="Resources\tabbar_mybeers.png" />
-    <BundleResource Include="Resources\tabbar_mybeers%402x.png" />
-    <BundleResource Include="Resources\tabbar_mybeers%403x.png" />
-    <BundleResource Include="Resources\tabbar_wishlist.png" />
-    <BundleResource Include="Resources\tabbar_wishlist%402x.png" />
-    <BundleResource Include="Resources\tabbar_wishlist%403x.png" />
     <BundleResource Include="Resources\Analytics.png" />
     <BundleResource Include="Resources\search_barcode.png" />
     <BundleResource Include="Resources\search_placeholder_beer.png" />
@@ -715,6 +702,37 @@
     <BundleResource Include="Resources\icon_settings.png" />
     <BundleResource Include="Resources\icon_settings%402x.png" />
     <BundleResource Include="Resources\icon_settings%403x.png" />
+    <BundleResource Include="Resources\tabbar_friends_selected.png" />
+    <BundleResource Include="Resources\Discover_Selected.png" />
+    <BundleResource Include="Resources\Discover%402x.png" />
+    <BundleResource Include="Resources\Discover%403x.png" />
+    <BundleResource Include="Resources\Friends_Selected.png" />
+    <BundleResource Include="Resources\Friends.png" />
+    <BundleResource Include="Resources\Friends%402x.png" />
+    <BundleResource Include="Resources\Friends%403x.png" />
+    <BundleResource Include="Resources\Me_Selected.png" />
+    <BundleResource Include="Resources\Me.png" />
+    <BundleResource Include="Resources\Me%402x.png" />
+    <BundleResource Include="Resources\Me%403x.png" />
+    <BundleResource Include="Resources\Search_Selected.png" />
+    <BundleResource Include="Resources\Search.png" />
+    <BundleResource Include="Resources\Search%402x.png" />
+    <BundleResource Include="Resources\Search%403x.png" />
+    <BundleResource Include="Resources\Discover.png" />
+    <BundleResource Include="Resources\tabbar_discover.png" />
+    <BundleResource Include="Resources\tabbar_discover%402x.png" />
+    <BundleResource Include="Resources\tabbar_friends.png" />
+    <BundleResource Include="Resources\tabbar_friends%402x.png" />
+    <BundleResource Include="Resources\tabbar_me.png" />
+    <BundleResource Include="Resources\tabbar_me%402x.png" />
+    <BundleResource Include="Resources\tabbar_search.png" />
+    <BundleResource Include="Resources\tabbar_search%402x.png" />
+    <BundleResource Include="Resources\NavigationBar_More.png" />
+    <BundleResource Include="Resources\NavigationBar_More%402x.png" />
+    <BundleResource Include="Resources\NavigationBar_More%403x.png" />
+    <BundleResource Include="Resources\NavigationBar_Back.png" />
+    <BundleResource Include="Resources\NavigationBar_Back%402x.png" />
+    <BundleResource Include="Resources\NavigationBar_Back%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
@@ -851,6 +869,5 @@
     <Folder Include="View Controllers\UserProfile\" />
     <Folder Include="UITableViewCells\Discover\" />
     <Folder Include="Services\" />
-    <Folder Include="UITableViewCells\Beer Description\" />
   </ItemGroup>
 </Project>

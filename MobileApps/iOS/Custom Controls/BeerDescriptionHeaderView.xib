@@ -89,10 +89,6 @@
         <image name="backArrow.png" width="22" height="22"/>
         <image name="close.png" width="41" height="41"/>
         <image name="Patterned Image.png" width="7103" height="2025"/>
-        <image name="tabbar_profile.png" width="30" height="30"/>
-        <image name="tabbar_search.png" width="30" height="30"/>
-        <image name="tabbar_mybeers.png" width="18" height="30"/>
-        <image name="tabbar_wishlist.png" width="18" height="30"/>
         <image name="Analytics.png" width="256" height="256"/>
         <image name="search_barcode.png" width="686" height="287"/>
         <image name="search_placeholder_beer.png" width="113" height="203"/>
@@ -152,6 +148,19 @@
         <image name="mike_james_avatar.png" width="206" height="206"/>
         <image name="icon_more.png" width="70" height="24"/>
         <image name="icon_settings.png" width="52" height="52"/>
+        <image name="tabbar_discover.png" width="30" height="30"/>
+        <image name="tabbar_friends_selected.png" width="27" height="34"/>
+        <image name="tabbar_me.png" width="30" height="30"/>
+        <image name="Discover_Selected.png" width="41" height="32"/>
+        <image name="Discover.png" width="21" height="16"/>
+        <image name="Friends_Selected.png" width="27" height="34"/>
+        <image name="Friends.png" width="27" height="34"/>
+        <image name="Me_Selected.png" width="15" height="34"/>
+        <image name="Me.png" width="15" height="34"/>
+        <image name="Search_Selected.png" width="35" height="35"/>
+        <image name="Search.png" width="35" height="35"/>
+        <image name="tabbar_friends.png" width="30" height="30"/>
+        <image name="tabbar_search.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="retina4"/>

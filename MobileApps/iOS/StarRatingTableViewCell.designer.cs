@@ -9,21 +9,13 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace BeerDrinkin.iOS.BeerDescription
+namespace BeerDrinkin.iOS
 {
     [Register ("StarRatingTableViewCell")]
     partial class StarRatingTableViewCell
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel titleLabel { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (titleLabel != null) {
-                titleLabel.Dispose ();
-                titleLabel = null;
-            }
         }
     }
 }

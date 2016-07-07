@@ -110,7 +110,10 @@ namespace BeerDrinkin.iOS
         void SetUpUI ()
         {
             Title = new CultureInfo ("en-US").TextInfo.ToTitleCase (viewModel.Name);
-            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIImage.FromFile ("backArrow.png"), UIBarButtonItemStyle.Plain, (sender, args) => {NavigationController.PopViewController (true);}), true);
+            NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIImage.FromFile ("NavigationBar_Back.png"), UIBarButtonItemStyle.Plain, (sender, args) => {NavigationController.PopViewController (true);}), true);
+
+            btnCheckIn.Layer.CornerRadius = 4;
+            btnCheckIn.Layer.MasksToBounds = true;
 
             headerView = BeerDescriptionHeaderView.Create();
             headerView.SetBeer(viewModel.Beer);
@@ -120,7 +123,7 @@ namespace BeerDrinkin.iOS
             tableView.BackgroundColor = UIColor.Clear;
 
             //Add Cells
-            AddHeaderInfo ();
+            AddRating();
             AddDescription ();
 
             //Update Tableview
@@ -135,39 +138,23 @@ namespace BeerDrinkin.iOS
 
         #region AddCells
 
-        void AddHeaderInfo ()
-        {
-            var headerCellIdentifier = new NSString ("headerCell");
-            var headerCell = tableView.DequeueReusableCell (headerCellIdentifier) as BeerHeaderCell ??
-                             new BeerHeaderCell (headerCellIdentifier);
-            headerCell.Name = viewModel.Name;
-            headerCell.Brewery = viewModel.BreweryName;
-            headerCell.Abv = viewModel.ABV.ToString();
-
-            headerCell.ConsumedAlpha = 0.3f;
-            headerCell.RatingAlpha = 0.3f;
-
-			headerCell.EditingAbv += delegate 
-            {
-				NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate 
-                {
-					headerCell.EndEditingAbv();
-					NavigationItem.RightBarButtonItem = null;
-				}), true);
-			};
-
-            cells.Add (headerCell);
-        }
-
         void AddDescription ()
         {
             if (!string.IsNullOrEmpty (viewModel.Description)) {
                 var cellIdentifier = new NSString ("descriptionCell");
-                var cell = tableView.DequeueReusableCell (cellIdentifier) as BeerDescriptionCell ??
-                           new BeerDescriptionCell (cellIdentifier);
+                var cell = tableView.DequeueReusableCell (cellIdentifier) as BeerDescriptionCell ?? new BeerDescriptionCell (cellIdentifier);
+
                 cell.Text = viewModel.Description;
                 cells.Add (cell);
             }
+        }
+
+        void AddRating()
+        {
+            var cellIdentifier = new NSString("StarRatingCellIdentifier");
+            var cell = tableView.DequeueReusableCell(cellIdentifier) as StarRatingTableViewCell ?? new StarRatingTableViewCell(cellIdentifier);
+
+            cells.Add(cell);
         }
 
         #endregion
@@ -195,7 +182,9 @@ namespace BeerDrinkin.iOS
                     var c = cell as BeerHeaderCell;
                     return c.Frame.Height;
                 }
-                    
+
+                if (cell.GetType() == typeof(StarRatingTableViewCell))
+                    return 74;
 
                 if (cell.GetType () == typeof(CheckInLocationMapCell))
                     return 200;
