@@ -37,8 +37,6 @@ namespace BeerDrinkin.Core.ViewModels
             return await searchService.Search(searchTerm);
         }
 
-
-
         public async Task<List<Beer>> LookupBarcode(string upc)
         {
             Initialize();

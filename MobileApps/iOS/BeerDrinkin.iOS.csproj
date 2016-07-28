@@ -568,6 +568,10 @@
     <Compile Include="StarRatingTableViewCell.designer.cs">
       <DependentUpon>StarRatingTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchViewController.cs" />
+    <Compile Include="SearchViewController.designer.cs">
+      <DependentUpon>SearchViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.5\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
@@ -733,6 +737,7 @@
     <BundleResource Include="Resources\NavigationBar_Back.png" />
     <BundleResource Include="Resources\NavigationBar_Back%402x.png" />
     <BundleResource Include="Resources\NavigationBar_Back%403x.png" />
+    <BundleResource Include="Resources\doge.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
