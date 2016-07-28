@@ -1,2 +1,2 @@
 [config]
-project = Azure/MobileService/MobileService.csproj
+project = Azure/BeerDrinkinService/BeerDrinkin.Service.csproj
