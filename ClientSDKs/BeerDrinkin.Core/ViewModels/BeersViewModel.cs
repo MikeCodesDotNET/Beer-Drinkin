@@ -22,8 +22,7 @@ namespace BeerDrinkin.Core.ViewModels
             checkInStore = ServiceLocator.Instance.Resolve<ICheckInStore>();
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
         }
-
-
+        
         public async Task<List<Beer>> GetBeers()
         {
             return null;
