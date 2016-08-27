@@ -3,7 +3,7 @@
     public class Rating : BaseDataObject
     {
         public int Score { get; set; }
-        public string UserId { get; set; }
+        public virtual User User { get; set; }
         public string Review { get; set; }
 
         /// <summary>

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BeerDrinkin.DataObjects
+﻿namespace BeerDrinkin.DataObjects
 {
     public class WeatherCondition : BaseDataObject
-    {
-        public string CheckInId { get; set; }
-       
+    {       
         public string City { get; set; }
         public string Country { get; set; }
         public string Title { get; set; }

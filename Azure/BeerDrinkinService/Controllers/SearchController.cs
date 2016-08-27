@@ -21,7 +21,6 @@ namespace BeerDrinkin.Controllers
         BeerDrinkinContext context = new BeerDrinkinContext();
             
         ISearchServiceClient serviceClient = new SearchServiceClient("beerdrinkin", new SearchCredentials("08D2D12B51E07BFDDE17F6092F4C1575"));
-
         SearchIndexClient indexClient;
 
         [QueryableExpand("Brewery, Image")]
@@ -29,7 +28,6 @@ namespace BeerDrinkin.Controllers
         {
             try
             {
-
                 //Setup tracking how long the HTTP request takes.
                 telemtryClient.Context.Operation.Id = Guid.NewGuid().ToString();
                 telemtryClient.Context.Operation.Name = "Search";
@@ -50,7 +48,7 @@ namespace BeerDrinkin.Controllers
                 var suggestions = await indexClient.Documents.SuggestAsync<AzureSearchBeerResponse>(searchTerm, "nameSuggester", suggestParameters);
 
                 //Convert to Beer Drinkin Beer Type & save to our DB.
-                var results = new List<DataObjects.Beer>();
+                var results = new List<Beer>();
                 foreach (var result in suggestions.Results)
                 {
                     var indexedBeer = result.Document;

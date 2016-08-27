@@ -6,7 +6,7 @@ namespace BeerDrinkin.DataObjects
 {
     public class Wish : BaseDataObject
     {
-        public User User { get; set; }
-        public Beer Beer { get; set; }
+        public virtual User User { get; set; }
+        public virtual Beer Beer { get; set; }
     }
 }

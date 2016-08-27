@@ -2,7 +2,7 @@
 {
     public class Favourite : BaseDataObject
     {
-        public string UserId { get; set; }
-        public string BeerId { get; set; }
+        public virtual User User { get; set; }
+        public virtual Beer Beer{ get; set; }
     }
 }

@@ -6,8 +6,7 @@ namespace BeerDrinkin.DataObjects
 {
     public class Image : BaseDataObject
     {            
-        public string BeerId { get; set; }
-        public string OwnerId { get; set; }
+        public virtual User User { get; set; }
 
         public string LargeUrl { get; set; }
         public string MediumUrl { get; set; }

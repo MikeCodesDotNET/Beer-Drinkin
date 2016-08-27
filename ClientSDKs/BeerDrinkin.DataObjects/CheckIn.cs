@@ -1,13 +1,19 @@
-﻿namespace BeerDrinkin.DataObjects
+﻿using System.Collections.Generic;
+
+namespace BeerDrinkin.DataObjects
 {
     public class CheckIn : BaseDataObject
     {
-        public string BeerId { get; set; }
-        public string UserId { get; set; }
-        public string[] Images { get; set; }
+        public virtual Beer Beer { get; set; }
+        public virtual User User { get; set; }
+        public virtual List<Image> Images { get; set; }
+
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+
         public bool IsBottled { get; set; }
-        public string RatingId { get; set; }
+        public virtual Rating Rating { get; set; }
+        public virtual WeatherCondition Weather { get; set; }
+        
     }
 }

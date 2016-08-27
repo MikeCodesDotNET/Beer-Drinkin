@@ -1,31 +1,30 @@
-﻿    namespace BeerDrinkin.DataObjects
+﻿using System.Collections.Generic;
+
+namespace BeerDrinkin.DataObjects
 {
     public class Beer : BaseDataObject
     {
+        //Other beer sites
         public string BreweryDbId { get; set; }
         public string RateBeerId { get; set; }
 
-        public string CoverPhoto { get; set;}
-
+        //General
         public string Name { get; set; }
         public string Description { get; set; }
-        public Brewery Brewery { get; set; }
+
+        //Brewery 
         public string BreweryId { get; set; }
+
         public string StyleId { get; set; }
+        public virtual Style Style { get; set; }
+
         public string OriginCountry { get; set;}
         public double? Abv { get; set; }
 
-        /// <summary>
-        /// Gets or sets the barcode (UPC) of the beer
-        /// </summary>
-        public string Upc { get; set; }
+        public virtual List<string> Upcs { get; set; }
+        public virtual List<Image> Images { get; set; }
+        public virtual Image CoverPhoto { get; set; }
 
-        /// <summary>
-        /// Gets or set the Image URLs
-        /// </summary>
-        public Image Image { get; set; }
-
-        public bool HasImages { get; set; }
-
+        public virtual List<Rating> Ratings { get; set; }
     }
 }
