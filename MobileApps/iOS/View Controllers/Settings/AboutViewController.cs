@@ -4,7 +4,6 @@ using Xamarin;
 using System.Collections.Generic;
 using Foundation;
 using SafariServices;
-using Splat;
 
 namespace BeerDrinkin.iOS
 {

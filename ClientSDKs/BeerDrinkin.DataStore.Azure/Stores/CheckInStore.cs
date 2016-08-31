@@ -15,12 +15,12 @@ namespace BeerDrinkin.DataStore.Azure
     {        
         public Task<IEnumerable<CheckIn>> GetCheckInsForBeer(string beerId)
         {
-            return Table.Where(s => s.BeerId == beerId).ToEnumerableAsync();
+            return Table.Where(s => s.Beer.Id == beerId).ToEnumerableAsync();
         }
 
         public Task<IEnumerable<CheckIn>> GetCheckInsForUser(string userId)
         {
-            return Table.Where(s => s.UserId == userId).ToEnumerableAsync();
+            return Table.Where(s => s.User.Id == userId).ToEnumerableAsync();
         }
     }
 }

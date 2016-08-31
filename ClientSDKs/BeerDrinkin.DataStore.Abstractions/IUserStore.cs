@@ -9,5 +9,6 @@ namespace BeerDrinkin.DataStore.Abstractions
 {
     public interface IUserStore : IBaseStore<User>
     {
+        Task<User> GetCurrentUser();
     }
 }

@@ -39,7 +39,7 @@ namespace BeerDrinkin.Core.ViewModels
 
             FirstName = user.FirstName;
             LastName = user.LastName;
-            AvatarUrl = user.ProfilePictureUri;
+            AvatarUrl = user.Avatar.LargeUrl;
 
             var ratings = await ratingStore.GetRatingsForUser(userId);
             Ratings = ratings.ToList();

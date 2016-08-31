@@ -34,7 +34,7 @@ namespace BeerDrinkin.DataStore.Azure
         public async Task<IEnumerable<Rating>> GetRatingsForUser(string userId)
         {
             var ratings = await GetItemsAsync();
-            return ratings.Where(x => x.UserId == userId);
+            return ratings.Where(x => x.User.Id == userId);
         }
     }
 }

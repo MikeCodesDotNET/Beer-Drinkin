@@ -10,10 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Barcode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseDataObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Beer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Brewery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckIn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Favourite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rating.cs" />

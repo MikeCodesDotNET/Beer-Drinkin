@@ -1,38 +1,43 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BeerDrinkin.Core.Abstractions.Services;
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.Utils;
+using BeerDrinkin.DataStore.Abstractions;
 
 namespace BeerDrinkin.Core.ViewModels
 {
     public class BeerDescriptionViewModel
     {
+        public IDeviceSearchProvider SearchProvider { get; private set; }
+        public IBreweryStore BreweryStore { get; private set; }
+        public IRatingStore RatingStore { get; private set; }
         
         public BeerDescriptionViewModel(Beer beer)
         {
-            Beer = beer;
-            Name = beer.Name;
-            BreweryName = beer?.Brewery?.Name;
-            Description = beer.Description;
-            if (beer.HasImages == true)
-                ImageUrl = beer.Image.LargeUrl;
-
-
+            BreweryStore = ServiceLocator.Instance.Resolve<IBreweryStore>();
+            RatingStore = ServiceLocator.Instance.Resolve<IRatingStore>();
             SearchProvider = ServiceLocator.Instance.Resolve<IDeviceSearchProvider>();
+            
+            Beer = beer;
             SearchProvider.AddBeerToIndex(beer); 
         }
 
-        public IDeviceSearchProvider SearchProvider { get; private set;}
-        public Beer Beer { get; set;}
-        public string Name { get; set;}
-        public double ABV { get; set;}
-        public string BreweryName { get; set;}
-        public int Average { get; set;}
-        public int ReviewCount { get; set;}
-        public string Description { get; set;}
-        public string ImageUrl { get; set;}
+        public async Task Refresh()
+        {
+            var brewery = await BreweryStore.GetItemAsync(Beer.BreweryId);
+            BreweryName = brewery.Name;
 
+            Name = Beer.Name;
+            Description = Beer.Description;
+        }
+        
+        public Beer Beer { get; private set;}
+        public string Name { get; private set;}
+        public double ABV { get; private set;}
+        public string BreweryName { get; private set;}
+        public int AverageRating { get; private set;}
+        public string Description { get; private set;}
+    
         public string SharingMessage
         {
             get
@@ -40,7 +45,6 @@ namespace BeerDrinkin.Core.ViewModels
                 return $"I've just read about {Beer.Name} with Beer Drinkin for iOS";
             }
         }
-
     }
 }
 

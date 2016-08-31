@@ -96,6 +96,4 @@ namespace BeerDrinkin.iOS
         }
         #endregion
     }
-
-
 }

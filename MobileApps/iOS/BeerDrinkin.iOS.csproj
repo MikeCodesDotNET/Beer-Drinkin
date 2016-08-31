@@ -278,6 +278,7 @@
     </Compile>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers\ViewExtensions.cs" />
+    <Compile Include="Services\DeviceInfoService.cs" />
     <Compile Include="View Controllers\MyBeersViewController.cs" />
     <Compile Include="View Controllers\MyBeersViewController.designer.cs">
       <DependentUpon>MyBeersViewController.cs</DependentUpon>

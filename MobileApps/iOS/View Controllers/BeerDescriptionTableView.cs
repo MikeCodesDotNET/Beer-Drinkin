@@ -7,11 +7,7 @@ using UIKit;
 
 using BeerDrinkin.DataObjects;
 using BeerDrinkin.iOS.DataSources;
-
-using SDWebImage;
 using Foundation;
-
-using Plugin.Share;
 using BeerDrinkin.Core.ViewModels;
 
 namespace BeerDrinkin.iOS
@@ -46,7 +42,7 @@ namespace BeerDrinkin.iOS
 
 		public void Share()
 		{
-			CrossShare.Current.Share(viewModel.Name, viewModel.Description);
+			//TODO Implement 
 		}
 
         public override void ViewDidLayoutSubviews ()
@@ -89,6 +85,8 @@ namespace BeerDrinkin.iOS
         }
 
         public bool EnableCheckIn = false;
+
+        public object CrossShare { get; private set; }
 
         public void SetBeer (Beer beer)
         {

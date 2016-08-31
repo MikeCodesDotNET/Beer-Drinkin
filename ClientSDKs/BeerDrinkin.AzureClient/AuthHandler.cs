@@ -13,7 +13,6 @@ namespace BeerDrinkin.AzureClient
 {
     class AuthHandler : DelegatingHandler
     {
-
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var client = ServiceLocator.Instance.Resolve<IAzureClient>()?.Client as MobileServiceClient;
@@ -28,12 +27,10 @@ namespace BeerDrinkin.AzureClient
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
-                // Oh noes, user is not logged in - we got a 401
-                // Log them in, this time hardcoded with Microsoft but you would
-                // trigger the login presentation in your application
+                // The user isn't logged in so we'll go ahead and present them with a login screen.
                 try
                 {
-
+                    await client.LoginAsync(MobileServiceAuthenticationProvider.Facebook, null);
                 }
                 catch (InvalidOperationException)
                 {

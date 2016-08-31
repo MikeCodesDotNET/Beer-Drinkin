@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.Core.Abstractions.ViewModels;
@@ -16,6 +14,7 @@ namespace BeerDrinkin.Core.ViewModels
     {
         ICheckInStore checkInStore;
         IRatingStore ratingStore;
+        IUserStore userStore;
 
         IAzureClient azure;
         IAppInsights log;
@@ -23,6 +22,8 @@ namespace BeerDrinkin.Core.ViewModels
         public CheckInViewModel()
         {
             checkInStore = ServiceLocator.Instance.Resolve<ICheckInStore>();
+            userStore = ServiceLocator.Instance.Resolve<IUserStore>();
+
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
             log = ServiceLocator.Instance.Resolve<IAppInsights>();          
         }
@@ -35,20 +36,20 @@ namespace BeerDrinkin.Core.ViewModels
                 var location = await CrossGeolocator.Current.GetPositionAsync();
                 var checkIn = new CheckIn
                 {
-                    BeerId = beer.Id,
-                    UserId = azure.Client.CurrentUser.UserId,
+                    Beer = beer,
+                    User = await userStore.GetCurrentUser(),
                     Longitude = location.Longitude,
                     Latitude = location.Latitude
                 };
 
                 var rating = new Rating
                 {
-                    UserId = azure.Client.CurrentUser.UserId,
+                    User = await userStore.GetCurrentUser(),
                     Score = score,
                     CheckIn = checkIn
                 };
 
-                checkIn.RatingId = rating.Id;
+                checkIn.Rating = rating;
 
                 await checkInStore.InsertAsync(checkIn);
                 await ratingStore.InsertAsync(rating);

@@ -26,14 +26,19 @@ namespace BeerDrinkin.Service.Controllers
         // GET api/barcode
         public async Task<List<Beer>> Get(string upc)
         {
-
             try
             {
-                var beer = context.Beers.FirstOrDefault(x => x.Upc == upc);
-                if (beer != null)
+                var beers = new List<Beer>();
+                foreach(var b in context.Beers)
                 {
-                    return new List<Beer>() { beer };
+                    foreach(var barcode in b.Upcs)
+                    {
+                        if (barcode == upc)
+                            beers.Add(b);
+                    }
                 }
+                if(beers.Count > 0)
+                    return beers;
 
                 var properties = new Dictionary<string, string>();
                 properties.Add("UPC", upc);

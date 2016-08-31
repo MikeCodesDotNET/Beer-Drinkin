@@ -392,6 +392,8 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TrendingBeersController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DataObjects\Barcode.cs" />
+    <Compile Include="DataObjects\DeviceInfo.cs" />
     <Compile Include="DataObjects\WeatherCondition.cs" />
     <Compile Include="Controllers\WishController.cs" />
     <Compile Include="DataObjects\AppEvent.cs" />
