@@ -1,0 +1,26 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.iOS", "BeerDrinkin.iOS.csproj", "{586D37FE-B247-44A7-B218-278458571D5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		UITest|iPhone = UITest|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{586D37FE-B247-44A7-B218-278458571D5A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{586D37FE-B247-44A7-B218-278458571D5A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{586D37FE-B247-44A7-B218-278458571D5A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{586D37FE-B247-44A7-B218-278458571D5A}.Release|iPhone.Build.0 = Release|iPhone
+		{586D37FE-B247-44A7-B218-278458571D5A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{586D37FE-B247-44A7-B218-278458571D5A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{586D37FE-B247-44A7-B218-278458571D5A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{586D37FE-B247-44A7-B218-278458571D5A}.Debug|iPhone.Build.0 = Debug|iPhone
+		{586D37FE-B247-44A7-B218-278458571D5A}.UITest|iPhone.ActiveCfg = UITest|iPhone
+		{586D37FE-B247-44A7-B218-278458571D5A}.UITest|iPhone.Build.0 = UITest|iPhone
+	EndGlobalSection
+EndGlobal
