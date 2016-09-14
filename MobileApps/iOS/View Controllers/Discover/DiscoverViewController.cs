@@ -40,7 +40,7 @@ namespace BeerDrinkin.iOS
             logger = ServiceLocator.Instance.Resolve<IAppInsights>();
         }
 
-        public async override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -74,7 +74,7 @@ namespace BeerDrinkin.iOS
             }
         }
 
-        void ConfigureUserInterface()
+        private void ConfigureUserInterface()
         {
             searchBar.ShowsCancelButton = false;
             searchBar.Layer.BorderWidth = 0;
@@ -104,7 +104,7 @@ namespace BeerDrinkin.iOS
             View.AddSubview(tabView);
         }
 
-        void ConfigureEvents()
+        private void ConfigureEvents()
         {
             searchBar.OnEditingStarted += StartEditing;
             searchBar.CancelButtonClicked += EndEditing;

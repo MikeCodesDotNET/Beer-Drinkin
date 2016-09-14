@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Converter", "BeerDrinkin.Converter\BeerDrinkin.Converter.csproj", "{1457980D-27AD-402A-A636-123661C74469}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BeerDrinkin.DataObjects", "..\..\ClientSDKs\BeerDrinkin.DataObjects\BeerDrinkin.DataObjects.shproj", "{77AA1672-2700-452D-8C2F-4A2F0F463543}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrinkin.Conveter.Tests", "BeerDrinkin.Conveter.Tests\BeerDrinkin.Conveter.Tests.csproj", "{B6822C12-3748-4691-B4E3-F7EE87CB1784}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13F29383-6A97-47A3-B736-A4C6EF663953}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\ClientSDKs\BeerDrinkin.DataObjects\BeerDrinkin.DataObjects.projitems*{1457980d-27ad-402a-a636-123661c74469}*SharedItemsImports = 4
+		..\..\ClientSDKs\BeerDrinkin.DataObjects\BeerDrinkin.DataObjects.projitems*{77aa1672-2700-452d-8c2f-4a2f0f463543}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1457980D-27AD-402A-A636-123661C74469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1457980D-27AD-402A-A636-123661C74469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1457980D-27AD-402A-A636-123661C74469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1457980D-27AD-402A-A636-123661C74469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6822C12-3748-4691-B4E3-F7EE87CB1784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6822C12-3748-4691-B4E3-F7EE87CB1784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6822C12-3748-4691-B4E3-F7EE87CB1784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6822C12-3748-4691-B4E3-F7EE87CB1784}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6822C12-3748-4691-B4E3-F7EE87CB1784} = {13F29383-6A97-47A3-B736-A4C6EF663953}
+	EndGlobalSection
+EndGlobal

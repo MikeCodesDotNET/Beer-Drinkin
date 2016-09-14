@@ -5,8 +5,7 @@
         public static readonly string CrashReportingKey = "ctkyRdZsHeCPuh6ST9oHZA==";
 
         //Azure App Service Url
-        public static readonly string ServiceUrl = "https://beerdrinkinservice-staging.azurewebsites.net";
-        public static readonly string ServiceKey = "zPjEdUBYuqSTNkZowbRApTbBJBASLZ60";
+        public static readonly string ServiceUrl = "https://beerdrinkin-uk.azurewebsites.net";
 
         //Social
         public static readonly string FacebookClientId = "1441403606168987";

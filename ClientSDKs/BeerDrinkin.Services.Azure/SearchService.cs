@@ -11,7 +11,7 @@ namespace BeerDrinkin.DataStore.Azure
 {
     public class SearchService : ISearchService
     {
-        IAzureClient azure;
+        readonly IAzureClient azure;
         public SearchService()
         {
             azure = ServiceLocator.Instance.Resolve<IAzureClient>();
@@ -19,14 +19,10 @@ namespace BeerDrinkin.DataStore.Azure
 
         public async Task<List<Beer>> Search(string searchTerm)
         {
-            if (azure != null)
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters.Add("searchTerm", searchTerm);
+            if (azure == null) throw new NullReferenceException("Azure Client is null");
 
-                return await azure.Client.InvokeApiAsync<List<Beer>>("Search", HttpMethod.Get, parameters);
-            }
-            throw new NullReferenceException("Azure Client is null");
+            var parameters = new Dictionary<string, string> {{"searchTerm", searchTerm}};
+            return await azure.Client.InvokeApiAsync<List<Beer>>("Search", HttpMethod.Get, parameters);
         }
     }
 }

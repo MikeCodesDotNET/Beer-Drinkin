@@ -33,15 +33,8 @@ namespace BeerDrinkin.iOS
                 cell = new DiscoverUsersTableViewCell(new NSString(DiscoverUserCellIndeitifier));
             }
             cell.Name = $"{user.FirstName} {user.LastName}";
-            cell.Location = user.Location;
-            if (user.ProfilePictureUri != null)
-            {
-                cell.Image.SetImage(new NSUrl(user.ProfilePictureUri), UIImage.FromBundle("BeerDrinkin.png"));
-            }
-            else
-            {
-                cell.Image.Image = UIImage.FromBundle("BeerDrinkin.png");
-            }
+           
+
             return cell;
         }
 

@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-#if BACKEND
-using Microsoft.Azure.Mobile.Server;
-#elif WEBJOB
-
-#else
 using MvvmHelpers;
-#endif
 
 namespace BeerDrinkin.DataObjects
 {
@@ -21,7 +14,6 @@ namespace BeerDrinkin.DataObjects
     {
         public BaseDataObject()
         {
-            Id = Guid.NewGuid().ToString();
         }
 
         public bool IsHidden { get; set; }
@@ -29,7 +21,6 @@ namespace BeerDrinkin.DataObjects
         [Newtonsoft.Json.JsonProperty("Id")]
         public string Id { get; set; }
 
-        [Microsoft.WindowsAzure.MobileServices.Version]
         public string AzureVersion { get; set; }
     }
 #else

@@ -4,7 +4,6 @@ using System.CodeDom.Compiler;
 using UIKit;
 using AMViralSwitch;
 using MikeCodesDotNET.iOS;
-using Splat;
 
 namespace BeerDrinkin.iOS
 {

@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -51,13 +51,13 @@ namespace BeerDrinkin.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView whiteView { get; set; }
 
-        [Action ("BtnSettings_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void BtnSettings_TouchUpInside (UIKit.UIButton sender);
-
         [Action ("BtnMore_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void BtnMore_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("BtnSettings_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnSettings_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

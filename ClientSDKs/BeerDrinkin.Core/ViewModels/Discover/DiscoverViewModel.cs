@@ -21,14 +21,13 @@ namespace BeerDrinkin.Core.ViewModels
             Initialize();
         }
 
-        void Initialize()
+        private void Initialize()
         {
-            if (azure == null || searchService == null)
-            {
-                azure = ServiceLocator.Instance.Resolve<IAzureClient>();
-                searchService = ServiceLocator.Instance.Resolve<ISearchService>();
-                barcodeService = ServiceLocator.Instance.Resolve<IBarcodeService>();
-            }
+            if (azure != null && searchService != null) return;
+
+            azure = ServiceLocator.Instance.Resolve<IAzureClient>();
+            searchService = ServiceLocator.Instance.Resolve<ISearchService>();
+            barcodeService = ServiceLocator.Instance.Resolve<IBarcodeService>();
         }
 
         public async Task<List<Beer>> Search(string searchTerm)

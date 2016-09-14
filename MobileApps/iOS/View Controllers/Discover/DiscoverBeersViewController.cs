@@ -54,13 +54,13 @@ namespace BeerDrinkin.iOS
             }
 
             cell.Name = beer.Name;
-            cell.Brewery = beer?.Brewery.Name;
 
+            /*
             if(beer?.HasImages == true)
                 cell.Image.SetImage(new NSUrl(beer.Image.MediumUrl), UIImage.FromBundle("BeerDrinkin.png"));
             else
                 cell.Image.Image = UIImage.FromBundle("BeerDrinkin.png");
-
+                */
 
             return cell;
         }

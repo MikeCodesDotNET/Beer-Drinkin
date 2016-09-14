@@ -31,12 +31,6 @@ namespace BeerDrinkin.iOS
             ServiceLocator.Instance.Add<IAppInsights, AppInsights>();
             ServiceLocator.Instance.Add<IDeviceSearchProvider, SpotlightService>();
 
-#if DEBUG
-            Utils.Helpers.Settings.UserId = string.Empty;
-
-            Xamarin.Calabash.Start();
-            #endif
-
             //Windows Azure
             CurrentPlatform.Init ();
             SQLitePCL.CurrentPlatform.Init ();
@@ -123,7 +117,6 @@ namespace BeerDrinkin.iOS
 
 						beerItem.Name = name.ToString();
 						beerItem.Description = description.ToString();
-						beerItem.Image.MediumUrl = imageUrl.ToString();
 						beerItem.BreweryDbId = breweryDbId.ToString();
 
 						if (!string.IsNullOrEmpty(beerItem.BreweryDbId))

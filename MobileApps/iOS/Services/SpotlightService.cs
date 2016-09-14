@@ -22,10 +22,11 @@ namespace BeerDrinkin.iOS.Services
                 info.Add(new NSString("name"), new NSString(beer.Name));
                 info.Add(new NSString("description"), new NSString(beer.Description));
 
+                /*
                 if (beer?.Image?.MediumUrl != null)
                 {
                     info.Add(new NSString("imageUrl"), new NSString(beer.Image.LargeUrl));
-                }
+                }*/
 
                 var attributes = new CSSearchableItemAttributeSet();
                 attributes.DisplayName = beer.Name;

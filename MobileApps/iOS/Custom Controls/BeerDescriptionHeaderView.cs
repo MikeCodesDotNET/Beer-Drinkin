@@ -6,6 +6,7 @@ using ObjCRuntime;
 using BeerDrinkin.DataObjects;
 using SDWebImage;
 using CoreImage;
+using System.Linq;
 
 namespace BeerDrinkin.iOS
 {
@@ -38,9 +39,10 @@ namespace BeerDrinkin.iOS
             statsView.Country = beer.OriginCountry;
             statsView.ABV = beer.Abv.ToString();
 
-            if (beer.HasImages)
+            if (beer.Images.Count > 0)
             {
-                image.SetImage(new NSUrl(beer.Image.LargeUrl));
+                var img = beer.Images.FirstOrDefault();
+                image.SetImage(new NSUrl(img.LargeUrl));
             }
         }
 

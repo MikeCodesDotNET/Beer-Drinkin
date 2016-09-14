@@ -19,8 +19,6 @@ namespace BeerDrinkin.iOS
         {
             this.user = user;
             nameLabel.Text = $"{user.FirstName} {user.LastName}";
-            locationLabel.Text = user.Location;
-            profileImage.SetImage(new NSUrl(user.ProfilePictureUri));
         }
 
         public static ProfileHeaderView Create()

@@ -9,7 +9,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.0</string>
+	<string>9.3</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -35,8 +35,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Find the most popular beers in your area</string>
 	<key>NSAppTransportSecurity</key>
@@ -44,8 +42,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Icons.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleName</key>
 	<string>Beer Drinkin</string>
 	<key>UIMainStoryboardFile</key>
