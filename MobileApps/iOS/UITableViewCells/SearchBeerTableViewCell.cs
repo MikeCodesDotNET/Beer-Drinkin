@@ -1,7 +1,6 @@
 using System;
 using Foundation;
 using UIKit;
-using Splat;
 
 
 namespace BeerDrinkin.iOS
