@@ -9,5 +9,10 @@ namespace BeerDrinkin.iOS
         public SearchViewController (IntPtr handle) : base (handle)
         {
         }
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+		}
     }
 }

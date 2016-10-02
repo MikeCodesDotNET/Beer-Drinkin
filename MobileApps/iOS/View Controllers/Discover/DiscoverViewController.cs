@@ -95,7 +95,7 @@ namespace BeerDrinkin.iOS
             list.Add(discoverBreweries);
 
             tabView = new ScrollingTabView(list);
-            tabView.Frame = new CoreGraphics.CGRect(0, 64, View.Bounds.Width, View.Bounds.Height);
+            tabView.Frame = new CoreGraphics.CGRect(0, 0, View.Bounds.Width, View.Bounds.Height);
             tabView.SelectionChanged += (index, title) =>
             {
                 searchBar.Placeholder = $"Search {title}";
@@ -111,8 +111,7 @@ namespace BeerDrinkin.iOS
             searchBar.OnEditingStopped += HideKeyboard;
 
             searchBar.SearchButtonClicked += HideKeyboard;;
-            searchBar.TextChanged += async (sender, e) => await Search(searchBar.Text);
-            searchBar.SearchButtonClicked += async (sender, e) => await Search(searchBar.Text);
+            searchBar.SearchButtonClicked += async (sender, e) => await Search(searchBar.Text);            
         }
 
         async Task Search(string searchTerm)

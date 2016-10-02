@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.Services.Abstractions;
-using Mindscape.Raygun4Net;
 using Foundation;
 using System.Collections;
 using BeerDrinkin.DataStore.Abstractions;
@@ -16,39 +15,26 @@ namespace BeerDrinkin.iOS.Helpers
 
         public AppInsights()
         {
-            RaygunClient.Initialize(Keys.CrashReportingKey).AttachPulse();
-
-            var appVersion = NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
-            var buildNumber = NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
-            var applicationVersion = $"{appVersion}.{buildNumber}";
-
-            RaygunClient.Current.ApplicationVersion = applicationVersion;
+           
         }
 
         public void Identify(string userId)
         {
-            RaygunClient.Current.User = userId;
         }
 
         public void Report(Exception exception)
         {
-            RaygunClient.Current.SendInBackground(exception);
+			Xamarin.Insights.Report(exception);
         } 
 
         public void Report(Exception exception, IList<string> tags)
         {
-            RaygunClient.Current.SendInBackground(exception, tags);
+			Xamarin.Insights.Report(exception);
         }
 
         public void Report(Exception exception, string viewController, string method, string comment = "")
         {
-            var dict = new Dictionary<string, object>();
-            dict.Add("View Controller", viewController);
-            dict.Add("Method", method);
-            if(!string.IsNullOrEmpty(comment))
-                dict.Add("Comment", comment);
-
-            RaygunClient.Current.SendInBackground(exception, null, dict);
+            Xamarin.Insights.Report(exception);
         }
 
         public void Report(Exception exception, string viewController, string method)

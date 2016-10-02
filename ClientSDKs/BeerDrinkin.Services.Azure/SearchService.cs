@@ -19,10 +19,19 @@ namespace BeerDrinkin.DataStore.Azure
 
         public async Task<List<Beer>> Search(string searchTerm)
         {
-            if (azure == null) throw new NullReferenceException("Azure Client is null");
 
-            var parameters = new Dictionary<string, string> {{"searchTerm", searchTerm}};
-            return await azure.Client.InvokeApiAsync<List<Beer>>("Search", HttpMethod.Get, parameters);
+			try
+			{
+				if (azure == null) throw new NullReferenceException("Azure Client is null");
+
+				var parameters = new Dictionary<string, string> { { "searchTerm", searchTerm } };
+				return await azure.Client.InvokeApiAsync<List<Beer>>("search/beers", HttpMethod.Get, parameters);
+			}
+			catch (Exception ex)
+			{
+				Xamarin.Insights.Report(ex, Xamarin.Insights.Severity.Critical);
+				return new List<Beer>();
+			}
         }
     }
 }

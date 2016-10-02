@@ -27,6 +27,8 @@ namespace BeerDrinkin.iOS
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
+			Xamarin.Insights.Initialize("7d20afb6d54b4754306ee7c62ba18f2a1e66a442");
+
             Core.ViewModels.ViewModelBase.Init();
             ServiceLocator.Instance.Add<IAppInsights, AppInsights>();
             ServiceLocator.Instance.Add<IDeviceSearchProvider, SpotlightService>();
