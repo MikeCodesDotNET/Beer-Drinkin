@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class Image : BaseDataObject
+    public class Image : BaseModel
     {
         public string BeerId { get; set; }
         public string OwnerId { get; set; }

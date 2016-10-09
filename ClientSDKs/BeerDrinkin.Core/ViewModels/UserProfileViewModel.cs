@@ -1,4 +1,4 @@
-﻿using BeerDrinkin.DataObjects;
+﻿using BeerDrinkin.Models;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
 using Microsoft.WindowsAzure.MobileServices;
@@ -13,7 +13,7 @@ using Plugin.Connectivity;
 
 namespace BeerDrinkin.DataStore.Azure.Stores
 {
-    public class BaseStore<T> : IBaseStore<T> where T : class, IBaseDataObject, new()
+    public class BaseStore<T> : IBaseStore<T> where T : class, IBaseModel, new()
     {
         IStoreManager storeManager;
 

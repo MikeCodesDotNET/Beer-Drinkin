@@ -1,5 +1,5 @@
 ﻿using BeerDrinkin.AzureClient;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;

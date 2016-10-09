@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.Core.Abstractions.ViewModels;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.Utils;
@@ -27,15 +27,9 @@ namespace BeerDrinkin.Core.ViewModels
             stopWatch.Start();
 
             List<Beer> results;
-            if (Utils.Helpers.Settings.LocationEnabled == false)
-            {
-                results = await trendsService.TrendingBeers(takeCount, 0, 0);
-            }
-            else
-            {
-                var position = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
-                results = await trendsService.TrendingBeers(takeCount, position.Longitude, position.Latitude);
-            }
+           
+            var position = await Plugin.Geolocator.CrossGeolocator.Current.GetPositionAsync();
+            results = await trendsService.TrendingBeers(takeCount, position.Longitude, position.Latitude);        
 
             stopWatch.Stop();
 

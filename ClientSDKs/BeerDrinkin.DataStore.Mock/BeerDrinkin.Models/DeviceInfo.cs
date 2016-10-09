@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class DeviceInfo : BaseDataObject
+    public class DeviceInfo : BaseModel
     {
         public User Owner { get; set; }
         public string Manufacturer { get; set; }

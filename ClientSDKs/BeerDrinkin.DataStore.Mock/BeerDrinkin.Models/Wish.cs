@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class Wish : BaseDataObject
+    public class Wish : BaseModel
     {
         public string UserId { get; set; }
         public string BeerId { get; set; }

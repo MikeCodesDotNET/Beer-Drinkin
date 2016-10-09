@@ -18,9 +18,9 @@ namespace BeerDrinkin.iOS
         {
         }
 
-        DataObjects.Beer beer;
+        Models.Beer beer;
 
-        public DataObjects.Beer Beer
+        public Models.Beer Beer
         {
             get
             {

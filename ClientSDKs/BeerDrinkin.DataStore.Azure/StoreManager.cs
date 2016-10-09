@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;

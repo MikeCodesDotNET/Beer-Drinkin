@@ -1,6 +1,6 @@
 ﻿using System;
 using BeerDrinkin.Core.Abstractions.Services;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using CoreSpotlight;
 using Foundation;
 

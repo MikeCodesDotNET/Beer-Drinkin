@@ -8,7 +8,7 @@ using UIKit;
 
 using SDWebImage;
 using SWTableViewCell;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS
 {

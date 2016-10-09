@@ -6,7 +6,7 @@ using UIKit;
 using JudoDotNetXamariniOSSDK;
 using JudoPayDotNet.Models;
 using JudoDotNetXamarin;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using MikeCodesDotNET.iOS;
 
 namespace BeerDrinkin.iOS

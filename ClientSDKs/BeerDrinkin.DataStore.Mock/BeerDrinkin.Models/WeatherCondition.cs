@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class WeatherCondition : BaseDataObject
+    public class WeatherCondition : BaseModel
     {
         public string CheckInId { get; set; }
        

@@ -6,7 +6,7 @@ using BeerDrinkin.Core.ViewModels;
 
 using UIKit;
 using System.Collections.Generic;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS
 {

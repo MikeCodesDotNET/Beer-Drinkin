@@ -9,11 +9,11 @@ namespace BeerDrinkin.iOS.Services
 {
     public class DeviceInfoService
     {
-        public static DataObjects.DeviceInfo CurrentDevice
+        public static Models.DeviceInfo CurrentDevice
         {
             get
             {
-                return new DataObjects.DeviceInfo
+                return new Models.DeviceInfo
                 {
                     Manufacturer = "Apple",
                     IsJailbroken = GetIsJailBroken(),

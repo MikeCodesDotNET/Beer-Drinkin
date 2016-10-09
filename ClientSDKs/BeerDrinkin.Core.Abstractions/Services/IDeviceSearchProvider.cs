@@ -1,5 +1,5 @@
 ﻿using System;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.Core.Abstractions.Services
 {

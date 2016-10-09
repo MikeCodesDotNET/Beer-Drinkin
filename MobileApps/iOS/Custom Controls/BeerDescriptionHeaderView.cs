@@ -3,7 +3,7 @@ using System;
 using UIKit;
 using ObjCRuntime;
 
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using SDWebImage;
 using CoreImage;
 using System.Linq;

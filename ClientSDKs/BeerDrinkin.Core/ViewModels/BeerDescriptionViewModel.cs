@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BeerDrinkin.Core.Abstractions.Services;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.Utils;
 using BeerDrinkin.DataStore.Abstractions;
 

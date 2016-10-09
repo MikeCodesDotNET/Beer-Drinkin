@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS
 {

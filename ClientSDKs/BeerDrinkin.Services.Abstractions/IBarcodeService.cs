@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.Services.Abstractions
 {

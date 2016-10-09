@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
 using BeerDrinkin.Core.Abstractions.ViewModels;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Services.Abstractions;
 using BeerDrinkin.Utils;

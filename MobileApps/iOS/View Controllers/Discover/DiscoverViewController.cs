@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MikeCodesDotNET.iOS;
 
 using BeerDrinkin.Core.ViewModels;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.Utils;
 
 using UIKit;

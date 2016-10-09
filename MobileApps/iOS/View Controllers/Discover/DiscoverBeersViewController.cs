@@ -2,7 +2,7 @@ using Foundation;
 using System;
 using UIKit;
 using System.Collections.Generic;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using SDWebImage;
 using BeerDrinkin.iOS.CustomControls;
 using BeerDrinkin.iOS.PreviewingDelegate;

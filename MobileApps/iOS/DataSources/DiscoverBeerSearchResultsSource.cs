@@ -5,7 +5,7 @@ using Foundation;
 using UIKit;
 
 using SDWebImage;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS
 {

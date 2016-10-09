@@ -3,7 +3,7 @@ using System;
 using UIKit;
 using SDWebImage;
 
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using ObjCRuntime;
 
 namespace BeerDrinkin.iOS

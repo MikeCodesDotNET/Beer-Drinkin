@@ -3,7 +3,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 using System.Collections.Generic;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS
 {

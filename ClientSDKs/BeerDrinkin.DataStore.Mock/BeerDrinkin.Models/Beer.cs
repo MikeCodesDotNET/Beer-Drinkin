@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class Beer : BaseDataObject
+    public class Beer : BaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class Style : BaseDataObject
+    public class Style : BaseModel
     {
         public string Name { get; set; }
         public string ShortName { get; set; }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class AppEvent : BaseDataObject
+    public class AppEvent : BaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -117,6 +117,10 @@
       <Project>{4FECE5FF-399C-4814-9830-E4D69D3AE83A}</Project>
       <Name>BeerDrinkin.Services.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BeerDrinkin.DataStore.Mock\BeerDrinkin.Models\BeerDrinkin.Models.csproj">
+      <Project>{68DCFC13-EADC-4FE2-9EBE-A5560A690DAF}</Project>
+      <Name>BeerDrinkin.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

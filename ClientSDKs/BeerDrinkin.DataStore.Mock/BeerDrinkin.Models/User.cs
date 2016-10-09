@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class User : BaseDataObject
+    public class User : BaseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

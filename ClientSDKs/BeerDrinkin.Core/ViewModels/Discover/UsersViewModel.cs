@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
 

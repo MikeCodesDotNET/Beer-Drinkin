@@ -1,7 +1,7 @@
 ﻿using System;
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class AppFeedback : BaseDataObject
+    public class AppFeedback : BaseModel
     {
         public string UserId {get; set;}
         public string Email { get; set;}

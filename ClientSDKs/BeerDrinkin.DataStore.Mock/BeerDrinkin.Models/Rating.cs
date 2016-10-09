@@ -1,6 +1,6 @@
-﻿namespace BeerDrinkin.DataObjects
+﻿namespace BeerDrinkin.Models
 {
-    public class Rating : BaseDataObject
+    public class Rating : BaseModel
     {
         public int Score { get; set; }
         public virtual User User { get; set; }

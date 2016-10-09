@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeerDrinkin.AzureClient;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.Utils;
 
 namespace BeerDrinkin.Core.ViewModels

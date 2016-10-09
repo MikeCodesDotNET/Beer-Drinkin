@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.Core.Abstractions.ViewModels
 {

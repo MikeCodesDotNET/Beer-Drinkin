@@ -6,7 +6,7 @@ using Foundation;
 using System.Collections;
 using BeerDrinkin.DataStore.Abstractions;
 using BeerDrinkin.Utils;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 
 namespace BeerDrinkin.iOS.Helpers
 {

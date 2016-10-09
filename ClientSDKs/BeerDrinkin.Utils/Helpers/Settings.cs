@@ -24,50 +24,36 @@ namespace BeerDrinkin.Utils.Helpers
     private const string SettingsKey = "settings_key";
     private static readonly string SettingsDefault = string.Empty;
 
-        private const string UserIdKey = "userId_key";
-        private static readonly string UserIdDefault = string.Empty;
-
-        private const string LocationEnabledKey = "locaiton_enabled_key";
-        private static readonly bool LocationEnabledDefault = false;
-
-        #endregion
+	private const string UserIdKey = "userId_key";
+	private static readonly string UserIdDefault = string.Empty;
 
 
-        public static string GeneralSettings
-        {
-          get
-          {
-            return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
-          }
-          set
-          {
-            AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-          }
-        }
+    #endregion
 
-        public static string UserId
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(UserIdKey, UserIdDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(UserIdKey, value);
-            }
-        }
 
-        public static bool LocationEnabled
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault<bool>(LocationEnabledKey, LocationEnabledDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<bool>(LocationEnabledKey, value);
-            }
-        }
-
+    public static string GeneralSettings
+    {
+      get
+      {
+        return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+      }
+      set
+      {
+        AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
+      }
     }
+
+		public static string UserId
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault<string>(UserIdKey, UserIdDefault);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue<string>(UserIdKey, value);
+			}
+		}
+
+  }
 }

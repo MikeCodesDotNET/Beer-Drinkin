@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 using JudoDotNetXamarin;
 using JudoPayDotNet.Enums;
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using MikeCodesDotNET.iOS;
 using BeerDrinkin.Utils;
 using BeerDrinkin.Services.Abstractions;

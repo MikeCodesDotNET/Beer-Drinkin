@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeerDrinkin.DataObjects
+namespace BeerDrinkin.Models
 {
-    public class Barcode : BaseDataObject
+    public class Barcode : BaseModel
     {
         public bool Validated { get; set; }
         public string UPC { get; set; }

@@ -5,7 +5,7 @@ using System.Globalization;
 using CoreGraphics;
 using UIKit;
 
-using BeerDrinkin.DataObjects;
+using BeerDrinkin.Models;
 using BeerDrinkin.iOS.DataSources;
 using Foundation;
 using BeerDrinkin.Core.ViewModels;
