@@ -309,10 +309,6 @@
       <Project>{C31319EA-8A83-4724-BA9A-DFB224016FB5}</Project>
       <Name>BeerDrinkin.Core.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ClientSDKs\BeerDrinkin.DataStore.Mock\BeerDrinkin.Models\BeerDrinkin.Models.csproj">
-      <Project>{68DCFC13-EADC-4FE2-9EBE-A5560A690DAF}</Project>
-      <Name>BeerDrinkin.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\ITunesArtwork" />
