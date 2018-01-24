@@ -1,7 +1,7 @@
 # Beer Drinkin 
 [![Build Status](https://www.bitrise.io/app/7f04749bb7349e62.svg?token=rtX98mobBuH6nkxy1k8l2w&branch=master)](https://www.bitrise.io/app/7f04749bb7349e62)
 
-<img src="https://github.com/MikeCodesDotNet/Beer-Drinkin/blob/master/Design/Icon.png" width=125">
+![](https://raw.githubusercontent.com/MikeCodesDotNet/Beer-Drinkin/master/Design/Icon.png)
 
 Beer Drinkin is a .NET beer tracking app for iOS using Xamarin and Azure. Powered by several Microsoft services such as Microsoft's Azure App Services, Cognitive Services, and Azure Search as well as HockeyApp and Xamarin Test Cloud.
 
@@ -20,10 +20,10 @@ Grab a copy of the project and start tweaking, fixing bugs and adding new featur
 ## Community built version
 I am focused entirely on the backend infrastructure and traditional version of the apps. If you want to see how to build this type of app with Xamarin.Forms, then please check out the community build version (within the Forms folder). 
 
-####Design
+#### Design
 I've created the designs using Sketch.app which is a Mac only application. As part of my workflow, these are shared with [Zeplin](http://zeplin.io) which I'm happy to grant access to. 
 
-<img src="https://github.com/MikeCodesDotNet/BeerDrinkin/blob/master/Design/Color%20Palette.png" width=250">
+![](https://raw.githubusercontent.com/MikeCodesDotNet/Beer-Drinkin/master/Design/Color%20Palette.png)
 
  
 ## Get In Touch
